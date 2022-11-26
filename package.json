@@ -15,7 +15,8 @@
     "build-term": "ng build @myrmidon/pythia-term-list",
     "build-stats": "ng build @myrmidon/pythia-stats",
     "build-src": "ng build @myrmidon/pythia-search",
-    "build-lib": "npm run build-core && npm run build-api && npm run build-ui && npm run build-docr && npm build doc && npm run build-term && npm run build-stats && npm run build-src"
+    "build-corp": "ng build @myrmidon/pythia-corpus-list",
+    "build-lib": "npm run build-core && npm run build-api && npm run build-ui && npm run build-docr && npm build doc && npm run build-term && npm run build-stats && npm run build-src && npm run build-corp"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +33,7 @@
     "@myrmidon/auth-jwt-admin": "^1.0.0",
     "@myrmidon/auth-jwt-login": "^1.0.0",
     "@myrmidon/cadmus-refs-lookup": "^1.0.0",
+    "@myrmidon/ng-mat-tools": "^1.0.0",
     "@myrmidon/ng-tools": "^1.0.0",
     "@ngneat/effects-ng": "^2.0.0",
     "@ngneat/elf": "^2.3.0",

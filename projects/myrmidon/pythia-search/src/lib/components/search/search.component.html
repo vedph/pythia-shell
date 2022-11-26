@@ -1,19 +1,16 @@
-<div
-  gdAreas="query | results | paginator | reader"
-  gdRows="130px auto 60px 1fr"
-  gdGap="8px"
->
+<div id="container">
   <!-- query -->
-  <form gdArea="query" [formGroup]="form" (submit)="search()">
+  <form style="grid-area: query" [formGroup]="form" (submit)="search()">
     <mat-form-field style="width: 100%">
+      <mat-label>query</mat-label>
       <textarea
         #queryCtl
         rows="3"
         matInput
         [formControl]="query"
-        placeholder="query (ctrl+enter to submit)"
         (keyup.control.enter)="searchByEnter($any($event))"
       ></textarea>
+      <mat-hint>ctrl+Enter to submit</mat-hint>
       <mat-error
         *ngIf="$any(query).errors?.required && (query.dirty || query.touched)"
         >query required</mat-error
@@ -39,7 +36,8 @@
         *ngIf="lastQueries$ | async as queries"
         style="flex: 1 0 auto"
       >
-        <mat-select [formControl]="history" placeholder="history">
+        <mat-label>history</mat-label>
+        <mat-select [formControl]="history">
           <mat-option *ngFor="let q of queries" [value]="q">{{ q }}</mat-option>
         </mat-select>
         <button
@@ -58,7 +56,7 @@
   </form>
 
   <!-- results -->
-  <div gdArea="results" *ngIf="pagination$ | async as pagination">
+  <div style="grid-area: results" *ngIf="pagination$ | async as pagination">
     <table>
       <thead>
         <tr>
@@ -129,7 +127,7 @@
 
     <!-- pagination -->
     <mat-paginator
-      gdArea="pagination"
+      style="grid-area: paginator"
       gdAlignColumns="center"
       gdAlignRows="start"
       [length]="pagination.total"
@@ -142,7 +140,7 @@
   </div>
 
   <!-- reader -->
-  <div gdArea="reader">
+  <div style="grid-area: reader">
     <mat-card>
       <mat-card-content>
         <pythia-document-reader

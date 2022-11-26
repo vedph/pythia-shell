@@ -28,7 +28,8 @@ div#container {
   grid-template-areas:
     "spinner spinner"
     "filters list"
-    ". paginator";
+    ". paginator"
+    "editor editor";
   gap: 8px;
 }
 /* lt-md */
@@ -39,7 +40,8 @@ div#container {
       "spinner"
       "list"
       "paginator"
-      "filters";
+      "filters"
+      "editor";
   }
   th.noif-lt-md {
     display: none;

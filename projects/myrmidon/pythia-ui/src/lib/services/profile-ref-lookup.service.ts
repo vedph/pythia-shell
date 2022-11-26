@@ -19,10 +19,8 @@ export class ProfileRefLookupService implements RefLookupService {
   lookup(filter: RefLookupFilter, options?: any): Observable<Profile[]> {
     return this._profileService
       .getProfiles({
-        pageNumber: 1,
-        pageSize: filter.limit,
         id: filter.text,
-      })
+      }, 1, filter.limit)
       .pipe(map((page: DataPage<Profile>) => page.items));
   }
 

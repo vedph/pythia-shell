@@ -101,4 +101,9 @@ export class DocumentListComponent implements OnInit {
         break;
     }
   }
+
+  public clearCache(): void {
+    this._repository.clearCache();
+    this._repository.loadPage(1);
+  }
 }

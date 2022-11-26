@@ -1,0 +1,45 @@
+<form [formGroup]="form" (submit)="apply()" ng-disabled="disabled">
+  <!-- id -->
+  <div>
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput [formControl]="id" />
+    </mat-form-field>
+  </div>
+
+  <!-- title -->
+  <div>
+    <mat-form-field>
+      <mat-label>title</mat-label>
+      <input matInput [formControl]="title" />
+    </mat-form-field>
+  </div>
+
+  <br />
+  <div
+    class="btn-group"
+    role="group"
+    aria-label="toolbar"
+    style="margin-bottom: 10px"
+  >
+    <button
+      mat-icon-button
+      type="button"
+      (click)="reset()"
+      color="warn"
+      matTooltip="Reset filters"
+      [disabled]="disabled"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button
+      type="submit"
+      mat-icon-button
+      color="primary"
+      [disabled]="disabled"
+      matTooltip="Apply filters"
+    >
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+</form>

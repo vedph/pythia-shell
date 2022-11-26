@@ -7,8 +7,6 @@ import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 import { Profile } from '@myrmidon/pythia-core';
 
 export interface ProfileFilter {
-  pageNumber: number;
-  pageSize: number;
   id?: string;
   prefix?: string;
 }
@@ -29,10 +27,14 @@ export class ProfileService {
    * the profiles in a single page at once.
    * @returns Page.
    */
-  public getProfiles(filter: ProfileFilter): Observable<DataPage<Profile>> {
+  public getProfiles(
+    filter: ProfileFilter,
+    pageNumber = 1,
+    pageSize = 20
+  ): Observable<DataPage<Profile>> {
     let httpParams = new HttpParams();
-    httpParams = httpParams.set('pageNumber', filter.pageNumber.toString());
-    httpParams = httpParams.set('pageSize', filter.pageSize.toString());
+    httpParams = httpParams.set('pageNumber', pageNumber.toString());
+    httpParams = httpParams.set('pageSize', pageSize.toString());
 
     if (filter.id) {
       httpParams = httpParams.set('id', filter.id);

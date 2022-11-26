@@ -65,15 +65,25 @@
     </table>
 
     <!-- pagination -->
-    <mat-paginator
-      style="grid-area: paginator"
-      [length]="(pagination$ | async)?.total || 0"
-      [pageSize]="(pagination$ | async)?.perPage || 20"
-      [pageSizeOptions]="[2, 20, 50, 75, 100]"
-      [pageIndex]="((pagination$ | async)?.currentPage || 1) - 1"
-      [showFirstLastButtons]="true"
-      (page)="pageChange($event)"
-    ></mat-paginator>
+    <div class="form-row" style="grid-area: paginator">
+      <button
+        type="button"
+        mat-icon-button
+        color="warn"
+        matTooltip="Clear items cache"
+        (click)="clearCache()"
+      >
+        <mat-icon>autorenew</mat-icon>
+      </button>
+      <mat-paginator
+        [length]="(pagination$ | async)?.total || 0"
+        [pageSize]="(pagination$ | async)?.perPage || 20"
+        [pageSizeOptions]="[2, 20, 50, 75, 100]"
+        [pageIndex]="((pagination$ | async)?.currentPage || 1) - 1"
+        [showFirstLastButtons]="true"
+        (page)="pageChange($event)"
+      ></mat-paginator>
+    </div>
 
     <!-- info -->
     <div style="grid-area: info">

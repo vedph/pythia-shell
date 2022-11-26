@@ -18,11 +18,13 @@ export class CorpusRefLookupService implements RefLookupService {
 
   lookup(filter: RefLookupFilter, options?: any): Observable<Corpus[]> {
     return this._corpusService
-      .getCorpora({
-        pageNumber: 1,
-        pageSize: filter.limit,
-        title: filter.text,
-      })
+      .getCorpora(
+        {
+          title: filter.text,
+        },
+        1,
+        filter.limit
+      )
       .pipe(map((page: DataPage<Corpus>) => page.items));
   }
 

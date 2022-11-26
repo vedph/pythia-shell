@@ -1,0 +1,69 @@
+<form [formGroup]="form" (submit)="save()">
+  <h3>{{ id }}</h3>
+
+  <!-- title -->
+  <mat-form-field>
+    <mat-label>title</mat-label>
+    <input matInput [formControl]="title" />
+    <mat-error
+      *ngIf="$any(title).errors?.required && (title.dirty || title.touched)"
+      >title required</mat-error
+    >
+    <mat-error
+      *ngIf="$any(title).errors?.maxLength && (title.dirty || title.touched)"
+      >title too long</mat-error
+    >
+  </mat-form-field>
+
+  <!-- description -->
+  <mat-form-field>
+    <mat-label>description</mat-label>
+    <textarea rows="3" matInput [formControl]="description"></textarea>
+    <mat-error
+      *ngIf="
+        $any(description).errors?.maxLength &&
+        (description.dirty || description.touched)
+      "
+      >description too long</mat-error
+    >
+  </mat-form-field>
+
+  <!-- sourceId -->
+  <fieldset>
+    <legend>clone from</legend>
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput [formControl]="sourceId" />
+      <mat-error
+        *ngIf="
+          $any(sourceId).errors?.maxLength &&
+          (sourceId.dirty || sourceId.touched)
+        "
+        >ID too long</mat-error
+      >
+    </mat-form-field>
+  </fieldset>
+
+  <!-- buttons -->
+  <div role="group" aria-label="toolbar" style="margin: 10px 0">
+    <button
+      mat-button
+      type="button"
+      (click)="close()"
+      color="warn"
+      matTooltip="Close"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    &nbsp;
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      matTooltip="Save"
+    >
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+</form>

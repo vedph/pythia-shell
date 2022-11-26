@@ -1,9 +1,6 @@
 <div id="container">
   <!-- spinner -->
-  <div
-    style="grid-area: spinner"
-    *ngIf="(status$ | async)?.value === 'pending'"
-  >
+  <div style="grid-area: spinner" *ngIf="loading$ | async">
     <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
   </div>
 
@@ -11,7 +8,9 @@
   <div style="grid-area: filters">
     <mat-card>
       <mat-card-content>
-        <pythia-term-filter></pythia-term-filter>
+        <pythia-corpus-filter
+          [disabled]="(loading$ | async) === true"
+        ></pythia-corpus-filter>
       </mat-card-content>
     </mat-card>
   </div>
@@ -21,30 +20,39 @@
     <table>
       <thead>
         <th></th>
-        <th>value</th>
-        <th>count</th>
+        <th>id</th>
+        <th>title</th>
       </thead>
       <tbody>
-        <tr *ngFor="let t of pagination.data">
-          <td class="command">
+        <tr *ngFor="let c of pagination.data">
+          <td>
             <button
               mat-icon-button
               type="button"
-              matTooltip="Lookup this term"
+              matTooltip="Edit this corpus"
               color="primary"
-              (click)="requestSearch(t.value)"
+              (click)="editCorpus(c)"
             >
-              <mat-icon>search</mat-icon>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="Delete this corpus"
+              color="warn"
+              (click)="deleteCorpus(c)"
+            >
+              <mat-icon>delete</mat-icon>
             </button>
           </td>
-          <td>{{ t.value }}</td>
-          <td>{{ t.count }}</td>
+          <td>{{ c.id }}</td>
+          <td>{{ c.title }}</td>
         </tr>
       </tbody>
     </table>
 
     <!-- pagination -->
-    <div style="grid-area: paginator">
+    <div class="form-row" style="grid-area: paginator">
       <button
         type="button"
         mat-icon-button
@@ -56,7 +64,7 @@
       </button>
 
       <mat-paginator
-        gdArea="pagination"
+        gdArea="pager"
         gdAlignColumns="center"
         gdAlignRows="start"
         [length]="pagination.total"
@@ -66,6 +74,19 @@
         [showFirstLastButtons]="true"
         (page)="pageChange($event)"
       ></mat-paginator>
+    </div>
+
+    <!-- editor -->
+    <div style="grid-area: editor">
+      <mat-card *ngIf="editedCorpus">
+        <mat-card-content>
+          <pythia-corpus-editor
+            [corpus]="editedCorpus"
+            (corpusChange)="onCorpusChange($event)"
+            (editorClose)="onCorpusEditorClose()"
+          ></pythia-corpus-editor>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

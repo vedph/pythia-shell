@@ -35,6 +35,7 @@ import { Actions } from '@ngneat/effects-ng';
 
 // myrmidon
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
+import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
 import { AuthJwtInterceptor, AuthJwtLoginModule } from '@myrmidon/auth-jwt-login';
 
 // libs
@@ -108,6 +109,7 @@ export function initElfDevTools(actions: Actions) {
     MatTreeModule,
     // Fusi
     NgToolsModule,
+    NgMatToolsModule,
     AuthJwtLoginModule,
     // pythia
     PythiaApiModule,

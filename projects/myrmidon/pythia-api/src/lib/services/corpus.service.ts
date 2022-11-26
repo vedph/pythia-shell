@@ -1,14 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Corpus } from '@myrmidon/pythia-core';
-import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
+import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
+
+import { Corpus } from '@myrmidon/pythia-core';
+
 import { DocumentFilter } from './document.service';
 
 export interface CorpusFilter {
-  pageNumber: number;
-  pageSize: number;
   id?: string;
   title?: string;
   counts?: boolean;
@@ -29,10 +30,14 @@ export class CorpusService {
    * @param filter The filter.
    * @returns Page.
    */
-  public getCorpora(filter: CorpusFilter): Observable<DataPage<Corpus>> {
+  public getCorpora(
+    filter: CorpusFilter,
+    pageNumber = 1,
+    pageSize = 20
+  ): Observable<DataPage<Corpus>> {
     let httpParams = new HttpParams();
-    httpParams = httpParams.set('pageNumber', filter.pageNumber.toString());
-    httpParams = httpParams.set('pageSize', filter.pageSize.toString());
+    httpParams = httpParams.set('pageNumber', pageNumber.toString());
+    httpParams = httpParams.set('pageSize', pageSize.toString());
 
     if (filter.id) {
       httpParams = httpParams.set('id', filter.id);
