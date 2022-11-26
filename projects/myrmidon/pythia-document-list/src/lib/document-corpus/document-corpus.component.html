@@ -1,0 +1,35 @@
+<form [formGroup]="form" (submit)="apply()">
+  <div class="form-row">
+    <mat-form-field style="width: 14em">
+      <mat-label>action</mat-label>
+      <mat-select [formControl]="action">
+        <mat-option value="add-filtered">add to corpus</mat-option>
+        <mat-option value="del-filtered">delete from corpus</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          $any(action).errors?.required && (action.dirty || action.touched)
+        "
+        >action required</mat-error
+      >
+      <mat-hint>action for matching docs</mat-hint>
+    </mat-form-field>
+
+    <cadmus-ref-lookup
+      [service]="corpusRefLookupService"
+      label="corpus"
+      (itemChange)="onCorpusChange($event)"
+    ></cadmus-ref-lookup>
+
+    <button
+      type="submit"
+      [disabled]="form.invalid"
+      mat-flat-button
+      color="primary"
+      matTooltip="Apply the selected action to the target corpus"
+    >
+      <mat-icon>check_circle</mat-icon>
+      apply
+    </button>
+  </div>
+</form>

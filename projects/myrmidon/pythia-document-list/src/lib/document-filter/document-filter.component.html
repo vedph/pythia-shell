@@ -1,0 +1,229 @@
+<form [formGroup]="form" (submit)="apply()" ng-disabled="disabled">
+  <!-- corpus -->
+  <div>
+    <cadmus-ref-lookup
+      [service]="corpusLookupService"
+      label="corpus"
+      (itemChange)="onCorpusChange($event)"
+    ></cadmus-ref-lookup>
+    <mat-chip
+      *ngIf="corpus.value"
+      removable="true"
+      (removed)="onCorpusRemoved()"
+    >
+      {{ corpus.value.title }} ({{ corpus.value.id }})
+    </mat-chip>
+  </div>
+
+  <!-- author -->
+  <div>
+    <mat-form-field>
+      <mat-label>author(s)</mat-label>
+      <input matInput [formControl]="author" maxlength="500" />
+    </mat-form-field>
+  </div>
+
+  <!-- title -->
+  <div>
+    <mat-form-field>
+      <mat-label>title</mat-label>
+      <input matInput [formControl]="title" maxlength="500" />
+    </mat-form-field>
+  </div>
+
+  <!-- source -->
+  <div>
+    <mat-form-field>
+      <mat-label>source</mat-label>
+      <input matInput [formControl]="source" maxlength="500" />
+    </mat-form-field>
+  </div>
+
+  <!-- profile -->
+  <div>
+    <cadmus-ref-lookup
+      [service]="profileLookupService"
+      label="profile"
+      (itemChange)="onProfileChange($event)"
+    ></cadmus-ref-lookup>
+    <mat-chip
+      *ngIf="profile.value"
+      removable="true"
+      (removed)="onProfileRemoved()"
+    >
+      {{ profile.value.id }}
+    </mat-chip>
+  </div>
+
+  <!-- date -->
+  <h3>date</h3>
+  <div class="form-row">
+    <!-- minDateValue -->
+    <mat-form-field style="width: 6em">
+      <mat-label>min</mat-label>
+      <input matInput type="number" [formControl]="minDateValue" />
+    </mat-form-field>
+    -
+    <!-- maxDateValue -->
+    <mat-form-field style="width: 6em">
+      <mat-label>max</mat-label>
+      <input matInput type="number" [formControl]="maxDateValue" />
+    </mat-form-field>
+  </div>
+
+  <!-- time -->
+  <h3>modified</h3>
+  <div class="form-row">
+    <!-- minTimeModified -->
+    <mat-form-field style="width: 10em">
+      <mat-label>min</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerMin"
+        [formControl]="minTimeModified"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerMin"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerMin></mat-datepicker>
+    </mat-form-field>
+    -
+    <!-- maxTimeModified -->
+    <mat-form-field style="width: 10em">
+      <mat-label>max</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerMax"
+        [formControl]="maxTimeModified"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerMax"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerMax></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- attributes -->
+  <div *ngIf="(attributes$ | async)?.length">
+    <h3>
+      attributes
+      <button
+        type="button"
+        mat-icon-button
+        color="primary"
+        matTooltip="Add an attribute filter"
+        (click)="addAttribute()"
+      >
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </h3>
+    <div formArrayName="attributes">
+      <div
+        *ngFor="
+          let item of attributes.controls;
+          let i = index;
+          let first = first;
+          let last = last
+        "
+      >
+        <!-- child form -->
+        <div [formGroupName]="i">
+          <!-- child actions -->
+          {{ i + 1 }}.
+          <button
+            mat-icon-button
+            type="button"
+            matTooltip="Remove this attribute"
+            color="warn"
+            (click)="removeAttribute(i)"
+          >
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+
+          <!-- child controls -->
+          <!-- name -->
+          <mat-form-field style="width: 90px">
+            <mat-label>name</mat-label>
+            <mat-select formControlName="name">
+              <mat-option *ngFor="let n of attributes$ | async" [value]="n">{{
+                n
+              }}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                $any(item)['controls'].name.errors?.required &&
+                ($any(item)['controls'].name.dirty ||
+                  $any(item)['controls'].name.touched)
+              "
+              >name required</mat-error
+            >
+          </mat-form-field>
+
+          <!-- value -->
+          &nbsp;
+          <mat-form-field style="width: 90px">
+            <mat-label>value</mat-label>
+            <input matInput formControlName="value" />
+            <mat-error
+              *ngIf="
+                $any(item)['controls'].value.errors?.maxLength &&
+                ($any(item)['controls'].value.dirty ||
+                  $any(item)['controls'].value.touched)
+              "
+              >too long</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sort -->
+  <div *ngIf="sortable">
+    <h3>sort order</h3>
+    <div>
+      <mat-form-field>
+        <mat-label>sort</mat-label>
+        <mat-select [formControl]="sortOrder">
+          <mat-option [value]="0">default</mat-option>
+          <mat-option [value]="1">author</mat-option>
+          <mat-option [value]="2">title</mat-option>
+          <mat-option [value]="3">date</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- sort descending -->
+      &nbsp;
+      <mat-checkbox [formControl]="descending">descending</mat-checkbox>
+    </div>
+  </div>
+
+  <br />
+  <div
+    class="btn-group"
+    role="group"
+    aria-label="toolbar"
+    style="margin-bottom: 10px"
+  >
+    <button
+      mat-icon-button
+      type="button"
+      (click)="reset()"
+      color="warn"
+      matTooltip="Reset filters"
+      [disabled]="disabled"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button
+      type="submit"
+      mat-icon-button
+      color="primary"
+      [disabled]="disabled"
+      matTooltip="Apply filters"
+    >
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,47 @@
+tbody tr:nth-child(odd) {
+  background-color: #eaeaea;
+}
+th {
+  text-align: left;
+  font-weight: normal;
+  color: silver;
+}
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
+table {
+  width: 100%;
+}
+div#container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    "spinner spinner"
+    "filters list"
+    ". paginator"
+    "info info"
+    "corpus corpus";
+  gap: 8px;
+}
+
+/* lt-md */
+@media only screen and (max-width: 959px) {
+  div#container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "spinner"
+      "list"
+      "paginator"
+      "filters"
+      "info"
+      "corpus";
+  }
+  th.noif-lt-md {
+    display: none;
+  }
+  td.noif-lt-md {
+    display: none;
+  }
+}

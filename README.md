@@ -1,27 +1,25 @@
-# PythiaShell
+# Pythia Shell
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
-## Development server
+This project derives from the original Pythia frontend demo app, migrating it to ELF (replacing Akita) and Angular 15.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Breakpoints
 
-## Code scaffolding
+These are the media query breakpoints defined for responsive layouts according to the [Angular Material specs](https://github.com/angular/flex-layout/blob/master/docs/documentation/Responsive-API.md) implemented by Angular Flex Layout.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+| name  | media query                                              |
+|-------|----------------------------------------------------------|
+| xs    | 'screen and (max-width: 599px)'                          |
+| sm    | 'screen and (min-width: 600px) and (max-width: 959px)'   |
+| md    | 'screen and (min-width: 960px) and (max-width: 1279px)'  |
+| lg    | 'screen and (min-width: 1280px) and (max-width: 1919px)' |
+| xl    | 'screen and (min-width: 1920px) and (max-width: 5000px)' |
+| lt-sm | 'screen and (max-width: 599px)'                          |
+| lt-md | 'screen and (max-width: 959px)'                          |
+| lt-lg | 'screen and (max-width: 1279px)'                         |
+| lt-xl | 'screen and (max-width: 1919px)'                         |
+| gt-xs | 'screen and (min-width: 600px)'                          |
+| gt-sm | 'screen and (min-width: 960px)'                          |
+| gt-md | 'screen and (min-width: 1280px)'                         |
+| gt-lg | 'screen and (min-width: 1920px)'                         |

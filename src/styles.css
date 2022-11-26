@@ -1,1 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Text rendition */
+
+article.rendition span.hit {
+  background-color: #f8ff3d;
+}
+article.rendition span.abbr {
+    color: #97a2ad;
+}
+article.rendition span.address {
+    color: #7dab90;
+}
+article.rendition span.date {
+    color: #b38736;
+}
+article.rendition span.email {
+    color: #cfc7b8;
+}
+article.rendition span.foreign {
+    color: #4c2e70;
+}
+article.rendition span.hi-b {
+    font-weight: bold;
+}
+article.rendition span.hi-i {
+    font-style: italic;
+}
+article.rendition span.hi-u {
+    text-decoration: underline;
+}
+article.rendition span.hi-bi {
+    font-weight: bold;
+    font-style: italic;
+}
+article.rendition span.hi-bu {
+    font-weight: bold;
+    text-decoration: underline;
+}
+article.rendition span.hi-iu {
+    font-style: italic;
+    text-decoration: underline;
+}
+article.rendition span.juridic-name {
+  color: #34827f;
+}
+article.rendition span.num {
+  color: silver;
+}
+article.rendition span.pers-name {
+  color: #598234;
+}
+article.rendition span.place-name {
+  color: #33803b;
+}
+article.rendition div {
+  margin: 16px 0;
+}
+article.rendition p {
+  margin: 4px 0;
+}
+article.rendition p.pa-l {
+    text-align: left;
+}
+article.rendition p.pa-r {
+    text-align: right;
+}
+article.rendition p.pa-c {
+    text-align: center;
+}
+article.rendition p.pa-j {
+    text-align: justify;
+}
+article.rendition q {
+  font-style: italic;
+}
+article.rendition q:before,
+q:after {
+  content: "";
+}

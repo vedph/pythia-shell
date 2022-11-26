@@ -1,0 +1,29 @@
+fieldset {
+  border: 1px solid silver;
+  border-radius: 8px;
+}
+.author {
+  font-variant: small-caps;
+  font-size: 110%;
+  color: #c04f05;
+}
+.title {
+  font-style: italic;
+  color: #038841;
+}
+td:nth-child(1) {
+  color: gray;
+  background-color: #f8f8f8;
+  padding: 0 8px;
+  border-spacing: 0 8px;
+  border-collapse: separate;
+}
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-row * {
+  flex: 0 0 auto;
+}

@@ -1,0 +1,99 @@
+<div id="container">
+  <!-- spinner -->
+  <div
+    *ngIf="(status$ | async)?.value === 'pending'"
+    style="grid-area: spinner"
+  >
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+
+  <!-- filters -->
+  <div style="grid-area: filters">
+    <mat-card>
+      <mat-card-content>
+        <!-- TODO disable when loading -->
+        <pythia-document-filter></pythia-document-filter>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- list -->
+  <div style="grid-area: list" *ngIf="pagination$ | async as pagination">
+    <table>
+      <thead>
+        <th></th>
+        <th></th>
+        <th>id</th>
+        <th>author</th>
+        <th>title</th>
+        <th>date</th>
+        <th class="noif-lt-md">profile</th>
+        <th class="noif-lt-md">source</th>
+        <th class="noif-lt-md">last modified</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pagination.data">
+          <td class="command">
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="Read this document"
+              color="primary"
+            >
+              <mat-icon>auto_stories</mat-icon>
+            </button>
+          </td>
+          <td class="command">
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="View document info"
+              (click)="selectDocument(item)"
+            >
+              <mat-icon>info</mat-icon>
+            </button>
+          </td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.author }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.dateValue }}</td>
+          <td class="noif-lt-md">{{ item.profileId }}</td>
+          <td class="noif-lt-md">{{ item.source }}</td>
+          <td class="noif-lt-md">{{ item.lastModified | date: "short" }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- pagination -->
+    <mat-paginator
+      style="grid-area: paginator"
+      [length]="(pagination$ | async)?.total || 0"
+      [pageSize]="(pagination$ | async)?.perPage || 20"
+      [pageSizeOptions]="[2, 20, 50, 75, 100]"
+      [pageIndex]="((pagination$ | async)?.currentPage || 1) - 1"
+      [showFirstLastButtons]="true"
+      (page)="pageChange($event)"
+    ></mat-paginator>
+
+    <!-- info -->
+    <div style="grid-area: info">
+      <pythia-document-info
+        [document]="activeDocument$ | async"
+        (readRequest)="requestRead($event)"
+        (closeRequest)="onDocumentClose()"
+      ></pythia-document-info>
+    </div>
+
+    <!-- corpus -->
+    <div style="grid-area: corpus">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> corpus </mat-panel-title>
+        </mat-expansion-panel-header>
+        <pythia-document-corpus
+          (corpusAction)="onCorpusAction($event)"
+        ></pythia-document-corpus>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<fieldset *ngIf="document">
+  <legend>{{ document.title }}</legend>
+  <p>
+    <span class="author">{{ document.author }}</span
+    >, <span class="title">{{ document.title }}</span>
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td>date value</td>
+        <td>{{ document.dateValue }}</td>
+      </tr>
+      <tr>
+        <td>sort key</td>
+        <td>{{ document.sortKey }}</td>
+      </tr>
+      <tr>
+        <td>source</td>
+        <td>{{ document.source }}</td>
+      </tr>
+      <tr>
+        <td>profile ID</td>
+        <td>{{ document.profileId }}</td>
+      </tr>
+      <tr>
+        <td>last modified</td>
+        <td>{{ document.lastModified | date: "short" }}</td>
+      </tr>
+      <tr *ngFor="let a of document.attributes">
+        <td>{{ a.name }}</td>
+        <td>{{ a.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <div class="form-row">
+    <button
+      type="button"
+      mat-flat-button
+      matTooltip="Read this document"
+      color="primary"
+      (click)="read()"
+    >
+      <mat-icon>auto_stories</mat-icon> read
+    </button>
+    &nbsp;
+    <button
+      type="button"
+      mat-button
+      matTooltip="Close this info"
+      color="warn"
+      (click)="close()"
+    >
+      <mat-icon>cancel</mat-icon> close
+    </button>
+  </div>
+</fieldset>

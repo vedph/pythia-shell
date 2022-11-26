@@ -2,6 +2,26 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@myrmidon/pythia-api": [
+        "dist/myrmidon/pythia-api"
+      ],
+      "@myrmidon/pythia-core": [
+        "dist/myrmidon/pythia-core"
+      ],
+      "@myrmidon/pythia-document-list": [
+        "dist/myrmidon/pythia-document-list"
+      ],
+      "@myrmidon/pythia-document-reader": [
+        "dist/myrmidon/pythia-document-reader"
+      ],
+      "@myrmidon/pythia-stats": [
+        "dist/myrmidon/pythia-stats"
+      ],
+      "@myrmidon/pythia-ui": [
+        "dist/myrmidon/pythia-ui"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

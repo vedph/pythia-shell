@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>lock_open</mat-icon>
+      </div>
+      Login
+    </mat-card-header>
+  </mat-card-title>
+  <mat-card-content>
+    <auth-jwt-login
+      [forgot]="true"
+      (loginRequest)="onLoginRequest($event)"
+      (resetRequest)="onResetRequest()"
+    ></auth-jwt-login>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,11 @@
+#document-reader-tree .mat-tree-node {
+  min-height: 1.5em !important;
+  height: 1.5em;
+  overflow: hidden;
+}
+h3.doc-head {
+  border: 1px solid aliceblue;
+  border-radius: 8px;
+  padding: 0 8px;
+  background-color: aliceblue;
+}
