@@ -1,0 +1,154 @@
+<div
+  gdAreas="query | results | paginator | reader"
+  gdRows="130px auto 60px 1fr"
+  gdGap="8px"
+>
+  <!-- query -->
+  <form gdArea="query" [formGroup]="form" (submit)="search()">
+    <mat-form-field style="width: 100%">
+      <textarea
+        #queryCtl
+        rows="3"
+        matInput
+        [formControl]="query"
+        placeholder="query (ctrl+enter to submit)"
+        (keyup.control.enter)="searchByEnter($any($event))"
+      ></textarea>
+      <mat-error
+        *ngIf="$any(query).errors?.required && (query.dirty || query.touched)"
+        >query required</mat-error
+      >
+      <mat-error
+        *ngIf="$any(query).errors?.maxLength && (query.dirty || query.touched)"
+        >query too long</mat-error
+      >
+    </mat-form-field>
+
+    <div style="display: flex; align-items: center">
+      <!-- submit -->
+      <button
+        type="submit"
+        mat-stroked-button
+        [disabled]="form.invalid || busy"
+        style="flex: 0 0 auto; margin-right: 8px"
+      >
+        <mat-icon>search</mat-icon> search
+      </button>
+      <!-- history -->
+      <mat-form-field
+        *ngIf="lastQueries$ | async as queries"
+        style="flex: 1 0 auto"
+      >
+        <mat-select [formControl]="history" placeholder="history">
+          <mat-option *ngFor="let q of queries" [value]="q">{{ q }}</mat-option>
+        </mat-select>
+        <button
+          mat-icon-button
+          matSuffix
+          [attr.aria-label]="'Pick the selected query'"
+          (click)="pickHistory()"
+        >
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div *ngIf="busy">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </form>
+
+  <!-- results -->
+  <div gdArea="results" *ngIf="pagination$ | async as pagination">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>author</th>
+          <th>title</th>
+          <th *ngFor="let l of leftContextLabels">{{ l }}</th>
+          <th>value</th>
+          <th *ngFor="let l of rightContextLabels">{{ l }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of pagination.data">
+          <!-- column: read -->
+          <td class="command">
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="Read in context"
+              [disabled]="busy"
+              color="primary"
+              (click)="readDocumentPiece(r.documentId, r.index, r.length)"
+            >
+              <mat-icon style="color: #ffb764">find_in_page</mat-icon>
+            </button>
+          </td>
+          <!-- column: read-doc -->
+          <td class="command">
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="Read document"
+              [disabled]="busy"
+              (click)="readDocument(r.documentId)"
+            >
+              <mat-icon style="color: #50cc86">description</mat-icon>
+            </button>
+          </td>
+          <!-- author -->
+          <td class="author">{{ r.author }}</td>
+          <!-- title -->
+          <td class="title">{{ r.title }}</td>
+          <!-- left -->
+          <td
+            class="context"
+            *ngFor="let l of leftContextLabels; let i = index"
+          >
+            {{ r.leftContext[i] }}
+          </td>
+          <!-- value -->
+          <td
+            class="value"
+            (click)="readDocumentPiece(r.documentId, r.index, r.length)"
+          >
+            {{ r.value }}
+          </td>
+          <!-- right -->
+          <td
+            class="context"
+            *ngFor="let l of rightContextLabels; let i = index"
+          >
+            {{ r.rightContext[i] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- pagination -->
+    <mat-paginator
+      gdArea="pagination"
+      gdAlignColumns="center"
+      gdAlignRows="start"
+      [length]="pagination.total"
+      [pageSize]="pagination.perPage"
+      [pageSizeOptions]="[20, 50, 75, 100]"
+      [pageIndex]="pagination.currentPage - 1"
+      [showFirstLastButtons]="true"
+      (page)="pageChange($event)"
+    ></mat-paginator>
+  </div>
+
+  <!-- reader -->
+  <div gdArea="reader">
+    <mat-card>
+      <mat-card-content>
+        <pythia-document-reader
+          [request]="$any(readRequest$ | async)"
+        ></pythia-document-reader>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

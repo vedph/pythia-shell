@@ -17,9 +17,7 @@ import { PythiaCoreModule } from '@myrmidon/pythia-core';
 import { DocumentReaderComponent } from './document-reader/document-reader.component';
 
 @NgModule({
-  declarations: [
-    DocumentReaderComponent
-  ],
+  declarations: [DocumentReaderComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -35,6 +33,6 @@ import { DocumentReaderComponent } from './document-reader/document-reader.compo
     PythiaApiModule,
     PythiaCoreModule,
   ],
-  exports: [],
+  exports: [DocumentReaderComponent],
 })
 export class PythiaDocumentReaderModule {}

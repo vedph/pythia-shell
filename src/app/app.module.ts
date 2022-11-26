@@ -42,8 +42,10 @@ import { PythiaApiModule } from 'projects/myrmidon/pythia-api/src/public-api';
 import { PythiaCoreModule } from 'projects/myrmidon/pythia-core/src/public-api';
 import { PythiaDocumentListModule } from 'projects/myrmidon/pythia-document-list/src/public-api';
 import { PythiaDocumentReaderModule } from 'projects/myrmidon/pythia-document-reader/src/public-api';
+import { PythiaSearchModule } from 'projects/myrmidon/pythia-search/src/public-api';
 import { PythiaStatsModule } from 'projects/myrmidon/pythia-stats/src/lib/pythia-stats.module';
 import { PythiaTermListModule } from 'projects/myrmidon/pythia-term-list/src/public-api';
+import { PythiaUiModule } from 'projects/myrmidon/pythia-ui/src/public-api';
 
 // local
 import { AppComponent } from './app.component';
@@ -52,6 +54,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { TermsComponent } from './terms/terms.component';
+import { SearchComponent } from './search/search.component';
 
 // https://ngneat.github.io/elf/docs/dev-tools/
 export function initElfDevTools(actions: Actions) {
@@ -70,6 +73,7 @@ export function initElfDevTools(actions: Actions) {
     LoginPageComponent,
     DocumentsComponent,
     TermsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,8 +114,10 @@ export function initElfDevTools(actions: Actions) {
     PythiaCoreModule,
     PythiaDocumentListModule,
     PythiaDocumentReaderModule,
+    PythiaSearchModule,
     PythiaStatsModule,
-    PythiaTermListModule
+    PythiaTermListModule,
+    PythiaUiModule
   ],
   providers: [
     {

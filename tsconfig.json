@@ -15,6 +15,9 @@
       "@myrmidon/pythia-document-reader": [
         "dist/myrmidon/pythia-document-reader"
       ],
+      "@myrmidon/pythia-search": [
+        "dist/myrmidon/pythia-search"
+      ],
       "@myrmidon/pythia-stats": [
         "dist/myrmidon/pythia-stats"
       ],

@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 import {
   ErrorService,
   EnvService,
   DataPage,
   ErrorWrapper,
 } from '@myrmidon/ng-tools';
-import { Observable, of } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 
 export interface SearchResult {
   documentId: number;
@@ -27,13 +28,6 @@ export interface KwicSearchResult extends SearchResult {
   rightContext: string[];
 }
 
-export interface Search {
-  pageNumber: number;
-  pageSize: number;
-  query: string;
-  contextSize?: number;
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -46,20 +40,24 @@ export class SearchService {
 
   /**
    * Performs a search.
-   * @param search The search requested.
+   *
+   * @param query The query.
    * @returns Observable with ResultWrapper and a page of results, or
    * an error message in case of syntax errors.
    */
   public search(
-    search: Search
+    query: string,
+    contextSize = 5,
+    pageNumber = 1,
+    pageSize = 20
   ): Observable<ErrorWrapper<DataPage<KwicSearchResult>>> {
     // empty result set for invalid search parameters
-    if (search.pageNumber < 1 || search.pageSize < 1 || !search.query) {
+    if (pageNumber < 1 || pageSize < 1 || !query) {
       const w: ErrorWrapper<DataPage<KwicSearchResult>> = {
         value: {
           items: [],
-          pageNumber: search.pageNumber,
-          pageSize: search.pageSize,
+          pageNumber: pageNumber,
+          pageSize: pageSize,
           pageCount: 0,
           total: 0,
         },
@@ -70,7 +68,10 @@ export class SearchService {
     return this._http
       .post<ErrorWrapper<DataPage<KwicSearchResult>>>(
         this._env.get('apiUrl') + 'search',
-        search
+        {
+          query,
+          contextSize,
+        }
       )
       .pipe(retry(3), catchError(this._error.handleError));
   }
