@@ -1,0 +1,344 @@
+<form [formGroup]="form" (submit)="apply()" ng-disabled="disabled">
+  <!-- corpus -->
+  <div>
+    <cadmus-ref-lookup
+      label="corpus"
+      [service]="corpusLookupService"
+      (itemChange)="onCorpusChange($event)"
+    ></cadmus-ref-lookup>
+    <mat-chip
+      *ngIf="corpus.value"
+      removable="true"
+      (removed)="onCorpusRemoved()"
+    >
+      {{ corpus.value.title }} ({{ corpus.value.id }})
+    </mat-chip>
+  </div>
+
+  <!-- author -->
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="author"
+        maxlength="500"
+        placeholder="author(s)"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- title -->
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="title"
+        maxlength="500"
+        placeholder="title"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- source -->
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="source"
+        maxlength="500"
+        placeholder="source"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- profile -->
+  <div>
+    <cadmus-ref-lookup
+      label="profile"
+      [service]="profileLookupService"
+      (itemChange)="onProfileChange($event)"
+    ></cadmus-ref-lookup>
+    <mat-chip
+      *ngIf="profile.value"
+      removable="true"
+      (removed)="onProfileRemoved()"
+    >
+      {{ profile.value.id }}
+    </mat-chip>
+  </div>
+
+  <!-- date -->
+  <div>
+    <!-- minDateValue -->
+    <mat-form-field style="width: 80px">
+      <input
+        matInput
+        type="number"
+        [formControl]="minDateValue"
+        placeholder="min.date"
+      />
+    </mat-form-field>
+    &nbsp;-&nbsp;
+    <!-- maxDateValue -->
+    <mat-form-field style="width: 80px">
+      <input
+        matInput
+        type="number"
+        [formControl]="maxDateValue"
+        placeholder="max.date"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- time -->
+  <div>
+    <!-- minTimeModified -->
+    <mat-form-field style="width: 130px">
+      <input
+        matInput
+        type="date"
+        [formControl]="minTimeModified"
+        placeholder="min.modified"
+      />
+    </mat-form-field>
+    &nbsp;-&nbsp;
+    <mat-form-field style="width: 130px">
+      <input
+        matInput
+        type="date"
+        [formControl]="maxTimeModified"
+        placeholder="max.modified"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- doc attributes -->
+  <div *ngIf="(docAttributes$ | async)?.length">
+    <h3>
+      document attributes
+      <button
+        type="button"
+        mat-icon-button
+        color="primary"
+        matTooltip="Add a document attribute filter"
+        (click)="addAttribute(undefined, false)"
+      >
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </h3>
+    <div formArrayName="docAttributes">
+      <div
+        *ngFor="
+          let item of docAttributes.controls;
+          let i = index;
+          let first = first;
+          let last = last
+        "
+      >
+        <!-- child form -->
+        <div [formGroupName]="i">
+          <!-- child actions -->
+          {{ i + 1 }}.
+          <button
+            mat-icon-button
+            type="button"
+            matTooltip="Remove this attribute"
+            color="warn"
+            (click)="removeAttribute(i, false)"
+          >
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+
+          <!-- child controls -->
+          <!-- name -->
+          <mat-form-field style="width: 90px">
+            <mat-select formControlName="name" placeholder="name">
+              <mat-option
+                *ngFor="let n of docAttributes$ | async"
+                [value]="n"
+                >{{ n }}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="
+                $any(item)['controls'].name.errors?.required &&
+                ($any(item)['controls'].name.dirty ||
+                  $any(item)['controls'].name.touched)
+              "
+              >name required</mat-error
+            >
+          </mat-form-field>
+
+          <!-- value -->
+          &nbsp;
+          <mat-form-field style="width: 90px">
+            <input matInput formControlName="value" placeholder="value" />
+            <mat-error
+              *ngIf="
+                $any(item)['controls'].value.errors?.maxLength &&
+                ($any(item)['controls'].value.dirty ||
+                  $any(item)['controls'].value.touched)
+              "
+              >too long</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tok attributes -->
+  <div *ngIf="(tokAttributes$ | async)?.length">
+    <h3>
+      token attributes
+      <button
+        type="button"
+        mat-icon-button
+        color="primary"
+        matTooltip="Add a token attribute filter"
+        (click)="addAttribute(undefined, true)"
+      >
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </h3>
+    <div formArrayName="tokAttributes">
+      <div
+        *ngFor="
+          let item of tokAttributes.controls;
+          let i = index;
+          let first = first;
+          let last = last
+        "
+      >
+        <!-- child form -->
+        <div [formGroupName]="i">
+          <!-- child actions -->
+          {{ i + 1 }}.
+          <button
+            mat-icon-button
+            type="button"
+            matTooltip="Remove this attribute"
+            color="warn"
+            (click)="removeAttribute(i, true)"
+          >
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+
+          <!-- child controls -->
+          <!-- name -->
+          <mat-form-field style="width: 90px">
+            <mat-select formControlName="name" placeholder="name">
+              <mat-option
+                *ngFor="let n of tokAttributes$ | async"
+                [value]="n"
+                >{{ n }}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="
+                $any(item)['controls'].name.errors?.required &&
+                ($any(item)['controls'].name.dirty ||
+                  $any(item)['controls'].name.touched)
+              "
+              >name required</mat-error
+            >
+          </mat-form-field>
+
+          <!-- value -->
+          &nbsp;
+          <mat-form-field style="width: 90px">
+            <input matInput formControlName="value" placeholder="value" />
+            <mat-error
+              *ngIf="
+                $any(item)['controls'].value.errors?.maxLength &&
+                ($any(item)['controls'].value.dirty ||
+                  $any(item)['controls'].value.touched)
+              "
+              >too long</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- valuePattern -->
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [formControl]="valuePattern"
+        placeholder="value (wildcards: ? *)"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- count -->
+  <div>
+    <mat-form-field style="width: 4em">
+      <input
+        matInput
+        type="number"
+        min="0"
+        [formControl]="minCount"
+        placeholder="min.frq."
+      />
+    </mat-form-field>
+    &nbsp;-&nbsp;
+    <mat-form-field style="width: 4em">
+      <input
+        matInput
+        type="number"
+        min="0"
+        [formControl]="maxCount"
+        placeholder="max.frq."
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- sort -->
+  <div *ngIf="sortable">
+    <h3>sort order</h3>
+    <div>
+      <mat-form-field>
+        <mat-select [formControl]="sortOrder" placeholder="sort">
+          <mat-option [value]="0">default</mat-option>
+          <mat-option [value]="1">by value</mat-option>
+          <mat-option [value]="2">by reversed value</mat-option>
+          <mat-option [value]="3">by count</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- sort descending -->
+      &nbsp;
+      <mat-checkbox [formControl]="descending">descending</mat-checkbox>
+    </div>
+  </div>
+
+  <br />
+  <div
+    class="btn-group"
+    role="group"
+    aria-label="toolbar"
+    style="margin-bottom: 10px"
+  >
+    <button
+      mat-icon-button
+      type="button"
+      (click)="reset()"
+      color="warn"
+      matTooltip="Reset filters"
+      [disabled]="disabled"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button
+      type="submit"
+      mat-icon-button
+      color="primary"
+      [disabled]="disabled"
+      matTooltip="Apply filters"
+    >
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+</form>

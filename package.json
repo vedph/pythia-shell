@@ -12,8 +12,9 @@
     "build-ui": "ng build @myrmidon/pythia-ui",
     "build-docr": "ng build @myrmidon/pythia-document-reader",
     "build-doc": "ng build @myrmidon/pythia-document-list",
+    "build-term": "ng build @myrmidon/pythia-term-list",
     "build-stats": "ng build @myrmidon/pythia-stats",
-    "build-lib": "npm run build-core && npm run build-api && npm run build-ui && npm run build-docr && npm build doc && npm run build-stats"
+    "build-lib": "npm run build-core && npm run build-api && npm run build-ui && npm run build-docr && npm build doc && npm run build-term && npm run build-stats"
   },
   "private": true,
   "dependencies": {

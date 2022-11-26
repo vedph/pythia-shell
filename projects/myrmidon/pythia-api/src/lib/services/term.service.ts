@@ -1,13 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
-import { IndexTerm } from '@myrmidon/pythia-core';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
+import { IndexTerm } from '@myrmidon/pythia-core';
+
 export interface TermFilter {
-  pageNumber: number;
-  pageSize: number;
   corpusId?: string;
   author?: string;
   title?: string;
@@ -43,10 +42,14 @@ export class TermService {
     private _env: EnvService
   ) {}
 
-  public getTerms(filter: TermFilter): Observable<DataPage<IndexTerm>> {
+  public getTerms(
+    filter: TermFilter,
+    pageNumber = 1,
+    pageSize = 20
+  ): Observable<DataPage<IndexTerm>> {
     let httpParams = new HttpParams();
-    httpParams = httpParams.set('pageNumber', filter.pageNumber.toString());
-    httpParams = httpParams.set('pageSize', filter.pageSize.toString());
+    httpParams = httpParams.set('pageNumber', pageNumber.toString());
+    httpParams = httpParams.set('pageSize', pageSize.toString());
 
     if (filter.corpusId) {
       httpParams = httpParams.set('corpusId', filter.corpusId);

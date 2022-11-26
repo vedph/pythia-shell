@@ -18,6 +18,9 @@
       "@myrmidon/pythia-stats": [
         "dist/myrmidon/pythia-stats"
       ],
+      "@myrmidon/pythia-term-list": [
+        "dist/myrmidon/pythia-term-list"
+      ],
       "@myrmidon/pythia-ui": [
         "dist/myrmidon/pythia-ui"
       ]

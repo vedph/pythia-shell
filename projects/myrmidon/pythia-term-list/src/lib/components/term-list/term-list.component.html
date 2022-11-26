@@ -1,0 +1,67 @@
+<div
+  gdAreas="spinner spinner | filters list | . paginator"
+  gdAreas.lt-md="spinner | list | paginator | filters"
+  gdColumns="280px 1fr"
+  gdColumns.lt-md="1fr"
+  gdGap="8px"
+>
+  <!-- spinner -->
+  <div
+    *ngIf="(status$ | async)?.value === 'pending'"
+    gdArea="spinner"
+    gdAlignColumns="center"
+    gdAlignRows="center"
+  >
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+
+  <!-- filters -->
+  <div gdArea="filters" gdAlignRows.lt-md="center">
+    <mat-card>
+      <mat-card-content>
+        <pythia-term-filter></pythia-term-filter>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- list -->
+  <div gdArea="list" *ngIf="pagination$ | async as pagination">
+    <table>
+      <thead>
+        <th></th>
+        <th>value</th>
+        <th>count</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of pagination.data">
+          <td class="command">
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="Lookup this term"
+              color="primary"
+              (click)="requestSearch(t.value)"
+            >
+              <mat-icon>search</mat-icon>
+            </button>
+          </td>
+          <td>{{ t.value }}</td>
+          <td>{{ t.count }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- pagination -->
+    <mat-paginator
+      gdArea="pagination"
+      gdAlignColumns="center"
+      gdAlignRows="start"
+      [length]="pagination.total"
+      [pageSize]="pagination.perPage"
+      [pageSizeOptions]="[20, 50, 75, 100]"
+      [pageIndex]="pagination.currentPage - 1"
+      [showFirstLastButtons]="true"
+      (page)="pageChange($event)"
+    ></mat-paginator>
+  </div>
+</div>
