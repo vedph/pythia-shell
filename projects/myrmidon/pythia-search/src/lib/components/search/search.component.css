@@ -2,79 +2,64 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-
 th {
   font-weight: normal;
 }
-
 th,
 td {
   border: 1px solid #ddd;
 }
-
 th:nth-child(1),
 th:nth-child(2) {
   border: none;
 }
-
 tr:nth-child(even) {
   background-color: #f8f8f8;
 }
-
 tr:hover {
   background-color: #eee;
 }
-
 thead td {
   text-align: center;
   color: silver;
 }
-
 tbody td {
   padding-left: 4px;
   padding-right: 4px;
   border-left: 1px solid silver;
   border-right: 1px solid silver;
 }
-
 tbody td.command {
   padding: 0px;
   border: none;
   width: 32px;
 }
-
 tbody > tr > td > a {
   cursor: pointer;
   text-decoration: underline;
 }
-
 td.author {
   font-variant: small-caps;
   color: #c04f05;
   font-size: 110%;
 }
-
 td.title {
   font-style: italic;
   color: #038841;
 }
-
 td.context {
   color: #404040;
   text-align: center;
 }
-
 td.value {
   font-weight: bold;
   cursor: pointer;
   text-align: center;
   color: #2137aa;
 }
-
 code {
   color: #c04f05;
 }
-
 .form-row {
   display: flex;
   gap: 8px;
@@ -86,7 +71,7 @@ code {
 }
 div#container {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto 2fr;
   grid-template-areas:
     "query"

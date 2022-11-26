@@ -54,6 +54,11 @@ const routes: Routes = [
     component: SearchComponent,
     canActivate: [AuthJwtGuardService],
   },
+  {
+    path: 'search/:term',
+    component: SearchComponent,
+    canActivate: [AuthJwtGuardService],
+  },
 ];
 
 @NgModule({
