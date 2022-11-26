@@ -1,5 +1,7 @@
 table {
   border-collapse: collapse;
+  width: 100%;
+  table-layout: auto;
 }
 tr:nth-child(odd) {
   background-color: #f8f8f8;
@@ -20,6 +22,10 @@ td {
 }
 .form-row * {
   flex: 0 0 auto;
+}
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
 }
 div#container {
   display: grid;

@@ -73,16 +73,35 @@
 
   <!-- time -->
   <h3>modified</h3>
-  <div>
+  <div class="form-row">
     <!-- minTimeModified -->
-    <mat-form-field style="width: 130px">
+    <mat-form-field style="width: 10em">
       <mat-label>min</mat-label>
-      <input matInput type="date" [formControl]="minTimeModified" />
+      <input
+        matInput
+        [matDatepicker]="pickerMin"
+        [formControl]="minTimeModified"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerMin"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerMin></mat-datepicker>
     </mat-form-field>
-    &nbsp;-&nbsp;
-    <mat-form-field style="width: 130px">
+    -
+    <!-- maxTimeModified -->
+    <mat-form-field style="width: 10em">
       <mat-label>max</mat-label>
-      <input matInput type="date" [formControl]="maxTimeModified" />
+      <input
+        matInput
+        [matDatepicker]="pickerMax"
+        [formControl]="maxTimeModified"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerMax"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerMax></mat-datepicker>
     </mat-form-field>
   </div>
 
@@ -275,8 +294,9 @@
           <mat-option [value]="3">by count</mat-option>
         </mat-select>
       </mat-form-field>
+    </div>
+    <div>
       <!-- sort descending -->
-      &nbsp;
       <mat-checkbox [formControl]="descending">descending</mat-checkbox>
     </div>
   </div>

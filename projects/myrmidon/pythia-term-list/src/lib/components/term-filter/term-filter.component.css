@@ -2,3 +2,12 @@ h3 {
   border-bottom: 1px solid silver;
   color: silver;
 }
+.form-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-row * {
+  flex: 0 0 auto;
+}

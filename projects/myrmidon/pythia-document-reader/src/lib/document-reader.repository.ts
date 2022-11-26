@@ -1,9 +1,14 @@
-import { Document, DocumentReadRequest, TextMapNode } from '@myrmidon/pythia-core';
+import {
+  Document,
+  DocumentReadRequest,
+  TextMapNode,
+} from '@myrmidon/pythia-core';
 import { BehaviorSubject, forkJoin, Observable, take } from 'rxjs';
 
 import { createStore, select, setProp, withProps } from '@ngneat/elf';
 
 import { DocumentService, ReaderService } from '@myrmidon/pythia-api';
+import { Injectable } from '@angular/core';
 
 export interface DocumentReaderProps {
   document?: Document;
@@ -11,6 +16,7 @@ export interface DocumentReaderProps {
   text?: string;
 }
 
+@Injectable({ providedIn: 'root' })
 export class DocumentReaderRepository {
   private _store;
   private _loading$: BehaviorSubject<boolean>;
@@ -99,7 +105,7 @@ export class DocumentReaderRepository {
             ...state,
             document: result.doc,
             map: result.map,
-            text: undefined
+            text: undefined,
           }));
         });
     }

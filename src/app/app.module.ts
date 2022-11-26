@@ -36,11 +36,16 @@ import { Actions } from '@ngneat/effects-ng';
 // myrmidon
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
 import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
-import { AuthJwtInterceptor, AuthJwtLoginModule } from '@myrmidon/auth-jwt-login';
+import {
+  AuthJwtInterceptor,
+  AuthJwtLoginModule,
+} from '@myrmidon/auth-jwt-login';
+import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
 
 // libs
 import { PythiaApiModule } from 'projects/myrmidon/pythia-api/src/public-api';
 import { PythiaCoreModule } from 'projects/myrmidon/pythia-core/src/public-api';
+import { PythiaCorpusListModule } from 'projects/myrmidon/pythia-corpus-list/src/public-api';
 import { PythiaDocumentListModule } from 'projects/myrmidon/pythia-document-list/src/public-api';
 import { PythiaDocumentReaderModule } from 'projects/myrmidon/pythia-document-reader/src/public-api';
 import { PythiaSearchModule } from 'projects/myrmidon/pythia-search/src/public-api';
@@ -56,6 +61,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { TermsComponent } from './terms/terms.component';
 import { SearchComponent } from './search/search.component';
+import { CorporaComponent } from './corpora/corpora.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 // https://ngneat.github.io/elf/docs/dev-tools/
 export function initElfDevTools(actions: Actions) {
@@ -72,9 +81,13 @@ export function initElfDevTools(actions: Actions) {
     AppComponent,
     HomeComponent,
     LoginPageComponent,
+    ManageUsersComponent,
+    RegisterUserComponent,
+    ResetPasswordComponent,
     DocumentsComponent,
     TermsComponent,
     SearchComponent,
+    CorporaComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,15 +124,17 @@ export function initElfDevTools(actions: Actions) {
     NgToolsModule,
     NgMatToolsModule,
     AuthJwtLoginModule,
+    AuthJwtAdminModule,
     // pythia
     PythiaApiModule,
     PythiaCoreModule,
+    PythiaCorpusListModule,
     PythiaDocumentListModule,
     PythiaDocumentReaderModule,
     PythiaSearchModule,
     PythiaStatsModule,
     PythiaTermListModule,
-    PythiaUiModule
+    PythiaUiModule,
   ],
   providers: [
     {

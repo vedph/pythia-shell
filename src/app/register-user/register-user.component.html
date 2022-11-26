@@ -1,0 +1,13 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-icon mat-card-avatar>account_circle</mat-icon>
+    <mat-card-title>
+      <strong>Register User</strong>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <auth-jwt-registration
+      (registered)="onRegistered()"
+    ></auth-jwt-registration>
+  </mat-card-content>
+</mat-card>
