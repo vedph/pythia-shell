@@ -94,6 +94,7 @@ export class SearchComponent implements OnInit {
       return;
     }
     this._repository.addToHistory(query);
+    this._repository.search(query);
   }
 
   public searchByEnter(event: KeyboardEvent): void {

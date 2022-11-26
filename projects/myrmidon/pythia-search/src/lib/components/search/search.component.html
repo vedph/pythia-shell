@@ -21,22 +21,19 @@
       >
     </mat-form-field>
 
-    <div style="display: flex; align-items: center">
+    <div class="form-row">
       <!-- submit -->
-      <button
+      <button style="margin-top:-24px"
         type="submit"
         color="primary"
         mat-flat-button
         [disabled]="form.invalid || busy"
-        style="flex: 0 0 auto; margin-right: 8px"
       >
         <mat-icon>search</mat-icon> search
       </button>
+
       <!-- history -->
-      <mat-form-field
-        *ngIf="lastQueries$ | async as queries"
-        style="flex: 1 0 auto"
-      >
+      <mat-form-field *ngIf="lastQueries$ | async as queries">
         <mat-label>history</mat-label>
         <mat-select [formControl]="history">
           <mat-option *ngFor="let q of queries" [value]="q">{{ q }}</mat-option>
@@ -51,6 +48,7 @@
         </button>
       </mat-form-field>
     </div>
+
     <div *ngIf="busy">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
@@ -128,7 +126,6 @@
 
     <!-- pagination -->
     <mat-paginator
-      style="grid-area: paginator"
       gdAlignColumns="center"
       gdAlignRows="start"
       [length]="pagination.total"

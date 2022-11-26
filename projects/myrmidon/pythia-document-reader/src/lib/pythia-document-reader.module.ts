@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // material
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTreeModule } from '@angular/material/tree';
 
 // myrmidon
@@ -25,7 +25,7 @@ import { DocumentReaderComponent } from './document-reader/document-reader.compo
     // material
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatTreeModule,
     // myrmidon
     NgToolsModule,

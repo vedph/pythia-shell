@@ -1,27 +1,11 @@
-<div
-  *ngIf="document$ | async as doc"
-  gdAreas="spinner spinner | map text"
-  gdAreas.lt-md="spinner | text | map"
-  gdColumns="1fr 2fr"
-  gdColumns.lt-md="1fr"
-  gdGap="8px"
->
-  <!-- spinner -->
-  <div
-    *ngIf="loading$ | async"
-    gdArea="spinner"
-    gdAlignColumns="center"
-    gdAlignRows="center"
-  >
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+<div id="container" *ngIf="document$ | async as doc">
+  <!-- progress -->
+  <div *ngIf="loading$ | async" style="grid-area: progress">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 
   <!-- map -->
-  <div
-    gdArea="map"
-    *ngIf="map$ | async"
-    style="border: 1px solid #f0f0f0; border-radius: 8px; padding: 0 8px"
-  >
+  <div id="map" *ngIf="map$ | async" style="grid-area: map">
     <mat-tree
       id="document-reader-tree"
       [dataSource]="treeDataSource"
@@ -71,7 +55,7 @@
   </div>
 
   <!-- text -->
-  <div gdArea="text">
+  <div style="grid-area: text">
     <h3 class="doc-head">
       <span *ngIf="doc.author">{{ doc.author }} - </span>{{ doc.title }}
     </h3>

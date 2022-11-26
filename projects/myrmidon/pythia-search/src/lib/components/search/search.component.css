@@ -72,11 +72,10 @@ code {
 div#container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto 2fr;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "query"
     "results"
-    "paginator"
     "reader";
   gap: 8px;
 }
