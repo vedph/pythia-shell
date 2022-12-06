@@ -3,6 +3,7 @@
   <div>
     <cadmus-ref-lookup
       [service]="corpusLookupService"
+      [item]="corpus.value"
       label="corpus"
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
@@ -43,6 +44,7 @@
   <div>
     <cadmus-ref-lookup
       [service]="profileLookupService"
+      [item]="profile.value"
       label="profile"
       (itemChange)="onProfileChange($event)"
     ></cadmus-ref-lookup>

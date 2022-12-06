@@ -14,6 +14,8 @@ export interface Attribute {
 export interface Profile {
   id: string;
   content?: string;
+  type?: string;
+  userId?: string;
 }
 
 export interface Document {

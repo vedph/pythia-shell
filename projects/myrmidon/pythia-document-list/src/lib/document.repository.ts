@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, debounceTime, map, Observable, take } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, forkJoin, map, Observable, take } from 'rxjs';
 
 import { createStore, select, withProps } from '@ngneat/elf';
 import {
@@ -35,7 +35,12 @@ import {
 } from '@ngneat/elf-pagination';
 
 import { Document } from '@myrmidon/pythia-core';
-import { DocumentFilter, DocumentService } from '@myrmidon/pythia-api';
+import {
+  AttributeService,
+  DocumentFilter,
+  DocumentService,
+  ProfileService,
+} from '@myrmidon/pythia-api';
 import { DataPage } from '@myrmidon/ng-tools';
 
 const PAGE_SIZE = 2;
@@ -51,14 +56,20 @@ export interface DocumentProps {
 export class DocumentRepository {
   private _store;
   private _lastPageSize: number;
+  private _loading$: BehaviorSubject<boolean>;
 
   public activeDocument$: Observable<Document | undefined>;
   public filter$: Observable<DocumentFilter>;
   public pagination$: Observable<PaginationData & { data: Document[] }>;
   public attributes$: Observable<string[]>;
   public status$: Observable<StatusState>;
+  public loading$: Observable<boolean>;
 
-  constructor(private _docService: DocumentService) {
+  constructor(
+    private _docService: DocumentService,
+    private _attrService: AttributeService,
+    private _profileService: ProfileService
+  ) {
     this._store = this.createStore();
     this._lastPageSize = PAGE_SIZE;
 
@@ -73,6 +84,8 @@ export class DocumentRepository {
     this.activeDocument$ = this._store.pipe(selectActiveEntity());
     this.attributes$ = this._store.pipe(select((state) => state.attributes));
     this.status$ = this._store.pipe(selectRequestStatus('document'));
+    this._loading$ = new BehaviorSubject<boolean>(false);
+    this.loading$ = this._loading$.asObservable();
 
     this.filter$ = this._store.pipe(select((state) => state.filter));
     this.filter$.subscribe((filter) => {
@@ -206,5 +219,42 @@ export class DocumentRepository {
 
   clearCache() {
     this._store.update(deleteAllEntities(), deleteAllPages());
+  }
+
+  public loadLookup(profileIdPrefix?: string): void {
+    this._loading$.next(true);
+    forkJoin({
+      attributes: this._attrService.getAttributeNames({
+        pageNumber: 1,
+        pageSize: 0,
+        type: 0,
+      }),
+      profiles: this._profileService.getProfiles(
+        {
+          prefix: profileIdPrefix,
+        },
+        1,
+        0,
+        true
+      ),
+    })
+      .pipe(take(1))
+      .subscribe({
+        next: (result) => {
+          this._loading$.next(false);
+          this._store.update((state) => ({
+            ...state,
+            attributes: result.attributes.items,
+            profileIds: result.profiles.items.map((p) => p.id),
+          }));
+        },
+        error: (error) => {
+          this._loading$.next(false);
+          console.error(
+            'Error loading document list lookup: ' +
+              (error ? JSON.stringify(error) : '')
+          );
+        },
+      });
   }
 }

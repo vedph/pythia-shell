@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable, take } from 'rxjs';
 
@@ -31,8 +30,7 @@ export class DocumentListComponent implements OnInit {
   constructor(
     private _repository: DocumentRepository,
     private _snackbar: MatSnackBar,
-    private _corpusService: CorpusService,
-    formBuilder: FormBuilder
+    private _corpusService: CorpusService
   ) {
     this.pagination$ = _repository.pagination$;
     this.status$ = _repository.status$;
@@ -40,7 +38,9 @@ export class DocumentListComponent implements OnInit {
     this.readRequest = new EventEmitter<DocumentReadRequest>();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._repository.loadLookup();
+  }
 
   public pageChange(event: PageEvent): void {
     this._repository.loadPage(event.pageIndex + 1, event.pageSize);

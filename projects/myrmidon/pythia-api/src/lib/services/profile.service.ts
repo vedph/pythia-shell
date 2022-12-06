@@ -30,7 +30,8 @@ export class ProfileService {
   public getProfiles(
     filter: ProfileFilter,
     pageNumber = 1,
-    pageSize = 20
+    pageSize = 20,
+    noContent = false
   ): Observable<DataPage<Profile>> {
     let httpParams = new HttpParams();
     httpParams = httpParams.set('pageNumber', pageNumber.toString());
@@ -41,6 +42,15 @@ export class ProfileService {
     }
     if (filter.prefix) {
       httpParams = httpParams.set('prefix', filter.prefix);
+    }
+    if (filter.type) {
+      httpParams = httpParams.set('type', filter.type);
+    }
+    if (filter.userId) {
+      httpParams = httpParams.set('userId', filter.userId);
+    }
+    if (noContent) {
+      httpParams = httpParams.set('noContent', true);
     }
 
     return this._http
