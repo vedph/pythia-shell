@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import { IndexTerm } from '@myrmidon/pythia-core';
 import { PaginationData } from '@ngneat/elf-pagination';
-
-import { TermListRepository } from '../term-list.repository';
 import { StatusState } from '@ngneat/elf-requests';
+
+import { TermListRepository } from '../../term-list.repository';
 
 @Component({
   selector: 'pythia-term-list',

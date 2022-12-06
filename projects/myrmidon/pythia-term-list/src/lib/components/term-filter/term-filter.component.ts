@@ -16,7 +16,7 @@ import {
 import { Attribute, Corpus, Profile } from '@myrmidon/pythia-core';
 import { CorpusRefLookupService, ProfileRefLookupService } from '@myrmidon/pythia-ui';
 
-import { TermListRepository } from '../term-list.repository';
+import { TermListRepository } from '../../term-list.repository';
 
 @Component({
   selector: 'pythia-term-filter',

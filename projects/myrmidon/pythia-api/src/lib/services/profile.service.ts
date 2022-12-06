@@ -9,6 +9,8 @@ import { Profile } from '@myrmidon/pythia-core';
 export interface ProfileFilter {
   id?: string;
   prefix?: string;
+  type?: string;
+  userId?: string;
 }
 
 @Injectable({
