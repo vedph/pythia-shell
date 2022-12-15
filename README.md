@@ -10,7 +10,7 @@ Quick Docker image build:
 
 1. `npm run build-lib`
 2. update version in `env.js` and `ng build --configuration production`
-3. `docker build . -t vedph2020/pythia-app:1.0.0 -t vedph2020/pythia-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/pythia-shell:1.0.0 -t vedph2020/pythia-shell:latest` (replace with the current version).
 
 ## Breakpoints
 
