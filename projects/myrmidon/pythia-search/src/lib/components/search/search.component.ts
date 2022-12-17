@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -19,8 +12,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { PaginationData } from '@ngneat/elf-pagination';
 
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
+import { KwicSearchResult } from '@myrmidon/pythia-api';
 
-import { IdKwicSearchResult, SearchRepository } from '../../search.repository';
+import { SearchRepository } from '../../search.repository';
 
 @Component({
   selector: 'pythia-search',
@@ -32,9 +26,7 @@ export class SearchComponent implements OnInit {
   @Input()
   public initialQueryTerm: string | undefined;
 
-  public pagination$: Observable<
-    PaginationData & { data: IdKwicSearchResult[] }
-  >;
+  public pagination$: Observable<PaginationData & { data: KwicSearchResult[] }>;
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
   public loading$: Observable<boolean | undefined>;

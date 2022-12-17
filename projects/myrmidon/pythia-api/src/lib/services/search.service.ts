@@ -11,6 +11,7 @@ import {
 } from '@myrmidon/ng-tools';
 
 export interface SearchResult {
+  id: string;
   documentId: number;
   position: number;
   index: number;

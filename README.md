@@ -36,4 +36,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ### [Unreleased]
 
+- 2022-12-17:
+  - updated Angular.
+  - fixed search page not refreshed on new query.
 - 2022-11-26: refactored for Angular 15+ and ELF. Image version will start from 1.0.0 for frontend.

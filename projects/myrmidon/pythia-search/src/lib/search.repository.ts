@@ -33,11 +33,6 @@ import { KwicSearchResult, SearchService } from '@myrmidon/pythia-api';
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface IdKwicSearchResult extends KwicSearchResult {
-  // ID for local store entities, built from document ID and position
-  id: string;
-}
-
 const PAGE_SIZE = 20;
 
 export interface SearchProps {
@@ -53,11 +48,11 @@ export class SearchRepository {
   private _loading$: BehaviorSubject<boolean>;
   private _lastPageSize: number;
 
-  public activeResult$: Observable<IdKwicSearchResult | undefined>;
+  public activeResult$: Observable<KwicSearchResult | undefined>;
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
   public pagination$: Observable<
-    PaginationData & { data: IdKwicSearchResult[] }
+    PaginationData & { data: KwicSearchResult[] }
   >;
   public status$: Observable<StatusState>;
   public loading$: Observable<boolean>;
@@ -108,7 +103,7 @@ export class SearchRepository {
       }),
       // should you have an id property different from 'id'
       // use like withEntities<User, 'userName'>({ idKey: 'userName' })
-      withEntities<IdKwicSearchResult>(),
+      withEntities<KwicSearchResult>(),
       withActiveId(),
       withRequestsCache<'search'>(),
       withRequestsStatus(),
@@ -120,24 +115,19 @@ export class SearchRepository {
 
   private adaptPage(
     page: DataPage<KwicSearchResult>
-  ): PaginationData & { data: IdKwicSearchResult[] } {
+  ): PaginationData & { data: KwicSearchResult[] } {
     // adapt the server page DataPage<T> to Elf pagination
     return {
       currentPage: page.pageNumber,
       perPage: page.pageSize,
       lastPage: page.pageCount,
       total: page.total,
-      data: page.items.map((item) => {
-        return {
-          ...item,
-          id: item.documentId + '.' + item.position,
-        };
-      }),
+      data: page.items,
     };
   }
 
   private addPage(
-    response: PaginationData & { data: IdKwicSearchResult[] }
+    response: PaginationData & { data: KwicSearchResult[] }
   ): void {
     const { data, ...paginationData } = response;
     this._store.update(
@@ -168,7 +158,8 @@ export class SearchRepository {
     // if the page exists and page size is the same, just move to it
     if (
       this._store.query(hasPage(pageNumber)) &&
-      pageSize === this._lastPageSize
+      pageSize === this._lastPageSize &&
+      query === this._store.query(store => store.query)
     ) {
       console.log('Page exists: ' + pageNumber);
       this._store.update(setCurrentPage(pageNumber));
@@ -192,7 +183,7 @@ export class SearchRepository {
         } else {
           this.addPage({
             ...this.adaptPage(result.value!),
-            data: result.value!.items as IdKwicSearchResult[],
+            data: result.value!.items as KwicSearchResult[],
           });
           this._store.update(updateRequestStatus('search', 'success'));
         }
