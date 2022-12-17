@@ -66,7 +66,7 @@ export class SearchComponent implements OnInit {
   }
 
   public pageChange(event: PageEvent): void {
-    this._repository.search(null, event.pageIndex + 1, event.pageSize);
+    this._repository.search(null, 5, event.pageIndex + 1, event.pageSize);
   }
 
   public pickHistory(): void {
