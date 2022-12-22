@@ -32,6 +32,25 @@ export enum TermSortOrder {
   ByCount,
 }
 
+export interface TermDistributionRequest {
+  termId: number;
+  limit: number;
+  docAttributes?: string[];
+  occAttributes?: string[];
+}
+
+export interface TermDistribution {
+  attribute: string;
+  frequencies: { [key: string]: number };
+}
+
+export interface TermDistributionSet {
+  termId: number;
+  termFrequency: number;
+  docFrequencies: { [key: string]: TermDistribution };
+  occFrequencies: { [key: string]: TermDistribution };
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -116,6 +135,50 @@ export class TermService {
       .get<DataPage<IndexTerm>>(this._env.get('apiUrl') + 'terms', {
         params: httpParams,
       })
+      .pipe(retry(3), catchError(this._error.handleError));
+  }
+
+  private addAttributesParams(
+    attributes: string[],
+    name: string,
+    httpParams: HttpParams
+  ): HttpParams {
+    for (let i = 0; i < attributes.length; i++) {
+      httpParams = httpParams.set(name, attributes[i]);
+    }
+    return httpParams;
+  }
+
+  public getTermDistributions(
+    request: TermDistributionRequest
+  ): Observable<TermDistributionSet> {
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('termId', request.termId);
+    httpParams = httpParams.set('limit', request.limit);
+
+    if (request.docAttributes?.length) {
+      httpParams = this.addAttributesParams(
+        request.docAttributes,
+        'docAttributes',
+        httpParams
+      );
+    }
+
+    if (request.occAttributes?.length) {
+      httpParams = this.addAttributesParams(
+        request.occAttributes,
+        'occAttributes',
+        httpParams
+      );
+    }
+
+    return this._http
+      .get<TermDistributionSet>(
+        this._env.get('apiUrl') + 'terms/distributions',
+        {
+          params: httpParams,
+        }
+      )
       .pipe(retry(3), catchError(this._error.handleError));
   }
 }
