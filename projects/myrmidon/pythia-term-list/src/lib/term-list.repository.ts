@@ -58,6 +58,8 @@ export interface TermListProps {
   occAttributes: string[];
   // distributions set
   setLimit: number;
+  setDocAttributes: string[];
+  setOccAttributes: string[];
   set?: TermDistributionSet;
 }
 
@@ -75,6 +77,8 @@ export class TermListRepository {
   public filter$: Observable<TermFilter>;
   public docAttributes$: Observable<string[]>;
   public occAttributes$: Observable<string[]>;
+  public setDocAttributes$: Observable<string[]>;
+  public setOccAttributes$: Observable<string[]>;
   public termDistributionSet$: Observable<TermDistributionSet | undefined>;
   public pagination$: Observable<PaginationData & { data: IndexTerm[] }>;
   public status$: Observable<StatusState>;
@@ -103,6 +107,12 @@ export class TermListRepository {
     );
     this.occAttributes$ = this._store.pipe(
       select((state) => state.occAttributes)
+    );
+    this.setDocAttributes$ = this._store.pipe(
+      select((state) => state.setDocAttributes)
+    );
+    this.setOccAttributes$ = this._store.pipe(
+      select((state) => state.setOccAttributes)
     );
     this.termDistributionSet$ = this._store.pipe(select((state) => state.set));
 
@@ -133,6 +143,8 @@ export class TermListRepository {
         docAttributes: [],
         occAttributes: [],
         setLimit: 10,
+        setDocAttributes: [],
+        setOccAttributes: [],
       }),
       // should you have an id property different from 'id'
       // use like withEntities<User, 'userName'>({ idKey: 'userName' })
@@ -240,7 +252,12 @@ export class TermListRepository {
     limit = 10
   ): void {
     // get term
-    this._store.update(setProp('activeId', termId));
+    this._store.update((state) => ({
+      ...state,
+      activeId: termId,
+      setDocAttributes: docAttributes,
+      setOccAttributes: occAttributes,
+    }));
     const term = this._store.query(getActiveEntity());
     if (!term) {
       this._store.update(setProp('set', undefined));

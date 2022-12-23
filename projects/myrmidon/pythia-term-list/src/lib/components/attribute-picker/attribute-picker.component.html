@@ -3,7 +3,9 @@
     <mat-form-field>
       <mat-label>{{ label }}</mat-label>
       <mat-select [formControl]="selectedName">
-        <mat-option *ngFor="let n of names" [value]="n">{{ n }}</mat-option>
+        <mat-option *ngFor="let n of availableNames" [value]="n">{{
+          n
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
     <button type="button" mat-icon-button color="primary" (click)="addName()">
@@ -14,7 +16,7 @@
   <div>
     <table>
       <tbody>
-        <tr *ngFor="let n of pickedNames.value">
+        <tr *ngFor="let n of names">
           <td>
             <button
               type="button"

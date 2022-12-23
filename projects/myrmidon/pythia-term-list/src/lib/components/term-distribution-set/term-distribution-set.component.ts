@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 
 import { TermDistribution, TermDistributionSet } from '@myrmidon/pythia-api';
 
-import { TermListRepository } from '../../term-list.repository';
 import { IndexTerm } from '@myrmidon/pythia-core';
+import { TermListRepository } from '../../term-list.repository';
 
 @Component({
   selector: 'pythia-term-distribution-set',
@@ -15,6 +15,7 @@ import { IndexTerm } from '@myrmidon/pythia-core';
 export class TermDistributionSetComponent implements OnInit {
   private _busy: boolean | undefined;
   private _termId: number | undefined;
+  // attrs cache for applying settings later
   private _docAttributes: string[];
   private _occAttributes: string[];
 
@@ -35,6 +36,8 @@ export class TermDistributionSetComponent implements OnInit {
   public term$: Observable<IndexTerm | undefined>;
   public docAttributes$: Observable<string[]>;
   public occAttributes$: Observable<string[]>;
+  public setDocAttributes$: Observable<string[]>;
+  public setOccAttributes$: Observable<string[]>;
   public set$: Observable<TermDistributionSet | undefined>;
   public docDistributions: TermDistribution[];
   public occDistributions: TermDistribution[];
@@ -48,6 +51,8 @@ export class TermDistributionSetComponent implements OnInit {
     this.term$ = _repository.activeTerm$;
     this.docAttributes$ = _repository.docAttributes$;
     this.occAttributes$ = _repository.occAttributes$;
+    this.setDocAttributes$ = _repository.setDocAttributes$;
+    this.setOccAttributes$ = _repository.setOccAttributes$;
     this.set$ = _repository.termDistributionSet$;
     this.presetLimits = [3, 5, 10, 25, 50];
     this.limit = formBuilder.control(10, { nonNullable: true });

@@ -17,6 +17,12 @@ export class AttributePickerComponent {
   public label: string;
 
   @Input()
+  public availableNames: string[];
+
+  @Input()
+  public defaultNames: string[];
+
+  @Input()
   public get names(): string[] {
     return this._names;
   }
@@ -24,56 +30,51 @@ export class AttributePickerComponent {
     this._names = value;
   }
 
-  @Input()
-  public defaultNames: string[];
-
   @Output()
   public namesChange: EventEmitter<string[]>;
 
   public selectedName: FormControl;
-  public pickedNames: FormControl;
   public form: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
     this.label = 'attributes';
+    this.availableNames = [];
     this._names = [];
     this.defaultNames = [];
     // form
     this.selectedName = formBuilder.control(null);
-    this.pickedNames = formBuilder.control([], { nonNullable: true });
     this.form = formBuilder.group({
       selectedName: this.selectedName,
-      pickedNames: this.pickedNames,
     });
     // events
     this.namesChange = new EventEmitter<string[]>();
   }
 
   public reset(): void {
-    this.pickedNames.setValue([]);
-    this.namesChange.emit(this.pickedNames.value);
+    this.names = this.defaultNames;
+    this.namesChange.emit(this.names);
   }
 
   public addName(): void {
     const name = this.selectedName.value;
-    if (!name || this.pickedNames.value.includes(name)) {
+    if (!name || this.names.includes(name)) {
       return;
     }
-    const names = [...this.pickedNames.value];
+    const names = [...this.names];
     names.push(name);
     names.sort();
-    this.pickedNames.setValue(names);
-    this.namesChange.emit(this.pickedNames.value);
+    this.names = names;
+    this.namesChange.emit(this.names);
   }
 
   public removeName(name: string): void {
-    const i = this.pickedNames.value.indexOf(name);
+    const i = this.names.indexOf(name);
     if (i === -1) {
       return;
     }
-    const names = [...this.pickedNames.value];
+    const names = [...this.names];
     names.splice(i, 1);
-    this.pickedNames.setValue(names);
-    this.namesChange.emit(this.pickedNames.value);
+    this.names = names;
+    this.namesChange.emit(this.names);
   }
 }
