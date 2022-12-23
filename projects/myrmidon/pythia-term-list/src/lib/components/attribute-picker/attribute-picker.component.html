@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>{{ label }}</mat-label>
+      <mat-select [formControl]="selectedName">
+        <mat-option *ngFor="let n of names" [value]="n">{{ n }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="button" mat-icon-button color="primary" (click)="addName()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+  <!-- pickedNames -->
+  <div>
+    <table>
+      <tbody>
+        <tr *ngFor="let n of pickedNames.value">
+          <td>
+            <button
+              type="button"
+              mat-icon-button
+              color="warn"
+              (click)="removeName(n)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+          <td>{{ n }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

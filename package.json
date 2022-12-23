@@ -42,7 +42,9 @@
     "@ngneat/elf-entities": "^4.4.3",
     "@ngneat/elf-pagination": "^1.1.0",
     "@ngneat/elf-requests": "^1.5.1",
+    "echarts": "^5.4.1",
     "gravatar": "^1.8.2",
+    "ngx-echarts": "^15.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

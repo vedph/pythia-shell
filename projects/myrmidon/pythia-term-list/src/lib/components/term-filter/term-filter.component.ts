@@ -31,7 +31,7 @@ export class TermFilterComponent implements OnInit {
 
   public filter$: Observable<TermFilter>;
   public docAttributes$: Observable<string[]>;
-  public tokAttributes$: Observable<string[]>;
+  public occAttributes$: Observable<string[]>;
 
   public corpus: FormControl<Corpus | null>;
   public author: FormControl<string | null>;
@@ -43,7 +43,7 @@ export class TermFilterComponent implements OnInit {
   public minTimeModified: FormControl<Date | null>;
   public maxTimeModified: FormControl<Date | null>;
   public docAttributes: FormArray;
-  public tokAttributes: FormArray;
+  public occAttributes: FormArray;
   public valuePattern: FormControl<string | null>;
   public minCount: FormControl<number | null>;
   public maxCount: FormControl<number | null>;
@@ -61,7 +61,7 @@ export class TermFilterComponent implements OnInit {
   ) {
     this.filter$ = _repository.filter$;
     this.docAttributes$ = _repository.docAttributes$;
-    this.tokAttributes$ = _repository.tokAttributes$;
+    this.occAttributes$ = _repository.occAttributes$;
     this.sortable = true;
 
     // form
@@ -75,7 +75,7 @@ export class TermFilterComponent implements OnInit {
     this.minTimeModified = _formBuilder.control(null);
     this.maxTimeModified = _formBuilder.control(null);
     this.docAttributes = _formBuilder.array([]);
-    this.tokAttributes = _formBuilder.array([]);
+    this.occAttributes = _formBuilder.array([]);
     this.valuePattern = _formBuilder.control(null);
     this.minCount = _formBuilder.control(0);
     this.maxCount = _formBuilder.control(0);
@@ -92,7 +92,7 @@ export class TermFilterComponent implements OnInit {
       minTimeModified: this.minTimeModified,
       maxTimeModified: this.maxTimeModified,
       docAttributes: this.docAttributes,
-      tokAttributes: this.tokAttributes,
+      occAttributes: this.occAttributes,
       valuePattern: this.valuePattern,
       minCount: this.minCount,
       maxCount: this.maxCount,
@@ -123,7 +123,7 @@ export class TermFilterComponent implements OnInit {
 
   private updateAttributes(csv: string | undefined, token: boolean): void {
     const attributes: FormArray = token
-      ? this.tokAttributes
+      ? this.occAttributes
       : this.docAttributes;
 
     attributes.reset();
@@ -148,7 +148,7 @@ export class TermFilterComponent implements OnInit {
     this.descending.setValue(filter.descending ? true : false);
 
     this.updateAttributes(filter.docAttributes, false);
-    this.updateAttributes(filter.tokAttributes, true);
+    this.updateAttributes(filter.occAttributes, true);
 
     forkJoin({
       corpus: filter.corpusId
@@ -190,7 +190,7 @@ export class TermFilterComponent implements OnInit {
 
   public addAttribute(item: Attribute | undefined, token: boolean): void {
     const attributes: FormArray = token
-      ? this.tokAttributes
+      ? this.occAttributes
       : this.docAttributes;
 
     attributes.push(this.getAttributeGroup(item));
@@ -199,7 +199,7 @@ export class TermFilterComponent implements OnInit {
 
   public removeAttribute(index: number, token: boolean): void {
     const attributes: FormArray = token
-      ? this.tokAttributes
+      ? this.occAttributes
       : this.docAttributes;
 
     attributes.removeAt(index);
@@ -208,7 +208,7 @@ export class TermFilterComponent implements OnInit {
 
   private getAttributes(token: boolean): Attribute[] | undefined {
     const attributes: FormArray = token
-      ? this.tokAttributes
+      ? this.occAttributes
       : this.docAttributes;
 
     const entries: Attribute[] = [];
@@ -238,7 +238,7 @@ export class TermFilterComponent implements OnInit {
       docAttributes: this.getAttributes(false)
         ?.map((a) => `${a.name}=${a.value}`)
         ?.join(','),
-      tokAttributes: this.getAttributes(true)
+      occAttributes: this.getAttributes(true)
         ?.map((a) => `${a.name}=${a.value}`)
         ?.join(','),
       valuePattern: this.valuePattern.value || undefined,

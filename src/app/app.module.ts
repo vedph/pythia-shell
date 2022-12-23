@@ -65,6 +65,7 @@ import { CorporaComponent } from './corpora/corpora.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 // https://ngneat.github.io/elf/docs/dev-tools/
 export function initElfDevTools(actions: Actions) {
@@ -120,7 +121,11 @@ export function initElfDevTools(actions: Actions) {
     MatTooltipModule,
     MatToolbarModule,
     MatTreeModule,
-    // Fusi
+    // vendor
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+    // myrmex
     NgToolsModule,
     NgMatToolsModule,
     AuthJwtLoginModule,

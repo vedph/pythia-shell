@@ -1,0 +1,47 @@
+<div *ngIf="termId">
+  <div class="form-row" style="align-items: flex-start">
+    <!-- doc attrs -->
+    <pythia-attribute-picker
+      label="document"
+      [names]="(docAttributes$ | async) || []"
+      (namesChange)="onDocNamesChange($event)"
+    ></pythia-attribute-picker>
+    <!-- occ attrs -->
+    <pythia-attribute-picker
+      label="occurrence"
+      [names]="(occAttributes$ | async) || []"
+      (namesChange)="onOccNamesChange($event)"
+    ></pythia-attribute-picker>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field style="width: 6em;">
+      <mat-label>limit</mat-label>
+      <mat-select [formControl]="limit">
+        <mat-option *ngFor="let n of presetLimits" [value]="n">{{
+          n
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="button" mat-flat-button color="primary" (click)="load()">
+      <mat-icon>check_circle</mat-icon> apply
+    </button>
+  </div>
+
+  <!-- distributions -->
+  <div *ngIf="set$ | async as set">
+    <h2 *ngIf="term$ | async as term">{{ term.value }}</h2>
+    <h3>documents</h3>
+    <pythia-term-distribution
+      *ngFor="let d of docDistributions"
+      [distribution]="d"
+    ></pythia-term-distribution>
+
+    <h3>occurrences</h3>
+    <pythia-term-distribution
+      *ngFor="let d of occDistributions"
+      [distribution]="d"
+    ></pythia-term-distribution>
+  </div>
+</div>

@@ -1,12 +1,4 @@
 <div id="container">
-  <!-- spinner -->
-  <div
-    style="grid-area: spinner"
-    *ngIf="(status$ | async)?.value === 'pending'"
-  >
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-  </div>
-
   <!-- filters -->
   <div style="grid-area: filters">
     <mat-card>
@@ -18,6 +10,10 @@
 
   <!-- list -->
   <div style="grid-area: list" *ngIf="pagination$ | async as pagination">
+    <mat-progress-bar
+      mode="indeterminate"
+      *ngIf="(status$ | async)?.value === 'pending'"
+    ></mat-progress-bar>
     <table>
       <thead>
         <th></th>
@@ -26,12 +22,20 @@
       </thead>
       <tbody>
         <tr *ngFor="let t of pagination.data">
-          <td style="width: 32px">
+          <td>
             <button
               mat-icon-button
               type="button"
-              matTooltip="Lookup this term"
+              matTooltip="Lookup term distribution"
               color="primary"
+              (click)="setActiveTerm(t)"
+            >
+              <mat-icon>pie_chart</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              type="button"
+              matTooltip="Search term"
               (click)="requestSearch(t.value)"
             >
               <mat-icon>search</mat-icon>
@@ -44,7 +48,7 @@
     </table>
 
     <!-- pagination -->
-    <div style="grid-area: paginator">
+    <div style="grid-area: paginator; justify-content: end">
       <button
         type="button"
         mat-icon-button
@@ -67,5 +71,12 @@
         (page)="pageChange($event)"
       ></mat-paginator>
     </div>
+  </div>
+
+  <!-- set -->
+  <div style="grid-area: set">
+    <pythia-term-distribution-set
+      [termId]="activeTerm?.id"
+    ></pythia-term-distribution-set>
   </div>
 </div>

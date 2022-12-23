@@ -183,7 +183,7 @@
   </div>
 
   <!-- tok attributes -->
-  <div *ngIf="(tokAttributes$ | async)?.length">
+  <div *ngIf="(occAttributes$ | async)?.length">
     <h3>
       token attributes
       <button
@@ -196,10 +196,10 @@
         <mat-icon>add_circle</mat-icon>
       </button>
     </h3>
-    <div formArrayName="tokAttributes">
+    <div formArrayName="occAttributes">
       <div
         *ngFor="
-          let item of tokAttributes.controls;
+          let item of occAttributes.controls;
           let i = index;
           let first = first;
           let last = last
@@ -225,7 +225,7 @@
             <mat-label>name</mat-label>
             <mat-select formControlName="name">
               <mat-option
-                *ngFor="let n of tokAttributes$ | async"
+                *ngFor="let n of occAttributes$ | async"
                 [value]="n"
                 >{{ n }}</mat-option
               >

@@ -1,0 +1,21 @@
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
+  flex-wrap: wrap;
+}
+.form-row * {
+  flex: 0 0 auto;
+}
+fieldset {
+  border: 1px solid silver;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 2px;
+}
+.chart {
+  width: 200px;
+  height: 200px;
+  flex: 1 0 auto;
+}

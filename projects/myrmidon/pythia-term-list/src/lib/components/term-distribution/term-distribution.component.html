@@ -1,0 +1,16 @@
+<fieldset *ngIf="distribution">
+  <legend>{{ distribution.attribute }}</legend>
+  <!-- data -->
+  <div class="form-row">
+    <table>
+      <tbody>
+        <tr *ngFor="let nv of frequencies">
+          <td>{{ nv.name }}</td>
+          <td>{{ nv.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- chart -->
+    <div echarts [options]="chartOptions" class="chart"></div>
+  </div>
+</fieldset>

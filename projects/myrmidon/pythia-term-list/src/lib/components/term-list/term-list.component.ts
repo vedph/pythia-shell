@@ -16,6 +16,7 @@ import { TermListRepository } from '../../term-list.repository';
 export class TermListComponent {
   public pagination$: Observable<PaginationData & { data: IndexTerm[] }>;
   public status$: Observable<StatusState>;
+  public activeTerm?: IndexTerm;
 
   @Output()
   public searchRequest: EventEmitter<string>;
@@ -42,5 +43,9 @@ export class TermListComponent {
   public clearCache(): void {
     this._repository.clearCache();
     this._repository.loadPage(1);
+  }
+
+  public setActiveTerm(term: IndexTerm): void {
+    this.activeTerm = term;
   }
 }

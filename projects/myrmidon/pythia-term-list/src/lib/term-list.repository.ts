@@ -8,13 +8,14 @@ import {
   take,
 } from 'rxjs';
 
-import { createStore, select, withProps } from '@ngneat/elf';
+import { createStore, select, setProp, withProps } from '@ngneat/elf';
 import {
   withEntities,
   withActiveId,
   selectActiveEntity,
   deleteAllEntities,
   upsertEntities,
+  getActiveEntity,
 } from '@ngneat/elf-entities';
 import {
   deleteAllPages,
@@ -39,19 +40,32 @@ import { IndexTerm } from '@myrmidon/pythia-core';
 import {
   AttributeFilterType,
   AttributeService,
+  TermDistributionSet,
   TermFilter,
   TermService,
 } from '@myrmidon/pythia-api';
 import { DataPage } from '@myrmidon/ng-tools';
+import { state } from '@angular/animations';
 
 const PAGE_SIZE = 20;
 
+/**
+ * Properties for the list of terms.
+ */
 export interface TermListProps {
   filter: TermFilter;
   docAttributes: string[];
-  tokAttributes: string[];
+  occAttributes: string[];
+  // distributions set
+  docSetAttributes: string[];
+  occSetAttributes: string[];
+  setLimit: number;
+  set?: TermDistributionSet;
 }
 
+/**
+ * Terms list repository.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -62,7 +76,8 @@ export class TermListRepository {
   public activeTerm$: Observable<IndexTerm | undefined>;
   public filter$: Observable<TermFilter>;
   public docAttributes$: Observable<string[]>;
-  public tokAttributes$: Observable<string[]>;
+  public occAttributes$: Observable<string[]>;
+  public termDistributionSet$: Observable<TermDistributionSet | undefined>;
   public pagination$: Observable<PaginationData & { data: IndexTerm[] }>;
   public status$: Observable<StatusState>;
 
@@ -88,9 +103,10 @@ export class TermListRepository {
     this.docAttributes$ = this._store.pipe(
       select((state) => state.docAttributes)
     );
-    this.tokAttributes$ = this._store.pipe(
-      select((state) => state.tokAttributes)
+    this.occAttributes$ = this._store.pipe(
+      select((state) => state.occAttributes)
     );
+    this.termDistributionSet$ = this._store.pipe(select((state) => state.set));
 
     this.filter$.subscribe((filter) => {
       // when filter changed, reset any existing page and move to page 1
@@ -117,7 +133,10 @@ export class TermListRepository {
       withProps<TermListProps>({
         filter: {},
         docAttributes: [],
-        tokAttributes: [],
+        occAttributes: [],
+        docSetAttributes: [],
+        occSetAttributes: [],
+        setLimit: 10,
       }),
       // should you have an id property different from 'id'
       // use like withEntities<User, 'userName'>({ idKey: 'userName' })
@@ -174,7 +193,7 @@ export class TermListRepository {
         this._store.update((state) => ({
           ...state,
           docAttributes: result.doc.items,
-          tokAttributes: result.tok.items,
+          occAttributes: result.tok.items,
         }));
       });
   }
@@ -216,5 +235,45 @@ export class TermListRepository {
 
   clearCache() {
     this._store.update(deleteAllEntities(), deleteAllPages());
+  }
+
+  public loadDistributionSet(
+    termId: number,
+    docAttributes: string[] = [],
+    occAttributes: string[] = [],
+    limit = 10
+  ): void {
+    // get term
+    this._store.update(setProp('activeId', termId));
+    const term = this._store.query(getActiveEntity());
+    if (!term) {
+      this._store.update(setProp('set', undefined));
+      return;
+    }
+
+    // load set
+    this._store.update(setProp('setLimit', limit));
+    this._store.update(updateRequestStatus('term-list', 'pending'));
+
+    this._termService
+      .getTermDistributions({
+        termId: termId,
+        limit: limit,
+        docAttributes: docAttributes,
+        occAttributes: occAttributes,
+      })
+      .pipe(take(1))
+      .subscribe({
+        next: (set) => {
+          this._store.update(updateRequestStatus('term-list', 'success'));
+          this._store.update(setProp('set', set));
+        },
+        error: (error) => {
+          this._store.update(updateRequestStatus('term-list', 'success'));
+          console.error(
+            'Error loading set: ' + (error ? JSON.stringify(error) : '')
+          );
+        },
+      });
   }
 }

@@ -26,6 +26,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+
 import { NgToolsModule } from '@myrmidon/ng-tools';
 import { CadmusRefsLookupModule } from '@myrmidon/cadmus-refs-lookup';
 
@@ -35,9 +37,18 @@ import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
 import { TermFilterComponent } from './components/term-filter/term-filter.component';
 import { TermListComponent } from './components/term-list/term-list.component';
+import { AttributePickerComponent } from './components/attribute-picker/attribute-picker.component';
+import { TermDistributionComponent } from './components/term-distribution/term-distribution.component';
+import { TermDistributionSetComponent } from './components/term-distribution-set/term-distribution-set.component';
 
 @NgModule({
-  declarations: [TermFilterComponent, TermListComponent],
+  declarations: [
+    AttributePickerComponent,
+    TermDistributionComponent,
+    TermDistributionSetComponent,
+    TermFilterComponent,
+    TermListComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -65,6 +76,8 @@ import { TermListComponent } from './components/term-list/term-list.component';
     MatTabsModule,
     MatTooltipModule,
     MatToolbarModule,
+    // vendor
+    NgxEchartsModule,
     // myrmidon
     NgToolsModule,
     CadmusRefsLookupModule,
@@ -73,6 +86,12 @@ import { TermListComponent } from './components/term-list/term-list.component';
     PythiaCoreModule,
     PythiaUiModule,
   ],
-  exports: [TermFilterComponent, TermListComponent],
+  exports: [
+    AttributePickerComponent,
+    TermDistributionComponent,
+    TermDistributionSetComponent,
+    TermFilterComponent,
+    TermListComponent,
+  ],
 })
 export class PythiaTermListModule {}

@@ -17,7 +17,7 @@ export interface TermFilter {
   minTimeModified?: Date;
   maxTimeModified?: Date;
   docAttributes?: string; // name=value CSV
-  tokAttributes?: string; // name=value CSV
+  occAttributes?: string; // name=value CSV
   valuePattern?: string; // wildcards: ? and *
   minCount?: number;
   maxCount?: number;
@@ -112,8 +112,8 @@ export class TermService {
     if (filter.docAttributes) {
       httpParams = httpParams.set('docAttributes', filter.docAttributes);
     }
-    if (filter.tokAttributes) {
-      httpParams = httpParams.set('tokAttributes', filter.tokAttributes);
+    if (filter.occAttributes) {
+      httpParams = httpParams.set('occAttributes', filter.occAttributes);
     }
     if (filter.valuePattern) {
       httpParams = httpParams.set('valuePattern', filter.valuePattern);

@@ -29,23 +29,23 @@ td.fit-width {
 }
 div#container {
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto 1fr 1fr;
   grid-template-areas:
-    "spinner spinner"
-    "filters list"
-    ". paginator";
+    "filters list set"
+    ". paginator .";
   gap: 8px;
 }
 /* lt-md */
 @media only screen and (max-width: 959px) {
   div#container {
+    grid-template-rows: 1fr auto auto auto;
     grid-template-columns: 1fr;
     grid-template-areas:
-      "spinner"
       "list"
       "paginator"
-      "filters";
+      "filters"
+      "set";
   }
   th.noif-lt-md {
     display: none;
