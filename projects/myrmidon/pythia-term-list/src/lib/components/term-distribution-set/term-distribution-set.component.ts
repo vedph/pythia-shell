@@ -19,6 +19,8 @@ export class TermDistributionSetComponent implements OnInit {
   private _docAttributes: string[];
   private _occAttributes: string[];
 
+  public selectedTabIndex: number;
+
   @Input()
   public get termId(): number | undefined {
     return this._termId;
@@ -46,6 +48,7 @@ export class TermDistributionSetComponent implements OnInit {
     formBuilder: FormBuilder,
     private _repository: TermListRepository
   ) {
+    this.selectedTabIndex = 0;
     this._docAttributes = [];
     this._occAttributes = [];
     this.term$ = _repository.activeTerm$;
@@ -100,5 +103,6 @@ export class TermDistributionSetComponent implements OnInit {
       this._occAttributes,
       this.limit.value
     );
+    this.selectedTabIndex = 0;
   }
 }

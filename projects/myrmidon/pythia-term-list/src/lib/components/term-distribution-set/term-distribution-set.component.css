@@ -14,9 +14,7 @@ fieldset {
   margin: 2px;
 }
 h2 {
-  background-color: #3f51b5;
-  color: white;
-  border: 1px solid;
+  border: 1px solid #3f51b5;
   border-radius: 6px;
   padding: 4px;
   text-align: center;
