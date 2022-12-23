@@ -2,7 +2,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
-  justify-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 .form-row * {
@@ -13,6 +13,14 @@ fieldset {
   border-radius: 4px;
   padding: 4px;
   margin: 2px;
+}
+.f-name {
+  background-color: #f0f0f0;
+  border: 1px solid silver;
+}
+.f-value {
+  font-weight: bold;
+  margin-left: 6px;
 }
 .chart {
   height: 200px;
