@@ -57,8 +57,6 @@ export interface TermListProps {
   docAttributes: string[];
   occAttributes: string[];
   // distributions set
-  docSetAttributes: string[];
-  occSetAttributes: string[];
   setLimit: number;
   set?: TermDistributionSet;
 }
@@ -134,8 +132,6 @@ export class TermListRepository {
         filter: {},
         docAttributes: [],
         occAttributes: [],
-        docSetAttributes: [],
-        occSetAttributes: [],
         setLimit: 10,
       }),
       // should you have an id property different from 'id'

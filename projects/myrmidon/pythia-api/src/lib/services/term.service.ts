@@ -144,7 +144,7 @@ export class TermService {
     httpParams: HttpParams
   ): HttpParams {
     for (let i = 0; i < attributes.length; i++) {
-      httpParams = httpParams.set(name, attributes[i]);
+      httpParams = httpParams.append(name, attributes[i]);
     }
     return httpParams;
   }

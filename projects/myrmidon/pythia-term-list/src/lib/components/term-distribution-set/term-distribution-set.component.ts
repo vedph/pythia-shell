@@ -55,18 +55,24 @@ export class TermDistributionSetComponent implements OnInit {
     this.occDistributions = [];
   }
 
+  private getDistributions(f: {
+    [key: string]: TermDistribution;
+  }): TermDistribution[] {
+    const distributions: TermDistribution[] = [];
+    Object.getOwnPropertyNames(f).forEach((name) => {
+      distributions.push(f[name]);
+    });
+    return distributions;
+  }
+
   public ngOnInit(): void {
     this.set$.subscribe((set) => {
       if (!set) {
         this.docDistributions = [];
         this.occDistributions = [];
       } else {
-        this.docDistributions = Object.getOwnPropertyNames(
-          set.docFrequencies
-        ).map((n) => set.docFrequencies[n]);
-        this.occDistributions = Object.getOwnPropertyNames(
-          set.occFrequencies
-        ).map((n) => set.occFrequencies[n]);
+        this.docDistributions = this.getDistributions(set.docFrequencies);
+        this.occDistributions = this.getDistributions(set.occFrequencies);
       }
     });
   }
