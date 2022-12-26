@@ -252,7 +252,8 @@ export class TermListRepository {
     termId: number,
     docAttributes: string[] = [],
     occAttributes: string[] = [],
-    limit = 10
+    limit = 10,
+    interval = 0
   ): void {
     // get term
     this._store.update((state) => ({
@@ -275,6 +276,7 @@ export class TermListRepository {
       .getTermDistributions({
         termId: termId,
         limit: limit,
+        interval: interval,
         docAttributes: docAttributes,
         occAttributes: occAttributes,
       })

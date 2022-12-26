@@ -33,7 +33,9 @@ export class TermDistributionSetComponent implements OnInit {
   }
 
   public limit: FormControl;
+  public interval: FormControl;
   public presetLimits: number[];
+  public presetIntervals: number[];
 
   public term$: Observable<IndexTerm | undefined>;
   public docAttributes$: Observable<string[]>;
@@ -57,10 +59,13 @@ export class TermDistributionSetComponent implements OnInit {
     this.setDocAttributes$ = _repository.setDocAttributes$;
     this.setOccAttributes$ = _repository.setOccAttributes$;
     this.set$ = _repository.termDistributionSet$;
-    this.presetLimits = [3, 5, 10, 25, 50];
-    this.limit = formBuilder.control(10, { nonNullable: true });
     this.docDistributions = [];
     this.occDistributions = [];
+
+    this.limit = formBuilder.control(10, { nonNullable: true });
+    this.presetLimits = [3, 5, 10, 25, 50];
+    this.interval = formBuilder.control(0, { nonNullable: true });
+    this.presetIntervals = [0, 5, 10, 25, 50, 100];
   }
 
   private getDistributions(f: {
@@ -101,7 +106,8 @@ export class TermDistributionSetComponent implements OnInit {
       this._termId,
       this._docAttributes,
       this._occAttributes,
-      this.limit.value
+      this.limit.value,
+      this.interval.value
     );
     this.selectedTabIndex = 0;
   }

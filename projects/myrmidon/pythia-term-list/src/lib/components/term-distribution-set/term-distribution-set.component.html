@@ -51,6 +51,15 @@
             </mat-select>
           </mat-form-field>
 
+          <mat-form-field style="width: 6em">
+            <mat-label>interval</mat-label>
+            <mat-select [formControl]="interval">
+              <mat-option *ngFor="let n of presetIntervals" [value]="n">{{
+                n
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <button
             type="button"
             mat-flat-button
