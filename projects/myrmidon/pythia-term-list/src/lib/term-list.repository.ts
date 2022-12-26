@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  BehaviorSubject,
   combineLatest,
   debounceTime,
   forkJoin,
@@ -45,7 +46,6 @@ import {
   TermService,
 } from '@myrmidon/pythia-api';
 import { DataPage } from '@myrmidon/ng-tools';
-import { state } from '@angular/animations';
 
 const PAGE_SIZE = 20;
 
@@ -72,6 +72,7 @@ export interface TermListProps {
 export class TermListRepository {
   private _store;
   private _lastPageSize: number;
+  private _loading$: BehaviorSubject<boolean>;
 
   public activeTerm$: Observable<IndexTerm | undefined>;
   public filter$: Observable<TermFilter>;
@@ -81,7 +82,7 @@ export class TermListRepository {
   public setOccAttributes$: Observable<string[]>;
   public termDistributionSet$: Observable<TermDistributionSet | undefined>;
   public pagination$: Observable<PaginationData & { data: IndexTerm[] }>;
-  public status$: Observable<StatusState>;
+  public loading$: Observable<boolean>;
 
   constructor(
     private _termService: TermService,
@@ -90,6 +91,8 @@ export class TermListRepository {
     // create store
     this._store = this.createStore();
     this._lastPageSize = PAGE_SIZE;
+    this._loading$ = new BehaviorSubject<boolean>(false);
+    this.loading$ = this._loading$.asObservable();
     // combine pagination parameters with page data for our consumers
     this.pagination$ = combineLatest([
       this._store.pipe(selectPaginationData()),
@@ -126,7 +129,7 @@ export class TermListRepository {
     });
 
     // the request status
-    this.status$ = this._store.pipe(selectRequestStatus('term-list'));
+    // this.status$ = this._store.pipe(selectRequestStatus('term-list'));
 
     // load page 1 and subscribe to pagination
     this.loadPage(1, PAGE_SIZE);
@@ -227,13 +230,13 @@ export class TermListRepository {
     }
 
     // load page from server
-    this._store.update(updateRequestStatus('term-list', 'pending'));
+    this._loading$.next(true);
     this._termService
       .getTerms(this._store.getValue().filter, pageNumber, pageSize)
       .pipe(take(1))
       .subscribe((page) => {
         this.addPage({ ...this.adaptPage(page), data: page.items });
-        this._store.update(updateRequestStatus('term-list', 'success'));
+        this._loading$.next(false);
       });
   }
 

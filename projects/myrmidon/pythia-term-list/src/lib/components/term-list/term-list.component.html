@@ -3,7 +3,11 @@
   <div style="grid-area: filters">
     <mat-card>
       <mat-card-content>
-        <pythia-term-filter></pythia-term-filter>
+        <pythia-term-filter
+          [disabled]="(loading$ | async) || false"
+          [sourceHidden]="true"
+          [timeModifiedHidden]="true"
+        ></pythia-term-filter>
       </mat-card-content>
     </mat-card>
   </div>
@@ -12,7 +16,7 @@
   <div style="grid-area: list" *ngIf="pagination$ | async as pagination">
     <mat-progress-bar
       mode="indeterminate"
-      *ngIf="(status$ | async)?.value === 'pending'"
+      *ngIf="loading$ | async"
     ></mat-progress-bar>
     <table>
       <thead>

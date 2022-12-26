@@ -28,6 +28,10 @@ export class TermFilterComponent implements OnInit {
   public disabled: boolean | undefined;
   @Input()
   public sortable: boolean | undefined;
+  @Input()
+  public sourceHidden: boolean | undefined;
+  @Input()
+  public timeModifiedHidden: boolean | undefined;
 
   public filter$: Observable<TermFilter>;
   public docAttributes$: Observable<string[]>;

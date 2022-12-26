@@ -35,6 +35,7 @@ export enum TermSortOrder {
 export interface TermDistributionRequest {
   termId: number;
   limit: number;
+  interval?: number;
   docAttributes?: string[];
   occAttributes?: string[];
 }
@@ -100,13 +101,13 @@ export class TermService {
     if (filter.minTimeModified) {
       httpParams = httpParams.set(
         'minTimeModified',
-        filter.minTimeModified.toString()
+        filter.minTimeModified.toISOString()
       );
     }
     if (filter.maxTimeModified) {
       httpParams = httpParams.set(
         'maxTimeModified',
-        filter.maxTimeModified.toString()
+        filter.maxTimeModified.toISOString()
       );
     }
     if (filter.docAttributes) {
@@ -155,6 +156,10 @@ export class TermService {
     let httpParams = new HttpParams();
     httpParams = httpParams.set('termId', request.termId);
     httpParams = httpParams.set('limit', request.limit);
+
+    if (request.interval && request.interval > 1) {
+      httpParams = httpParams.set('interval', request.interval);
+    }
 
     if (request.docAttributes?.length) {
       httpParams = this.addAttributesParams(

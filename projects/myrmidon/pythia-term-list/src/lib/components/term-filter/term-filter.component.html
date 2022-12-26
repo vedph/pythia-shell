@@ -32,7 +32,7 @@
   </div>
 
   <!-- source -->
-  <div>
+  <div *ngIf="!sourceHidden">
     <mat-form-field>
       <mat-label>source</mat-label>
       <input matInput [formControl]="source" maxlength="500" />
@@ -72,37 +72,39 @@
   </div>
 
   <!-- time -->
-  <h3>modified</h3>
-  <div class="form-row">
-    <!-- minTimeModified -->
-    <mat-form-field style="width: 10em">
-      <mat-label>min</mat-label>
-      <input
-        matInput
-        [matDatepicker]="pickerMin"
-        [formControl]="minTimeModified"
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="pickerMin"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #pickerMin></mat-datepicker>
-    </mat-form-field>
-    -
-    <!-- maxTimeModified -->
-    <mat-form-field style="width: 10em">
-      <mat-label>max</mat-label>
-      <input
-        matInput
-        [matDatepicker]="pickerMax"
-        [formControl]="maxTimeModified"
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="pickerMax"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #pickerMax></mat-datepicker>
-    </mat-form-field>
+  <div *ngIf="!timeModifiedHidden">
+    <h3>modified</h3>
+    <div class="form-row">
+      <!-- minTimeModified -->
+      <mat-form-field style="width: 10em">
+        <mat-label>min</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerMin"
+          [formControl]="minTimeModified"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerMin"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerMin></mat-datepicker>
+      </mat-form-field>
+      -
+      <!-- maxTimeModified -->
+      <mat-form-field style="width: 10em">
+        <mat-label>max</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerMax"
+          [formControl]="maxTimeModified"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerMax"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerMax></mat-datepicker>
+      </mat-form-field>
+    </div>
   </div>
 
   <!-- doc attributes -->
