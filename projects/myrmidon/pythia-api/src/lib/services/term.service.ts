@@ -19,6 +19,8 @@ export interface TermFilter {
   docAttributes?: string; // name=value CSV
   occAttributes?: string; // name=value CSV
   valuePattern?: string; // wildcards: ? and *
+  minValueLength?: number;
+  maxValueLength?: number;
   minCount?: number;
   maxCount?: number;
   sortOrder?: TermSortOrder;
@@ -118,6 +120,12 @@ export class TermService {
     }
     if (filter.valuePattern) {
       httpParams = httpParams.set('valuePattern', filter.valuePattern);
+    }
+    if (filter.minValueLength) {
+      httpParams = httpParams.set('minValueLength', filter.minValueLength);
+    }
+    if (filter.maxValueLength) {
+      httpParams = httpParams.set('maxValueLength', filter.maxValueLength);
     }
     if (filter.minCount) {
       httpParams = httpParams.set('minCount', filter.minCount.toString());

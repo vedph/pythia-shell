@@ -41,6 +41,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2022-12-27: added value length filters.
 - 2022-12-26: additions to term filters.
 - 2022-12-22: added term distribution API.
 

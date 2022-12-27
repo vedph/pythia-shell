@@ -49,6 +49,8 @@ export class TermFilterComponent implements OnInit {
   public docAttributes: FormArray;
   public occAttributes: FormArray;
   public valuePattern: FormControl<string | null>;
+  public minValueLength: FormControl<number | null>;
+  public maxValueLength: FormControl<number | null>;
   public minCount: FormControl<number | null>;
   public maxCount: FormControl<number | null>;
   public sortOrder: FormControl<number>;
@@ -81,6 +83,8 @@ export class TermFilterComponent implements OnInit {
     this.docAttributes = _formBuilder.array([]);
     this.occAttributes = _formBuilder.array([]);
     this.valuePattern = _formBuilder.control(null);
+    this.minValueLength = _formBuilder.control(null);
+    this.maxValueLength = _formBuilder.control(null);
     this.minCount = _formBuilder.control(0);
     this.maxCount = _formBuilder.control(0);
     this.sortOrder = _formBuilder.control(0, { nonNullable: true });
@@ -98,6 +102,8 @@ export class TermFilterComponent implements OnInit {
       docAttributes: this.docAttributes,
       occAttributes: this.occAttributes,
       valuePattern: this.valuePattern,
+      minValueLength: this.minValueLength,
+      maxValueLength: this.maxValueLength,
       minCount: this.minCount,
       maxCount: this.maxCount,
       sortOrder: this.sortOrder,
@@ -146,6 +152,8 @@ export class TermFilterComponent implements OnInit {
     this.minTimeModified.setValue(filter.minTimeModified || null);
     this.maxTimeModified.setValue(filter.maxTimeModified || null);
     this.valuePattern.setValue(filter.valuePattern || null);
+    this.minValueLength.setValue(filter.minValueLength || null);
+    this.maxValueLength.setValue(filter.maxValueLength || null);
     this.minCount.setValue(filter.minCount || null);
     this.maxCount.setValue(filter.maxCount || null);
     this.sortOrder.setValue(filter.sortOrder || 0);
@@ -246,6 +254,8 @@ export class TermFilterComponent implements OnInit {
         ?.map((a) => `${a.name}=${a.value}`)
         ?.join(','),
       valuePattern: this.valuePattern.value || undefined,
+      minValueLength: this.minValueLength.value || undefined,
+      maxValueLength: this.maxValueLength.value || undefined,
       minCount: this.minCount.value || undefined,
       maxCount: this.maxCount.value || undefined,
       sortOrder: this.sortOrder.value,

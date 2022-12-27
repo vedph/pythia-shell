@@ -270,6 +270,19 @@
     </mat-form-field>
   </div>
 
+  <!-- value length -->
+  <div>
+    <mat-form-field style="width: 6em">
+      <mat-label>min.len.</mat-label>
+      <input matInput type="number" min="0" [formControl]="minValueLength" />
+    </mat-form-field>
+    &nbsp;-&nbsp;
+    <mat-form-field style="width: 6em">
+      <mat-label>max.len.</mat-label>
+      <input matInput type="number" min="0" [formControl]="maxValueLength" />
+    </mat-form-field>
+  </div>
+
   <!-- count -->
   <div>
     <mat-form-field style="width: 6em">
