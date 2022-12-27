@@ -29,13 +29,7 @@ import {
   updatePaginationData,
   withPagination,
 } from '@ngneat/elf-pagination';
-import {
-  selectRequestStatus,
-  StatusState,
-  updateRequestStatus,
-  withRequestsCache,
-  withRequestsStatus,
-} from '@ngneat/elf-requests';
+import { withRequestsCache, withRequestsStatus } from '@ngneat/elf-requests';
 
 import { IndexTerm } from '@myrmidon/pythia-core';
 import {
@@ -247,8 +241,8 @@ export class TermListRepository {
   public setPresetAttributes(docNames: string[], occNames: string[]): void {
     this._store.update((state) => ({
       ...state,
-      docAttributes: docNames,
-      occAttributes: occNames,
+      setDocAttributes: docNames,
+      setOccAttributes: occNames,
     }));
   }
 
@@ -278,7 +272,7 @@ export class TermListRepository {
 
     // load set
     this._store.update(setProp('setLimit', limit));
-    this._store.update(updateRequestStatus('term-list', 'pending'));
+    this._loading$.next(true);
 
     this._termService
       .getTermDistributions({
@@ -291,11 +285,11 @@ export class TermListRepository {
       .pipe(take(1))
       .subscribe({
         next: (set) => {
-          this._store.update(updateRequestStatus('term-list', 'success'));
+          this._loading$.next(false);
           this._store.update(setProp('set', set));
         },
         error: (error) => {
-          this._store.update(updateRequestStatus('term-list', 'success'));
+          this._loading$.next(false);
           console.error(
             'Error loading set: ' + (error ? JSON.stringify(error) : '')
           );
