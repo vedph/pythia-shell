@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { TermDistribution, TermDistributionSet } from '@myrmidon/pythia-api';
 
-import { IndexTerm } from '@myrmidon/pythia-core';
+import { AppSettingsService, IndexTerm } from '@myrmidon/pythia-core';
 import { TermListRepository } from '../../term-list.repository';
 
 @Component({
@@ -48,7 +48,8 @@ export class TermDistributionSetComponent implements OnInit {
 
   constructor(
     formBuilder: FormBuilder,
-    private _repository: TermListRepository
+    private _repository: TermListRepository,
+    settings: AppSettingsService
   ) {
     this.selectedTabIndex = 0;
     this._docAttributes = [];
@@ -62,10 +63,25 @@ export class TermDistributionSetComponent implements OnInit {
     this.docDistributions = [];
     this.occDistributions = [];
 
-    this.limit = formBuilder.control(10, { nonNullable: true });
-    this.presetLimits = [3, 5, 10, 25, 50];
-    this.interval = formBuilder.control(0, { nonNullable: true });
-    this.presetIntervals = [0, 5, 10, 25, 50, 100];
+    this.limit = formBuilder.control(settings.termiDistrLimit, {
+      nonNullable: true,
+    });
+    this.presetLimits = settings.presetTermDistrLimits;
+    this.interval = formBuilder.control(settings.termDistrInterval, {
+      nonNullable: true,
+    });
+    this.presetIntervals = settings.presetTermDistrIntervals;
+    if (
+      settings.termDistrDocNames.length ||
+      settings.termDistrOccNames.length
+    ) {
+      this._repository.setPresetAttributes(
+        settings.termDistrDocNames,
+        settings.termDistrOccNames
+      );
+      this._docAttributes = settings.termDistrDocNames;
+      this._occAttributes = settings.termDistrOccNames;
+  }
   }
 
   private getDistributions(f: {

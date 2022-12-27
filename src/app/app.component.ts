@@ -6,6 +6,7 @@ import {
   User,
 } from '@myrmidon/auth-jwt-login';
 import { EnvService } from '@myrmidon/ng-tools';
+import { AppSettingsService } from '@myrmidon/pythia-core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -22,10 +23,13 @@ export class AppComponent {
     private _router: Router,
     private _authService: AuthJwtService,
     private _gravatarService: GravatarService,
+    settings: AppSettingsService,
     env: EnvService
   ) {
     this.user$ = _authService.currentUser$;
     this.version = env.get('version') || '';
+    // TODO customize settings here like in this sample:
+    settings.termDistrDocNames = ['materia', 'giudicante', 'nascita-avv'];
   }
 
   public getGravatarUrl(email: string, size = 80): string | null {

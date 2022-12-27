@@ -244,6 +244,14 @@ export class TermListRepository {
     this._store.update((state) => ({ ...state, filter: filter }));
   }
 
+  public setPresetAttributes(docNames: string[], occNames: string[]): void {
+    this._store.update((state) => ({
+      ...state,
+      docAttributes: docNames,
+      occAttributes: occNames,
+    }));
+  }
+
   clearCache() {
     this._store.update(deleteAllEntities(), deleteAllPages());
   }
