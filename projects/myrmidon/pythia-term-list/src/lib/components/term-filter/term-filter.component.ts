@@ -25,15 +25,14 @@ import { TermListRepository } from '../../term-list.repository';
 })
 export class TermFilterComponent implements OnInit {
   @Input()
-  public disabled: boolean | undefined;
+  public sortable: boolean | undefined | null;
   @Input()
-  public sortable: boolean | undefined;
+  public sourceHidden: boolean | undefined | null;
   @Input()
-  public sourceHidden: boolean | undefined;
-  @Input()
-  public timeModifiedHidden: boolean | undefined;
+  public timeModifiedHidden: boolean | undefined | null;
 
   public filter$: Observable<TermFilter>;
+  public loading$: Observable<boolean>;
   public docAttributes$: Observable<string[]>;
   public occAttributes$: Observable<string[]>;
 
@@ -66,6 +65,7 @@ export class TermFilterComponent implements OnInit {
     public corpusLookupService: CorpusRefLookupService
   ) {
     this.filter$ = _repository.filter$;
+    this.loading$ = _repository.loading$;
     this.docAttributes$ = _repository.docAttributes$;
     this.occAttributes$ = _repository.occAttributes$;
     this.sortable = true;

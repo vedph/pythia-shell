@@ -4,7 +4,6 @@
     <mat-card>
       <mat-card-content>
         <pythia-term-filter
-          [disabled]="(loading$ | async) || false"
           [sourceHidden]="true"
           [timeModifiedHidden]="true"
         ></pythia-term-filter>
