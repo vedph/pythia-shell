@@ -42,6 +42,8 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-01-17: adding reader to document list.
+
 ### 1.0.2
 
 - 2023-01-09: fix `disabled` term filter error (expression was changed after it was checked, because having a `disabled` property bound from the parent list component would trigger this error in the binding into the filter component; the `disabled` property has been replaced by a direct subscription to `loading$` from the repository).
