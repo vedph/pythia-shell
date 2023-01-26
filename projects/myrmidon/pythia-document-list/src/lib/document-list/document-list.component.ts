@@ -47,7 +47,8 @@ export class DocumentListComponent implements OnInit {
   }
 
   public selectDocument(document: Document): void {
-    this._repository.setActiveDocumentId(document.id);
+    this._repository.loadDocumentAttributes(document.id);
+    // this._repository.setActiveDocumentId(document.id);
   }
 
   public onDocumentClose(): void {

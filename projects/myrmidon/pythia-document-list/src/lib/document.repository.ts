@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, debounceTime, forkJoin, map, Observable, take } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  forkJoin,
+  map,
+  Observable,
+  take,
+} from 'rxjs';
 
 import { createStore, select, withProps } from '@ngneat/elf';
 import {
@@ -255,6 +263,18 @@ export class DocumentRepository {
               (error ? JSON.stringify(error) : '')
           );
         },
+      });
+  }
+
+  public loadDocumentAttributes(id: number, activate = true): void {
+    this._docService
+      .getDocument(id, false)
+      .pipe(take(1))
+      .subscribe((d) => {
+        this.updateDocument(id, d);
+        if (activate) {
+          this.setActiveDocumentId(id);
+        }
       });
   }
 }
