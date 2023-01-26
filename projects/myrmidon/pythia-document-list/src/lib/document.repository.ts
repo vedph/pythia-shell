@@ -43,7 +43,7 @@ import {
 } from '@myrmidon/pythia-api';
 import { DataPage } from '@myrmidon/ng-tools';
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 20;
 
 export interface DocumentProps {
   filter: DocumentFilter;
