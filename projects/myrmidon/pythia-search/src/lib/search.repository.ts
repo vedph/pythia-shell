@@ -51,9 +51,7 @@ export class SearchRepository {
   public activeResult$: Observable<KwicSearchResult | undefined>;
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
-  public pagination$: Observable<
-    PaginationData & { data: KwicSearchResult[] }
-  >;
+  public pagination$: Observable<PaginationData & { data: KwicSearchResult[] }>;
   public status$: Observable<StatusState>;
   public loading$: Observable<boolean>;
   public readRequest$: Observable<DocumentReadRequest | undefined>;
@@ -159,7 +157,7 @@ export class SearchRepository {
     if (
       this._store.query(hasPage(pageNumber)) &&
       pageSize === this._lastPageSize &&
-      query === this._store.query(store => store.query)
+      query === this._store.query((store) => store.query)
     ) {
       console.log('Page exists: ' + pageNumber);
       this._store.update(setCurrentPage(pageNumber));
@@ -173,20 +171,26 @@ export class SearchRepository {
     }
 
     // load page from server
-    this._store.update(updateRequestStatus('search', 'pending'));
+    this._loading$.next(true);
     this._searchService
       .search(query, contextSize, pageNumber, pageSize)
       .pipe(take(1))
-      .subscribe((result) => {
-        if (result.error) {
-          console.error(result.error);
-        } else {
-          this.addPage({
-            ...this.adaptPage(result.value!),
-            data: result.value!.items as KwicSearchResult[],
-          });
-          this._store.update(updateRequestStatus('search', 'success'));
-        }
+      .subscribe({
+        next: (result) => {
+          this._loading$.next(false);
+          if (result.error) {
+            console.error(result.error);
+          } else {
+            this.addPage({
+              ...this.adaptPage(result.value!),
+              data: result.value!.items as KwicSearchResult[],
+            });
+          }
+        },
+        error: (error) => {
+          this._loading$.next(false);
+          console.error(error ? JSON.stringify(error) : 'Error in search');
+        },
       });
   }
 

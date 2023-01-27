@@ -215,13 +215,20 @@ export class DocumentRepository {
       this._lastPageSize = pageSize;
     }
 
-    this._store.update(updateRequestStatus('document', 'pending'));
+    this._loading$.next(true);
     this._docService
       .getDocuments(this._store.getValue().filter, pageNumber, pageSize)
       .pipe(take(1))
-      .subscribe((page) => {
-        this.addPage({ ...this.adaptPage(page), data: page.items });
-        this._store.update(updateRequestStatus('document', 'success'));
+      .subscribe({
+        next: (page) => {
+          this._loading$.next(false);
+          this.addPage({ ...this.adaptPage(page), data: page.items });
+          this._store.update(updateRequestStatus('document', 'success'));
+        },
+        error: (error) => {
+          this._loading$.next(false);
+          console.error(error ? JSON.stringify(error) : 'Error loading page');
+        },
       });
   }
 
