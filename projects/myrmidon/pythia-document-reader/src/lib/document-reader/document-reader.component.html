@@ -1,16 +1,15 @@
 <div id="container" *ngIf="document$ | async as doc">
   <!-- progress -->
-  <div *ngIf="loading$ | async" style="grid-area: progress">
+  <div id="progress" *ngIf="loading$ | async">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 
   <!-- map -->
-  <div id="map" *ngIf="map$ | async" style="grid-area: map">
+  <div id="map" *ngIf="map$ | async">
     <mat-tree
       id="document-reader-tree"
       [dataSource]="treeDataSource"
       [treeControl]="treeControl"
-      style="max-height: 800px; overflow: auto"
     >
       <mat-tree-node
         *matTreeNodeDef="let node"
@@ -55,14 +54,10 @@
   </div>
 
   <!-- text -->
-  <div style="grid-area: text">
+  <div id="text">
     <h3 class="doc-head">
       <span *ngIf="doc.author">{{ doc.author }} - </span>{{ doc.title }}
     </h3>
-    <div
-      *ngIf="text$ | async as text"
-      [innerHtml]="text"
-      style="column-count: 4; column-width: 400px"
-    ></div>
+    <div id="body" *ngIf="text$ | async as text" [innerHtml]="text"></div>
   </div>
 </div>

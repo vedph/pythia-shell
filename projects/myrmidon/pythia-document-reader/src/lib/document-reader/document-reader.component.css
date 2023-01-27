@@ -11,17 +11,28 @@ h3.doc-head {
 }
 div#container {
   display: grid;
-  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-areas:
     "progress progress"
     "map text";
   gap: 8px;
 }
+div#progress {
+  grid-area: "progress";
+}
 div#map {
+  grid-area: "map";
   border: 1px solid #f0f0f0;
   border-radius: 8px;
   padding: 0 8px;
+}
+div#text {
+  grid-area: "text";
+}
+div#body {
+  column-count: 4;
+  column-width: 400px;
 }
 /* lt-md */
 @media only screen and (max-width: 959px) {
