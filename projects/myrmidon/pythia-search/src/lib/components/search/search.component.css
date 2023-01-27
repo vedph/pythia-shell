@@ -79,6 +79,15 @@ div#container {
     "reader";
   gap: 8px;
 }
+div#query {
+  grid-area: "query";
+}
+div#results {
+  grid-area: "results";
+}
+div#reader {
+  grid-area: "reader";
+}
 /* lt-md */
 @media only screen and (max-width: 959px) {
   div#container {

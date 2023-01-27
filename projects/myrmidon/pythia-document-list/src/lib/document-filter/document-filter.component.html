@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="apply()" ng-disabled="disabled">
+<form [formGroup]="form" (submit)="apply()">
   <!-- corpus -->
   <div>
     <cadmus-ref-lookup
@@ -214,7 +214,7 @@
       (click)="reset()"
       color="warn"
       matTooltip="Reset filters"
-      [disabled]="disabled"
+      [disabled]="disabled || (loading$ | async)"
     >
       <mat-icon>clear</mat-icon>
     </button>
@@ -222,7 +222,7 @@
       type="submit"
       mat-icon-button
       color="primary"
-      [disabled]="disabled"
+      [disabled]="disabled || (loading$ | async)"
       matTooltip="Apply filters"
     >
       <mat-icon>check_circle</mat-icon>

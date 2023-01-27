@@ -194,6 +194,10 @@ export class SearchRepository {
       });
   }
 
+  public isLoading(): boolean {
+    return this._loading$.value;
+  }
+
   public setQuery(query: string): void {
     this._store.update(setProp('query', query));
   }

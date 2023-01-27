@@ -29,6 +29,7 @@ export class DocumentFilterComponent implements OnInit {
   public sortable: boolean | undefined;
 
   public filter$: Observable<DocumentFilter>;
+  public loading$: Observable<boolean>;
   public attributes$: Observable<string[]>;
 
   public corpus: FormControl<Corpus | null>;
@@ -54,6 +55,7 @@ export class DocumentFilterComponent implements OnInit {
     private _formBuilder: FormBuilder
   ) {
     this.filter$ = _repository.filter$;
+    this.loading$ = _repository.loading$;
     this.attributes$ = _repository.attributes$;
     this.sortable = true;
 

@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit {
   public query: FormControl<string | null>;
   public history: FormControl<string | null>;
   public form: FormGroup;
-  public busy: boolean | undefined;
   public leftContextLabels: string[];
   public rightContextLabels: string[];
 
@@ -78,7 +77,7 @@ export class SearchComponent implements OnInit {
   }
 
   public search(): void {
-    if (this.form.invalid || this.busy) {
+    if (this.form.invalid || this._repository.isLoading()) {
       return;
     }
     const query = this.query.value?.trim();
@@ -90,7 +89,7 @@ export class SearchComponent implements OnInit {
   }
 
   public searchByEnter(event: KeyboardEvent): void {
-    if (this.busy) {
+    if (this._repository.isLoading()) {
       return;
     }
     event.stopPropagation();

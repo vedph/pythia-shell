@@ -1,6 +1,6 @@
 <div id="container">
   <!-- query -->
-  <form style="grid-area: query" [formGroup]="form" (submit)="search()">
+  <form id="query" [formGroup]="form" (submit)="search()">
     <mat-form-field style="width: 100%">
       <mat-label>query</mat-label>
       <textarea
@@ -23,11 +23,12 @@
 
     <div class="form-row">
       <!-- submit -->
-      <button style="margin-top:-24px"
+      <button
+        style="margin-top: -24px"
         type="submit"
         color="primary"
         mat-flat-button
-        [disabled]="form.invalid || busy"
+        [disabled]="form.invalid || (loading$ | async)"
       >
         <mat-icon>search</mat-icon> search
       </button>
@@ -49,14 +50,14 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="busy">
+    <div *ngIf="loading$ | async">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
   </form>
 
   <!-- results -->
-  <div style="grid-area: results" *ngIf="pagination$ | async as pagination">
-    <table>
+  <div id="results" *ngIf="pagination$ | async as pagination">
+    <table *ngIf="pagination.data?.length">
       <thead>
         <tr>
           <th></th>
@@ -76,7 +77,7 @@
               mat-icon-button
               type="button"
               matTooltip="Read in context"
-              [disabled]="busy"
+              [disabled]="loading$ | async"
               color="primary"
               (click)="readDocumentPiece(r.documentId, r.index, r.length)"
             >
@@ -89,7 +90,7 @@
               mat-icon-button
               type="button"
               matTooltip="Read document"
-              [disabled]="busy"
+              [disabled]="loading$ | async"
               (click)="readDocument(r.documentId)"
             >
               <mat-icon style="color: #50cc86">description</mat-icon>
@@ -126,6 +127,7 @@
 
     <!-- pagination -->
     <mat-paginator
+      *ngIf="pagination.data?.length"
       gdAlignColumns="center"
       gdAlignRows="start"
       [length]="pagination.total"
@@ -138,7 +140,7 @@
   </div>
 
   <!-- reader -->
-  <div style="grid-area: reader">
+  <div id="reader">
     <mat-card>
       <mat-card-content>
         <pythia-document-reader
