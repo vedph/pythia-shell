@@ -1,14 +1,6 @@
 <div id="container">
-  <!-- spinner -->
-  <div
-    *ngIf="(status$ | async)?.value === 'pending'"
-    style="grid-area: spinner"
-  >
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-  </div>
-
   <!-- filters -->
-  <div style="grid-area: filters">
+  <div id="filters">
     <mat-card>
       <mat-card-content>
         <!-- TODO disable when loading -->
@@ -18,8 +10,9 @@
   </div>
 
   <!-- list -->
-  <div style="grid-area: list" *ngIf="pagination$ | async as pagination">
-    <table>
+  <div id="list">
+    <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+    <table *ngIf="pagination$ | async as pagination">
       <thead>
         <th></th>
         <th></th>
@@ -60,13 +53,13 @@
           <td>{{ item.dateValue }}</td>
           <td class="noif-lt-md">{{ item.profileId }}</td>
           <td class="noif-lt-md">{{ item.source }}</td>
-          <td class="noif-lt-md">{{ item.lastModified | date: "short" }}</td>
+          <td class="noif-lt-md">{{ item.lastModified | date : "short" }}</td>
         </tr>
       </tbody>
     </table>
 
     <!-- pagination -->
-    <div class="form-row" style="grid-area: paginator">
+    <div class="form-row" id="pagination">
       <button
         type="button"
         mat-icon-button
@@ -87,7 +80,7 @@
     </div>
 
     <!-- info -->
-    <div style="grid-area: info">
+    <div id="info">
       <pythia-document-info
         [document]="activeDocument$ | async"
         (readRequest)="requestRead($event)"
@@ -96,7 +89,7 @@
     </div>
 
     <!-- corpus -->
-    <div style="grid-area: corpus">
+    <div id="corpus">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title> corpus </mat-panel-title>

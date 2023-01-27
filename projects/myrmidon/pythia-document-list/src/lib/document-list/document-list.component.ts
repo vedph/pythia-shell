@@ -5,7 +5,6 @@ import { Observable, take } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { PaginationData } from '@ngneat/elf-pagination';
-import { StatusState } from '@ngneat/elf-requests';
 
 import { Document, DocumentReadRequest } from '@myrmidon/pythia-core';
 import { CorpusService } from '@myrmidon/pythia-api';
@@ -21,7 +20,7 @@ import { CorpusActionRequest } from '../document-corpus/document-corpus.componen
 })
 export class DocumentListComponent implements OnInit {
   public pagination$: Observable<PaginationData & { data: Document[] }>;
-  public status$: Observable<StatusState>;
+  public loading$: Observable<boolean>;
   public activeDocument$: Observable<Document | undefined>;
 
   @Output()
@@ -33,7 +32,7 @@ export class DocumentListComponent implements OnInit {
     private _corpusService: CorpusService
   ) {
     this.pagination$ = _repository.pagination$;
-    this.status$ = _repository.status$;
+    this.loading$ = _repository.loading$;
     this.activeDocument$ = _repository.activeDocument$;
     this.readRequest = new EventEmitter<DocumentReadRequest>();
   }
