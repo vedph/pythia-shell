@@ -101,6 +101,7 @@ export class DocumentReaderRepository {
         .pipe(take(1))
         .subscribe((result) => {
           this._loading$.next(false);
+          this.setNodeParents(result.map);
           this._store.update((state) => ({
             ...state,
             document: result.doc,
