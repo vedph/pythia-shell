@@ -89,7 +89,7 @@ export class ReaderService {
     sb.push('0'); // 0=root node
 
     while (node && node.parent) {
-      const i = node.parent?.children?.indexOf(node) || -1;
+      const i = node.parent!.children!.indexOf(node);
       sb.push(i.toString());
       node = node.parent;
     }
