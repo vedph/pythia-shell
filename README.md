@@ -45,6 +45,7 @@ These are the media query breakpoints defined for responsive layouts according t
 - 2023-01-26:
   - updated Angular.
   - load details when selecting document in list.
+  - fix to reader (missing node parent setup after loading data).
 - 2023-01-17: adding reader to document list.
 
 ### 1.0.2

@@ -68,8 +68,10 @@ export class DocumentReaderRepository {
    * Load the requested document with its map and eventually text.
    *
    * @param request The request.
+   * @param initialPath The optional initial path to open once text has been loaded
+   * (not used for range requests).
    */
-  public load(request: DocumentReadRequest): void {
+  public load(request: DocumentReadRequest, initialPath?: string): void {
     this._loading$.next(true);
 
     if (request.start && request.end) {
@@ -108,6 +110,10 @@ export class DocumentReaderRepository {
             map: result.map,
             text: undefined,
           }));
+          // initial path if requested
+          if (initialPath) {
+            this.loadTextFromPath(initialPath);
+          }
         });
     }
   }

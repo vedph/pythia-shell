@@ -41,7 +41,7 @@ export class DocumentReaderComponent implements OnInit {
     }
     this._request = value;
     if (value) {
-      this._repository.load(value);
+      this._repository.load(value, '0.0');
     } else {
       this._repository.reset();
     }
