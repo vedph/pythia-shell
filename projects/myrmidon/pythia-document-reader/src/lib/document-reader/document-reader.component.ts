@@ -5,15 +5,13 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { ReaderService } from '@myrmidon/pythia-api';
-import { Document, TextMapNode } from '@myrmidon/pythia-core';
+import {
+  Document,
+  DocumentReadRequest,
+  TextMapNode,
+} from '@myrmidon/pythia-core';
 
 import { DocumentReaderRepository } from '../document-reader.repository';
-
-export interface DocumentReadRequest {
-  documentId: number;
-  start?: number;
-  end?: number;
-}
 
 @Component({
   selector: 'pythia-document-reader',
@@ -41,7 +39,7 @@ export class DocumentReaderComponent implements OnInit {
     }
     this._request = value;
     if (value) {
-      this._repository.load(value, '0.0');
+      this._repository.load(value, value.initialPath);
     } else {
       this._repository.reset();
     }

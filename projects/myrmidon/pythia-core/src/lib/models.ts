@@ -51,4 +51,5 @@ export interface DocumentReadRequest {
   documentId: number;
   start?: number;
   end?: number;
+  initialPath?: string;
 }
