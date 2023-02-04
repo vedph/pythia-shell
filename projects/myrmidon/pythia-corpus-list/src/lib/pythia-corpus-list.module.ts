@@ -26,13 +26,17 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+// myrmidon
 import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
+import { CadmusRefsLookupModule } from '@myrmidon/cadmus-refs-lookup';
 
+// pythia
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
+// locals
 import { CorpusFilterComponent } from './components/corpus-filter/corpus-filter.component';
 import { CorpusListComponent } from './components/corpus-list/corpus-list.component';
 import { CorpusEditorComponent } from './components/corpus-editor/corpus-editor.component';
@@ -74,6 +78,7 @@ import { CorpusEditorComponent } from './components/corpus-editor/corpus-editor.
     // myrmidon
     NgToolsModule,
     NgMatToolsModule,
+    CadmusRefsLookupModule,
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,

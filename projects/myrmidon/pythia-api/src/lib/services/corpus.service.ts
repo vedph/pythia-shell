@@ -5,13 +5,14 @@ import { catchError, retry } from 'rxjs/operators';
 
 import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 
-import { Corpus } from '@myrmidon/pythia-core';
+import { Corpus, HasUserId } from '@myrmidon/pythia-core';
 
 import { DocumentFilter } from './document.service';
 
-export interface CorpusFilter {
+export interface CorpusFilter extends HasUserId {
   id?: string;
   title?: string;
+  prefix?: string;
   counts?: boolean;
 }
 
@@ -44,6 +45,12 @@ export class CorpusService {
     }
     if (filter.title) {
       httpParams = httpParams.set('title', filter.title);
+    }
+    if (filter.prefix) {
+      httpParams = httpParams.set('prefix', filter.prefix);
+    }
+    if (filter.userId) {
+      httpParams = httpParams.set('userId', filter.userId);
     }
     if (filter.counts) {
       httpParams = httpParams.set('counts', filter.counts);

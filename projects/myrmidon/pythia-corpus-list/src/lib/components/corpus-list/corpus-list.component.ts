@@ -8,6 +8,7 @@ import { Corpus } from '@myrmidon/pythia-core';
 import { PaginationData } from '@ngneat/elf-pagination';
 import { DialogService } from '@myrmidon/ng-mat-tools';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
+import { CorpusFilter } from '@myrmidon/pythia-api';
 
 import { EditedCorpus } from '../corpus-editor/corpus-editor.component';
 import { CorpusListRepository } from '../../corpus-list.repository';
@@ -32,6 +33,13 @@ export class CorpusListComponent {
     this.pagination$ = _repository.pagination$;
     this.loading$ = _repository.loading$;
     this.saving$ = _repository.saving$;
+
+    // show only current user's corpora except when he's admin
+    this._repository.setFilter({
+      userId: _authService.isCurrentUserInRole('admin')
+        ? undefined
+        : _authService.currentUserValue?.userName,
+    } as CorpusFilter);
   }
 
   public pageChange(event: PageEvent): void {

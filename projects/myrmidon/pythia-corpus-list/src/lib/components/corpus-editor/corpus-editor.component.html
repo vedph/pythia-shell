@@ -35,27 +35,18 @@
   <!-- sourceId -->
   <fieldset>
     <legend>clone from</legend>
-    <mat-form-field>
-      <mat-label>ID</mat-label>
-      <input matInput [formControl]="sourceId" />
-      <mat-error
-        *ngIf="
-          $any(sourceId).errors?.maxLength &&
-          (sourceId.dirty || sourceId.touched)
-        "
-        >ID too long</mat-error
-      >
-    </mat-form-field>
+    <cadmus-ref-lookup
+      [required]="true"
+      [baseFilter]="baseFilter"
+      [service]="corpusRefLookupService"
+      label="corpus"
+      (itemChange)="onCorpusChange($event)"
+    ></cadmus-ref-lookup>
   </fieldset>
 
   <!-- buttons -->
   <div role="group" aria-label="toolbar" style="margin: 10px 0">
-    <button
-      mat-button
-      type="button"
-      (click)="close()"
-      color="warn"
-    >
+    <button mat-button type="button" (click)="close()" color="warn">
       <mat-icon>clear</mat-icon>
     </button>
     &nbsp;

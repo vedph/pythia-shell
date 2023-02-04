@@ -5,8 +5,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AuthJwtService } from '@myrmidon/auth-jwt-login';
+import { CorpusFilter } from '@myrmidon/pythia-api';
 import { Corpus } from '@myrmidon/pythia-core';
-import { CorpusRefLookupService, EditableCheckService } from '@myrmidon/pythia-ui';
+import {
+  CorpusRefLookupService,
+  EditableCheckService,
+} from '@myrmidon/pythia-ui';
 
 export interface CorpusActionRequest {
   corpusId: string;
@@ -24,13 +29,16 @@ export class DocumentCorpusComponent implements OnInit {
   public form: FormGroup;
   public editable?: boolean;
 
+  public baseFilter?: CorpusFilter;
+
   @Output()
   public corpusAction: EventEmitter<CorpusActionRequest>;
 
   constructor(
     formBuilder: FormBuilder,
     public corpusRefLookupService: CorpusRefLookupService,
-    private _editableCheckService: EditableCheckService
+    private _editableCheckService: EditableCheckService,
+    authService: AuthJwtService
   ) {
     this.corpusAction = new EventEmitter<CorpusActionRequest>();
     // form
@@ -43,6 +51,12 @@ export class DocumentCorpusComponent implements OnInit {
       corpusId: this.corpusId,
       action: this.action,
     });
+    // preset userId filter for corpus lookup (used in cloner)
+    this.baseFilter = {
+      userId: authService.isCurrentUserInRole('admin')
+        ? undefined
+        : authService.currentUserValue?.userName,
+    };
   }
 
   ngOnInit(): void {}

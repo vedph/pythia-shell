@@ -17,6 +17,7 @@
 
     <cadmus-ref-lookup
       [service]="corpusRefLookupService"
+      [baseFilter]="baseFilter"
       label="corpus"
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
