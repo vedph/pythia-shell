@@ -23,7 +23,7 @@
 
     <button
       type="submit"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || !editable"
       mat-flat-button
       color="primary"
       matTooltip="Apply the selected action to the target corpus"

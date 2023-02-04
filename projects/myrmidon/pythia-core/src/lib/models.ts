@@ -1,4 +1,8 @@
-export interface Corpus {
+export interface HasUserId {
+  userId?: string;
+}
+
+export interface Corpus extends HasUserId {
   id: string;
   title: string;
   description: string;
@@ -11,11 +15,10 @@ export interface Attribute {
   value: string;
 }
 
-export interface Profile {
+export interface Profile extends HasUserId {
   id: string;
   content?: string;
   type?: string;
-  userId?: string;
 }
 
 export interface Document {

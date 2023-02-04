@@ -1,11 +1,6 @@
 <div id="container">
-  <!-- spinner -->
-  <div style="grid-area: spinner" *ngIf="loading$ | async">
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-  </div>
-
   <!-- filters -->
-  <div style="grid-area: filters">
+  <div id="filters">
     <mat-card>
       <mat-card-content>
         <pythia-corpus-filter
@@ -16,7 +11,11 @@
   </div>
 
   <!-- list -->
-  <div style="grid-area: list" *ngIf="pagination$ | async as pagination">
+  <div id="list" *ngIf="pagination$ | async as pagination">
+    <mat-progress-bar
+      mode="indeterminate"
+      *ngIf="loading$ | async"
+    ></mat-progress-bar>
     <table>
       <thead>
         <th></th>
@@ -27,6 +26,7 @@
         <tr *ngFor="let c of pagination.data">
           <td>
             <button
+              *ngIf="c | editable"
               mat-icon-button
               type="button"
               matTooltip="Edit this corpus"
@@ -36,6 +36,7 @@
               <mat-icon>edit</mat-icon>
             </button>
             <button
+              *ngIf="c | editable"
               mat-icon-button
               type="button"
               matTooltip="Delete this corpus"
@@ -52,7 +53,7 @@
     </table>
 
     <!-- pagination -->
-    <div class="form-row" style="grid-area: paginator">
+    <div class="form-row" id="paginator">
       <button
         type="button"
         mat-icon-button
@@ -74,19 +75,29 @@
         [showFirstLastButtons]="true"
         (page)="pageChange($event)"
       ></mat-paginator>
+
+      <div>
+        <button
+          type="button"
+          color="primary"
+          mat-flat-button
+          (click)="addCorpus()"
+        >
+          <mat-icon>add_circle</mat-icon> corpus
+        </button>
+      </div>
     </div>
 
     <!-- editor -->
-    <div style="grid-area: editor">
-      <mat-card *ngIf="editedCorpus">
-        <mat-card-content>
-          <pythia-corpus-editor
-            [corpus]="editedCorpus"
-            (corpusChange)="onCorpusChange($event)"
-            (editorClose)="onCorpusEditorClose()"
-          ></pythia-corpus-editor>
-        </mat-card-content>
-      </mat-card>
+    <div id="editor">
+      <mat-expansion-panel [disabled]="!editedCorpus" [expanded]="editedCorpus">
+        <mat-expansion-panel-header>corpus</mat-expansion-panel-header>
+        <pythia-corpus-editor
+          [corpus]="editedCorpus"
+          (corpusChange)="onCorpusChange($event)"
+          (editorClose)="onCorpusEditorClose()"
+        ></pythia-corpus-editor>
+      </mat-expansion-panel>
     </div>
   </div>
 </div>

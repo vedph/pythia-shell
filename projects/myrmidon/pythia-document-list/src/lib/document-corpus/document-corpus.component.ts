@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Corpus } from '@myrmidon/pythia-core';
-import { CorpusRefLookupService } from '@myrmidon/pythia-ui';
+import { CorpusRefLookupService, EditableCheckService } from '@myrmidon/pythia-ui';
 
 export interface CorpusActionRequest {
   corpusId: string;
@@ -22,13 +22,15 @@ export class DocumentCorpusComponent implements OnInit {
   public corpusId: FormControl<string | null>;
   public action: FormControl<string | null>;
   public form: FormGroup;
+  public editable?: boolean;
 
   @Output()
   public corpusAction: EventEmitter<CorpusActionRequest>;
 
   constructor(
     formBuilder: FormBuilder,
-    public corpusRefLookupService: CorpusRefLookupService
+    public corpusRefLookupService: CorpusRefLookupService,
+    private _editableCheckService: EditableCheckService
   ) {
     this.corpusAction = new EventEmitter<CorpusActionRequest>();
     // form
@@ -47,6 +49,7 @@ export class DocumentCorpusComponent implements OnInit {
 
   public onCorpusChange(corpus: Corpus | null): void {
     this.corpusId.setValue(corpus?.id || null);
+    this.editable = this._editableCheckService.isEditable(corpus);
   }
 
   public apply(): void {

@@ -2,31 +2,35 @@
   <h3>{{ id }}</h3>
 
   <!-- title -->
-  <mat-form-field>
-    <mat-label>title</mat-label>
-    <input matInput [formControl]="title" />
-    <mat-error
-      *ngIf="$any(title).errors?.required && (title.dirty || title.touched)"
-      >title required</mat-error
-    >
-    <mat-error
-      *ngIf="$any(title).errors?.maxLength && (title.dirty || title.touched)"
-      >title too long</mat-error
-    >
-  </mat-form-field>
+  <div>
+    <mat-form-field>
+      <mat-label>title</mat-label>
+      <input matInput [formControl]="title" />
+      <mat-error
+        *ngIf="$any(title).errors?.required && (title.dirty || title.touched)"
+        >title required</mat-error
+      >
+      <mat-error
+        *ngIf="$any(title).errors?.maxLength && (title.dirty || title.touched)"
+        >title too long</mat-error
+      >
+    </mat-form-field>
+  </div>
 
   <!-- description -->
-  <mat-form-field>
-    <mat-label>description</mat-label>
-    <textarea rows="3" matInput [formControl]="description"></textarea>
-    <mat-error
-      *ngIf="
-        $any(description).errors?.maxLength &&
-        (description.dirty || description.touched)
-      "
-      >description too long</mat-error
-    >
-  </mat-form-field>
+  <div>
+    <mat-form-field class="long-text">
+      <mat-label>description</mat-label>
+      <textarea matInput [formControl]="description"></textarea>
+      <mat-error
+        *ngIf="
+          $any(description).errors?.maxLength &&
+          (description.dirty || description.touched)
+        "
+        >description too long</mat-error
+      >
+    </mat-form-field>
+  </div>
 
   <!-- sourceId -->
   <fieldset>
@@ -51,7 +55,6 @@
       type="button"
       (click)="close()"
       color="warn"
-      matTooltip="Close"
     >
       <mat-icon>clear</mat-icon>
     </button>
@@ -61,7 +64,6 @@
       mat-raised-button
       color="primary"
       [disabled]="form.invalid"
-      matTooltip="Save"
     >
       <mat-icon>check_circle</mat-icon>
     </button>

@@ -24,6 +24,9 @@ export class CorpusEditorComponent implements OnInit {
     return this._corpus;
   }
   public set corpus(value: EditedCorpus | undefined) {
+    if (this._corpus === value) {
+      return;
+    }
     this._corpus = value;
     this.updateForm(value);
   }
@@ -92,6 +95,7 @@ export class CorpusEditorComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.corpusChange.emit(this.getCorpus());
+    this._corpus = this.getCorpus();
+    this.corpusChange.emit(this._corpus);
   }
 }

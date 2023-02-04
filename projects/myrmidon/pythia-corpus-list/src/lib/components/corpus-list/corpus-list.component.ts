@@ -7,6 +7,7 @@ import { Corpus } from '@myrmidon/pythia-core';
 
 import { PaginationData } from '@ngneat/elf-pagination';
 import { DialogService } from '@myrmidon/ng-mat-tools';
+import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 
 import { EditedCorpus } from '../corpus-editor/corpus-editor.component';
 import { CorpusListRepository } from '../../corpus-list.repository';
@@ -25,6 +26,7 @@ export class CorpusListComponent {
 
   constructor(
     private _repository: CorpusListRepository,
+    private _authService: AuthJwtService,
     private _dialogService: DialogService
   ) {
     this.pagination$ = _repository.pagination$;
@@ -41,7 +43,22 @@ export class CorpusListComponent {
     this._repository.loadPage(1);
   }
 
+  public addCorpus(): void {
+    if (!this._authService.currentUserValue) {
+      return;
+    }
+    this.editedCorpus = {
+      id: '',
+      title: 'corpus',
+      description: '',
+      userId: this._authService.currentUserValue?.userName!,
+    };
+  }
+
   public editCorpus(corpus: Corpus): void {
+    if (!this._authService.currentUserValue) {
+      return;
+    }
     this.editedCorpus = { ...corpus };
   }
 
@@ -54,11 +71,13 @@ export class CorpusListComponent {
           return;
         }
         this._repository.deleteCorpus(corpus.id);
+        this.editedCorpus = undefined;
       });
   }
 
   public onCorpusChange(corpus: EditedCorpus): void {
     this._repository.addCorpus(corpus, corpus.sourceId);
+    this.editedCorpus = undefined;
   }
 
   public onCorpusEditorClose(): void {

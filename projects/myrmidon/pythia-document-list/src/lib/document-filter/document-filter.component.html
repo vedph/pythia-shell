@@ -146,7 +146,7 @@
 
           <!-- child controls -->
           <!-- name -->
-          <mat-form-field style="width: 90px">
+          <mat-form-field style="width: 8em">
             <mat-label>name</mat-label>
             <mat-select formControlName="name">
               <mat-option *ngFor="let n of attributes$ | async" [value]="n">{{
@@ -165,7 +165,7 @@
 
           <!-- value -->
           &nbsp;
-          <mat-form-field style="width: 90px">
+          <mat-form-field style="width: 8em">
             <mat-label>value</mat-label>
             <input matInput formControlName="value" />
             <mat-error
