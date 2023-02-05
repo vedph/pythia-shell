@@ -24,6 +24,7 @@ export class CorpusListComponent {
 
   public loading$: Observable<boolean>;
   public saving$: Observable<boolean>;
+  public showUserId: boolean;
 
   constructor(
     private _repository: CorpusListRepository,
@@ -33,6 +34,7 @@ export class CorpusListComponent {
     this.pagination$ = _repository.pagination$;
     this.loading$ = _repository.loading$;
     this.saving$ = _repository.saving$;
+    this.showUserId = _authService.isCurrentUserInRole('admin');
 
     // show only current user's corpora except when he's admin
     this._repository.setFilter({

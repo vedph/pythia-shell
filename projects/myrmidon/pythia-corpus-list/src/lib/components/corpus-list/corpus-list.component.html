@@ -20,6 +20,7 @@
       <thead>
         <th></th>
         <th>id</th>
+        <th *ngIf="showUserId">user</th>
         <th>title</th>
       </thead>
       <tbody>
@@ -47,6 +48,7 @@
             </button>
           </td>
           <td>{{ c.id }}</td>
+          <td *ngIf="showUserId">{{ c.userId }}</td>
           <td>{{ c.title }}</td>
         </tr>
       </tbody>
