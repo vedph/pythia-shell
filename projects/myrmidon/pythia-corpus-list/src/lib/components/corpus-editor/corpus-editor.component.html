@@ -1,5 +1,17 @@
 <form [formGroup]="form" (submit)="save()">
-  <h3>{{ id }}</h3>
+  <!-- ID -->
+  <div>
+    <mat-form-field>
+      <mat-label>ID {{ idPrefix }}</mat-label>
+      <input matInput [formControl]="id" />
+      <mat-error *ngIf="$any(id).errors?.required && (id.dirty || id.touched)"
+        >ID required</mat-error
+      >
+      <mat-error *ngIf="$any(id).errors?.maxLength && (id.dirty || id.touched)"
+        >ID too long</mat-error
+      >
+    </mat-form-field>
+  </div>
 
   <!-- title -->
   <div>
@@ -33,7 +45,8 @@
   </div>
 
   <!-- sourceId -->
-  <fieldset>
+  <mat-checkbox [formControl]="clone">clone</mat-checkbox>
+  <fieldset *ngIf="clone.value">
     <legend>clone from</legend>
     <cadmus-ref-lookup
       [required]="true"
@@ -49,10 +62,9 @@
     <button mat-button type="button" (click)="close()" color="warn">
       <mat-icon>clear</mat-icon>
     </button>
-    &nbsp;
     <button
       type="submit"
-      mat-raised-button
+      mat-icon-button
       color="primary"
       [disabled]="form.invalid"
     >
