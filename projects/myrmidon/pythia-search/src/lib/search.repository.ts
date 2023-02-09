@@ -15,7 +15,6 @@ import {
 import {
   selectRequestStatus,
   StatusState,
-  updateRequestStatus,
   withRequestsCache,
   withRequestsStatus,
 } from '@ngneat/elf-requests';
