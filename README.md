@@ -43,6 +43,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-02-11: fixes to search paging.
 - 2023-02-09: updated Angular and packages.
 - 2023-02-04:
   - UI for corpora.

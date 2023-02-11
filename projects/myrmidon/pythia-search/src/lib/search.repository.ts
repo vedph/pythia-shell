@@ -36,6 +36,7 @@ const PAGE_SIZE = 20;
 
 export interface SearchProps {
   query?: string;
+  prevQuery?: string;
   lastQueries: string[];
   error?: string;
   readRequest?: DocumentReadRequest;
@@ -144,8 +145,9 @@ export class SearchRepository {
     pageSize = 20
   ): void {
     if (!query) {
-      query = this._store.query((state) => state.query);
+      query = this._store.query((state) => state.prevQuery);
       if (!query) {
+        console.warn('No query');
         return;
       }
     }
@@ -156,12 +158,13 @@ export class SearchRepository {
     if (
       this._store.query(hasPage(pageNumber)) &&
       pageSize === this._lastPageSize &&
-      query === this._store.query((store) => store.query)
+      query === this._store.query((store) => store.prevQuery)
     ) {
       console.log('Page exists: ' + pageNumber);
       this._store.update(setCurrentPage(pageNumber));
       return;
     }
+    this._store.update(setProp('prevQuery', query));
 
     // reset cached pages if page size changed
     if (this._lastPageSize !== pageSize) {

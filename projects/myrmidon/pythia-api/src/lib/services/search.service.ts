@@ -72,6 +72,8 @@ export class SearchService {
         {
           query,
           contextSize,
+          pageNumber,
+          pageSize
         }
       )
       .pipe(retry(3), catchError(this._error.handleError));
