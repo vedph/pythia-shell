@@ -16,7 +16,7 @@
     "build-sta": "ng build @myrmidon/pythia-stats",
     "build-src": "ng build @myrmidon/pythia-search",
     "build-crp": "ng build @myrmidon/pythia-corpus-list",
-    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm build doc && npm run build-trm && npm run build-sta && npm run build-src && npm run build-crp"
+    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-trm && npm run build-sta && npm run build-src && npm run build-crp"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +30,7 @@
     "@angular/platform-browser": "^15.1.4",
     "@angular/platform-browser-dynamic": "^15.1.4",
     "@angular/router": "^15.1.4",
-    "@myrmidon/auth-jwt-admin": "^1.0.3",
+    "@myrmidon/auth-jwt-admin": "^1.0.4",
     "@myrmidon/auth-jwt-login": "^1.0.1",
     "@myrmidon/cadmus-refs-lookup": "^1.0.2",
     "@myrmidon/ng-mat-tools": "^1.0.0",
