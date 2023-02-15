@@ -44,7 +44,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
-- 2023-02-15: clear user list cache after registering a new user.
+- 2023-02-15:
+  - clear user list cache after registering a new user.
+  - style improvements.
 
 ### 1.0.4
 
