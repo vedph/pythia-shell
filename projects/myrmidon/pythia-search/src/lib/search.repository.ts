@@ -154,6 +154,10 @@ export class SearchRepository {
     if (!pageSize) {
       pageSize = PAGE_SIZE;
     }
+    // clear cache if query changed
+    if (query !== this._store.query((state) => state.prevQuery)) {
+      this.clearCache();
+    }
     // if the page exists and page size is the same, just move to it
     if (
       this._store.query(hasPage(pageNumber)) &&

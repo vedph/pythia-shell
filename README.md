@@ -44,6 +44,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-02-21:
+  - updated Angular and packages.
+  - fixed wrong cached page when query changed.
 - 2023-02-15:
   - clear user list cache after registering a new user.
   - style improvements.
