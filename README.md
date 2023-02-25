@@ -45,6 +45,7 @@ These are the media query breakpoints defined for responsive layouts according t
 ## History
 
 - 2023-02-25:
+  - updated Angular and packages.
   - once user registered, force repository page reload and redirect to user manager page.
   - better UI for corpus filter in document.
   - reload corpus list on corpus added/removed.
