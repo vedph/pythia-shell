@@ -17,6 +17,7 @@ export class RegisterUserComponent implements OnInit {
 
   public onRegistered(): void {
     this._repository.clearCache();
-    this._router.navigate(['/home']);
+    this._repository.loadPage(1);
+    this._router.navigate(['/manage-users']);
   }
 }

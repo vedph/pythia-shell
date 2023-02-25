@@ -1,23 +1,19 @@
 <form [formGroup]="form" (submit)="apply()">
   <!-- corpus -->
-  <div>
+  <div class="form-row">
     <cadmus-ref-lookup
       [service]="corpusLookupService"
       [item]="corpus.value"
       label="corpus"
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
-    <mat-chip
-      *ngIf="corpus.value"
-      removable="true"
-      (removed)="onCorpusRemoved()"
-    >
-      {{ corpus.value.title }} ({{ corpus.value.id }})
-    </mat-chip>
+    <button type="button" mat-icon-button color="warn" (click)="removeCorpus()">
+      <mat-icon>clear</mat-icon>
+    </button>
   </div>
 
   <!-- author -->
-  <div>
+  <div style="margin-top: 8px">
     <mat-form-field>
       <mat-label>author(s)</mat-label>
       <input matInput [formControl]="author" maxlength="500" />

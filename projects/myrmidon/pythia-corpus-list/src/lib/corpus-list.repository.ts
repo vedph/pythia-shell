@@ -182,7 +182,9 @@ export class CorpusListRepository {
       .subscribe({
         next: (_) => {
           this._saving$.next(false);
+          this.clearCache();
           this._store.update(deleteEntities(id));
+          this.loadPage(1, PAGE_SIZE);
         },
         error: (error) => {
           this._saving$.next(false);
@@ -201,7 +203,9 @@ export class CorpusListRepository {
       .subscribe({
         next: (saved) => {
           this._saving$.next(false);
+          this.clearCache();
           this._store.update(upsertEntities(saved));
+          this.loadPage(1, PAGE_SIZE);
         },
         error: (error) => {
           this._saving$.next(false);

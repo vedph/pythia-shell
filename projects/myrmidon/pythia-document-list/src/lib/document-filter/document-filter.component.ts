@@ -89,7 +89,6 @@ export class DocumentFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this._docService.loadLookup();
     this.filter$.subscribe((f) => {
       this.updateForm(f);
     });
@@ -144,7 +143,7 @@ export class DocumentFilterComponent implements OnInit {
     this.corpus.setValue(corpus || null);
   }
 
-  public onCorpusRemoved(): void {
+  public removeCorpus(): void {
     this.corpus.reset();
   }
 

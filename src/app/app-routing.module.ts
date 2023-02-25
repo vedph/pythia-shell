@@ -16,7 +16,6 @@ import { SearchComponent } from './search/search.component';
 import { TermsComponent } from './terms/terms.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginPageComponent },
   {
@@ -50,15 +49,16 @@ const routes: Routes = [
     canActivate: [AuthJwtGuardService],
   },
   {
-    path: 'search',
-    component: SearchComponent,
-    canActivate: [AuthJwtGuardService],
-  },
-  {
     path: 'search/:term',
     component: SearchComponent,
     canActivate: [AuthJwtGuardService],
   },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [AuthJwtGuardService],
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -1,5 +1,10 @@
 table {
+  width: 100%;
   border-collapse: collapse;
+}
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
 }
 tr:nth-child(odd) {
   background-color: #f8f8f8;
