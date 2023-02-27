@@ -37,17 +37,17 @@ div#container {
   gap: 8px;
 }
 div#filters {
-  grid-area: "filters";
+  grid-area: filters;
 }
 div#list {
-  grid-area: "list";
+  grid-area: list;
 }
 div#paginator {
-  grid-area: "paginator";
+  grid-area: paginator;
   justify-content: end;
 }
 div#editor {
-  grid-area: "editor";
+  grid-area: editor;
 }
 
 /* lt-md */

@@ -25,20 +25,20 @@ div#container {
   gap: 8px;
 }
 div#filters {
-  grid-area: "filters";
+  grid-area: filters;
 }
 div#list {
-  grid-area: "list";
+  grid-area: list;
 }
 div#pagination {
-  grid-area: "pagination";
+  grid-area: pagination;
   justify-content: end;
 }
 div#info {
-  grid-area: "info";
+  grid-area: info;
 }
 div#corpus {
-  grid-area: "corpus";
+  grid-area: corpus;
 }
 
 /* lt-md */

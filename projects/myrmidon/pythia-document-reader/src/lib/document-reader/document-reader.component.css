@@ -19,16 +19,16 @@ div#container {
   gap: 8px;
 }
 div#progress {
-  grid-area: "progress";
+  grid-area: progress;
 }
 div#map {
-  grid-area: "map";
+  grid-area: map;
   border: 1px solid #f0f0f0;
   border-radius: 8px;
   padding: 0 8px;
 }
 div#text {
-  grid-area: "text";
+  grid-area: text;
 }
 div#body {
   column-count: 4;

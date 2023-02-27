@@ -71,8 +71,8 @@ code {
 }
 div#container {
   display: grid;
-  grid-template-columns: 1fr;
   grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr;
   grid-template-areas:
     "query"
     "results"
@@ -80,13 +80,13 @@ div#container {
   gap: 8px;
 }
 div#query {
-  grid-area: "query";
+  grid-area: query;
 }
 div#results {
-  grid-area: "results";
+  grid-area: results;
 }
 div#reader {
-  grid-area: "reader";
+  grid-area: reader;
 }
 /* lt-md */
 @media only screen and (max-width: 959px) {
@@ -98,5 +98,15 @@ div#reader {
   }
   td.noif-lt-md {
     display: none;
+  }
+}
+/* gt-lg */
+@media only screen and (min-width: 1920px) {
+  div#container {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "query query"
+      "results reader";
   }
 }
