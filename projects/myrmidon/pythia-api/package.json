@@ -1,6 +1,18 @@
 {
   "name": "@myrmidon/pythia-api",
   "version": "0.0.5",
+  "description": "Pythia - API services.",
+  "keywords": [
+    "Pythia"
+  ],
+  "homepage": "https://github.com/vedph/pythia-shell",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedph/pythia-shell"
+  },
+  "author": {
+    "name": "Daniele Fusi"
+  },
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0"
