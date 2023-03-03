@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+}
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
+.nr {
+  color: silver;
+}
+.non-clause {
+  font-weight: bold;
+}

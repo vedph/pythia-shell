@@ -25,12 +25,14 @@ import { PythiaUiModule } from '@myrmidon/pythia-ui';
 import { CorpusSetComponent } from './components/corpus-set/corpus-set.component';
 import { QueryEntryComponent } from './components/query-entry/query-entry.component';
 import { QueryBuilderComponent } from './components/query-builder/query-builder.component';
+import { QueryEntrySetComponent } from './components/query-entry-set/query-entry-set.component';
 
 @NgModule({
   declarations: [
     CorpusSetComponent,
     QueryBuilderComponent,
     QueryEntryComponent,
+    QueryEntrySetComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,11 @@ import { QueryBuilderComponent } from './components/query-builder/query-builder.
     PythiaUiModule,
     NgToolsModule,
   ],
-  exports: [CorpusSetComponent, QueryBuilderComponent, QueryEntryComponent],
+  exports: [
+    CorpusSetComponent,
+    QueryBuilderComponent,
+    QueryEntryComponent,
+    QueryEntrySetComponent,
+  ],
 })
 export class PythiaQueryBuilderModule {}

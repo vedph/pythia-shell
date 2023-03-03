@@ -1,4 +1,3 @@
-import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
@@ -17,8 +16,8 @@ export enum QueryEntryType {
  * Query builder clause.
  */
 export interface QueryBuilderClause {
-  attribute: string;
-  operator: string;
+  attribute: QueryBuilderTermDef;
+  operator: QueryBuilderTermDef;
   value: string;
 }
 
@@ -367,50 +366,52 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
 //#endregion
 
 /**
- * Query builder. This class wraps status and logic connected to the visual
- * query building process: a set of entries and its errors; a separate set
- * of entries and its errors for the document scope; and a set of corpora for
- * the corpus scope. All these pieces together can build up a query.
+ * Query builder. This handles a set of query builder entries representing
+ * a document/text query without scope information.
  */
 export class QueryBuilder {
   private readonly _entries$: BehaviorSubject<QueryBuilderEntry[]>;
   private readonly _errors$: BehaviorSubject<string[]>;
-  private readonly _docEntries$: BehaviorSubject<QueryBuilderEntry[]>;
-  private readonly _docErrors$: BehaviorSubject<string[]>;
-  private readonly _corpora$: BehaviorSubject<Corpus[]>;
-
-  public readonly entries$: Observable<QueryBuilderEntry[]>;
-  public readonly errors$: Observable<string[]>;
-  public readonly docEntries$: Observable<QueryBuilderEntry[]>;
-  public readonly docErrors$: Observable<string[]>;
-  public readonly corpora$: Observable<Corpus[]>;
+  private _isDocument: boolean;
 
   constructor() {
+    this._isDocument = false;
     this._entries$ = new BehaviorSubject<QueryBuilderEntry[]>([]);
-    this.entries$ = this._entries$.asObservable();
     this._errors$ = new BehaviorSubject<string[]>([]);
-    this.errors$ = this._errors$.asObservable();
-
-    this._docEntries$ = new BehaviorSubject<QueryBuilderEntry[]>([]);
-    this.docEntries$ = this._entries$.asObservable();
-    this._docErrors$ = new BehaviorSubject<string[]>([]);
-    this.docErrors$ = this._errors$.asObservable();
-
-    this._corpora$ = new BehaviorSubject<Corpus[]>([]);
-    this.corpora$ = this._corpora$.asObservable();
   }
 
-  private validate(
-    entries: QueryBuilderEntry[],
-    isDocument: boolean
-  ): string[] {
+  public selectEntries(): Observable<QueryBuilderEntry[]> {
+    return this._entries$.asObservable();
+  }
+
+  public selectErrors(): Observable<string[]> {
+    return this._errors$.asObservable();
+  }
+
+  public getEntries(): QueryBuilderEntry[] {
+    return [...this._entries$.value];
+  }
+
+  public setEntries(entries: QueryBuilderEntry[]): void {
+    this._entries$.next(entries);
+    const errors = this.validate(entries);
+    this._errors$.next(errors);
+  }
+
+  public forDocument(value?: boolean): void {
+    this._isDocument = value ? true : false;
+    const errors = this.validate(this._entries$.value);
+    this._errors$.next(errors);
+  }
+
+  private validate(entries: QueryBuilderEntry[]): string[] {
     const errors: string[] = [];
     entries.forEach((e) => (e.error = undefined));
 
     switch (entries.length) {
       case 0:
         // query cannot be empty (unless for documents)
-        if (!isDocument) {
+        if (!this._isDocument) {
           errors.push('Query is empty');
         }
         break;
@@ -464,7 +465,7 @@ export class QueryBuilder {
               case QueryEntryType.And:
               case QueryEntryType.Or:
               case QueryEntryType.AndNot:
-                if (!isDocument) {
+                if (!this._isDocument) {
                   entry.error = 'AND NOT is allowed only in document scope';
                   break;
                 }
@@ -488,37 +489,15 @@ export class QueryBuilder {
     return errors;
   }
 
-  private setEntries(
-    entries: QueryBuilderEntry[],
-    errors: string[],
-    isDocument: boolean
-  ): void {
-    if (isDocument) {
-      this._docEntries$.next(entries);
-      this._docErrors$.next(errors);
-    } else {
-      this._entries$.next(entries);
-      this._errors$.next(errors);
-    }
-  }
-
   /**
    * Add the specified entry to the query.
    *
    * @param entry The entry to append.
    * @param index The index of the entry the new entry should be inserted before,
    * or -1 to append the entry at the end.
-   * @param isDocument True if adding a document-context entry, false otherwise.
-   * Document context entries allow for AND NOT.
    */
-  public addEntry(
-    entry: QueryBuilderEntry,
-    index = -1,
-    isDocument = false
-  ): void {
-    const entries = isDocument
-      ? [...this._docEntries$.value]
-      : [...this._entries$.value];
+  public addEntry(entry: QueryBuilderEntry, index = -1): void {
+    const entries = [...this._entries$.value];
 
     // if clause, prepend AND if none
     if (entry.clause) {
@@ -537,44 +516,69 @@ export class QueryBuilder {
     } else {
       entries.splice(index, 0, entry);
     }
-    const errors = this.validate(entries, isDocument);
-    this.setEntries(entries, errors, isDocument);
+    const errors = this.validate(entries);
+    this._entries$.next(entries);
+    this._errors$.next(errors);
   }
 
   /**
    * Remove the specified entry.
    *
    * @param index The index of the entry to remove.
-   * @param isDocument True if adding a document-context entry, false otherwise.
-   * Document context entries allow for AND NOT.
    */
-  public deleteEntry(index: number, isDocument = false): void {
-    const entries = isDocument
-      ? [...this._docEntries$.value]
-      : [...this._entries$.value];
-
+  public deleteEntry(index: number): void {
+    const entries = [...this._entries$.value];
     entries.splice(index, 1);
-    const errors = this.validate(entries, isDocument);
-    this.setEntries(entries, errors, isDocument);
+    const errors = this.validate(entries);
+    this._entries$.next(entries);
+    this._errors$.next(errors);
   }
 
   /**
-   * Delete all the entries and optionally scope data.
+   * Move the specified entry up.
    *
-   * @param corpora True to also delete all the corpora.
-   * @param documents True to also delete all the documents.
+   * @param index The index of the entry to move.
    */
-  public clear(corpora = false, documents = false): void {
+  public moveEntryUp(index: number): void {
+    if (index < 1) {
+      return;
+    }
+
+    const entries = [...this._entries$.value];
+    const e = entries[index - 1];
+    entries[index - 1] = entries[index];
+    entries[index] = e;
+
+    const errors = this.validate(entries);
+    this._entries$.next(entries);
+    this._errors$.next(errors);
+  }
+
+  /**
+   * Move the specified entry down.
+   *
+   * @param index The index of the entry to move.
+   */
+  public moveEntryDown(index: number): void {
+    if (index + 1 >= this._entries$.value.length) {
+      return;
+    }
+
+    const entries = [...this._entries$.value];
+    const e = entries[index + 1];
+    entries[index + 1] = entries[index];
+    entries[index] = e;
+
+    const errors = this.validate(entries);
+    this._entries$.next(entries);
+    this._errors$.next(errors);
+  }
+
+  /**
+   * Delete all the entries.
+   */
+  public clear(): void {
     this._entries$.next([]);
-    this.validate(this._entries$.value, false);
-
-    if (corpora) {
-      this._corpora$.next([]);
-    }
-
-    if (documents) {
-      this._docEntries$.next([]);
-      this.validate(this._docEntries$.value, true);
-    }
+    this.validate(this._entries$.value);
   }
 }

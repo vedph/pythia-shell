@@ -86,41 +86,41 @@
             <input matInput formControlName="value" placeholder="value" />
             <mat-error
               *ngIf="
-                $any(item)['controls'].value.errors?.required &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
+                $any(g)['controls'].value.errors?.required &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
               "
               >value required</mat-error
             >
             <mat-error
               *ngIf="
-                $any(item)['controls'].value.errors?.maxLength &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
+                $any(g)['controls'].value.errors?.maxLength &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
               "
               >value too long</mat-error
             >
             <mat-error
               *ngIf="
-                $any(item)['controls'].value.errors?.min &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
+                $any(g)['controls'].value.errors?.min &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
               "
               >value too low</mat-error
             >
             <mat-error
               *ngIf="
-                $any(item)['controls'].value.errors?.max &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
+                $any(g)['controls'].value.errors?.max &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
               "
               >value too big</mat-error
             >
             <mat-error
               *ngIf="
-                $any(item)['controls'].value.errors?.pattern &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
+                $any(g)['controls'].value.errors?.pattern &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
               "
               >invalid value</mat-error
             >

@@ -1,0 +1,77 @@
+<table>
+  <tbody>
+    <tr
+      *ngFor="
+        let e of entries$ | async;
+        let i = index;
+        let first = first;
+        let last = last
+      "
+    >
+      <td class="fit-width">
+        <span class="nr">{{ i + 1 }}. </span>
+        <button
+          type="button"
+          mat-icon-button
+          color="primary"
+          (click)="editEntry(e, i)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          [disabled]="first"
+          mat-icon-button
+          type="button"
+          (click)="moveEntryUp(i)"
+        >
+          <mat-icon>arrow_upward</mat-icon>
+        </button>
+        <button
+          [disabled]="last"
+          mat-icon-button
+          type="button"
+          (click)="moveEntryDown(i)"
+        >
+          <mat-icon>arrow_downward</mat-icon>
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          color="warn"
+          (click)="deleteEntry(i)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+      <ng-container *ngIf="e.clause; else nonClause">
+        <td>{{ e.clause.attribute.label }}</td>
+        <td>{{ e.clause.operator.label }}</td>
+        <td>{{ e.clause.value }}</td>
+      </ng-container>
+      <ng-template #nonClause>
+        <td class="non-clause">{{ TYPES[e.type] }}</td>
+        <td></td>
+        <td></td>
+      </ng-template>
+      <td>
+        <mat-icon *ngIf="e.error" color="warn" [matTooltip]="e.error"
+          >error</mat-icon
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul *ngIf="errors$ | async as errors">
+  <li *ngFor="let e of errors" color="warn">{{ e }}</li>
+</ul>
+<mat-expansion-panel [expanded]="editedEntry" [disabled]="!editedEntry">
+  <mat-expansion-panel-header
+    >#{{ editedIndex + 1 }}</mat-expansion-panel-header
+  >
+  <pythia-query-entry
+    [attrDefinitions]="attrDefinitions"
+    [opDefinitions]="opDefinitions"
+    [entry]="editedEntry"
+    (entryChange)="saveEntry($event)"
+  ></pythia-query-entry>
+</mat-expansion-panel>

@@ -171,15 +171,8 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       if (!entry.clause) {
         this.clauseForm.reset();
       } else {
-        this.attribute.setValue(
-          this.attrDefinitions.find(
-            (d) => d.value === entry.clause!.attribute
-          ) || null
-        );
-        this.operator.setValue(
-          this.opDefinitions.find((d) => d.value === entry.clause!.operator) ||
-            null
-        );
+        this.attribute.setValue(entry.clause!.attribute || null);
+        this.operator.setValue(entry.clause!.operator || null);
         this.value.setValue(entry.clause.value);
         this.clauseForm.markAsPristine();
       }
@@ -192,8 +185,8 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       return {
         type: QueryEntryType.Clause,
         clause: {
-          attribute: this.attribute.value!.value,
-          operator: this.operator.value!.value,
+          attribute: this.attribute.value!,
+          operator: this.operator.value!,
           value: this.value.value,
         },
       };
