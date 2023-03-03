@@ -6,7 +6,12 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { distinctUntilChanged, Observable, Subscription } from 'rxjs';
+import {
+  combineLatest,
+  distinctUntilChanged,
+  Observable,
+  Subscription,
+} from 'rxjs';
 
 import {
   QueryBuilder,
@@ -14,6 +19,11 @@ import {
   QueryBuilderTermDef,
   QueryEntryType,
 } from '../../query-builder';
+
+export interface QueryEntrySet {
+  entries: QueryBuilderEntry[];
+  errors?: string[];
+}
 
 /**
  * Entries set editor component.
@@ -62,7 +72,7 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
   }
 
   @Output()
-  public entriesChange: EventEmitter<QueryBuilderEntry[]>;
+  public entrySetChange: EventEmitter<QueryEntrySet>;
 
   constructor() {
     this._builder = new QueryBuilder();
@@ -71,16 +81,23 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
     this.opDefinitions = [];
     this.entries$ = this._builder.selectEntries();
     this.errors$ = this._builder.selectErrors();
-    this.entriesChange = new EventEmitter<QueryBuilderEntry[]>();
+    this.entrySetChange = new EventEmitter<QueryEntrySet>();
   }
 
   public ngOnInit(): void {
-    this._builder.forDocument(this.isDocument);
-    this._sub = this.entries$
-      .pipe(distinctUntilChanged())
-      .subscribe((entries) => {
-        this.entriesChange.emit(entries);
+    this._sub = combineLatest({
+      entries: this.entries$,
+      errors: this.errors$,
+    }).subscribe((ee) => {
+      this.entrySetChange.emit({
+        entries: ee.entries,
+        errors: ee.errors,
       });
+    });
+
+    // ensure that observables are emitted so combineLatest is happy
+    this._builder.forDocument(this.isDocument);
+    this._builder.reset();
   }
 
   public ngOnDestroy(): void {

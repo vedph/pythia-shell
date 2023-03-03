@@ -389,10 +389,13 @@ export class QueryBuilder {
   }
 
   public getEntries(): QueryBuilderEntry[] {
-    return [...this._entries$.value];
+    return this._entries$.value;
   }
 
   public setEntries(entries: QueryBuilderEntry[]): void {
+    if (this._entries$.value === entries) {
+      return;
+    }
     this._entries$.next(entries);
     const errors = this.validate(entries);
     this._errors$.next(errors);
@@ -577,7 +580,7 @@ export class QueryBuilder {
   /**
    * Delete all the entries.
    */
-  public clear(): void {
+  public reset(): void {
     this._entries$.next([]);
     this.validate(this._entries$.value);
   }

@@ -1,13 +1,17 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { NgToolsValidators } from '@myrmidon/ng-tools';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 
 import { Corpus } from '@myrmidon/pythia-core';
 
-import { QueryBuilderEntry } from '../../query-builder';
+import { QueryBuilderEntry, QueryBuilderTermDef } from '../../query-builder';
+import { QueryEntrySet } from '../query-entry-set/query-entry-set.component';
+
+export const QUERY_BUILDER_ATTR_DEFS_KEY = 'pythiaQueryBuilderAttrDefs';
 
 /**
- * Query builder component.
+ * Query builder component. This editor contains:
+ * - two query entries sets, one for the text and another for the optional
+ * document scope.
+ * - a corpus scope.
  */
 @Component({
   selector: 'pythia-query-builder',
@@ -16,11 +20,10 @@ import { QueryBuilderEntry } from '../../query-builder';
 })
 export class QueryBuilderComponent {
   // query entries
-  public entries: FormControl<QueryBuilderEntry[]>;
+  public set: QueryEntrySet;
   // query scope
-  public corpora: FormControl<Corpus[]>;
-  public docEntries: FormControl<QueryBuilderEntry[]>;
-  public form: FormGroup;
+  public corpora: Corpus[];
+  public docSet: QueryEntrySet;
 
   /**
    * Emitted whenever a query is built.
@@ -28,25 +31,30 @@ export class QueryBuilderComponent {
   @Output()
   public queryChange: EventEmitter<string>;
 
-  constructor(formBuilder: FormBuilder) {
-    this.entries = formBuilder.control([], {
-      validators: NgToolsValidators.strictMinLengthValidator(1),
-      nonNullable: true,
-    });
-    this.corpora = formBuilder.control([], { nonNullable: true });
-    this.docEntries = formBuilder.control([], { nonNullable: true });
-    this.form = formBuilder.group({
-      entries: this.entries,
-      corpora: this.corpora,
-      docEntries: this.docEntries,
-    });
+  constructor(
+    @Inject(QUERY_BUILDER_ATTR_DEFS_KEY)
+    public attrDefinitions: QueryBuilderTermDef[]
+  ) {
+    this.set = { entries: [] };
+    this.corpora = [];
+    this.docSet = { entries: [] };
     // events
     this.queryChange = new EventEmitter<string>();
   }
 
   public onCorporaChange(corpora: Corpus[]): void {
-    this.corpora.setValue(corpora);
-    this.corpora.updateValueAndValidity();
-    this.corpora.markAsDirty();
+    this.corpora = corpora;
+  }
+
+  public onEntrySetChange(set: QueryEntrySet): void {
+    this.set = set;
+  }
+
+  public onDocEntrySetChange(set: QueryEntrySet): void {
+    this.docSet = set;
+  }
+
+  public build(): void {
+    // TODO build query and emit
   }
 }

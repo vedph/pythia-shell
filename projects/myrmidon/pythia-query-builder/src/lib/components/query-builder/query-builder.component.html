@@ -1,14 +1,14 @@
-<form [formGroup]="form">
+<div>
   <!-- corpora -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>corpora</mat-panel-title>
       <mat-panel-description>
-        {{ corpora.value.length }}
+        {{ corpora.length }}
       </mat-panel-description>
     </mat-expansion-panel-header>
     <pythia-corpus-set
-      [corpora]="corpora.value"
+      [corpora]="corpora"
       (corporaChange)="onCorporaChange($event)"
     ></pythia-corpus-set>
   </mat-expansion-panel>
@@ -17,5 +17,9 @@
   TODO
 
   <!-- query clauses -->
-  TODO
-</form>
+  <pythia-query-entry-set
+    [attrDefinitions]="attrDefinitions"
+    [entries]="set.entries"
+    (entrySetChange)="onEntrySetChange($event)"
+  ></pythia-query-entry-set>
+</div>
