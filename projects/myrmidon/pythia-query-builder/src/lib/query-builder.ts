@@ -1,6 +1,9 @@
 import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+/**
+ * Type of entry in query builder.
+ */
 export enum QueryEntryType {
   Clause = 0,
   And,
@@ -10,23 +13,36 @@ export enum QueryEntryType {
   BracketClose,
 }
 
+/**
+ * Error inside query builder.
+ */
 export interface QueryBuilderError {
   index?: number;
   message: string;
 }
 
+/**
+ * Query builder clause.
+ */
 export interface QueryBuilderClause {
   attribute: string;
   operator: string;
   value: string;
 }
 
+/**
+ * Entry in query builder: this can be a clause, or just a logical
+ * connector of some type.
+ */
 export interface QueryBuilderEntry {
   type: QueryEntryType;
   clause?: QueryBuilderClause;
   error?: string;
 }
 
+/**
+ * Definition of the argument of a query builder term.
+ */
 export interface QueryBuilderTermDefArg {
   value: string;
   label: string;
@@ -36,6 +52,9 @@ export interface QueryBuilderTermDefArg {
   max?: number;
 }
 
+/**
+ * Definition of a query builder term (like e.g. an operator).
+ */
 export interface QueryBuilderTermDef {
   value: string;
   label: string;
@@ -43,6 +62,7 @@ export interface QueryBuilderTermDef {
   args?: QueryBuilderTermDefArg[];
 }
 
+//#region constants
 /**
  * Privileged attributes for documents.
  */
@@ -352,9 +372,13 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     ],
   },
 ];
+//#endregion
 
 /**
- * Query builder.
+ * Query builder. This class wraps status and logic connected to the visual
+ * query building process: a set of entries and its errors; a separate set
+ * of entries and its errors for the document scope; and a set of corpora for
+ * the corpus scope. All these pieces together can build up a query.
  */
 export class QueryBuilder {
   private readonly _entries$: BehaviorSubject<QueryBuilderEntry[]>;
@@ -394,8 +418,10 @@ export class QueryBuilder {
 
     switch (entries.length) {
       case 0:
-        // query cannot be empty
-        errors.push({ message: 'Query is empty' });
+        // query cannot be empty (unless for documents)
+        if (!isDocument) {
+          errors.push({ message: 'Query is empty' });
+        }
         break;
       case 1:
         // a single entry must be a clause
@@ -545,7 +571,7 @@ export class QueryBuilder {
   }
 
   /**
-   * Delete all the entries.
+   * Delete all the entries and optionally scope data.
    *
    * @param corpora True to also delete all the corpora.
    * @param documents True to also delete all the documents.
