@@ -1,1 +1,21 @@
-<p>query-builder works!</p>
+<form [formGroup]="form">
+  <!-- corpora -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>corpora</mat-panel-title>
+      <mat-panel-description>
+        {{ corpora.value.length }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <pythia-corpus-set
+      [corpora]="corpora.value"
+      (corporaChange)="onCorporaChange($event)"
+    ></pythia-corpus-set>
+  </mat-expansion-panel>
+
+  <!-- documents -->
+  TODO
+
+  <!-- query clauses -->
+  TODO
+</form>

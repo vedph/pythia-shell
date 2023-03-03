@@ -35,7 +35,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[];
   private _entry?: QueryBuilderEntry;
   // clause form
-  public attribute: FormControl<string>;
+  public attribute: FormControl<QueryBuilderTermDef | null>;
   public operator: FormControl<QueryBuilderTermDef | null>;
   public value: FormControl<string>;
   public args: FormArray;
@@ -43,6 +43,12 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   // outer form
   public type: FormControl<QueryEntryType>;
   public form: FormGroup;
+
+  /**
+   * The attributes definitions to use. This is meant to be set only once.
+   */
+  @Input()
+  public attrDefinitions: QueryBuilderTermDef[];
 
   /**
    * The operator definitions to use. This is meant to be set only once
@@ -71,12 +77,10 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
 
   constructor(private _formBuilder: FormBuilder) {
     this._subs = [];
+    this.attrDefinitions = [];
     this.opDefinitions = QUERY_OP_DEFS;
     // forms
-    this.attribute = _formBuilder.control('', {
-      validators: Validators.required,
-      nonNullable: true,
-    });
+    this.attribute = _formBuilder.control(null, Validators.required);
     this.operator = _formBuilder.control(null, Validators.required);
     this.value = _formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
@@ -167,9 +171,14 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       if (!entry.clause) {
         this.clauseForm.reset();
       } else {
-        this.attribute.setValue(entry.clause.attribute);
+        this.attribute.setValue(
+          this.attrDefinitions.find(
+            (d) => d.value === entry.clause!.attribute
+          ) || null
+        );
         this.operator.setValue(
-          this.opDefinitions.find((d) => d.value === entry.clause!.operator)!
+          this.opDefinitions.find((d) => d.value === entry.clause!.operator) ||
+            null
         );
         this.value.setValue(entry.clause.value);
         this.clauseForm.markAsPristine();
@@ -183,7 +192,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       return {
         type: QueryEntryType.Clause,
         clause: {
-          attribute: this.attribute.value,
+          attribute: this.attribute.value!.value,
           operator: this.operator.value!.value,
           value: this.value.value,
         },
