@@ -14,14 +14,6 @@ export enum QueryEntryType {
 }
 
 /**
- * Error inside query builder.
- */
-export interface QueryBuilderError {
-  index?: number;
-  message: string;
-}
-
-/**
  * Query builder clause.
  */
 export interface QueryBuilderClause {
@@ -382,52 +374,51 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
  */
 export class QueryBuilder {
   private readonly _entries$: BehaviorSubject<QueryBuilderEntry[]>;
-  private readonly _errors$: BehaviorSubject<QueryBuilderError[]>;
-  private readonly _corpora$: BehaviorSubject<Corpus[]>;
+  private readonly _errors$: BehaviorSubject<string[]>;
   private readonly _docEntries$: BehaviorSubject<QueryBuilderEntry[]>;
-  private readonly _docErrors$: BehaviorSubject<QueryBuilderError[]>;
+  private readonly _docErrors$: BehaviorSubject<string[]>;
+  private readonly _corpora$: BehaviorSubject<Corpus[]>;
 
   public readonly entries$: Observable<QueryBuilderEntry[]>;
-  public readonly errors$: Observable<QueryBuilderError[]>;
-  public readonly corpora$: Observable<Corpus[]>;
+  public readonly errors$: Observable<string[]>;
   public readonly docEntries$: Observable<QueryBuilderEntry[]>;
-  public readonly docErrors$: Observable<QueryBuilderError[]>;
+  public readonly docErrors$: Observable<string[]>;
+  public readonly corpora$: Observable<Corpus[]>;
 
   constructor() {
     this._entries$ = new BehaviorSubject<QueryBuilderEntry[]>([]);
     this.entries$ = this._entries$.asObservable();
-
-    this._errors$ = new BehaviorSubject<QueryBuilderError[]>([]);
+    this._errors$ = new BehaviorSubject<string[]>([]);
     this.errors$ = this._errors$.asObservable();
-
-    this._corpora$ = new BehaviorSubject<Corpus[]>([]);
-    this.corpora$ = this._corpora$.asObservable();
 
     this._docEntries$ = new BehaviorSubject<QueryBuilderEntry[]>([]);
     this.docEntries$ = this._entries$.asObservable();
-
-    this._docErrors$ = new BehaviorSubject<QueryBuilderError[]>([]);
+    this._docErrors$ = new BehaviorSubject<string[]>([]);
     this.docErrors$ = this._errors$.asObservable();
+
+    this._corpora$ = new BehaviorSubject<Corpus[]>([]);
+    this.corpora$ = this._corpora$.asObservable();
   }
 
   private validate(
     entries: QueryBuilderEntry[],
     isDocument: boolean
-  ): QueryBuilderError[] {
-    const errors: QueryBuilderError[] = [];
+  ): string[] {
+    const errors: string[] = [];
+    entries.forEach((e) => (e.error = undefined));
 
     switch (entries.length) {
       case 0:
         // query cannot be empty (unless for documents)
         if (!isDocument) {
-          errors.push({ message: 'Query is empty' });
+          errors.push('Query is empty');
         }
         break;
       case 1:
         // a single entry must be a clause
         if (entries.length === 1) {
           if (!entries[0].clause) {
-            errors.push({ index: 0, message: 'Expected clause' });
+            entries[0].error = 'Expected clause';
           }
         }
         break;
@@ -435,7 +426,7 @@ export class QueryBuilder {
         // first entry can be only clause/(
         let entry = entries[0];
         if (!entry.clause && entry.type !== QueryEntryType.BracketOpen) {
-          errors.push({ index: 0, message: 'Expected clause or (' });
+          entries[0].error = 'Expected clause or (';
           break;
         }
         // other entries:
@@ -458,7 +449,7 @@ export class QueryBuilder {
                   prevEntry.clause ||
                   prevEntry.type === QueryEntryType.BracketOpen
                 ) {
-                  errors.push({ index: i, message: 'Unexpected entry type' });
+                  entry.error = 'Unexpected entry type';
                 }
                 break;
               case QueryEntryType.BracketClose:
@@ -467,24 +458,21 @@ export class QueryBuilder {
                   !prevEntry.clause &&
                   prevEntry.type !== QueryEntryType.BracketClose
                 ) {
-                  errors.push({ index: i, message: 'Unexpected entry type' });
+                  entry.error = 'Unexpected entry type';
                 }
                 break;
               case QueryEntryType.And:
               case QueryEntryType.Or:
               case QueryEntryType.AndNot:
                 if (!isDocument) {
-                  errors.push({
-                    index: i,
-                    message: 'AND NOT is allowed only in document scope',
-                  });
+                  entry.error = 'AND NOT is allowed only in document scope';
                   break;
                 }
                 if (
                   !prevEntry.clause &&
                   prevEntry.type !== QueryEntryType.BracketClose
                 ) {
-                  errors.push({ index: i, message: 'Unexpected entry type' });
+                  entry.error = 'Unexpected entry type';
                 }
                 break;
             }
@@ -492,7 +480,7 @@ export class QueryBuilder {
         }
         // balancement
         if (depth) {
-          errors.push({ message: 'Unbalanced parentheses' });
+          errors.push('Unbalanced parentheses');
         }
         break;
     }
@@ -502,7 +490,7 @@ export class QueryBuilder {
 
   private setEntries(
     entries: QueryBuilderEntry[],
-    errors: QueryBuilderError[],
+    errors: string[],
     isDocument: boolean
   ): void {
     if (isDocument) {
