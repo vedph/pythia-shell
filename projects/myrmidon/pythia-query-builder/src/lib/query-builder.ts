@@ -1,4 +1,14 @@
+import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+export enum QueryEntryType {
+  Clause = 0,
+  And,
+  Or,
+  AndNot,
+  BracketOpen,
+  BracketClose,
+}
 
 export interface QueryBuilderError {
   index?: number;
@@ -12,7 +22,7 @@ export interface QueryBuilderClause {
 }
 
 export interface QueryBuilderEntry {
-  logical?: '(' | ')' | 'AND' | 'OR' | 'AND NOT';
+  type: QueryEntryType;
   clause?: QueryBuilderClause;
   error?: string;
 }
@@ -347,11 +357,17 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
  * Query builder.
  */
 export class QueryBuilder {
-  private _entries$: BehaviorSubject<QueryBuilderEntry[]>;
-  private _errors$: BehaviorSubject<QueryBuilderError[]>;
+  private readonly _entries$: BehaviorSubject<QueryBuilderEntry[]>;
+  private readonly _errors$: BehaviorSubject<QueryBuilderError[]>;
+  private readonly _corpora$: BehaviorSubject<Corpus[]>;
+  private readonly _docEntries$: BehaviorSubject<QueryBuilderEntry[]>;
+  private readonly _docErrors$: BehaviorSubject<QueryBuilderError[]>;
 
-  public entries$: Observable<QueryBuilderEntry[]>;
-  public errors$: Observable<QueryBuilderError[]>;
+  public readonly entries$: Observable<QueryBuilderEntry[]>;
+  public readonly errors$: Observable<QueryBuilderError[]>;
+  public readonly corpora$: Observable<Corpus[]>;
+  public readonly docEntries$: Observable<QueryBuilderEntry[]>;
+  public readonly docErrors$: Observable<QueryBuilderError[]>;
 
   constructor() {
     this._entries$ = new BehaviorSubject<QueryBuilderEntry[]>([]);
@@ -359,10 +375,21 @@ export class QueryBuilder {
 
     this._errors$ = new BehaviorSubject<QueryBuilderError[]>([]);
     this.errors$ = this._errors$.asObservable();
+
+    this._corpora$ = new BehaviorSubject<Corpus[]>([]);
+    this.corpora$ = this._corpora$.asObservable();
+
+    this._docEntries$ = new BehaviorSubject<QueryBuilderEntry[]>([]);
+    this.docEntries$ = this._entries$.asObservable();
+
+    this._docErrors$ = new BehaviorSubject<QueryBuilderError[]>([]);
+    this.docErrors$ = this._errors$.asObservable();
   }
 
-  private validate(): void {
-    const entries = [...this._entries$.value];
+  private validate(
+    entries: QueryBuilderEntry[],
+    isDocument: boolean
+  ): QueryBuilderError[] {
     const errors: QueryBuilderError[] = [];
 
     switch (entries.length) {
@@ -381,7 +408,7 @@ export class QueryBuilder {
       default:
         // first entry can be only clause/(
         let entry = entries[0];
-        if (!entry.clause && entry.logical !== '(') {
+        if (!entry.clause && entry.type !== QueryEntryType.BracketOpen) {
           errors.push({ index: 0, message: 'Expected clause or (' });
           break;
         }
@@ -397,24 +424,40 @@ export class QueryBuilder {
           entry = entries[i];
           const prevEntry = entries[i - 1];
 
-          if (entry.logical) {
-            switch (entry.logical) {
-              case '(':
+          if (entry.type !== QueryEntryType.Clause) {
+            switch (entry.type) {
+              case QueryEntryType.BracketOpen:
                 depth++;
-                if (prevEntry.clause || prevEntry.logical === ')') {
+                if (
+                  prevEntry.clause ||
+                  prevEntry.type === QueryEntryType.BracketOpen
+                ) {
                   errors.push({ index: i, message: 'Unexpected entry type' });
                 }
                 break;
-              case ')':
+              case QueryEntryType.BracketClose:
                 depth--;
-                if (!prevEntry.clause && prevEntry.logical !== ')') {
+                if (
+                  !prevEntry.clause &&
+                  prevEntry.type !== QueryEntryType.BracketClose
+                ) {
                   errors.push({ index: i, message: 'Unexpected entry type' });
                 }
                 break;
-              case 'AND':
-              case 'OR':
-              case 'AND NOT':
-                if (!prevEntry.clause && prevEntry.logical !== ')') {
+              case QueryEntryType.And:
+              case QueryEntryType.Or:
+              case QueryEntryType.AndNot:
+                if (!isDocument) {
+                  errors.push({
+                    index: i,
+                    message: 'AND NOT is allowed only in document scope',
+                  });
+                  break;
+                }
+                if (
+                  !prevEntry.clause &&
+                  prevEntry.type !== QueryEntryType.BracketClose
+                ) {
                   errors.push({ index: i, message: 'Unexpected entry type' });
                 }
                 break;
@@ -428,7 +471,21 @@ export class QueryBuilder {
         break;
     }
 
-    this._errors$.next(errors);
+    return errors;
+  }
+
+  private setEntries(
+    entries: QueryBuilderEntry[],
+    errors: QueryBuilderError[],
+    isDocument: boolean
+  ): void {
+    if (isDocument) {
+      this._docEntries$.next(entries);
+      this._docErrors$.next(errors);
+    } else {
+      this._entries$.next(entries);
+      this._errors$.next(errors);
+    }
   }
 
   /**
@@ -437,25 +494,26 @@ export class QueryBuilder {
    * @param entry The entry to append.
    * @param index The index of the entry the new entry should be inserted before,
    * or -1 to append the entry at the end.
-   * @param defaultOp The default logical operator to insert before
-   * the appended entry when it's a clause and the query does not currently
-   * end with a logical operator.
+   * @param isDocument True if adding a document-context entry, false otherwise.
+   * Document context entries allow for AND NOT.
    */
   public addEntry(
     entry: QueryBuilderEntry,
     index = -1,
-    defaultOp: 'AND' | 'OR' = 'AND'
+    isDocument = false
   ): void {
-    const entries = [...this._entries$.value];
+    const entries = isDocument
+      ? [...this._docEntries$.value]
+      : [...this._entries$.value];
 
-    // if clause, prepend logical if none
+    // if clause, prepend AND if none
     if (entry.clause) {
       const prevEntry = entries.length
         ? entries[index === -1 ? entries.length - 1 : index - 1]
         : undefined;
-      if (prevEntry && !prevEntry.logical) {
+      if (prevEntry && prevEntry.type === QueryEntryType.Clause) {
         entries.push({
-          logical: defaultOp,
+          type: QueryEntryType.And,
         });
       }
     }
@@ -465,27 +523,44 @@ export class QueryBuilder {
     } else {
       entries.splice(index, 0, entry);
     }
-    this._entries$.next(entries);
-    this.validate();
+    const errors = this.validate(entries, isDocument);
+    this.setEntries(entries, errors, isDocument);
   }
 
   /**
    * Remove the specified entry.
    *
    * @param index The index of the entry to remove.
+   * @param isDocument True if adding a document-context entry, false otherwise.
+   * Document context entries allow for AND NOT.
    */
-  public deleteEntry(index: number): void {
-    const entries = [...this._entries$.value];
+  public deleteEntry(index: number, isDocument = false): void {
+    const entries = isDocument
+      ? [...this._docEntries$.value]
+      : [...this._entries$.value];
+
     entries.splice(index, 1);
-    this._entries$.next(entries);
-    this.validate();
+    const errors = this.validate(entries, isDocument);
+    this.setEntries(entries, errors, isDocument);
   }
 
   /**
    * Delete all the entries.
+   *
+   * @param corpora True to also delete all the corpora.
+   * @param documents True to also delete all the documents.
    */
-  public clear(): void {
+  public clear(corpora = false, documents = false): void {
     this._entries$.next([]);
-    this.validate();
+    this.validate(this._entries$.value, false);
+
+    if (corpora) {
+      this._corpora$.next([]);
+    }
+
+    if (documents) {
+      this._docEntries$.next([]);
+      this.validate(this._docEntries$.value, true);
+    }
   }
 }

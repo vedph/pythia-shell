@@ -22,10 +22,14 @@ import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
 import { CorpusSetComponent } from './components/corpus-set/corpus-set.component';
+import { QueryEntryComponent } from './components/query-entry/query-entry.component';
+import { QueryBuilderComponent } from './components/query-builder/query-builder.component';
 
 @NgModule({
   declarations: [
-    CorpusSetComponent
+    CorpusSetComponent,
+    QueryBuilderComponent,
+    QueryEntryComponent,
   ],
   imports: [
     CommonModule,
@@ -51,8 +55,6 @@ import { CorpusSetComponent } from './components/corpus-set/corpus-set.component
     PythiaUiModule,
     NgToolsModule,
   ],
-  exports: [
-    CorpusSetComponent
-  ],
+  exports: [CorpusSetComponent, QueryBuilderComponent, QueryEntryComponent],
 })
 export class PythiaQueryBuilderModule {}
