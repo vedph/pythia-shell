@@ -18,6 +18,9 @@
       "@myrmidon/pythia-document-reader": [
         "dist/myrmidon/pythia-document-reader"
       ],
+      "@myrmidon/pythia-query-builder": [
+        "dist/myrmidon/pythia-query-builder"
+      ],
       "@myrmidon/pythia-search": [
         "dist/myrmidon/pythia-search"
       ],
