@@ -132,68 +132,85 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: '=',
     label: 'equals to',
+    group: 'a) standard',
   },
   {
     value: '<>',
     label: 'not equals to',
+    group: 'a) standard',
   },
   {
     value: '*=',
     label: 'contains',
+    group: 'a) standard',
   },
   {
     value: '^=',
     label: 'starts with',
+    group: 'a) standard',
   },
   {
     value: '$=',
     label: 'ends with',
+    group: 'a) standard',
   },
   {
     value: '?=',
     label: 'matches (wildcards)',
+    group: 'b) expression',
   },
   {
     value: '~=',
     label: 'matches (regexp)',
+    group: 'b) expression',
   },
   {
     value: '%=',
     label: 'is similar to',
+    group: 'c) fuzzy',
+    args: [
+      {
+        value: 't',
+        label: 'treshold',
+        numeric: true,
+        min: 0,
+        max: 1,
+      },
+    ],
   },
   {
     value: '<',
-    label: 'less-than (numeric)',
-    group: 'numeric',
+    label: 'less-than',
+    group: 'd) numeric',
   },
   {
     value: '<=',
-    label: 'less-than or equal (numeric)',
+    label: 'd) less-than or equal',
   },
   {
     value: '==',
-    label: 'equal (numeric)',
-    group: 'numeric',
+    label: 'equal',
+    group: 'd) numeric',
   },
   {
     value: '!=',
-    label: 'not-equal (numeric)',
-    group: 'numeric',
+    label: 'not-equal',
+    group: 'd) numeric',
   },
   {
     value: '>',
-    label: 'greater-than (numeric)',
-    group: 'numeric',
+    label: 'greater-than',
+    group: 'd) numeric',
   },
   {
     value: '>=',
-    label: 'greater-than or equal (numeric)',
-    group: 'numeric',
+    label: 'greater-than or equal',
+    group: 'd) numeric',
   },
   {
     value: 'NEAR',
     label: 'near to',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'n',
@@ -216,7 +233,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'BEFORE',
     label: 'before',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'n',
@@ -239,7 +256,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'AFTER',
     label: 'after',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'n',
@@ -262,7 +279,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'INSIDE',
     label: 'inside',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'ns',
@@ -297,7 +314,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'OVERLAPS',
     label: 'overlaps',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'n',
@@ -320,7 +337,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'LALIGN',
     label: 'left-aligned with',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'n',
@@ -343,7 +360,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'RALIGN',
     label: 'right-aligned with',
-    group: 'collocation',
+    group: 'e) collocation',
     args: [
       {
         value: 'n',

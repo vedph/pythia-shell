@@ -23,9 +23,14 @@
       <mat-form-field>
         <mat-label>attribute</mat-label>
         <mat-select [formControl]="attribute">
-          <mat-option *ngFor="let d of attrDefinitions" [value]="d">{{
-            d.label
-          }}</mat-option>
+          <mat-optgroup
+            *ngFor="let kv of attrGroups | keyvalue"
+            [label]="kv.key"
+          >
+            <mat-option *ngFor="let d of kv.value" [value]="d">{{
+              d.label
+            }}</mat-option>
+          </mat-optgroup>
         </mat-select>
         <mat-error
           *ngIf="
@@ -40,9 +45,15 @@
       <mat-form-field>
         <mat-label>operator</mat-label>
         <mat-select [formControl]="operator">
-          <mat-option *ngFor="let d of opDefinitions" [value]="d">{{
-            d.label
-          }}</mat-option>
+          <mat-optgroup
+            class="opt-group"
+            *ngFor="let kv of opGroups | keyvalue"
+            [label]="kv.key"
+          >
+            <mat-option *ngFor="let d of kv.value" [value]="d">{{
+              d.label
+            }}</mat-option>
+          </mat-optgroup>
         </mat-select>
         <mat-error
           *ngIf="
@@ -71,62 +82,72 @@
     </div>
 
     <div formArrayName="args">
-      <div
-        *ngFor="
-          let g of args.controls;
-          let i = index;
-          let first = first;
-          let last = last
-        "
-      >
-        <!-- child form -->
-        <div [formGroupName]="i">
-          <mat-form-field>
-            <mat-label>g.operator.label</mat-label>
-            <input matInput formControlName="value" placeholder="value" />
-            <mat-error
-              *ngIf="
-                $any(g)['controls'].value.errors?.required &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value required</mat-error
-            >
-            <mat-error
-              *ngIf="
-                $any(g)['controls'].value.errors?.maxLength &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value too long</mat-error
-            >
-            <mat-error
-              *ngIf="
-                $any(g)['controls'].value.errors?.min &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value too low</mat-error
-            >
-            <mat-error
-              *ngIf="
-                $any(g)['controls'].value.errors?.max &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value too big</mat-error
-            >
-            <mat-error
-              *ngIf="
-                $any(g)['controls'].value.errors?.pattern &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >invalid value</mat-error
-            >
-          </mat-form-field>
+      <fieldset>
+        <legend>{{ operator.value?.label }} arguments</legend>
+        <div
+          *ngFor="
+            let g of args.controls;
+            let i = index;
+            let first = first;
+            let last = last
+          "
+        >
+          <!-- child form -->
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>{{ $any(g)["controls"].op.value.label }}</mat-label>
+              <input
+                matInput
+                formControlName="value"
+                placeholder="value"
+                [type]="
+                  $any(g)['controls'].op.value.numeric ? 'number' : 'text'
+                "
+              />
+              <mat-error
+                *ngIf="
+                  $any(g)['controls'].value.errors?.required &&
+                  ($any(g)['controls'].value.dirty ||
+                    $any(g)['controls'].value.touched)
+                "
+                >value required</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  $any(g)['controls'].value.errors?.maxLength &&
+                  ($any(g)['controls'].value.dirty ||
+                    $any(g)['controls'].value.touched)
+                "
+                >value too long</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  $any(g)['controls'].value.errors?.min &&
+                  ($any(g)['controls'].value.dirty ||
+                    $any(g)['controls'].value.touched)
+                "
+                >value too low</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  $any(g)['controls'].value.errors?.max &&
+                  ($any(g)['controls'].value.dirty ||
+                    $any(g)['controls'].value.touched)
+                "
+                >value too big</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  $any(g)['controls'].value.errors?.pattern &&
+                  ($any(g)['controls'].value.dirty ||
+                    $any(g)['controls'].value.touched)
+                "
+                >invalid value</mat-error
+              >
+            </mat-form-field>
+          </div>
         </div>
-      </div>
+      </fieldset>
     </div>
   </form>
 

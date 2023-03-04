@@ -22,6 +22,10 @@ import {
   QUERY_OP_DEFS,
 } from '../../query-builder';
 
+interface GroupedQueryBuilderTermDefs {
+  [key: string]: QueryBuilderTermDef[];
+}
+
 /**
  * Query entry editor component. This edits a clause or just a logical term
  * like logical operators or brackets.
@@ -33,6 +37,7 @@ import {
 })
 export class QueryEntryComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[];
+  private _attrDefinitions: QueryBuilderTermDef[];
   private _entry?: QueryBuilderEntry;
   // clause form
   public attribute: FormControl<QueryBuilderTermDef | null>;
@@ -44,13 +49,23 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public type: FormControl<QueryEntryType>;
   public form: FormGroup;
 
-  public opDefinitions: QueryBuilderTermDef[];
+  public opGroups: GroupedQueryBuilderTermDefs;
+  public attrGroups: GroupedQueryBuilderTermDefs;
 
   /**
    * The attributes definitions to use. This is meant to be set only once.
    */
   @Input()
-  public attrDefinitions: QueryBuilderTermDef[];
+  public get attrDefinitions(): QueryBuilderTermDef[] {
+    return this._attrDefinitions;
+  }
+  public set attrDefinitions(value: QueryBuilderTermDef[]) {
+    if (this._attrDefinitions === value) {
+      return;
+    }
+    this._attrDefinitions = value;
+    this.attrGroups = this.groupByKey(value, 'group');
+  }
 
   @Input()
   public get entry(): QueryBuilderEntry | undefined | null {
@@ -72,8 +87,12 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
 
   constructor(private _formBuilder: FormBuilder) {
     this._subs = [];
-    this.attrDefinitions = [];
-    this.opDefinitions = QUERY_OP_DEFS;
+    this._attrDefinitions = [];
+    this.attrGroups = {};
+    this.opGroups = this.groupByKey(
+      QUERY_OP_DEFS,
+      'group'
+    ) as GroupedQueryBuilderTermDefs;
     // forms
     this.attribute = _formBuilder.control(null, Validators.required);
     this.operator = _formBuilder.control(null, Validators.required);
@@ -99,6 +118,16 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     });
     // events
     this.entryChange = new EventEmitter<QueryBuilderEntry>();
+  }
+
+  private groupByKey(array: Array<any>, key: string): { [key: string]: any[] } {
+    // https://stackoverflow.com/questions/40774697/how-can-i-group-an-array-of-objects-by-key
+    return array.reduce((hash, obj) => {
+      if (obj[key] === undefined) return hash;
+      return Object.assign(hash, {
+        [obj[key]]: (hash[obj[key]] || []).concat(obj),
+      });
+    }, {});
   }
 
   public ngOnInit(): void {
@@ -148,7 +177,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
         validators.push(Validators.min(+op.args[i].max!));
       }
       const g = this._formBuilder.group({
-        operator: op,
+        op: this._formBuilder.control(op.args[i]),
         value: this._formBuilder.control('', validators),
       });
       this.args.push(g);
