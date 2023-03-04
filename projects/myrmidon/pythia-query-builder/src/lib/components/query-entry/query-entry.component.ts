@@ -165,27 +165,8 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
           this.pairForm.enable();
         } else {
           this.pairForm.disable();
-          // update args
         }
       })
-    );
-
-    // when pair operator changes, update its args
-    this._subs.push(
-      this.operator.valueChanges
-        .pipe(distinctUntilChanged())
-        .subscribe((op) => {
-          if (op?.args) {
-            this.pairArgs.setValue({
-              definition: op,
-              values: this.entry?.opArgs,
-            });
-          } else {
-            this.pairArgs.setValue(null);
-          }
-          this.pairArgs.updateValueAndValidity();
-          this.pairArgs.markAsDirty();
-        })
     );
   }
 
@@ -198,22 +179,52 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       this.form.reset();
       return;
     }
+    // set entry type
     this.type.setValue(
       entry.pair
         ? ENTRY_TYPES[0]
-        : ENTRY_TYPES.find((t) => t.value === entry.operator!.value)!
+        : ENTRY_TYPES.find((t) => t.value === entry.operator?.value) ||
+            ENTRY_TYPES[0]
     );
+
+    // set pair form
     setTimeout(() => {
+      // if not a pair, just reset
       if (!entry.pair) {
         this.pairForm.reset();
       } else {
-        this.attribute.setValue(entry.pair!.attribute || null);
-        this.operator.setValue(entry.pair!.operator || null);
-        this.value.setValue(entry.pair.value);
+        // else set values from entry.pair
+        const pair = entry.pair!;
+        this.attribute.setValue(pair.attribute || null);
+        this.operator.setValue(pair.operator || null);
+        this.value.setValue(pair.value);
+        if (pair.opArgs) {
+          this.pairArgs.setValue({
+            definition: pair.operator,
+            values: pair.opArgs,
+          });
+        } else {
+          this.pairArgs.setValue(null);
+        }
+        this.pairArgs.updateValueAndValidity();
+        this.pairArgs.markAsDirty();
+
         this.pairForm.markAsPristine();
       }
       this.form.markAsPristine();
     });
+  }
+
+  public onArgsChange(args: QueryOpArgs): void {
+    this.args.setValue(args);
+    this.args.updateValueAndValidity();
+    this.args.markAsDirty();
+  }
+
+  public onPairArgsChange(args: QueryOpArgs): void {
+    this.pairArgs.setValue(args);
+    this.pairArgs.updateValueAndValidity();
+    this.pairArgs.markAsDirty();
   }
 
   private getEntry(): QueryBuilderEntry {
@@ -222,12 +233,14 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
         pair: {
           attribute: this.attribute.value!,
           operator: this.operator.value!,
+          opArgs: this.pairArgs.value?.values,
           value: this.value.value,
         },
       };
     } else {
       return {
         operator: this.type.value as any,
+        opArgs: this.args.value?.values,
       };
     }
   }

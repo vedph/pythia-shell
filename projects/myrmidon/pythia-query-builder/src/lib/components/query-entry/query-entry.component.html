@@ -15,7 +15,10 @@
     </mat-form-field>
   </div>
   <!-- args -->
-  <pythia-query-op-args>TODO</pythia-query-op-args>
+  <pythia-query-op-args
+    [args]="args.value"
+    (argsChange)="onArgsChange($event)"
+  ></pythia-query-op-args>
 
   <!-- pair -->
   <form [formGroup]="pairForm" *ngIf="type.value.value === '-'">
@@ -85,7 +88,10 @@
     </div>
 
     <!-- pairArgs -->
-    <pythia-query-op-args>TODO</pythia-query-op-args>
+    <pythia-query-op-args
+      [args]="pairArgs.value"
+      (argsChange)="onPairArgsChange($event)"
+    ></pythia-query-op-args>
   </form>
 
   <div>
