@@ -5,6 +5,9 @@ td.fit-width {
   width: 1px;
   white-space: nowrap;
 }
+td.error {
+  background-color: #ffdddd;
+}
 .nr {
   color: silver;
 }

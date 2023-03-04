@@ -527,8 +527,9 @@ export class QueryBuilder {
    * @param entry The entry to append.
    * @param index The index of the entry the new entry should be inserted before,
    * or -1 to append the entry at the end.
+   * @param insert True to insert the entry at index instead of replacing it.
    */
-  public addEntry(entry: QueryBuilderEntry, index = -1): void {
+  public addEntry(entry: QueryBuilderEntry, index = -1, insert = false): void {
     const entries = [...this._entries$.value];
 
     // if clause, prepend AND if none
@@ -546,7 +547,11 @@ export class QueryBuilder {
     if (index === -1) {
       entries.push(entry);
     } else {
-      entries.splice(index, 0, entry);
+      if (insert) {
+        entries.splice(index, 0, entry);
+      } else {
+        entries.splice(index, 1, entry);
+      }
     }
     const errors = this.validate(entries);
     this._entries$.next(entries);

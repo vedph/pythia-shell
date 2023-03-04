@@ -31,6 +31,7 @@ export interface QueryEntrySet {
 export class QueryEntrySetComponent implements OnInit, OnDestroy {
   private readonly _builder: QueryBuilder;
   private _sub?: Subscription;
+  private _editedInsertIndex: number;
 
   public TYPES = ['clause', 'AND', 'OR', 'AND NOT', '(', ')'];
   public editedIndex: number;
@@ -65,6 +66,7 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
   constructor() {
     this._builder = new QueryBuilder();
     this.editedIndex = -1;
+    this._editedInsertIndex = -1;
     this.attrDefinitions = [];
     this.entries$ = this._builder.selectEntries();
     this.errors$ = this._builder.selectErrors();
@@ -91,7 +93,8 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
     this._sub?.unsubscribe();
   }
 
-  public addEntry(): void {
+  public addEntry(insertAt?: number): void {
+    this._editedInsertIndex = insertAt !== undefined ? insertAt : -1;
     this.editEntry(
       {
         type: QueryEntryType.Clause,
@@ -106,12 +109,19 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
   }
 
   public saveEntry(entry: QueryBuilderEntry): void {
-    this._builder.addEntry(entry, this.editedIndex);
+    if (this._editedInsertIndex > -1) {
+      // insert
+      this._builder.addEntry(entry, this._editedInsertIndex, true);
+    } else {
+      // append or replace
+      this._builder.addEntry(entry, this.editedIndex);
+    }
   }
 
   public closeEntry(): void {
     this.editedEntry = undefined;
     this.editedIndex = -1;
+    this._editedInsertIndex = -1;
   }
 
   public deleteEntry(index: number): void {

@@ -24,6 +24,14 @@
           <mat-icon>edit</mat-icon>
         </button>
         <button
+          type="button"
+          mat-icon-button
+          color="primary"
+          (click)="addEntry(i)"
+        >
+          <mat-icon>control_point_duplicate</mat-icon>
+        </button>
+        <button
           [disabled]="first"
           mat-icon-button
           type="button"
@@ -49,14 +57,14 @@
         </button>
       </td>
       <ng-container *ngIf="e.clause; else nonClause">
-        <td>{{ e.clause.attribute.label }}</td>
-        <td>{{ e.clause.operator.label }}</td>
-        <td>{{ e.clause.value }}</td>
+        <td [class.error]="e.error">{{ e.clause.attribute.label }}</td>
+        <td [class.error]="e.error">{{ e.clause.operator.label }}</td>
+        <td [class.error]="e.error">{{ e.clause.value }}</td>
       </ng-container>
       <ng-template #nonClause>
-        <td class="non-clause">{{ TYPES[e.type] }}</td>
-        <td></td>
-        <td></td>
+        <td class="non-clause" [class.error]="e.error">{{ TYPES[e.type] }}</td>
+        <td [class.error]="e.error"></td>
+        <td [class.error]="e.error"></td>
       </ng-template>
       <td>
         <mat-icon *ngIf="e.error" color="warn" [matTooltip]="e.error"
