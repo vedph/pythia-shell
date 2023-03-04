@@ -52,6 +52,7 @@ export interface QueryBuilderTermDef {
   label: string;
   group?: string;
   args?: QueryBuilderTermDefArg[];
+  tip?: string;
 }
 
 //#region constants
@@ -158,16 +159,19 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: '?=',
     label: 'matches (wildcards)',
     group: 'b) expression',
+    tip: 'Wildcards: ?=any single character; *=any number of any characters.',
   },
   {
     value: '~=',
     label: 'matches (regexp)',
     group: 'b) expression',
+    tip: 'Regular expression.',
   },
   {
     value: '%=',
     label: 'is similar to',
     group: 'c) fuzzy',
+    tip: 'Fuzzy matching: default treshold=0.9. Use any treshold between 0 and 1.',
     args: [
       {
         value: 't',
@@ -211,6 +215,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'NEAR',
     label: 'near to',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that it must be at the specified distance from the second pair, either before or after it.',
     args: [
       {
         value: 'n',
@@ -234,6 +239,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'BEFORE',
     label: 'before',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that it must be before the second pair, at the specified distance from it.',
     args: [
       {
         value: 'n',
@@ -257,6 +263,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'AFTER',
     label: 'after',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that it must be after the second pair, at the specified distance from it',
     args: [
       {
         value: 'n',
@@ -280,6 +287,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'INSIDE',
     label: 'inside',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.',
     args: [
       {
         value: 'ns',
@@ -315,6 +323,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'OVERLAPS',
     label: 'overlaps',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.',
     args: [
       {
         value: 'n',
@@ -338,6 +347,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'LALIGN',
     label: 'left-aligned with',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that its span must left-align with the one defined by the second pair: A can start with or after B, but not before B.',
     args: [
       {
         value: 'n',
@@ -361,6 +371,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'RALIGN',
     label: 'right-aligned with',
     group: 'e) collocation',
+    tip: 'Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B',
     args: [
       {
         value: 'n',
