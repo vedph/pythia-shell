@@ -32,6 +32,7 @@ import { MatTreeModule } from '@angular/material/tree';
 // vendors
 import { devTools } from '@ngneat/elf-devtools';
 import { Actions } from '@ngneat/effects-ng';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
@@ -48,6 +49,10 @@ import { PythiaCoreModule } from 'projects/myrmidon/pythia-core/src/public-api';
 import { PythiaCorpusListModule } from 'projects/myrmidon/pythia-corpus-list/src/public-api';
 import { PythiaDocumentListModule } from 'projects/myrmidon/pythia-document-list/src/public-api';
 import { PythiaDocumentReaderModule } from 'projects/myrmidon/pythia-document-reader/src/public-api';
+import {
+  PythiaQueryBuilderModule,
+  QUERY_BUILDER_ATTR_DEFS_KEY,
+} from 'projects/myrmidon/pythia-query-builder/src/public-api';
 import { PythiaSearchModule } from 'projects/myrmidon/pythia-search/src/public-api';
 import { PythiaStatsModule } from 'projects/myrmidon/pythia-stats/src/lib/pythia-stats.module';
 import { PythiaTermListModule } from 'projects/myrmidon/pythia-term-list/src/public-api';
@@ -65,7 +70,7 @@ import { CorporaComponent } from './corpora/corpora.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { NgxEchartsModule } from 'ngx-echarts';
+import { ATTR_DEFS } from './attr-defs';
 
 // https://ngneat.github.io/elf/docs/dev-tools/
 export function initElfDevTools(actions: Actions) {
@@ -136,6 +141,7 @@ export function initElfDevTools(actions: Actions) {
     PythiaCorpusListModule,
     PythiaDocumentListModule,
     PythiaDocumentReaderModule,
+    PythiaQueryBuilderModule,
     PythiaSearchModule,
     PythiaStatsModule,
     PythiaTermListModule,
@@ -155,6 +161,11 @@ export function initElfDevTools(actions: Actions) {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthJwtInterceptor,
       multi: true,
+    },
+    // query builder
+    {
+      provide: QUERY_BUILDER_ATTR_DEFS_KEY,
+      useValue: ATTR_DEFS,
     },
   ],
   bootstrap: [AppComponent],

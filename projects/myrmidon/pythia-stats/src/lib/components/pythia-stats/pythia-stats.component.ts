@@ -33,8 +33,9 @@ export class PythiaStatsComponent implements OnInit {
   }
 
   public refresh(): void {
-    const entries: StatEntry[] | null =
-      this._localStorage.retrieve<StatEntry[]>('pythia-stats');
+    const entries: StatEntry[] | null = this._localStorage.retrieve<
+      StatEntry[]
+    >('pythia-stats', true);
     if (entries) {
       this.entries = entries;
       return;
@@ -55,7 +56,7 @@ export class PythiaStatsComponent implements OnInit {
                 value: stats[k],
               };
             });
-          this._localStorage.store('pythia-stats', this.entries);
+          this._localStorage.store('pythia-stats', this.entries, true);
         },
         error: (error) => {
           this.loading = false;

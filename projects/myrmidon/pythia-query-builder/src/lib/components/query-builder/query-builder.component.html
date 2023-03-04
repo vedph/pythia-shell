@@ -2,10 +2,12 @@
   <fieldset>
     <legend>scope</legend>
     <!-- corpora -->
-    <h3>corpora</h3>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>corpora</mat-panel-title>
+        <mat-panel-title class="form-row">
+          <mat-icon style="color: #b9b93f">folder_copy</mat-icon>
+          corpora</mat-panel-title
+        >
         <mat-panel-description>
           {{ corpora.length }}
         </mat-panel-description>
@@ -17,12 +19,22 @@
     </mat-expansion-panel>
 
     <!-- documents -->
-    <h3>documents</h3>
-    <pythia-query-entry-set
-      [attrDefinitions]="attrDefinitions"
-      [entries]="docSet.entries"
-      (entrySetChange)="onDocEntrySetChange($event)"
-    ></pythia-query-entry-set>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="form-row">
+          <mat-icon style="color: orange">file_copy</mat-icon>
+          documents
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ docSet.entries.length }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <pythia-query-entry-set
+        [attrDefinitions]="attrDefinitions"
+        [entries]="docSet.entries"
+        (entrySetChange)="onDocEntrySetChange($event)"
+      ></pythia-query-entry-set>
+    </mat-expansion-panel>
   </fieldset>
 
   <!-- query clauses -->
@@ -31,4 +43,10 @@
     [entries]="set.entries"
     (entrySetChange)="onEntrySetChange($event)"
   ></pythia-query-entry-set>
+
+  <div style="margin-top: 8px">
+    <button color="primary" mat-flat-button (click)="build()">
+      <mat-icon>check_circle</mat-icon> build
+    </button>
+  </div>
 </div>
