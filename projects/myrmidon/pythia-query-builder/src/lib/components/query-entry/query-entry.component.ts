@@ -45,7 +45,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public args: FormArray;
   public clauseForm: FormGroup;
   // outer form
-  public type: FormControl<string | null>;
+  public type: FormControl<string>;
   public form: FormGroup;
 
   public opGroups: GroupedQueryBuilderTermDefs;
@@ -110,7 +110,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       args: this.args,
     });
 
-    this.type = _formBuilder.control(null);
+    this.type = _formBuilder.control('-', { nonNullable: true });
     this.form = _formBuilder.group({
       type: this.type,
       clause: this.clauseForm,
@@ -134,7 +134,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     // when type changes, enable or disable clause form
     this._subs.push(
       this.type.valueChanges.pipe(distinctUntilChanged()).subscribe((t) => {
-        if (t === null) {
+        if (t === '-') {
           this.clauseForm.enable();
         } else {
           this.clauseForm.disable();
@@ -190,7 +190,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       this.form.reset();
       return;
     }
-    this.type.setValue(entry.pair ? null : entry.operator!);
+    this.type.setValue(entry.pair ? '-' : entry.operator!);
     setTimeout(() => {
       if (!entry.pair) {
         this.clauseForm.reset();
@@ -205,7 +205,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   }
 
   private getEntry(): QueryBuilderEntry {
-    if (this.type.value === null) {
+    if (this.type.value === '-') {
       return {
         pair: {
           attribute: this.attribute.value!,

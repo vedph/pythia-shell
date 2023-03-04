@@ -3,7 +3,7 @@
   <mat-form-field>
     <mat-label>type</mat-label>
     <mat-select [formControl]="type">
-      <mat-option [value]="null">pair</mat-option>
+      <mat-option value="-">pair</mat-option>
       <mat-option value="AND">AND</mat-option>
       <mat-option value="OR">OR</mat-option>
       <mat-option value="AND NOT">AND NOT</mat-option>
@@ -31,7 +31,7 @@
   </mat-form-field>
 
   <!-- clause -->
-  <form [formGroup]="clauseForm" *ngIf="type.value === null">
+  <form [formGroup]="clauseForm" *ngIf="type.value === '-'">
     <div class="form-row">
       <!-- attribute -->
       <mat-form-field>
