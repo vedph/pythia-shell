@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 
 import { Corpus } from '@myrmidon/pythia-core';
-import { QueryBuilder } from '@myrmidon/pythia-query-builder';
 
-import { QueryBuilderTermDef } from '../../query-builder';
+import { QueryBuilder, QueryBuilderTermDef } from '../../query-builder';
 import { QueryEntrySet } from '../query-entry-set/query-entry-set.component';
 
 export const QUERY_BUILDER_ATTR_DEFS_KEY = 'pythiaQueryBuilderAttrDefs';

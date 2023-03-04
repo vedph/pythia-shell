@@ -533,6 +533,13 @@ export class QueryBuilder {
         break;
     }
 
+    // prepend entry-related errors
+    errors.splice(
+      0,
+      0,
+      ...entries.filter((e) => e.error).map((e, i) => `#${i + 1}: ${e.error}`)
+    );
+
     return errors;
   }
 

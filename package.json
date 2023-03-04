@@ -17,7 +17,7 @@
     "build-src": "ng build @myrmidon/pythia-search",
     "build-crp": "ng build @myrmidon/pythia-corpus-list",
     "build-qbl": "ng build @myrmidon/pythia-query-builder",
-    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-trm && npm run build-sta && npm run build-src && npm run build-crp"
+    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-trm && npm run build-sta && npm run build-src && npm run build-crp && npm run build-qbl"
   },
   "private": true,
   "dependencies": {
