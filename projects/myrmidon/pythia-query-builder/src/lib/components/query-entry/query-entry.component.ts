@@ -18,8 +18,7 @@ import { distinctUntilChanged, Subscription } from 'rxjs';
 import {
   QueryBuilderEntry,
   QueryBuilderTermDef,
-  QueryEntryType,
-  QUERY_OP_DEFS,
+  QUERY_PAIR_OP_DEFS,
 } from '../../query-builder';
 
 interface GroupedQueryBuilderTermDefs {
@@ -46,7 +45,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public args: FormArray;
   public clauseForm: FormGroup;
   // outer form
-  public type: FormControl<QueryEntryType>;
+  public type: FormControl<string | null>;
   public form: FormGroup;
 
   public opGroups: GroupedQueryBuilderTermDefs;
@@ -93,7 +92,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     this._attrDefinitions = [];
     this.attrGroups = {};
     this.opGroups = this.groupByKey(
-      QUERY_OP_DEFS,
+      QUERY_PAIR_OP_DEFS,
       'group'
     ) as GroupedQueryBuilderTermDefs;
     // forms
@@ -111,10 +110,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       args: this.args,
     });
 
-    this.type = _formBuilder.control(QueryEntryType.Clause, {
-      validators: Validators.required,
-      nonNullable: true,
-    });
+    this.type = _formBuilder.control(null);
     this.form = _formBuilder.group({
       type: this.type,
       clause: this.clauseForm,
@@ -138,7 +134,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     // when type changes, enable or disable clause form
     this._subs.push(
       this.type.valueChanges.pipe(distinctUntilChanged()).subscribe((t) => {
-        if (t === QueryEntryType.Clause) {
+        if (t === null) {
           this.clauseForm.enable();
         } else {
           this.clauseForm.disable();
@@ -194,14 +190,14 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       this.form.reset();
       return;
     }
-    this.type.setValue(entry.type);
+    this.type.setValue(entry.pair ? null : entry.operator!);
     setTimeout(() => {
-      if (!entry.clause) {
+      if (!entry.pair) {
         this.clauseForm.reset();
       } else {
-        this.attribute.setValue(entry.clause!.attribute || null);
-        this.operator.setValue(entry.clause!.operator || null);
-        this.value.setValue(entry.clause.value);
+        this.attribute.setValue(entry.pair!.attribute || null);
+        this.operator.setValue(entry.pair!.operator || null);
+        this.value.setValue(entry.pair.value);
         this.clauseForm.markAsPristine();
       }
     });
@@ -209,10 +205,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   }
 
   private getEntry(): QueryBuilderEntry {
-    if (this.type.value === QueryEntryType.Clause) {
+    if (this.type.value === null) {
       return {
-        type: QueryEntryType.Clause,
-        clause: {
+        pair: {
           attribute: this.attribute.value!,
           operator: this.operator.value!,
           value: this.value.value,
@@ -220,7 +215,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       };
     } else {
       return {
-        type: this.type.value,
+        operator: this.type.value as any,
       };
     }
   }

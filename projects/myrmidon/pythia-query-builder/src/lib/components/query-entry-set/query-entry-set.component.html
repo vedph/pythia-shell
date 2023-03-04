@@ -70,17 +70,17 @@
           <mat-icon>delete</mat-icon>
         </button>
       </td>
-      <ng-container *ngIf="e.clause; else nonClause">
+      <ng-container *ngIf="e.pair; else nonClause">
         <td [class.error]="e.error" class="attr">
-          {{ e.clause.attribute.label }}
+          {{ e.pair.attribute.label }}
         </td>
         <td [class.error]="e.error" class="op">
-          {{ e.clause.operator.label }}
+          {{ e.pair.operator.label }}
         </td>
-        <td [class.error]="e.error" class="value">{{ e.clause.value }}</td>
+        <td [class.error]="e.error" class="value">{{ e.pair.value }}</td>
       </ng-container>
       <ng-template #nonClause>
-        <td class="non-clause" [class.error]="e.error">{{ TYPES[e.type] }}</td>
+        <td class="non-clause" [class.error]="e.error">{{ e.operator }}</td>
         <td [class.error]="e.error"></td>
         <td [class.error]="e.error"></td>
       </ng-template>

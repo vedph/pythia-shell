@@ -2,33 +2,41 @@ import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
- * Type of entry in query builder.
+ * Query builder pair.
  */
-export enum QueryEntryType {
-  Clause = 0,
-  And,
-  Or,
-  AndNot,
-  BracketOpen,
-  BracketClose,
-}
-
-/**
- * Query builder clause.
- */
-export interface QueryBuilderClause {
+export interface QueryBuilderPair {
   attribute: QueryBuilderTermDef;
   operator: QueryBuilderTermDef;
   value: string;
 }
 
 /**
- * Entry in query builder: this can be a clause, or just a logical
- * connector of some type.
+ * Entry in query builder.
  */
 export interface QueryBuilderEntry {
-  type: QueryEntryType;
-  clause?: QueryBuilderClause;
+  pair?: QueryBuilderPair;
+  // operator is set when not a pair
+  operator?:
+    | 'AND'
+    | 'OR'
+    | 'AND NOT'
+    | 'NEAR'
+    | 'NOT NEAR'
+    | 'BEFORE'
+    | 'NOT BEFORE'
+    | 'AFTER'
+    | 'NOT AFTER'
+    | 'INSIDE'
+    | 'NOT INSIDE'
+    | 'OVERLAPS'
+    | 'NOT OVERLAPS'
+    | 'LALIGN'
+    | 'NOT LALIGN'
+    | 'RALIGN'
+    | 'NOT RALIGN'
+    | '('
+    | ')';
+  opArgs?: { [key: string]: string };
   error?: string;
 }
 
@@ -127,9 +135,9 @@ export const QUERY_STRUCT_ATTRS: QueryBuilderTermDef[] = [
 ];
 
 /**
- * Query operators.
+ * Query pair operators.
  */
-export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
+export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: '=',
     label: 'equals to',
@@ -211,6 +219,12 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     label: 'greater-than or equal',
     group: 'd) numeric',
   },
+];
+
+/**
+ * Query location operators.
+ */
+export const QUERY_LOC_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'NEAR',
     label: 'near to',
@@ -445,6 +459,26 @@ export class QueryBuilder {
     const errors: string[] = [];
     entries.forEach((e) => (e.error = undefined));
 
+    // validate args in loc-operators
+    let argErrors: string[] = [];
+    entries
+      .filter((e) => QueryBuilder.isLocOperator(e.operator))
+      .forEach((e) => {
+        if (e.operator === 'INSIDE' || e.operator === 'NOT INSIDE') {
+          if (!this.validateInsideLikeOp(e)) {
+            argErrors.push(e.error!);
+          }
+        } else {
+          if (!this.validateNearLikeOp(e)) {
+            argErrors.push(e.error!);
+          }
+        }
+      });
+    if (argErrors.length) {
+      return argErrors;
+    }
+
+    // validate syntax
     switch (entries.length) {
       case 0:
         // query cannot be empty (unless for documents)
@@ -453,18 +487,18 @@ export class QueryBuilder {
         }
         break;
       case 1:
-        // a single entry must be a clause
+        // a single entry must be a pair
         if (entries.length === 1) {
-          if (!entries[0].clause) {
-            entries[0].error = 'Expected clause';
+          if (!entries[0].pair) {
+            entries[0].error = 'Expected pair';
           }
         }
         break;
       default:
-        // first entry can be only clause/(
+        // first entry can be only pair/(
         let entry = entries[0];
-        if (!entry.clause && entry.type !== QueryEntryType.BracketOpen) {
-          entries[0].error = 'Expected clause or (';
+        if (!entry.pair && entry.operator !== '(') {
+          entries[0].error = 'Expected pair or (';
           break;
         }
         // other entries:
@@ -473,57 +507,71 @@ export class QueryBuilder {
         // - ) can follow only clause/)
         // - clause can follow only AND/OR/AND NOT/zero
         // - AND/OR/AND NOT can follow only clause/)
+        // - location operators must not be in documents, and must be between pairs
+        // - a pair cannot follow another pair
         // - () must be balanced
         let depth = 0;
         for (let i = 1; i < entries.length; i++) {
           entry = entries[i];
           const prevEntry = entries[i - 1];
 
-          if (entry.type !== QueryEntryType.Clause) {
-            switch (entry.type) {
-              case QueryEntryType.BracketOpen:
-                depth++;
-                if (
-                  prevEntry.clause ||
-                  prevEntry.type === QueryEntryType.BracketOpen
-                ) {
-                  entry.error = 'Unexpected entry type';
+          switch (entry.operator) {
+            case '(':
+              depth++;
+              if (prevEntry.pair || prevEntry.operator === '(') {
+                entry.error = 'Unexpected entry type';
+                break;
+              }
+              // cannot end with (
+              if (i + 1 === entries.length) {
+                entry.error = 'Opening bracket at end';
+              }
+              break;
+            case ')':
+              depth--;
+              if (!prevEntry.pair && prevEntry.operator !== ')') {
+                entry.error = 'Unexpected entry type';
+              }
+              break;
+            case 'AND':
+            case 'OR':
+            case 'AND NOT':
+              if (!this._isDocument && entry.operator === 'AND NOT') {
+                entry.error = 'AND NOT is allowed only in document scope';
+                break;
+              }
+              if (!prevEntry.pair && prevEntry.operator !== ')') {
+                entry.error = 'Unexpected entry type';
+                break;
+              }
+              // cannot end with operator
+              if (i + 1 === entries.length) {
+                entry.error = 'Logical operator at end';
+              }
+              break;
+            default: // location or pair
+              if (entry.pair) {
+                if (prevEntry.pair) {
+                  entry.error = 'Pairs not connected by operator';
                   break;
                 }
-                // cannot end with (
-                if (i + 1 === entries.length) {
-                  entry.error = 'Opening bracket at end';
-                }
-                break;
-              case QueryEntryType.BracketClose:
-                depth--;
-                if (
-                  !prevEntry.clause &&
-                  prevEntry.type !== QueryEntryType.BracketClose
-                ) {
-                  entry.error = 'Unexpected entry type';
-                }
-                break;
-              case QueryEntryType.And:
-              case QueryEntryType.Or:
-              case QueryEntryType.AndNot:
-                if (!this._isDocument && entry.type === QueryEntryType.AndNot) {
-                  entry.error = 'AND NOT is allowed only in document scope';
+              } else {
+                // location
+                if (this._isDocument) {
+                  entry.error =
+                    'Location operator not allowed in document scope';
                   break;
                 }
+                // pairs required at both ends
                 if (
-                  !prevEntry.clause &&
-                  prevEntry.type !== QueryEntryType.BracketClose
+                  !prevEntry.pair ||
+                  i + 1 == entries.length ||
+                  !entries[i + 1].pair
                 ) {
-                  entry.error = 'Unexpected entry type';
-                  break;
-                }
-                // cannot end with operator
-                if (i + 1 === entries.length) {
-                  entry.error = 'Logical operator at end';
+                  entry.error = 'Location operator must connect two pairs';
                 }
                 break;
-            }
+              }
           }
         }
         // balancement
@@ -555,13 +603,13 @@ export class QueryBuilder {
     const entries = [...this._entries$.value];
 
     // if clause, prepend AND if none
-    if (entry.clause) {
+    if (entry.pair) {
       const prevEntry = entries.length
         ? entries[index === -1 ? entries.length - 1 : index - 1]
         : undefined;
-      if (prevEntry && prevEntry.type === QueryEntryType.Clause) {
+      if (prevEntry && prevEntry.pair) {
         entries.push({
-          type: QueryEntryType.And,
+          operator: 'AND',
         });
       }
     }
@@ -656,6 +704,134 @@ export class QueryBuilder {
       : '';
   }
 
+  private supplyMinMax(
+    args: { [key: string]: string },
+    min: string,
+    max: string
+  ): void {
+    if (args[min] === undefined) {
+      args[min] = '0';
+    }
+    if (args[max] === undefined) {
+      args[max] = '2147483647'; // int.MaxValue
+    }
+  }
+
+  private validateMinMax(
+    args: { [key: string]: string },
+    min: string,
+    max: string
+  ): boolean {
+    const n = args[min] === undefined ? 0 : +args[min];
+    const m = args[max] === undefined ? 0 : +args[max];
+    return !isNaN(n) && !isNaN(m) && n <= m;
+  }
+
+  private validateNearLikeOp(entry: QueryBuilderEntry): boolean {
+    if (!entry.opArgs) {
+      entry.opArgs = {};
+    }
+
+    // n, m must be supplied with defaults (0-max) if missing
+    this.supplyMinMax(entry.opArgs, 'n', 'm');
+    // n cannot be > m
+    if (this.validateMinMax(entry.opArgs, 'n', 'm')) {
+      entry.error = 'Invalid value in n/m argument(s).';
+    }
+
+    // s cannot be used with NOT
+    if (entry.opArgs['s'] && entry.operator?.startsWith('NOT ')) {
+      entry.error = 'Argument s cannot be used with NOT.';
+    }
+    return entry.error ? true : false;
+  }
+
+  private validateInsideLikeOp(entry: QueryBuilderEntry): boolean {
+    // ns, ms, ne, me must be supplied with defaults (0-max) if missing
+    // ns cannot be > ms
+    // ne cannot be > me
+    // s cannot be used with NOT
+    if (!entry.opArgs) {
+      entry.opArgs = {};
+    }
+
+    // ns, ms must be supplied with defaults (0-max) if missing
+    this.supplyMinMax(entry.opArgs, 'ns', 'ms');
+    // ns cannot be > ms
+    if (this.validateMinMax(entry.opArgs, 'ns', 'ms')) {
+      entry.error = 'Invalid value in ns/ms argument(s).';
+    }
+
+    // ne, me must be supplied with defaults (0-max) if missing
+    this.supplyMinMax(entry.opArgs, 'ne', 'me');
+    // ne cannot be > me
+    if (this.validateMinMax(entry.opArgs, 'ne', 'me')) {
+      entry.error = 'Invalid value in ne/me argument(s).';
+    }
+
+    // s cannot be used with NOT
+    if (entry.opArgs['s'] && entry.operator?.startsWith('NOT ')) {
+      entry.error = 'Argument s cannot be used with NOT.';
+    }
+
+    return entry.error ? true : false;
+  }
+
+  private appendArgs(
+    entry: QueryBuilderEntry,
+    keys: string[],
+    sb: string[]
+  ): string[] {
+    if (!entry?.opArgs) {
+      return [];
+    }
+    const found: string[] = [];
+    for (let i = 0; i < keys.length; i++) {
+      if (i) {
+        sb.push(',');
+      }
+      const v: string | undefined = entry.opArgs![keys[i]];
+      if (v) {
+        sb.push(v);
+        found.push(keys[i]);
+      }
+    }
+    return found;
+  }
+
+  private appendLocOp(entry: QueryBuilderEntry, sb: string[]) {
+    sb.push(entry.operator!);
+    sb.push('(');
+
+    let keys: string[];
+    if (entry.operator === 'INSIDE' || entry.operator === 'NOT INSIDE') {
+      // ns,ms,ne,me,(s)
+      keys = ['ns', 'ms', 'ne', 'me', 's'];
+    } else {
+      // n,m,(s)
+      keys = ['n', 'm', 's'];
+    }
+    this.appendArgs(entry, keys, sb);
+
+    sb.push(')');
+  }
+
+  public static isLocOperator(operator?: string | null): boolean {
+    if (!operator) {
+      return false;
+    }
+    const op = operator.startsWith('NOT ') ? operator.substring(4) : operator;
+    return (
+      op === 'NEAR' ||
+      op === 'BEFORE' ||
+      op === 'AFTER' ||
+      op === 'INSIDE' ||
+      op === 'OVERLAPS' ||
+      op === 'LALIGN' ||
+      op === 'RALIGN'
+    );
+  }
+
   /**
    * Build the query.
    *
@@ -666,7 +842,6 @@ export class QueryBuilder {
       return '';
     }
 
-    const types = ['', 'AND', 'OR', 'AND NOT', '(', ')'];
     const entries = [...this._entries$.value];
     const sb: string[] = [];
 
@@ -677,14 +852,19 @@ export class QueryBuilder {
     for (let i = 0; i < entries.length; i++) {
       if (i > 0) {
         sb.push(' ');
-        if (entries[i].clause) {
-          const clause = entries[i].clause!;
+        if (entries[i].pair) {
+          const clause = entries[i].pair!;
           sb.push('[');
           sb.push(clause.attribute.value);
           sb.push(clause.operator.value);
           sb.push(`"${clause.value}"`);
         } else {
-          sb.push(types[+entries[i].type]);
+          if (QueryBuilder.isLocOperator(entries[i].operator)) {
+            this.appendLocOp(entries[i], sb);
+          } else {
+            // TODO treshold for fuzzy
+            sb.push(entries[i].operator!);
+          }
         }
       }
     }

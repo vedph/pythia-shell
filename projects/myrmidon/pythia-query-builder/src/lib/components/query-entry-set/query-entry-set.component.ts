@@ -12,7 +12,6 @@ import {
   QueryBuilder,
   QueryBuilderEntry,
   QueryBuilderTermDef,
-  QueryEntryType,
 } from '../../query-builder';
 
 export interface QueryEntrySet {
@@ -95,12 +94,7 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
 
   public addEntry(insertAt?: number): void {
     this._editedInsertIndex = insertAt !== undefined ? insertAt : -1;
-    this.editEntry(
-      {
-        type: QueryEntryType.Clause,
-      },
-      -1
-    );
+    this.editEntry({}, -1);
   }
 
   public editEntry(entry: QueryBuilderEntry, index: number): void {
