@@ -31,6 +31,7 @@
       </mat-expansion-panel-header>
       <pythia-query-entry-set
         [attrDefinitions]="attrDefinitions"
+        [isDocument]="true"
         [entries]="docSet.entries"
         (entrySetChange)="onDocEntrySetChange($event)"
       ></pythia-query-entry-set>
