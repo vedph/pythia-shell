@@ -1,3 +1,4 @@
+import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
@@ -583,5 +584,57 @@ export class QueryBuilder {
   public reset(): void {
     this._entries$.next([]);
     this.validate(this._entries$.value);
+  }
+
+  /**
+   * Build the section of the query corresponding to the scope defined
+   * by corpora, if any.
+   *
+   * @param corpora The optional corpora.
+   * @returns The query corpus section.
+   */
+  public buildCorpusSection(corpora?: Corpus[]): string {
+    return corpora?.length
+      ? '@@' + corpora.map((c) => c.id).join(' ') + ';\n'
+      : '';
+  }
+
+  /**
+   * Build the query.
+   *
+   * @returns The query corresponding to the clauses present in this builder.
+   */
+  public build(): string {
+    if (!this._entries$.value.length) {
+      return '';
+    }
+
+    const types = ['', 'AND', 'OR', 'AND NOT', '(', ')'];
+    const entries = [...this._entries$.value];
+    const sb: string[] = [];
+
+    if (this._isDocument) {
+      sb.push('@');
+    }
+
+    for (let i = 0; i < entries.length; i++) {
+      if (i > 0) {
+        sb.push(' ');
+        if (entries[i].clause) {
+          const clause = entries[i].clause!;
+          sb.push('[');
+          sb.push(clause.attribute.value);
+          sb.push(clause.operator.value);
+          sb.push(`"${clause.value}"`);
+        } else {
+          sb.push(types[+entries[i].type]);
+        }
+      }
+    }
+    if (this._isDocument) {
+      sb.push(';\n');
+    }
+
+    return sb.join('');
   }
 }

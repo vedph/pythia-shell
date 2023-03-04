@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { LocalStorageService } from '@myrmidon/ng-tools';
 import { StatsService } from '@myrmidon/pythia-api';
+
 import { take } from 'rxjs/operators';
 
 interface StatEntry {
@@ -19,7 +22,8 @@ export class PythiaStatsComponent implements OnInit {
 
   constructor(
     private _snackbar: MatSnackBar,
-    private _statsService: StatsService
+    private _statsService: StatsService,
+    private _localStorage: LocalStorageService
   ) {
     this.entries = [];
   }
@@ -29,6 +33,13 @@ export class PythiaStatsComponent implements OnInit {
   }
 
   public refresh(): void {
+    const entries: StatEntry[] | null =
+      this._localStorage.retrieve<StatEntry[]>('pythia-stats');
+    if (entries) {
+      this.entries = entries;
+      return;
+    }
+
     this.loading = true;
     this._statsService
       .getStatistics()
@@ -44,6 +55,7 @@ export class PythiaStatsComponent implements OnInit {
                 value: stats[k],
               };
             });
+          this._localStorage.store('pythia-stats', this.entries);
         },
         error: (error) => {
           this.loading = false;

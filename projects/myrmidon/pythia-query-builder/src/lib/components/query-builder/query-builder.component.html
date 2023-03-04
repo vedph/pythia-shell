@@ -1,20 +1,29 @@
 <div>
-  <!-- corpora -->
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>corpora</mat-panel-title>
-      <mat-panel-description>
-        {{ corpora.length }}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <pythia-corpus-set
-      [corpora]="corpora"
-      (corporaChange)="onCorporaChange($event)"
-    ></pythia-corpus-set>
-  </mat-expansion-panel>
+  <fieldset>
+    <legend>scope</legend>
+    <!-- corpora -->
+    <h3>corpora</h3>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>corpora</mat-panel-title>
+        <mat-panel-description>
+          {{ corpora.length }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <pythia-corpus-set
+        [corpora]="corpora"
+        (corporaChange)="onCorporaChange($event)"
+      ></pythia-corpus-set>
+    </mat-expansion-panel>
 
-  <!-- documents -->
-  TODO
+    <!-- documents -->
+    <h3>documents</h3>
+    <pythia-query-entry-set
+      [attrDefinitions]="attrDefinitions"
+      [entries]="docSet.entries"
+      (entrySetChange)="onDocEntrySetChange($event)"
+    ></pythia-query-entry-set>
+  </fieldset>
 
   <!-- query clauses -->
   <pythia-query-entry-set
