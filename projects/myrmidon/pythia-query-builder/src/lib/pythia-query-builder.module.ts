@@ -26,6 +26,7 @@ import { CorpusSetComponent } from './components/corpus-set/corpus-set.component
 import { QueryEntryComponent } from './components/query-entry/query-entry.component';
 import { QueryBuilderComponent } from './components/query-builder/query-builder.component';
 import { QueryEntrySetComponent } from './components/query-entry-set/query-entry-set.component';
+import { QueryOpArgsComponent } from './components/query-op-args/query-op-args.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { QueryEntrySetComponent } from './components/query-entry-set/query-entry
     QueryBuilderComponent,
     QueryEntryComponent,
     QueryEntrySetComponent,
+    QueryOpArgsComponent,
   ],
   imports: [
     CommonModule,
@@ -64,6 +66,7 @@ import { QueryEntrySetComponent } from './components/query-entry-set/query-entry
     QueryBuilderComponent,
     QueryEntryComponent,
     QueryEntrySetComponent,
+    QueryOpArgsComponent
   ],
 })
 export class PythiaQueryBuilderModule {}
