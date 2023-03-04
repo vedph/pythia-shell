@@ -45,7 +45,13 @@
   ></pythia-query-entry-set>
 
   <div style="margin-top: 8px">
-    <button color="primary" mat-flat-button (click)="build()">
+    <button
+      type="submit"
+      [disabled]="hasErrors"
+      color="primary"
+      mat-flat-button
+      (click)="build()"
+    >
       <mat-icon>check_circle</mat-icon> build
     </button>
   </div>

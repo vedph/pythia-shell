@@ -69,7 +69,7 @@
       <!-- value -->
       <mat-form-field>
         <mat-label>value</mat-label>
-        <input matInput [formControl]="value" />
+        <input matInput [formControl]="value" (keydown.enter)="save()" />
         <mat-error
           *ngIf="$any(value).errors?.required && (value.dirty || value.touched)"
           >value required</mat-error
@@ -153,7 +153,12 @@
     </div>
   </form>
 
-  <button type="submit" color="primary" mat-icon-button>
-    <mat-icon>check_circle</mat-icon>
-  </button>
+  <div>
+    <button type="button" color="warn" mat-icon-button (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button type="submit" color="primary" mat-icon-button>
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
 </form>

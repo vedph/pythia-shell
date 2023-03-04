@@ -430,6 +430,11 @@ export class QueryBuilder {
     this._errors$.next(errors);
   }
 
+  /**
+   * Set whether the query should target a document scope or a text.
+   *
+   * @param value True if the query is for a document scope.
+   */
   public forDocument(value?: boolean): void {
     this._isDocument = value ? true : false;
     const errors = this.validate(this._entries$.value);
@@ -483,6 +488,11 @@ export class QueryBuilder {
                   prevEntry.type === QueryEntryType.BracketOpen
                 ) {
                   entry.error = 'Unexpected entry type';
+                  break;
+                }
+                // cannot end with (
+                if (i + 1 === entries.length) {
+                  entry.error = 'Opening bracket at end';
                 }
                 break;
               case QueryEntryType.BracketClose:
@@ -497,7 +507,7 @@ export class QueryBuilder {
               case QueryEntryType.And:
               case QueryEntryType.Or:
               case QueryEntryType.AndNot:
-                if (!this._isDocument) {
+                if (!this._isDocument && entry.type === QueryEntryType.AndNot) {
                   entry.error = 'AND NOT is allowed only in document scope';
                   break;
                 }
@@ -506,6 +516,11 @@ export class QueryBuilder {
                   prevEntry.type !== QueryEntryType.BracketClose
                 ) {
                   entry.error = 'Unexpected entry type';
+                  break;
+                }
+                // cannot end with operator
+                if (i + 1 === entries.length) {
+                  entry.error = 'Logical operator at end';
                 }
                 break;
             }
@@ -543,7 +558,7 @@ export class QueryBuilder {
         });
       }
     }
-    // append and validate
+    // append, insert or replace
     if (index === -1) {
       entries.push(entry);
     } else {
@@ -553,6 +568,7 @@ export class QueryBuilder {
         entries.splice(index, 1, entry);
       }
     }
+    // validate
     const errors = this.validate(entries);
     this._entries$.next(entries);
     this._errors$.next(errors);
@@ -616,7 +632,8 @@ export class QueryBuilder {
    */
   public reset(): void {
     this._entries$.next([]);
-    this.validate(this._entries$.value);
+    const errors = this.validate([]);
+    this._errors$.next(errors);
   }
 
   /**

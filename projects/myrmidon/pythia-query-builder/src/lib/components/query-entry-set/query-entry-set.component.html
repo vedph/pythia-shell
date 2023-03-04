@@ -1,6 +1,6 @@
 <div class="bar-row">
   <button type="button" color="primary" mat-flat-button (click)="addEntry()">
-    <mat-icon>add_circle</mat-icon> pair
+    <mat-icon>add_circle</mat-icon> entry
   </button>
 </div>
 <table>
@@ -19,6 +19,7 @@
           type="button"
           mat-icon-button
           color="primary"
+          matTooltip="Edit this entry"
           (click)="editEntry(e, i)"
         >
           <mat-icon>edit</mat-icon>
@@ -27,6 +28,7 @@
           type="button"
           mat-icon-button
           color="primary"
+          matTooltip="Add a new entry before this one"
           (click)="addEntry(i)"
         >
           <mat-icon>control_point_duplicate</mat-icon>
@@ -35,6 +37,7 @@
           [disabled]="first"
           mat-icon-button
           type="button"
+          matTooltip="Move this entry up"
           (click)="moveEntryUp(i)"
         >
           <mat-icon>arrow_upward</mat-icon>
@@ -43,6 +46,7 @@
           [disabled]="last"
           mat-icon-button
           type="button"
+          matTooltip="Move this entry down"
           (click)="moveEntryDown(i)"
         >
           <mat-icon>arrow_downward</mat-icon>
@@ -51,15 +55,16 @@
           type="button"
           mat-icon-button
           color="warn"
+          matTooltip="Delete this entry"
           (click)="deleteEntry(i)"
         >
           <mat-icon>delete</mat-icon>
         </button>
       </td>
       <ng-container *ngIf="e.clause; else nonClause">
-        <td [class.error]="e.error">{{ e.clause.attribute.label }}</td>
-        <td [class.error]="e.error">{{ e.clause.operator.label }}</td>
-        <td [class.error]="e.error">{{ e.clause.value }}</td>
+        <td [class.error]="e.error" class="attr">{{ e.clause.attribute.label }}</td>
+        <td [class.error]="e.error" class="op">{{ e.clause.operator.label }}</td>
+        <td [class.error]="e.error" class="value">{{ e.clause.value }}</td>
       </ng-container>
       <ng-template #nonClause>
         <td class="non-clause" [class.error]="e.error">{{ TYPES[e.type] }}</td>
@@ -85,5 +90,6 @@
     [attrDefinitions]="attrDefinitions"
     [entry]="editedEntry"
     (entryChange)="saveEntry($event)"
+    (editorClose)="closeEntry()"
   ></pythia-query-entry>
 </mat-expansion-panel>

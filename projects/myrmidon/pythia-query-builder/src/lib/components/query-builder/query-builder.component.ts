@@ -28,6 +28,8 @@ export class QueryBuilderComponent {
   public corpora: Corpus[];
   public docSet: QueryEntrySet;
 
+  public hasErrors: boolean;
+
   /**
    * Emitted whenever a query is built.
    */
@@ -39,6 +41,7 @@ export class QueryBuilderComponent {
     public attrDefinitions: QueryBuilderTermDef[]
   ) {
     this._queryBuilder = new QueryBuilder();
+    this.hasErrors = true;
     this.set = { entries: [] };
     this.corpora = [];
     this.docSet = { entries: [] };
@@ -50,15 +53,25 @@ export class QueryBuilderComponent {
     this.corpora = corpora;
   }
 
+  private updateHasErrors(): void {
+    this.hasErrors =
+      this.set.errors?.length || this.docSet.errors?.length ? true : false;
+  }
+
   public onEntrySetChange(set: QueryEntrySet): void {
     this.set = set;
+    this.updateHasErrors();
   }
 
   public onDocEntrySetChange(set: QueryEntrySet): void {
     this.docSet = set;
+    this.updateHasErrors();
   }
 
   public build(): void {
+    if (this.set.errors?.length || this.docSet.errors?.length) {
+      return;
+    }
     let query = '';
 
     if (this.corpora?.length) {

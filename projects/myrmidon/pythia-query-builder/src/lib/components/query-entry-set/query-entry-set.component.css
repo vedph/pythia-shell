@@ -1,9 +1,23 @@
 table {
-  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  font-size: 120%;
 }
 td.fit-width {
   width: 1px;
   white-space: nowrap;
+}
+td.attr {
+  color: darkgreen;
+  padding-right: 8px;
+}
+td.op {
+  color: orangered;
+  padding-right: 8px;
+}
+td.value {
+  color: royalblue;
 }
 td.error {
   background-color: #ffdddd;
@@ -12,7 +26,7 @@ td.error {
   color: silver;
 }
 .non-clause {
-  font-weight: bold;
+  color: #b175df;
 }
 .bar-row {
   display: flex;

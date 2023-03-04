@@ -85,6 +85,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   @Output()
   public entryChange: EventEmitter<QueryBuilderEntry>;
 
+  @Output()
+  public editorClose: EventEmitter<any>;
+
   constructor(private _formBuilder: FormBuilder) {
     this._subs = [];
     this._attrDefinitions = [];
@@ -118,6 +121,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     });
     // events
     this.entryChange = new EventEmitter<QueryBuilderEntry>();
+    this.editorClose = new EventEmitter<any>();
   }
 
   private groupByKey(array: Array<any>, key: string): { [key: string]: any[] } {
@@ -219,6 +223,10 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
         type: this.type.value,
       };
     }
+  }
+
+  public close(): void {
+    this.editorClose.emit();
   }
 
   public save(): void {

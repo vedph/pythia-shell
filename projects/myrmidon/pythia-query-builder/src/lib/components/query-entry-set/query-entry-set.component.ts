@@ -116,6 +116,7 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
       // append or replace
       this._builder.addEntry(entry, this.editedIndex);
     }
+    this.closeEntry();
   }
 
   public closeEntry(): void {
