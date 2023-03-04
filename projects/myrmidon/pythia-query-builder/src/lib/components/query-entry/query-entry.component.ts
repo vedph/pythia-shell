@@ -44,18 +44,13 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public type: FormControl<QueryEntryType>;
   public form: FormGroup;
 
+  public opDefinitions: QueryBuilderTermDef[];
+
   /**
    * The attributes definitions to use. This is meant to be set only once.
    */
   @Input()
   public attrDefinitions: QueryBuilderTermDef[];
-
-  /**
-   * The operator definitions to use. This is meant to be set only once
-   * and just defaults to QUERY_OP_DEFS.
-   */
-  @Input()
-  public opDefinitions: QueryBuilderTermDef[];
 
   @Input()
   public get entry(): QueryBuilderEntry | undefined | null {

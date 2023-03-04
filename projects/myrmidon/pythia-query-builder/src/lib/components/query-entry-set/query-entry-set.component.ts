@@ -6,12 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  combineLatest,
-  distinctUntilChanged,
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 
 import {
   QueryBuilder,
@@ -56,13 +51,6 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
   @Input()
   public attrDefinitions: QueryBuilderTermDef[];
 
-  /**
-   * The operator definitions to use. This is meant to be set only once
-   * and just defaults to QUERY_OP_DEFS.
-   */
-  @Input()
-  public opDefinitions: QueryBuilderTermDef[];
-
   @Input()
   public get entries(): QueryBuilderEntry[] {
     return this._builder.getEntries() || [];
@@ -78,7 +66,6 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
     this._builder = new QueryBuilder();
     this.editedIndex = -1;
     this.attrDefinitions = [];
-    this.opDefinitions = [];
     this.entries$ = this._builder.selectEntries();
     this.errors$ = this._builder.selectErrors();
     this.entrySetChange = new EventEmitter<QueryEntrySet>();

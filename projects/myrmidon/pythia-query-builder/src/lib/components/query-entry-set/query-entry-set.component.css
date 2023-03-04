@@ -11,3 +11,11 @@ td.fit-width {
 .non-clause {
   font-weight: bold;
 }
+.bar-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.bar-row * {
+  flex: 0 0 auto;
+}
