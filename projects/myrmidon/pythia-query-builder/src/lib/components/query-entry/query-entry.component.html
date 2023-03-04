@@ -1,37 +1,24 @@
 <form [formGroup]="form" (submit)="save()">
   <!-- type -->
-  <mat-form-field>
-    <mat-label>type</mat-label>
-    <mat-select [formControl]="type">
-      <mat-option value="-">pair</mat-option>
-      <mat-option value="AND">AND</mat-option>
-      <mat-option value="OR">OR</mat-option>
-      <mat-option value="AND NOT">AND NOT</mat-option>
-      <mat-option value="NEAR">NEAR</mat-option>
-      <mat-option value="NOT NEAR">NOT NEAR</mat-option>
-      <mat-option value="BEFORE">BEFORE</mat-option>
-      <mat-option value="NOT BEFORE">NOT BEFORE</mat-option>
-      <mat-option value="AFTER">AFTER</mat-option>
-      <mat-option value="NOT AFTER">NOT AFTER</mat-option>
-      <mat-option value="INSIDE">INSIDE</mat-option>
-      <mat-option value="NOT INSIDE">NOT INSIDE</mat-option>
-      <mat-option value="OVERLAPS">OVERLAPS</mat-option>
-      <mat-option value="NOT OVERLAPS">NOT OVERLAPS</mat-option>
-      <mat-option value="LALIGN">LALIGN</mat-option>
-      <mat-option value="NOT LALIGN">NOT LALIGN</mat-option>
-      <mat-option value="RALIGN">RALIGN</mat-option>
-      <mat-option value="NOT RALIGN">NOT RALIGN</mat-option>
-      <mat-option value="(">(</mat-option>
-      <mat-option value=")">)</mat-option>
-    </mat-select>
-    <mat-error
-      *ngIf="$any(type).errors?.required && (type.dirty || type.touched)"
-      >type required</mat-error
-    >
-  </mat-form-field>
+  <div>
+    <mat-form-field>
+      <mat-label>type</mat-label>
+      <mat-select [formControl]="type">
+        <mat-option *ngFor="let t of entryTypes" [value]="t">{{
+          t.label
+        }}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="$any(type).errors?.required && (type.dirty || type.touched)"
+        >type required</mat-error
+      >
+    </mat-form-field>
+  </div>
+  <!-- args -->
+  <pythia-query-op-args>TODO</pythia-query-op-args>
 
-  <!-- clause -->
-  <form [formGroup]="clauseForm" *ngIf="type.value === '-'">
+  <!-- pair -->
+  <form [formGroup]="pairForm" *ngIf="type.value.value === '-'">
     <div class="form-row">
       <!-- attribute -->
       <mat-form-field>
@@ -97,74 +84,8 @@
       </mat-form-field>
     </div>
 
-    <div formArrayName="args" *ngIf="args.controls.length">
-      <fieldset>
-        <legend>{{ operator.value?.label }} arguments</legend>
-        <div
-          *ngFor="
-            let g of args.controls;
-            let i = index;
-            let first = first;
-            let last = last
-          "
-        >
-          <!-- child form -->
-          <div [formGroupName]="i">
-            <mat-form-field>
-              <mat-label>{{ $any(g)["controls"].op.value.label }}</mat-label>
-              <input
-                matInput
-                formControlName="value"
-                placeholder="value"
-                [type]="
-                  $any(g)['controls'].op.value.numeric ? 'number' : 'text'
-                "
-              />
-              <mat-error
-                *ngIf="
-                  $any(g)['controls'].value.errors?.required &&
-                  ($any(g)['controls'].value.dirty ||
-                    $any(g)['controls'].value.touched)
-                "
-                >value required</mat-error
-              >
-              <mat-error
-                *ngIf="
-                  $any(g)['controls'].value.errors?.maxLength &&
-                  ($any(g)['controls'].value.dirty ||
-                    $any(g)['controls'].value.touched)
-                "
-                >value too long</mat-error
-              >
-              <mat-error
-                *ngIf="
-                  $any(g)['controls'].value.errors?.min &&
-                  ($any(g)['controls'].value.dirty ||
-                    $any(g)['controls'].value.touched)
-                "
-                >value too low</mat-error
-              >
-              <mat-error
-                *ngIf="
-                  $any(g)['controls'].value.errors?.max &&
-                  ($any(g)['controls'].value.dirty ||
-                    $any(g)['controls'].value.touched)
-                "
-                >value too big</mat-error
-              >
-              <mat-error
-                *ngIf="
-                  $any(g)['controls'].value.errors?.pattern &&
-                  ($any(g)['controls'].value.dirty ||
-                    $any(g)['controls'].value.touched)
-                "
-                >invalid value</mat-error
-              >
-            </mat-form-field>
-          </div>
-        </div>
-      </fieldset>
-    </div>
+    <!-- pairArgs -->
+    <pythia-query-op-args>TODO</pythia-query-op-args>
   </form>
 
   <div>

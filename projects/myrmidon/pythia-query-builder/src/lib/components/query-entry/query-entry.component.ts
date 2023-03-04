@@ -7,7 +7,6 @@ import {
   Output,
 } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -18,12 +17,29 @@ import { distinctUntilChanged, Subscription } from 'rxjs';
 import {
   QueryBuilderEntry,
   QueryBuilderTermDef,
+  QUERY_OP_DEFS,
   QUERY_PAIR_OP_DEFS,
 } from '../../query-builder';
+import { QueryOpArgs } from '../query-op-args/query-op-args.component';
 
+/**
+ * Used only in this component to group definitions.
+ */
 interface GroupedQueryBuilderTermDefs {
   [key: string]: QueryBuilderTermDef[];
 }
+
+/**
+ * Used only in this component to let user select entry type.
+ */
+const ENTRY_TYPES: QueryBuilderTermDef[] = [
+  {
+    value: '-',
+    label: 'pair',
+    group: '',
+  },
+  ...QUERY_OP_DEFS,
+];
 
 /**
  * Query entry editor component. This edits a clause or just a logical term
@@ -42,12 +58,14 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public attribute: FormControl<QueryBuilderTermDef | null>;
   public operator: FormControl<QueryBuilderTermDef | null>;
   public value: FormControl<string>;
-  public args: FormArray;
-  public clauseForm: FormGroup;
+  public pairArgs: FormControl<QueryOpArgs | null>;
+  public pairForm: FormGroup;
   // outer form
-  public type: FormControl<string>;
+  public type: FormControl<QueryBuilderTermDef>;
+  public args: FormControl<QueryOpArgs | null>;
   public form: FormGroup;
 
+  public entryTypes = ENTRY_TYPES;
   public opGroups: GroupedQueryBuilderTermDefs;
   public attrGroups: GroupedQueryBuilderTermDefs;
 
@@ -66,6 +84,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     this.attrGroups = this.groupByKey(value, 'group');
   }
 
+  /**
+   * The entry being edited.
+   */
   @Input()
   public get entry(): QueryBuilderEntry | undefined | null {
     return this._entry;
@@ -84,6 +105,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   @Output()
   public entryChange: EventEmitter<QueryBuilderEntry>;
 
+  /**
+   * Emitted when the user requests to close the editor.
+   */
   @Output()
   public editorClose: EventEmitter<any>;
 
@@ -95,25 +119,28 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       QUERY_PAIR_OP_DEFS,
       'group'
     ) as GroupedQueryBuilderTermDefs;
-    // forms
+    // pair form
     this.attribute = _formBuilder.control(null, Validators.required);
     this.operator = _formBuilder.control(null, Validators.required);
     this.value = _formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
       nonNullable: true,
     });
-    this.args = _formBuilder.array([]);
-    this.clauseForm = _formBuilder.group({
+    this.pairArgs = _formBuilder.control(null);
+    this.pairForm = _formBuilder.group({
       attribute: this.attribute,
       operator: this.operator,
       value: this.value,
-      args: this.args,
+      pairArgs: this.pairArgs,
     });
 
-    this.type = _formBuilder.control('-', { nonNullable: true });
+    // main form
+    this.type = _formBuilder.control(ENTRY_TYPES[0], { nonNullable: true });
+    this.args = _formBuilder.control(null);
     this.form = _formBuilder.group({
       type: this.type,
-      clause: this.clauseForm,
+      args: this.args,
+      clause: this.pairForm,
     });
     // events
     this.entryChange = new EventEmitter<QueryBuilderEntry>();
@@ -131,22 +158,34 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    // when type changes, enable or disable clause form
+    // when type changes, enable or disable pair form
     this._subs.push(
-      this.type.valueChanges.pipe(distinctUntilChanged()).subscribe((t) => {
-        if (t === '-') {
-          this.clauseForm.enable();
+      this.type.valueChanges.pipe(distinctUntilChanged()).subscribe((def) => {
+        if (def.value) {
+          this.pairForm.enable();
         } else {
-          this.clauseForm.disable();
+          this.pairForm.disable();
+          // update args
         }
       })
     );
 
-    // when operator changes, update args array
+    // when pair operator changes, update its args
     this._subs.push(
-      this.operator.valueChanges.pipe(distinctUntilChanged()).subscribe((o) => {
-        this.updateOperatorArgs();
-      })
+      this.operator.valueChanges
+        .pipe(distinctUntilChanged())
+        .subscribe((op) => {
+          if (op?.args) {
+            this.pairArgs.setValue({
+              definition: op,
+              values: this.entry?.opArgs,
+            });
+          } else {
+            this.pairArgs.setValue(null);
+          }
+          this.pairArgs.updateValueAndValidity();
+          this.pairArgs.markAsDirty();
+        })
     );
   }
 
@@ -154,58 +193,31 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     this._subs.forEach((s) => s.unsubscribe());
   }
 
-  private updateOperatorArgs(): void {
-    const op = this.operator.value;
-    this.args.reset();
-
-    if (!op?.args) {
-      this.args.disable();
-      return;
-    }
-    for (let i = 0; i < op.args.length; i++) {
-      const validators = [];
-      if (op.args[i].required) {
-        validators.push(Validators.required);
-      }
-      if (op.args[i].numeric) {
-        validators.push(Validators.pattern('-?[0-9]+(?:.[0-9]+)?'));
-      }
-      if (op.args[i].min) {
-        validators.push(Validators.min(+op.args[i].min!));
-      }
-      if (op.args[i].max) {
-        validators.push(Validators.min(+op.args[i].max!));
-      }
-      const g = this._formBuilder.group({
-        op: this._formBuilder.control(op.args[i]),
-        value: this._formBuilder.control('', validators),
-      });
-      this.args.push(g);
-      this.args.enable();
-    }
-  }
-
   private updateForm(entry?: QueryBuilderEntry): void {
     if (!entry) {
       this.form.reset();
       return;
     }
-    this.type.setValue(entry.pair ? '-' : entry.operator!);
+    this.type.setValue(
+      entry.pair
+        ? ENTRY_TYPES[0]
+        : ENTRY_TYPES.find((t) => t.value === entry.operator!.value)!
+    );
     setTimeout(() => {
       if (!entry.pair) {
-        this.clauseForm.reset();
+        this.pairForm.reset();
       } else {
         this.attribute.setValue(entry.pair!.attribute || null);
         this.operator.setValue(entry.pair!.operator || null);
         this.value.setValue(entry.pair.value);
-        this.clauseForm.markAsPristine();
+        this.pairForm.markAsPristine();
       }
+      this.form.markAsPristine();
     });
-    this.form.markAsPristine();
   }
 
   private getEntry(): QueryBuilderEntry {
-    if (this.type.value === '-') {
+    if (this.type.value.value === '-') {
       return {
         pair: {
           attribute: this.attribute.value!,

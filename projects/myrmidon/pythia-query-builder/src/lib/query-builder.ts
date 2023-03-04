@@ -2,11 +2,15 @@ import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
- * Query builder pair.
+ * Query builder pair. This represents an attribute/value pair
+ * inside a query builder entry.
  */
 export interface QueryBuilderPair {
+  // attribute definitions are set at the app level (via DI)
   attribute: QueryBuilderTermDef;
+  // operator is from constants QUERY_PAIR_OP_DEFS
   operator: QueryBuilderTermDef;
+  opArgs?: { [key: string]: string };
   value: string;
 }
 
@@ -15,28 +19,11 @@ export interface QueryBuilderPair {
  */
 export interface QueryBuilderEntry {
   pair?: QueryBuilderPair;
-  // operator is set when not a pair
-  operator?:
-    | 'AND'
-    | 'OR'
-    | 'AND NOT'
-    | 'NEAR'
-    | 'NOT NEAR'
-    | 'BEFORE'
-    | 'NOT BEFORE'
-    | 'AFTER'
-    | 'NOT AFTER'
-    | 'INSIDE'
-    | 'NOT INSIDE'
-    | 'OVERLAPS'
-    | 'NOT OVERLAPS'
-    | 'LALIGN'
-    | 'NOT LALIGN'
-    | 'RALIGN'
-    | 'NOT RALIGN'
-    | '('
-    | ')';
+  // operator is set when not a pair, and is from constants
+  // QUERY_OP_DEFS or QUERY_LOCATION_OP_DEFS
+  operator?: QueryBuilderTermDef;
   opArgs?: { [key: string]: string };
+  // error is set by query builder
   error?: string;
 }
 
@@ -222,14 +209,69 @@ export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
 ];
 
 /**
+ * Query logical operators.
+ */
+export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
+  {
+    value: 'AND',
+    label: 'AND',
+    group: 'a) logical',
+  },
+  {
+    value: 'OR',
+    label: 'OR',
+    group: 'a) logical',
+  },
+  {
+    value: 'AND NOT',
+    label: 'AND NOT',
+    group: 'a) logical',
+  },
+  {
+    value: '(',
+    label: '(',
+    group: 'b) precedence',
+  },
+  {
+    value: ')',
+    label: ')',
+    group: 'b) precedence',
+  },
+];
+
+/**
  * Query location operators.
  */
-export const QUERY_LOC_OP_DEFS: QueryBuilderTermDef[] = [
+export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'NEAR',
     label: 'near to',
     group: 'e) collocation',
     tip: 'Filters the first pair so that it must be at the specified distance from the second pair, either before or after it.',
+    args: [
+      {
+        value: 'n',
+        label: 'min.distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'm',
+        label: 'max distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'in structure',
+      },
+    ],
+  },
+  {
+    value: 'NOT NEAR',
+    label: 'not near to',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that it must not be at the specified distance from the second pair, either before or after it.',
     args: [
       {
         value: 'n',
@@ -274,10 +316,58 @@ export const QUERY_LOC_OP_DEFS: QueryBuilderTermDef[] = [
     ],
   },
   {
+    value: 'NOT BEFORE',
+    label: 'not before',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that it must not be before the second pair, at the specified distance from it.',
+    args: [
+      {
+        value: 'n',
+        label: 'min.distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'm',
+        label: 'max distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'in structure',
+      },
+    ],
+  },
+  {
     value: 'AFTER',
     label: 'after',
     group: 'e) collocation',
     tip: 'Filters the first pair so that it must be after the second pair, at the specified distance from it',
+    args: [
+      {
+        value: 'n',
+        label: 'min.distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'm',
+        label: 'max distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'structure',
+      },
+    ],
+  },
+  {
+    value: 'NOT AFTER',
+    label: 'not after',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that it must not be after the second pair, at the specified distance from it',
     args: [
       {
         value: 'n',
@@ -334,10 +424,70 @@ export const QUERY_LOC_OP_DEFS: QueryBuilderTermDef[] = [
     ],
   },
   {
+    value: 'NOT INSIDE',
+    label: 'not inside',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.',
+    args: [
+      {
+        value: 'ns',
+        label: 'min.distance from start',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'ms',
+        label: 'max distance from start',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'ne',
+        label: 'min.distance from end',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'me',
+        label: 'max distance from end',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'structure',
+      },
+    ],
+  },
+  {
     value: 'OVERLAPS',
     label: 'overlaps',
     group: 'e) collocation',
     tip: 'Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.',
+    args: [
+      {
+        value: 'n',
+        label: 'min.distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'm',
+        label: 'max distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'structure',
+      },
+    ],
+  },
+  {
+    value: 'NOT OVERLAPS',
+    label: 'not overlaps',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.',
     args: [
       {
         value: 'n',
@@ -382,10 +532,58 @@ export const QUERY_LOC_OP_DEFS: QueryBuilderTermDef[] = [
     ],
   },
   {
+    value: 'NOT LALIGN',
+    label: 'not left-aligned with',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that its span must not left-align with the one defined by the second pair: A can start with or after B, but not before B.',
+    args: [
+      {
+        value: 'n',
+        label: 'min.distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'm',
+        label: 'max distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'structure',
+      },
+    ],
+  },
+  {
     value: 'RALIGN',
     label: 'right-aligned with',
     group: 'e) collocation',
     tip: 'Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B',
+    args: [
+      {
+        value: 'n',
+        label: 'min.distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 'm',
+        label: 'max distance',
+        numeric: true,
+        min: 0,
+      },
+      {
+        value: 's',
+        label: 'structure',
+      },
+    ],
+  },
+  {
+    value: 'NOT RALIGN',
+    label: 'not right-aligned with',
+    group: 'e) collocation',
+    tip: 'Filters the first pair so that its span must not right-align with the one defined by the second pair: A can end with or before B, but not after B',
     args: [
       {
         value: 'n',
@@ -462,9 +660,12 @@ export class QueryBuilder {
     // validate args in loc-operators
     let argErrors: string[] = [];
     entries
-      .filter((e) => QueryBuilder.isLocOperator(e.operator))
+      .filter((e) => QueryBuilder.isLocOperator(e.operator?.value))
       .forEach((e) => {
-        if (e.operator === 'INSIDE' || e.operator === 'NOT INSIDE') {
+        if (
+          e.operator?.value === 'INSIDE' ||
+          e.operator?.value === 'NOT INSIDE'
+        ) {
           if (!this.validateInsideLikeOp(e)) {
             argErrors.push(e.error!);
           }
@@ -497,7 +698,7 @@ export class QueryBuilder {
       default:
         // first entry can be only pair/(
         let entry = entries[0];
-        if (!entry.pair && entry.operator !== '(') {
+        if (!entry.pair && entry.operator?.value !== '(') {
           entries[0].error = 'Expected pair or (';
           break;
         }
@@ -515,10 +716,10 @@ export class QueryBuilder {
           entry = entries[i];
           const prevEntry = entries[i - 1];
 
-          switch (entry.operator) {
+          switch (entry.operator?.value) {
             case '(':
               depth++;
-              if (prevEntry.pair || prevEntry.operator === '(') {
+              if (prevEntry.pair || prevEntry.operator?.value === '(') {
                 entry.error = 'Unexpected entry type';
                 break;
               }
@@ -529,18 +730,18 @@ export class QueryBuilder {
               break;
             case ')':
               depth--;
-              if (!prevEntry.pair && prevEntry.operator !== ')') {
+              if (!prevEntry.pair && prevEntry.operator?.value !== ')') {
                 entry.error = 'Unexpected entry type';
               }
               break;
             case 'AND':
             case 'OR':
             case 'AND NOT':
-              if (!this._isDocument && entry.operator === 'AND NOT') {
+              if (!this._isDocument && entry.operator?.value === 'AND NOT') {
                 entry.error = 'AND NOT is allowed only in document scope';
                 break;
               }
-              if (!prevEntry.pair && prevEntry.operator !== ')') {
+              if (!prevEntry.pair && prevEntry.operator?.value !== ')') {
                 entry.error = 'Unexpected entry type';
                 break;
               }
@@ -609,7 +810,7 @@ export class QueryBuilder {
         : undefined;
       if (prevEntry && prevEntry.pair) {
         entries.push({
-          operator: 'AND',
+          operator: QUERY_OP_DEFS.find((op) => op.value === 'AND')!,
         });
       }
     }
@@ -740,7 +941,7 @@ export class QueryBuilder {
     }
 
     // s cannot be used with NOT
-    if (entry.opArgs['s'] && entry.operator?.startsWith('NOT ')) {
+    if (entry.opArgs['s'] && entry.operator?.value.startsWith('NOT ')) {
       entry.error = 'Argument s cannot be used with NOT.';
     }
     return entry.error ? true : false;
@@ -770,7 +971,7 @@ export class QueryBuilder {
     }
 
     // s cannot be used with NOT
-    if (entry.opArgs['s'] && entry.operator?.startsWith('NOT ')) {
+    if (entry.opArgs['s'] && entry.operator?.value.startsWith('NOT ')) {
       entry.error = 'Argument s cannot be used with NOT.';
     }
 
@@ -800,11 +1001,14 @@ export class QueryBuilder {
   }
 
   private appendLocOp(entry: QueryBuilderEntry, sb: string[]) {
-    sb.push(entry.operator!);
+    sb.push(entry.operator!.value);
     sb.push('(');
 
     let keys: string[];
-    if (entry.operator === 'INSIDE' || entry.operator === 'NOT INSIDE') {
+    if (
+      entry.operator!.value === 'INSIDE' ||
+      entry.operator!.value === 'NOT INSIDE'
+    ) {
       // ns,ms,ne,me,(s)
       keys = ['ns', 'ms', 'ne', 'me', 's'];
     } else {
@@ -859,11 +1063,11 @@ export class QueryBuilder {
           sb.push(clause.operator.value);
           sb.push(`"${clause.value}"`);
         } else {
-          if (QueryBuilder.isLocOperator(entries[i].operator)) {
+          if (QueryBuilder.isLocOperator(entries[i].operator?.value)) {
             this.appendLocOp(entries[i], sb);
           } else {
-            // TODO treshold for fuzzy
-            sb.push(entries[i].operator!);
+            // TODO treshold for fuzzy (the only pair op with args)
+            sb.push(entries[i].operator!.value);
           }
         }
       }

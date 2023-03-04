@@ -1,1 +1,76 @@
-<p>query-op-args works!</p>
+<form [formGroup]="form" (submit)="save()">
+  <div formArrayName="args" *ngIf="arguments.controls.length">
+    <fieldset>
+      <legend>{{ args?.definition?.label }} arguments</legend>
+      <div
+        *ngFor="
+          let g of arguments.controls;
+          let i = index;
+          let first = first;
+          let last = last
+        "
+      >
+        <!-- child form -->
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <mat-label>{{ $any(g)["controls"].op.value.label }}</mat-label>
+            <input
+              matInput
+              formControlName="value"
+              placeholder="value"
+              [type]="$any(g)['controls'].op.value.numeric ? 'number' : 'text'"
+            />
+            <mat-error
+              *ngIf="
+                $any(g)['controls'].value.errors?.required &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
+              "
+              >value required</mat-error
+            >
+            <mat-error
+              *ngIf="
+                $any(g)['controls'].value.errors?.maxLength &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
+              "
+              >value too long</mat-error
+            >
+            <mat-error
+              *ngIf="
+                $any(g)['controls'].value.errors?.min &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
+              "
+              >value too low</mat-error
+            >
+            <mat-error
+              *ngIf="
+                $any(g)['controls'].value.errors?.max &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
+              "
+              >value too big</mat-error
+            >
+            <mat-error
+              *ngIf="
+                $any(g)['controls'].value.errors?.pattern &&
+                ($any(g)['controls'].value.dirty ||
+                  $any(g)['controls'].value.touched)
+              "
+              >invalid value</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div>
+    <button type="button" mat-icon-button color="warn" (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button type="submit" mat-icon-button color="primary">
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+</form>

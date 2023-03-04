@@ -1,8 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { QueryBuilderTermDef } from '../../query-builder';
 
+/**
+ * Query operator's arguments as edited by QueryOpArgsComponent.
+ */
 export interface QueryOpArgs {
   definition: QueryBuilderTermDef;
   values?: { [key: string]: string };
@@ -18,6 +21,9 @@ export interface QueryOpArgs {
 })
 export class QueryOpArgsComponent {
   private _args?: QueryOpArgs;
+
+  public arguments: FormArray;
+  public form: FormGroup;
 
   /**
    * The arguments definitions and their values. Values are edited
@@ -35,12 +41,18 @@ export class QueryOpArgsComponent {
     this.updateForm();
   }
 
-  public arguments: FormArray;
-  public form: FormGroup;
+  @Output()
+  public argsChange: EventEmitter<QueryOpArgs>;
+
+  @Output()
+  public editorClose: EventEmitter<any>;
 
   constructor(private _formBuilder: FormBuilder) {
     this.arguments = _formBuilder.array([]);
     this.form = _formBuilder.group({ arguments: this.arguments });
+    // events
+    this.argsChange = new EventEmitter<QueryOpArgs>();
+    this.editorClose = new EventEmitter<any>();
   }
 
   private updateForm(): void {
@@ -52,7 +64,6 @@ export class QueryOpArgsComponent {
     }
 
     const args = this._args.definition.args;
-
     for (let i = 0; i < args.length; i++) {
       const validators = [];
       if (args[i].required) {
@@ -68,7 +79,9 @@ export class QueryOpArgsComponent {
         validators.push(Validators.min(+args[i].max!));
       }
       const g = this._formBuilder.group({
+        // op is just to hold the operator's definition
         op: this._formBuilder.control(args[i]),
+        // value is the operator's value
         value: this._formBuilder.control(
           this._args.values![args[i].value],
           validators
@@ -94,7 +107,15 @@ export class QueryOpArgsComponent {
     return values;
   }
 
+  public close(): void {
+    this.editorClose.emit();
+  }
+
   public save(): void {
-    // TODO
+    const values = this.getValues();
+    this.argsChange.emit({
+      definition: this._args!.definition,
+      values: values,
+    });
   }
 }
