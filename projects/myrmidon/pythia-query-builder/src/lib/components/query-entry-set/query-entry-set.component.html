@@ -2,6 +2,15 @@
   <button type="button" color="primary" mat-flat-button (click)="addEntry()">
     <mat-icon>add_circle</mat-icon> entry
   </button>
+  <button
+    type="button"
+    color="warn"
+    mat-icon-button
+    (click)="reset()"
+    matTooltip="Delete all the entries"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
 </div>
 <table>
   <tbody>
@@ -62,8 +71,12 @@
         </button>
       </td>
       <ng-container *ngIf="e.clause; else nonClause">
-        <td [class.error]="e.error" class="attr">{{ e.clause.attribute.label }}</td>
-        <td [class.error]="e.error" class="op">{{ e.clause.operator.label }}</td>
+        <td [class.error]="e.error" class="attr">
+          {{ e.clause.attribute.label }}
+        </td>
+        <td [class.error]="e.error" class="op">
+          {{ e.clause.operator.label }}
+        </td>
         <td [class.error]="e.error" class="value">{{ e.clause.value }}</td>
       </ng-container>
       <ng-template #nonClause>

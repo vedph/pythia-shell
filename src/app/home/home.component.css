@@ -1,0 +1,29 @@
+div#container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "text text"
+    "builder stats";
+  gap: 8px;
+}
+div#text {
+  grid-area: text;
+}
+div#builder {
+  grid-area: builder;
+}
+div#stats {
+  grid-area: stats;
+}
+/* lt-md */
+@media only screen and (max-width: 959px) {
+  div#container {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "builder"
+      "stats";
+  }
+}

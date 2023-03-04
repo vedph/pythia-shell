@@ -5,13 +5,22 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      Welcome to the Pythia demo. This is a minimalist frontend to demo the main
-      features of the Pythia search engine.
-    </p>
-    <!-- <h3>Statistics</h3>
-    <pythia-stats></pythia-stats> -->
-
-    <pythia-query-builder></pythia-query-builder>
+    <div id="container">
+      <div id="text">
+        <p>
+          Welcome to the Pythia demo. This is a minimalist frontend to demo the
+          main features of the Pythia search engine. Here you can see the query
+          builder UI, which can give you an idea of the text engine features;
+          and some summary statistics about the contents of the underlying
+          database.
+        </p>
+      </div>
+      <div id="builder">
+        <pythia-query-builder></pythia-query-builder>
+      </div>
+      <div id="stats">
+        <pythia-stats></pythia-stats>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>

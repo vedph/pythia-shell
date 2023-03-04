@@ -136,4 +136,8 @@ export class QueryEntrySetComponent implements OnInit, OnDestroy {
   public moveEntryDown(index: number): void {
     this._builder.moveEntryDown(index);
   }
+
+  public reset(): void {
+    this._builder.reset();
+  }
 }
