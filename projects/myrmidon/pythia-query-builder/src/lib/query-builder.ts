@@ -804,11 +804,11 @@ export class QueryBuilder {
     }
 
     // prepend entry-related errors
-    errors.splice(
-      0,
-      0,
-      ...entries.filter((e) => e.error).map((e, i) => `#${i + 1}: ${e.error}`)
-    );
+    for (let i = 0; i < entries.length; i++) {
+      if (entries[i].error) {
+        errors.push(`#${i + 1}: ${entries[i].error}`);
+      }
+    }
 
     return errors;
   }
