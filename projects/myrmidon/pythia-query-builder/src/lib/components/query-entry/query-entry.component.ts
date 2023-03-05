@@ -31,19 +31,6 @@ interface GroupedQueryBuilderTermDefs {
 }
 
 /**
- * Used only in this component to let user select entry type.
- */
-const ENTRY_TYPES: QueryBuilderTermDef[] = [
-  {
-    value: '-',
-    label: 'pair',
-    group: '',
-  },
-  ...QUERY_OP_DEFS,
-  ...QUERY_LOCATION_OP_DEFS,
-];
-
-/**
  * Query entry editor component. This edits a clause or just a logical term
  * like logical operators or brackets.
  */
@@ -67,9 +54,27 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public args: FormControl<QueryOpArgs | null>;
   public form: FormGroup;
 
-  public entryTypes = ENTRY_TYPES;
+  /**
+   * Types of entry. Text-specific types are eventually added during init.
+   */
+  public entryTypes = [
+    {
+      value: '-',
+      label: 'pair',
+      group: '',
+    },
+    ...QUERY_OP_DEFS,
+  ];
+
   public opGroups: GroupedQueryBuilderTermDefs;
   public attrGroups: GroupedQueryBuilderTermDefs;
+
+  /**
+   * True if this entry editor should target a document rather than text.
+   * This property is meant to set only once.
+   */
+  @Input()
+  public isDocument?: boolean;
 
   /**
    * The attributes definitions to use. This is meant to be set only once.
@@ -113,7 +118,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   @Output()
   public editorClose: EventEmitter<any>;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder) {
     this._subs = [];
     this._attrDefinitions = [];
     this.attrGroups = {};
@@ -122,14 +127,14 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       'group'
     ) as GroupedQueryBuilderTermDefs;
     // pair form
-    this.attribute = _formBuilder.control(null, Validators.required);
-    this.operator = _formBuilder.control(null, Validators.required);
-    this.value = _formBuilder.control('', {
+    this.attribute = formBuilder.control(null, Validators.required);
+    this.operator = formBuilder.control(null, Validators.required);
+    this.value = formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
       nonNullable: true,
     });
-    this.pairArgs = _formBuilder.control(null);
-    this.pairForm = _formBuilder.group({
+    this.pairArgs = formBuilder.control(null);
+    this.pairForm = formBuilder.group({
       attribute: this.attribute,
       operator: this.operator,
       value: this.value,
@@ -137,9 +142,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     });
 
     // main form
-    this.type = _formBuilder.control(ENTRY_TYPES[0], { nonNullable: true });
-    this.args = _formBuilder.control(null);
-    this.form = _formBuilder.group({
+    this.type = formBuilder.control(this.entryTypes[0], { nonNullable: true });
+    this.args = formBuilder.control(null);
+    this.form = formBuilder.group({
       type: this.type,
       args: this.args,
       clause: this.pairForm,
@@ -160,6 +165,12 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    // configure according to target
+    if (!this.isDocument) {
+      // if not a document, add location operators
+      this.entryTypes = [...this.entryTypes, ...QUERY_LOCATION_OP_DEFS];
+    }
+
     // when type changes, enable or disable pair form and setup type args
     this._subs.push(
       this.type.valueChanges.pipe(distinctUntilChanged()).subscribe((def) => {
@@ -188,9 +199,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     // set entry type
     this.type.setValue(
       entry.pair
-        ? ENTRY_TYPES[0]
-        : ENTRY_TYPES.find((t) => t.value === entry.operator?.value) ||
-            ENTRY_TYPES[0]
+        ? this.entryTypes[0]
+        : this.entryTypes.find((t) => t.value === entry.operator?.value) ||
+            this.entryTypes[0]
     );
 
     // set pair form
