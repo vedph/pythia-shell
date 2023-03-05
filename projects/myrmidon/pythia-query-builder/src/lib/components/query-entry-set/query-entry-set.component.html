@@ -80,7 +80,7 @@
         <td [class.error]="e.error" class="value">{{ e.pair.value }}</td>
       </ng-container>
       <ng-template #nonClause>
-        <td class="non-clause" [class.error]="e.error">{{ e.operator }}</td>
+        <td class="non-clause" [class.error]="e.error">{{ e.operator?.label }}</td>
         <td [class.error]="e.error"></td>
         <td [class.error]="e.error"></td>
       </ng-template>
