@@ -48,76 +48,96 @@ export interface QueryBuilderTermDef {
   group?: string;
   args?: QueryBuilderTermDefArg[];
   tip?: string;
+  document?: boolean;
 }
 
 //#region constants
 /**
  * Privileged attributes for documents.
  */
-export const QUERY_DOC_ATTRS: QueryBuilderTermDef[] = [
+export const QUERY_DOC_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'author',
     label: 'author',
+    group: 'document',
+    document: true,
   },
   {
     value: 'title',
     label: 'title',
+    group: 'document',
+    document: true,
   },
   {
     value: 'date_value',
     label: 'date',
+    group: 'document',
+    document: true,
   },
   {
     value: 'sort_key',
     label: 'sort key',
+    group: 'document',
+    document: true,
   },
   {
     value: 'source',
     label: 'source',
+    group: 'document',
+    document: true,
   },
   {
     value: 'profile_id',
     label: 'profile',
+    group: 'document',
+    document: true,
   },
 ];
 
 /**
  * Privileged attributes for tokens.
  */
-export const QUERY_TOK_ATTRS: QueryBuilderTermDef[] = [
+export const QUERY_TOK_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'value',
     label: 'value',
+    group: 'token',
   },
   {
     value: 'language',
     label: 'language',
+    group: 'token',
   },
   {
     value: 'position',
     label: 'position',
+    group: 'token',
   },
   {
     value: 'length',
     label: 'length',
+    group: 'token',
   },
 ];
 
 /**
  * Privileged attributes for structures.
  */
-export const QUERY_STRUCT_ATTRS: QueryBuilderTermDef[] = [
+export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'name',
     label: 'name',
+    group: 'structure',
   },
   {
     value: 'start_position',
     label: 'start',
+    group: 'structure',
   },
   {
     value: 'end_position',
     label: 'end',
+    group: 'structure',
   },
 ];
 
@@ -226,6 +246,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'AND NOT',
     label: 'AND NOT',
     group: 'a) logical',
+    document: true
   },
   {
     value: '(',

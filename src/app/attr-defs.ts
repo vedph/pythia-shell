@@ -1,4 +1,9 @@
-import { QueryBuilderTermDef } from 'projects/myrmidon/pythia-query-builder/src/public-api';
+import { QUERY_DOC_ATTR_DEFS } from '@myrmidon/pythia-query-builder';
+import {
+  QueryBuilderTermDef,
+  QUERY_STRUCT_ATTR_DEFS,
+  QUERY_TOK_ATTR_DEFS,
+} from 'projects/myrmidon/pythia-query-builder/src/public-api';
 
 /**
  * List of attributes come from:
@@ -15,49 +20,238 @@ import { QueryBuilderTermDef } from 'projects/myrmidon/pythia-query-builder/src/
  */
 export const ATTR_DEFS: QueryBuilderTermDef[] = [
   // document
-  { value: 'atto', label: 'act', group: 'c) document' },
-  { value: 'data', label: 'date', group: 'c) document' },
-  { value: 'giudicante', label: 'judge', group: 'c) document' },
-  { value: 'grado', label: 'degree', group: 'c) document' },
-  { value: 'gruppo-atto', label: 'doc. group', group: 'c) document' },
-  { value: 'gruppo-nr', label: 'group nr.', group: 'c) document' },
-  { value: 'id', label: 'ID', group: 'c) document' },
-  { value: 'materia', label: 'subject', group: 'c) document' },
-  { value: 'nascita-avv', label: 'birth year', group: 'c) document', tip: 'Author\'s birth year.' },
-  { value: 'sede-giudicante', label: 'judgement place', group: 'c) document' },
-  { value: 'sede-raccolta', label: 'collection place', group: 'c) document' },
-  { value: 'sesso-avv', label: 'sex', group: 'c) document', tip: 'Author\'s sex: M, F, X.' },
+  ...QUERY_DOC_ATTR_DEFS,
+  {
+    value: 'atto',
+    label: 'act',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'data',
+    label: 'date',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'giudicante',
+    label: 'judge',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'grado',
+    label: 'degree',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'gruppo-atto',
+    label: 'doc. group',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'gruppo-nr',
+    label: 'group nr.',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'id',
+    label: 'ID',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'materia',
+    label: 'subject',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'nascita-avv',
+    label: 'birth year',
+    group: 'document',
+    tip: "Author's birth year.",
+    document: true
+  },
+  {
+    value: 'sede-giudicante',
+    label: 'judgement place',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'sede-raccolta',
+    label: 'collection place',
+    group: 'document',
+    document: true
+  },
+  {
+    value: 'sesso-avv',
+    label: 'sex',
+    group: 'document',
+    tip: "Author's sex: M, F, X.",
+    document: true
+  },
   // occurrence
-  { value: 'abbr', label: 'abbreviation', group: 'a) text' },
-  { value: 'address', label: 'address', group: 'a) text' },
-  { value: 'b', label: 'bold', group: 'a) text' },
-  { value: 'clitic', label: 'clitic', group: 'b) POS' },
-  { value: 'definite', label: 'definite', group: 'b) POS' },
-  { value: 'degree', label: 'degree', group: 'b) POS' },
-  { value: 'deprel', label: 'deprel', group: 'b) POS' },
-  { value: 'email', label: 'email', group: 'a) text' },
-  { value: 'foreign', label: 'foreign', group: 'a) text' },
-  { value: 'gender', label: 'gender', group: 'b) POS' },
-  { value: 'i', label: 'italic', group: 'a) text' },
-  { value: 'lemma', label: 'lemma', group: 'b) POS' },
-  { value: 'len', label: 'length', group: 'a) text' },
-  { value: 'mood', label: 'mood', group: 'b) POS' },
-  { value: 'n', label: 'digits', group: 'a) text' },
-  { value: 'number', label: 'number', group: 'b) POS' },
-  { value: 'numtype', label: 'number type', group: 'b) POS' },
-  { value: 'org-f', label: 'org.name, f.', group: 'a) text' },
-  { value: 'org-m', label: 'org.name, m.', group: 'a) text' },
-  { value: 'person', label: 'person', group: 'a) text' },
-  { value: 'pn-f', label: 'person name, f.', group: 'a) text' },
-  { value: 'pn-m', label: 'person name, m.', group: 'a) text' },
-  { value: 'pn-s', label: 'surname', group: 'a) text' },
-  { value: 'polarity', label: 'polarity', group: 'b) POS' },
-  { value: 'poss', label: 'poss', group: 'b) POS' },
-  { value: 'prontype', label: 'prontype', group: 'b) POS' },
-  { value: 'tense', label: 'tense', group: 'b) POS' },
-  { value: 'tn', label: 'toponym', group: 'a) text' },
-  { value: 'upos', label: 'upos', group: 'b) POS' },
-  { value: 'verbform', label: 'verbform', group: 'b) POS' },
+  ...QUERY_TOK_ATTR_DEFS,
+  {
+    value: 'abbr',
+    label: 'abbreviation',
+    group: 'token',
+  },
+  {
+    value: 'address',
+    label: 'address',
+    group: 'token',
+  },
+  {
+    value: 'b',
+    label: 'bold',
+    group: 'token',
+  },
+  {
+    value: 'clitic',
+    label: 'clitic',
+    group: 'pos',
+  },
+  {
+    value: 'definite',
+    label: 'definite',
+    group: 'pos',
+  },
+  {
+    value: 'degree',
+    label: 'degree',
+    group: 'pos',
+  },
+  {
+    value: 'deprel',
+    label: 'deprel',
+    group: 'pos',
+  },
+  {
+    value: 'email',
+    label: 'email',
+    group: 'token',
+  },
+  {
+    value: 'foreign',
+    label: 'foreign',
+    group: 'token',
+  },
+  {
+    value: 'gender',
+    label: 'gender',
+    group: 'pos',
+  },
+  {
+    value: 'i',
+    label: 'italic',
+    group: 'token',
+  },
+  {
+    value: 'lemma',
+    label: 'lemma',
+    group: 'pos',
+  },
+  {
+    value: 'len',
+    label: 'length',
+    group: 'token',
+  },
+  {
+    value: 'mood',
+    label: 'mood',
+    group: 'pos',
+  },
+  {
+    value: 'n',
+    label: 'digits',
+    group: 'token',
+  },
+  {
+    value: 'number',
+    label: 'number',
+    group: 'pos',
+  },
+  {
+    value: 'numtype',
+    label: 'number type',
+    group: 'pos',
+  },
+  {
+    value: 'org-f',
+    label: 'org.name, f.',
+    group: 'token',
+  },
+  {
+    value: 'org-m',
+    label: 'org.name, m.',
+    group: 'token',
+  },
+  {
+    value: 'person',
+    label: 'person',
+    group: 'token',
+  },
+  {
+    value: 'pn-f',
+    label: 'person name, f.',
+    group: 'token',
+  },
+  {
+    value: 'pn-m',
+    label: 'person name, m.',
+    group: 'token',
+  },
+  {
+    value: 'pn-s',
+    label: 'surname',
+    group: 'token',
+  },
+  {
+    value: 'polarity',
+    label: 'polarity',
+    group: 'pos',
+  },
+  {
+    value: 'poss',
+    label: 'poss',
+    group: 'pos',
+  },
+  {
+    value: 'prontype',
+    label: 'prontype',
+    group: 'pos',
+  },
+  {
+    value: 'tense',
+    label: 'tense',
+    group: 'pos',
+  },
+  {
+    value: 'tn',
+    label: 'toponym',
+    group: 'token',
+  },
+  {
+    value: 'upos',
+    label: 'upos',
+    group: 'pos',
+  },
+  {
+    value: 'verbform',
+    label: 'verbform',
+    group: 'pos',
+  },
   // structure
-  { value: 'p', label: 'paragraph', group: 'structure' },
+  ...QUERY_STRUCT_ATTR_DEFS,
+  {
+    value: 'p',
+    label: 'paragraph',
+    group: 'structure',
+  },
 ];

@@ -121,11 +121,11 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   constructor(formBuilder: FormBuilder) {
     this._subs = [];
     this._attrDefinitions = [];
-    this.attrGroups = {};
     this.opGroups = this.groupByKey(
       QUERY_PAIR_OP_DEFS,
       'group'
     ) as GroupedQueryBuilderTermDefs;
+    this.attrGroups = {};
     // pair form
     this.attribute = formBuilder.control(null, Validators.required);
     this.operator = formBuilder.control(null, Validators.required);
@@ -168,7 +168,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     // configure according to target
     if (!this.isDocument) {
       // if not a document, add location operators
-      this.entryTypes = [...this.entryTypes, ...QUERY_LOCATION_OP_DEFS];
+      this.entryTypes = [...this.entryTypes, ...QUERY_LOCATION_OP_DEFS].filter(
+        (d) => !d.document
+      );
     }
 
     // when type changes, enable or disable pair form and setup type args

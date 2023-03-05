@@ -32,6 +32,7 @@
           <mat-optgroup
             *ngFor="let kv of attrGroups | keyvalue"
             [label]="kv.key"
+            style="font-weight: bold"
           >
             <mat-option *ngFor="let d of kv.value" [value]="d">{{
               d.label
@@ -53,7 +54,7 @@
         <mat-label>operator</mat-label>
         <mat-select [formControl]="operator">
           <mat-optgroup
-            class="opt-group"
+            style="font-weight: bold"
             *ngFor="let kv of opGroups | keyvalue"
             [label]="kv.key"
           >

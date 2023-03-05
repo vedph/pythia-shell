@@ -28,6 +28,8 @@ export class QueryBuilderComponent {
   public docSet: QueryEntrySet;
 
   public hasErrors: boolean;
+  public readonly attrDefinitions: QueryBuilderTermDef[];
+  public readonly docAttrDefinitions: QueryBuilderTermDef[];
 
   /**
    * Emitted whenever a query is built.
@@ -37,13 +39,15 @@ export class QueryBuilderComponent {
 
   constructor(
     @Inject(QUERY_BUILDER_ATTR_DEFS_KEY)
-    public attrDefinitions: QueryBuilderTermDef[]
+    attrDefinitions: QueryBuilderTermDef[]
   ) {
     this._queryBuilder = new QueryBuilder();
     this.hasErrors = true;
     this.set = { entries: [] };
     this.corpora = [];
     this.docSet = { entries: [] };
+    this.attrDefinitions = attrDefinitions.filter((d) => !d.document);
+    this.docAttrDefinitions = attrDefinitions.filter((d) => d.document);
     // events
     this.queryChange = new EventEmitter<string>();
   }
