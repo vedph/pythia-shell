@@ -83,13 +83,13 @@ export class QueryOpArgsComponent {
         op: this._formBuilder.control(args[i]),
         // value is the operator's value
         value: this._formBuilder.control(
-          this._args.values![args[i].value],
+          this._args.values ? this._args.values[args[i].value] : null,
           validators
         ),
       });
       this.arguments.push(g);
-      this.arguments.enable();
     }
+    this.arguments.enable();
 
     this.form.markAsPristine();
   }
@@ -113,9 +113,10 @@ export class QueryOpArgsComponent {
 
   public save(): void {
     const values = this.getValues();
-    this.argsChange.emit({
+    this._args = {
       definition: this._args!.definition,
       values: values,
-    });
+    };
+    this.argsChange.emit(this._args);
   }
 }

@@ -6,3 +6,12 @@ fieldset {
 legend {
   color: silver;
 }
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-row * {
+  flex: 0 0 auto;
+}

@@ -13,9 +13,11 @@
         >type required</mat-error
       >
     </mat-form-field>
+    <p style="color: silver; font-size: 95%">{{ type.value.tip }}</p>
   </div>
   <!-- args -->
   <pythia-query-op-args
+    *ngIf="type.value.args"
     [args]="args.value"
     (argsChange)="onArgsChange($event)"
   ></pythia-query-op-args>
@@ -89,6 +91,7 @@
 
     <!-- pairArgs -->
     <pythia-query-op-args
+      *ngIf="operator.value?.args"
       [args]="pairArgs.value"
       (argsChange)="onPairArgsChange($event)"
     ></pythia-query-op-args>

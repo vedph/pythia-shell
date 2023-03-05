@@ -17,6 +17,7 @@ import { distinctUntilChanged, Subscription } from 'rxjs';
 import {
   QueryBuilderEntry,
   QueryBuilderTermDef,
+  QUERY_LOCATION_OP_DEFS,
   QUERY_OP_DEFS,
   QUERY_PAIR_OP_DEFS,
 } from '../../query-builder';
@@ -39,6 +40,7 @@ const ENTRY_TYPES: QueryBuilderTermDef[] = [
     group: '',
   },
   ...QUERY_OP_DEFS,
+  ...QUERY_LOCATION_OP_DEFS,
 ];
 
 /**
@@ -158,13 +160,17 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    // when type changes, enable or disable pair form
+    // when type changes, enable or disable pair form and setup type args
     this._subs.push(
       this.type.valueChanges.pipe(distinctUntilChanged()).subscribe((def) => {
-        if (def.value) {
+        if (def.value === '-') {
           this.pairForm.enable();
         } else {
           this.pairForm.disable();
+          this.args.setValue({
+            definition: def,
+            values: this.args.value?.values,
+          });
         }
       })
     );
