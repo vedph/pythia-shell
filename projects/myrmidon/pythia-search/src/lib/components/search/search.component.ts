@@ -96,6 +96,12 @@ export class SearchComponent implements OnInit {
     this.search();
   }
 
+  public onQueryChange(query: string): void {
+    this.query.setValue(query);
+    this._repository.addToHistory(query);
+    this._repository.search(query);
+  }
+
   public readDocument(id: number) {
     this._repository.setReadRequest({
       documentId: id,

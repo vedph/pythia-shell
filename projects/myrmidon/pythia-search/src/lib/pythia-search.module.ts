@@ -11,12 +11,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NgToolsModule } from '@myrmidon/ng-tools';
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
 import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
+import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
 import { SearchComponent } from './components/search/search.component';
@@ -39,11 +41,13 @@ import { SearchComponent } from './components/search/search.component';
     MatPaginatorModule,
     MatProgressBarModule,
     MatSelectModule,
+    MatTabsModule,
     MatTooltipModule,
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,
     PythiaDocumentReaderModule,
+    PythiaQueryBuilderModule,
     PythiaUiModule,
     NgToolsModule
   ],

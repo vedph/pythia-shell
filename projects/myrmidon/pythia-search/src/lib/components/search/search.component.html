@@ -1,59 +1,76 @@
 <div id="container">
   <!-- query -->
-  <form id="query" [formGroup]="form" (submit)="search()">
-    <mat-form-field style="width: 100%">
-      <mat-label>query</mat-label>
-      <textarea
-        #queryCtl
-        rows="3"
-        matInput
-        [formControl]="query"
-        (keyup.control.enter)="searchByEnter($any($event))"
-      ></textarea>
-      <mat-hint>ctrl+Enter to submit</mat-hint>
-      <mat-error
-        *ngIf="$any(query).errors?.required && (query.dirty || query.touched)"
-        >query required</mat-error
-      >
-      <mat-error
-        *ngIf="$any(query).errors?.maxLength && (query.dirty || query.touched)"
-        >query too long</mat-error
-      >
-    </mat-form-field>
+  <div id="query">
+    <mat-tab-group>
+      <mat-tab label="advanced">
+        <form [formGroup]="form" (submit)="search()">
+          <mat-form-field style="width: 100%">
+            <mat-label>query</mat-label>
+            <textarea
+              #queryCtl
+              rows="3"
+              matInput
+              [formControl]="query"
+              (keyup.control.enter)="searchByEnter($any($event))"
+            ></textarea>
+            <mat-hint>ctrl+Enter to submit</mat-hint>
+            <mat-error
+              *ngIf="
+                $any(query).errors?.required && (query.dirty || query.touched)
+              "
+              >query required</mat-error
+            >
+            <mat-error
+              *ngIf="
+                $any(query).errors?.maxLength && (query.dirty || query.touched)
+              "
+              >query too long</mat-error
+            >
+          </mat-form-field>
 
-    <div class="form-row">
-      <!-- submit -->
-      <button
-        style="margin-top: -24px"
-        type="submit"
-        color="primary"
-        mat-flat-button
-        [disabled]="form.invalid || (loading$ | async)"
-      >
-        <mat-icon>search</mat-icon> search
-      </button>
+          <div class="form-row">
+            <!-- submit -->
+            <button
+              style="margin-top: -24px"
+              type="submit"
+              color="primary"
+              mat-flat-button
+              [disabled]="form.invalid || (loading$ | async)"
+            >
+              <mat-icon>search</mat-icon> search
+            </button>
 
-      <!-- history -->
-      <mat-form-field *ngIf="lastQueries$ | async as queries">
-        <mat-label>history</mat-label>
-        <mat-select [formControl]="history">
-          <mat-option *ngFor="let q of queries" [value]="q">{{ q }}</mat-option>
-        </mat-select>
-        <button
-          mat-icon-button
-          matSuffix
-          [attr.aria-label]="'Pick the selected query'"
-          (click)="pickHistory()"
-        >
-          <mat-icon>check_circle</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
+            <!-- history -->
+            <mat-form-field *ngIf="lastQueries$ | async as queries">
+              <mat-label>history</mat-label>
+              <mat-select [formControl]="history">
+                <mat-option *ngFor="let q of queries" [value]="q">{{
+                  q
+                }}</mat-option>
+              </mat-select>
+              <button
+                mat-icon-button
+                matSuffix
+                [attr.aria-label]="'Pick the selected query'"
+                (click)="pickHistory()"
+              >
+                <mat-icon>check_circle</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
 
-    <div *ngIf="loading$ | async">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
-  </form>
+          <div *ngIf="loading$ | async">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="builder">
+        <pythia-query-builder
+          (queryChange)="onQueryChange($event)"
+        ></pythia-query-builder>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 
   <!-- results -->
   <div id="results" *ngIf="pagination$ | async as pagination">
