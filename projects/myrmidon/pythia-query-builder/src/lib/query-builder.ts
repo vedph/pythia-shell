@@ -1056,19 +1056,25 @@ export class QueryBuilder {
     for (let i = 0; i < entries.length; i++) {
       if (i > 0) {
         sb.push(' ');
-        if (entries[i].pair) {
-          const clause = entries[i].pair!;
-          sb.push('[');
-          sb.push(clause.attribute.value);
-          sb.push(clause.operator.value);
-          sb.push(`"${clause.value}"`);
+      }
+      if (entries[i].pair) {
+        const pair = entries[i].pair!;
+        sb.push('[');
+        sb.push(pair.attribute.value);
+        sb.push(pair.operator.value);
+        sb.push(`"${pair.value}"`);
+        // special case for fuzzy (the only pair op with args):
+        // syntax there is like [value%="chommoda:0.75"]
+        if (pair.operator.value === '%=' && pair.opArgs && pair.opArgs['t']) {
+          sb.push(':');
+          sb.push(pair.opArgs['t']);
+        }
+        sb.push(']');
+      } else {
+        if (QueryBuilder.isLocOperator(entries[i].operator?.value)) {
+          this.appendLocOp(entries[i], sb);
         } else {
-          if (QueryBuilder.isLocOperator(entries[i].operator?.value)) {
-            this.appendLocOp(entries[i], sb);
-          } else {
-            // TODO treshold for fuzzy (the only pair op with args)
-            sb.push(entries[i].operator!.value);
-          }
+          sb.push(entries[i].operator!.value);
         }
       }
     }

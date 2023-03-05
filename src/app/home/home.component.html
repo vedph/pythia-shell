@@ -16,7 +16,10 @@
         </p>
       </div>
       <div id="builder">
-        <pythia-query-builder></pythia-query-builder>
+        <pythia-query-builder
+          (queryChange)="onQueryChange($event)"
+        ></pythia-query-builder>
+        <pre *ngIf="query">{{ query }}</pre>
       </div>
       <div id="stats">
         <pythia-stats></pythia-stats>

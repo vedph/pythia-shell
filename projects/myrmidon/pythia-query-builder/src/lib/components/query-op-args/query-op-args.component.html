@@ -12,7 +12,7 @@
       >
         <!-- child form -->
         <div [formGroupName]="i">
-          <mat-form-field style="width: 9em">
+          <mat-form-field class="arg">
             <mat-label>{{ $any(g)["controls"].op.value.label }}</mat-label>
             <input
               matInput
@@ -64,10 +64,12 @@
       </div>
     </div>
     <div>
-      <button type="button" mat-icon-button color="warn" (click)="close()">
-        <mat-icon>clear</mat-icon>
-      </button>
-      <button type="submit" mat-icon-button color="primary">
+      <button
+        type="submit"
+        mat-icon-button
+        color="primary"
+        [disabled]="form.invalid || form.pristine"
+      >
         <mat-icon>check_circle</mat-icon>
       </button>
     </div>

@@ -93,7 +93,7 @@
   </tbody>
 </table>
 <ul *ngIf="errors$ | async as errors">
-  <li *ngFor="let e of errors" style="color: red">{{ e }}</li>
+  <li *ngFor="let e of errors" class="error">{{ e }}</li>
 </ul>
 <mat-expansion-panel [expanded]="editedEntry" [disabled]="!editedEntry">
   <mat-expansion-panel-header

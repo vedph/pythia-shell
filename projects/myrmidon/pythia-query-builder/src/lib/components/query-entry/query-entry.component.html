@@ -13,7 +13,7 @@
         >type required</mat-error
       >
     </mat-form-field>
-    <p style="color: silver; font-size: 95%">{{ type.value.tip }}</p>
+    <p class="tip">{{ type.value.tip }}</p>
   </div>
   <!-- args -->
   <pythia-query-op-args
@@ -38,7 +38,7 @@
             }}</mat-option>
           </mat-optgroup>
         </mat-select>
-        <mat-hint style="color: silver">{{ attribute.value?.tip }}</mat-hint>
+        <mat-hint>{{ attribute.value?.tip }}</mat-hint>
         <mat-error
           *ngIf="
             $any(attribute).errors?.required &&
@@ -62,7 +62,7 @@
             }}</mat-option>
           </mat-optgroup>
         </mat-select>
-        <mat-hint style="color: silver">{{ operator.value?.tip }}</mat-hint>
+        <mat-hint>{{ operator.value?.tip }}</mat-hint>
         <mat-error
           *ngIf="
             $any(operator).errors?.required &&

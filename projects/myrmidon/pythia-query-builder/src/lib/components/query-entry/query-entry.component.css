@@ -19,3 +19,10 @@ fieldset {
 legend {
   color: silver;
 }
+.tip {
+  color: silver;
+  font-size: 95%;
+}
+mat-hint {
+  color: silver;
+}

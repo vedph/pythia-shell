@@ -36,3 +36,9 @@ td.error {
 .bar-row * {
   flex: 0 0 auto;
 }
+.error {
+  color: red;
+}
+mat-expansion-panel {
+  border-top: 1px solid silver;
+}

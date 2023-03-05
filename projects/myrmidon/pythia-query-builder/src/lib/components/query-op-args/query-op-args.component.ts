@@ -44,15 +44,11 @@ export class QueryOpArgsComponent {
   @Output()
   public argsChange: EventEmitter<QueryOpArgs>;
 
-  @Output()
-  public editorClose: EventEmitter<any>;
-
   constructor(private _formBuilder: FormBuilder) {
     this.arguments = _formBuilder.array([]);
     this.form = _formBuilder.group({ arguments: this.arguments });
     // events
     this.argsChange = new EventEmitter<QueryOpArgs>();
-    this.editorClose = new EventEmitter<any>();
   }
 
   private updateForm(): void {
@@ -107,10 +103,6 @@ export class QueryOpArgsComponent {
     return values;
   }
 
-  public close(): void {
-    this.editorClose.emit();
-  }
-
   public save(): void {
     const values = this.getValues();
     this._args = {
@@ -118,5 +110,6 @@ export class QueryOpArgsComponent {
       values: values,
     };
     this.argsChange.emit(this._args);
+    this.form.markAsPristine();
   }
 }
