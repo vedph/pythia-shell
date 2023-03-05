@@ -25,75 +25,75 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'atto',
     label: 'act',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'data',
     label: 'date',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'giudicante',
     label: 'judge',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'grado',
     label: 'degree',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'gruppo-atto',
     label: 'doc. group',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'gruppo-nr',
     label: 'group nr.',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'id',
     label: 'ID',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'materia',
     label: 'subject',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'nascita-avv',
     label: 'birth year',
     group: 'document',
     tip: "Author's birth year.",
-    document: true
+    document: true,
   },
   {
     value: 'sede-giudicante',
     label: 'judgement place',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'sede-raccolta',
     label: 'collection place',
     group: 'document',
-    document: true
+    document: true,
   },
   {
     value: 'sesso-avv',
     label: 'sex',
     group: 'document',
     tip: "Author's sex: M, F, X.",
-    document: true
+    document: true,
   },
   // occurrence
   ...QUERY_TOK_ATTR_DEFS,
@@ -116,21 +116,25 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'clitic',
     label: 'clitic',
     group: 'pos',
+    tip: 'Clitic: "yes" if clitic.',
   },
   {
     value: 'definite',
     label: 'definite',
     group: 'pos',
+    tip: 'Definite: "def"inite or "ind"efinite.',
   },
   {
     value: 'degree',
     label: 'degree',
     group: 'pos',
+    tip: 'Degree: "abs"olute or "cmp"=comparative.',
   },
   {
     value: 'deprel',
     label: 'deprel',
     group: 'pos',
+    tip: 'Universal dependency relation.',
   },
   {
     value: 'email',
@@ -146,6 +150,7 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'gender',
     label: 'gender',
     group: 'pos',
+    tip: 'Gender: "masc"uline or "fem"inine.',
   },
   {
     value: 'i',
@@ -166,6 +171,7 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'mood',
     label: 'mood',
     group: 'pos',
+    tip: 'Mood: "cnd"=conditional, "imp"erative, "ind"icative, "sub"junctive.',
   },
   {
     value: 'n',
@@ -176,11 +182,13 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'number',
     label: 'number',
     group: 'pos',
+    tip: 'Number: "sing"ular or "plur"al.',
   },
   {
     value: 'numtype',
     label: 'number type',
     group: 'pos',
+    tip: 'Number type: "ord"inal, "card"inal.',
   },
   {
     value: 'org-f',
@@ -216,21 +224,25 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'polarity',
     label: 'polarity',
     group: 'pos',
+    tip: 'Polarity: "pos"itive or "neg"ative.',
   },
   {
     value: 'poss',
     label: 'poss',
     group: 'pos',
+    tip: 'Possessive: "yes".',
   },
   {
     value: 'prontype',
     label: 'prontype',
     group: 'pos',
+    tip: 'Pronoun type: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".',
   },
   {
     value: 'tense',
     label: 'tense',
     group: 'pos',
+    tip: 'Tense: "fut"ure, "imp"erfect, "past", "pres"ent.',
   },
   {
     value: 'tn',
@@ -241,11 +253,13 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     value: 'upos',
     label: 'upos',
     group: 'pos',
+    tip: 'UDP part of speech: "ADJ", "ADP", "ADV", "AUX", "CCONJ", "DET", "INTJ", "NOUN", "NUM", "PRON", "PROPN", "PUNCT", "SCONJ", "SYM", "VERB", "X".',
   },
   {
     value: 'verbform',
     label: 'verbform',
     group: 'pos',
+    tip: 'Verbal form: "fin"ite, "ger"und, "inf"inite, "part"iciple.'
   },
   // structure
   ...QUERY_STRUCT_ATTR_DEFS,
