@@ -48,6 +48,8 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-03-06: added Italian localization.
+
 ### 1.0.6
 
 - 2023-03-06: added query builder.
