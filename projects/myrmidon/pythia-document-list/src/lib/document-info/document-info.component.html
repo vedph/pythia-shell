@@ -7,23 +7,23 @@
   <table>
     <tbody>
       <tr>
-        <td>date value</td>
+        <td i18n>date value</td>
         <td>{{ document.dateValue }}</td>
       </tr>
       <tr>
-        <td>sort key</td>
+        <td i18n>sort key</td>
         <td>{{ document.sortKey }}</td>
       </tr>
       <tr>
-        <td>source</td>
+        <td i18n>source</td>
         <td>{{ document.source }}</td>
       </tr>
       <tr>
-        <td>profile ID</td>
+        <td i18n>profile ID</td>
         <td>{{ document.profileId }}</td>
       </tr>
       <tr>
-        <td>last modified</td>
+        <td i18n>last modified</td>
         <td>{{ document.lastModified | date: "short" }}</td>
       </tr>
       <tr *ngFor="let a of document.attributes">
@@ -37,21 +37,23 @@
     <button
       type="button"
       mat-flat-button
+      i18n-matTooltip
       matTooltip="Read this document"
       color="primary"
       (click)="read()"
     >
-      <mat-icon>auto_stories</mat-icon> read
+      <mat-icon>auto_stories</mat-icon> <ng-container i18n>read</ng-container>
     </button>
     &nbsp;
     <button
       type="button"
       mat-button
+      i18n-matTooltip
       matTooltip="Close this info"
       color="warn"
       (click)="close()"
     >
-      <mat-icon>cancel</mat-icon> close
+      <mat-icon>cancel</mat-icon> <ng-container i18n>close</ng-container>
     </button>
   </div>
 </fieldset>

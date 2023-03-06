@@ -15,13 +15,13 @@
       <thead>
         <th></th>
         <th></th>
-        <th>id</th>
-        <th>author</th>
-        <th>title</th>
-        <th>date</th>
-        <th class="noif-lt-md">profile</th>
-        <th class="noif-lt-md">source</th>
-        <th class="noif-lt-md">last modified</th>
+        <th i18n>id</th>
+        <th i18n>author</th>
+        <th i18n>title</th>
+        <th i18n>date</th>
+        <th i18n class="noif-lt-md">profile</th>
+        <th i18n class="noif-lt-md">source</th>
+        <th i18n class="noif-lt-md">last modified</th>
       </thead>
       <tbody>
         <tr *ngFor="let item of pagination.data">
@@ -29,6 +29,7 @@
             <button
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="Read this document"
               color="primary"
               (click)="requestRead(item)"
@@ -40,6 +41,7 @@
             <button
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="View document info"
               (click)="selectDocument(item)"
             >
@@ -63,6 +65,7 @@
         type="button"
         mat-icon-button
         color="warn"
+        i18n-matTooltip
         matTooltip="Clear items cache"
         (click)="clearCache()"
       >

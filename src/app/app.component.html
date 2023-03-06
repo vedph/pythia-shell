@@ -10,15 +10,15 @@
         <!-- corpus -->
         <button mat-button [matMenuTriggerFor]="corpusMenu">Corpus</button>
         <mat-menu #corpusMenu>
-          <a mat-menu-item routerLink="/documents">Documents</a>
-          <a mat-menu-item routerLink="/corpora">Corpora</a>
+          <a mat-menu-item routerLink="/documents" i18n>Documents</a>
+          <a mat-menu-item routerLink="/corpora" i18n>Corpora</a>
         </mat-menu>
 
         <!-- index -->
-        <button mat-button [matMenuTriggerFor]="indexMenu">Index</button>
+        <button mat-button [matMenuTriggerFor]="indexMenu" i18n>Index</button>
         <mat-menu #indexMenu>
-          <a mat-menu-item routerLink="/terms">Terms</a>
-          <a mat-menu-item routerLink="/search">Search</a>
+          <a mat-menu-item routerLink="/terms" i18n>Terms</a>
+          <a mat-menu-item routerLink="/search" i18n>Search</a>
         </mat-menu>
       </ng-container>
 
@@ -31,6 +31,7 @@
       >
         <img
           class="avatar"
+          alt="avatar"
           [src]="getGravatarUrl(user.email, 32)"
           [alt]="user.userName"
           [matTooltip]="user.userName"
@@ -38,39 +39,43 @@
         <mat-icon
           class="small-icon"
           *ngIf="user.roles.includes('admin')"
+          i18n-title
           title="admin"
           >build</mat-icon
         >
         <mat-icon
           class="small-icon"
           *ngIf="!user.emailConfirmed"
+          i18n-title
           title="You must verify your email address! Please check your mailbox {{
             user.email
           }}"
           >feedback</mat-icon
         >
-        <button mat-icon-button [mat-menu-trigger-for]="menu">
+        <button type="button" mat-icon-button [mat-menu-trigger-for]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu x-position="before" #menu="matMenu">
           <a
+            i18n
             mat-menu-item
             *ngIf="user.roles.includes('admin')"
             routerLink="/register-user"
             >Register user</a
           >
           <a
+            i18n
             mat-menu-item
             *ngIf="user.roles.includes('admin')"
             routerLink="/manage-users"
             >Manage users</a
           >
-          <a mat-menu-item (click)="logout()">Logout</a>
+          <a mat-menu-item (click)="logout()" i18n>Logout</a>
         </mat-menu>
       </div>
 
       <div *ngIf="!(user$ | async)">
-        <a mat-button routerLink="/login">Login</a>
+        <a mat-button routerLink="/login" i18n>Login</a>
       </div>
     </mat-toolbar>
   </header>
@@ -79,7 +84,11 @@
   </main>
 
   <footer>
-    Pythia development shell by
-    <a href="http://www.fusisoft.it" target="_blank">Daniele Fusi</a>
+    <span i18n>
+      Pythia development shell by
+      <a rel="noopener" href="http://www.fusisoft.it" target="_blank"
+        >Daniele Fusi</a
+      ></span
+    >
   </footer>
 </div>

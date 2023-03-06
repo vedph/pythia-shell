@@ -1,5 +1,6 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Document } from '@myrmidon/pythia-core';
 
 @Component({

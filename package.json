@@ -17,7 +17,8 @@
     "build-src": "ng build @myrmidon/pythia-search",
     "build-crp": "ng build @myrmidon/pythia-corpus-list",
     "build-qbl": "ng build @myrmidon/pythia-query-builder",
-    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-trm && npm run build-sta && npm run build-src && npm run build-crp && npm run build-qbl"
+    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-trm && npm run build-sta && npm run build-src && npm run build-crp && npm run build-qbl",
+    "xi18n": "ng extract-i18n --output-path src/locale && xliffmerge --profile xliffmerge.json it-IT"
   },
   "private": true,
   "dependencies": {
@@ -54,6 +55,7 @@
     "@angular-devkit/build-angular": "^15.2.1",
     "@angular/cli": "~15.2.1",
     "@angular/compiler-cli": "^15.2.1",
+    "@angular/localize": "^15.2.1",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
@@ -62,6 +64,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.0.0",
+    "ngx-i18nsupport": "^0.17.1",
     "typescript": "~4.8.2"
   }
 }

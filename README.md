@@ -20,9 +20,11 @@ This project derives from the original Pythia frontend demo app, migrating it to
 
 🐳 Quick Docker image build:
 
-1. `npm run build-lib`;
-2. update version in `env.js` (and in Docker compose scripts) and `ng build --configuration production`;
-3. `docker build . -t vedph2020/pythia-shell:1.0.6 -t vedph2020/pythia-shell:latest` (replace with the current version).
+1. ensure that you have the target locale set. This is specified in `angular.json` under `projects/pythia-shell/architect/build/options/localize`. Set it to false to use the default (English) language, or to `[it-IT]` for Italian.
+2. `npm run build-lib`;
+3. `npm run xi18n` to extract the messages and merge them with the existing translations if any;
+4. update version in `env.js` (and in Docker compose scripts) and `ng build --configuration production`;
+5. `docker build . -t vedph2020/pythia-shell:1.0.6 -t vedph2020/pythia-shell:latest` (replace with the current version).
 
 ## Breakpoints
 

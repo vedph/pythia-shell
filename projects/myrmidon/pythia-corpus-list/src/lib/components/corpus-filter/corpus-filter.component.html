@@ -10,7 +10,7 @@
   <!-- title -->
   <div>
     <mat-form-field>
-      <mat-label>title</mat-label>
+      <mat-label i18n>title</mat-label>
       <input matInput [formControl]="title" />
     </mat-form-field>
   </div>
@@ -27,6 +27,7 @@
       type="button"
       (click)="reset()"
       color="warn"
+      i18n-matTooltip
       matTooltip="Reset filters"
       [disabled]="disabled"
     >
@@ -37,6 +38,7 @@
       mat-icon-button
       color="primary"
       [disabled]="disabled"
+      i18n-matmatTooltip
       matTooltip="Apply filters"
     >
       <mat-icon>check_circle</mat-icon>

@@ -4,10 +4,10 @@
     <mat-form-field>
       <mat-label>ID {{ idPrefix }}</mat-label>
       <input matInput [formControl]="id" />
-      <mat-error *ngIf="$any(id).errors?.required && (id.dirty || id.touched)"
+      <mat-error i18n *ngIf="$any(id).errors?.required && (id.dirty || id.touched)"
         >ID required</mat-error
       >
-      <mat-error *ngIf="$any(id).errors?.maxLength && (id.dirty || id.touched)"
+      <mat-error i18n *ngIf="$any(id).errors?.maxLength && (id.dirty || id.touched)"
         >ID too long</mat-error
       >
     </mat-form-field>
@@ -16,13 +16,13 @@
   <!-- title -->
   <div>
     <mat-form-field>
-      <mat-label>title</mat-label>
+      <mat-label i18n>title</mat-label>
       <input matInput [formControl]="title" />
-      <mat-error
+      <mat-error i18n
         *ngIf="$any(title).errors?.required && (title.dirty || title.touched)"
         >title required</mat-error
       >
-      <mat-error
+      <mat-error i18n
         *ngIf="$any(title).errors?.maxLength && (title.dirty || title.touched)"
         >title too long</mat-error
       >
@@ -32,9 +32,9 @@
   <!-- description -->
   <div>
     <mat-form-field class="long-text">
-      <mat-label>description</mat-label>
+      <mat-label i18n>description</mat-label>
       <textarea matInput [formControl]="description"></textarea>
-      <mat-error
+      <mat-error i18n
         *ngIf="
           $any(description).errors?.maxLength &&
           (description.dirty || description.touched)
@@ -45,9 +45,9 @@
   </div>
 
   <!-- sourceId -->
-  <mat-checkbox [formControl]="clone">clone</mat-checkbox>
+  <mat-checkbox [formControl]="clone" i18n>clone</mat-checkbox>
   <fieldset *ngIf="clone.value">
-    <legend>clone from</legend>
+    <legend i18n>clone from</legend>
     <cadmus-ref-lookup
       [required]="true"
       [baseFilter]="baseFilter"

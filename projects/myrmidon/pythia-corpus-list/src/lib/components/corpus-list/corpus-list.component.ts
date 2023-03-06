@@ -74,7 +74,7 @@ export class CorpusListComponent {
 
   public deleteCorpus(corpus: Corpus): void {
     this._dialogService
-      .confirm('Confirm', `Delete corpus ${corpus.title}?`)
+      .confirm($localize`Confirm`, $localize`Delete corpus ${corpus.title}?`)
       .pipe(take(1))
       .subscribe((yes) => {
         if (!yes) {

@@ -66,16 +66,16 @@ export class DocumentListComponent implements OnInit {
           .pipe(take(1))
           .subscribe({
             next: (_) => {
-              this._snackbar.open('Corpus updated', 'OK', {
+              this._snackbar.open($localize`Corpus updated`, 'OK', {
                 duration: 2000,
               });
             },
             error: (error) => {
-              console.error('Error adding documents by filter');
+              console.error($localize`Error adding documents by filter`);
               if (error) {
                 console.error(JSON.stringify(error));
               }
-              this._snackbar.open('Error updating corpus', 'OK');
+              this._snackbar.open($localize`Error updating corpus`, 'OK');
             },
           });
         break;
@@ -85,16 +85,16 @@ export class DocumentListComponent implements OnInit {
           .pipe(take(1))
           .subscribe({
             next: (_) => {
-              this._snackbar.open('Corpus updated', 'OK', {
+              this._snackbar.open($localize`Corpus updated`, 'OK', {
                 duration: 2000,
               });
             },
             error: (error) => {
-              console.error('Error removing documents by filter');
+              console.error($localize`Error removing documents by filter`);
               if (error) {
                 console.error(JSON.stringify(error));
               }
-              this._snackbar.open('Error updating corpus', 'OK');
+              this._snackbar.open($localize`Error updating corpus`, 'OK');
             },
           });
         break;

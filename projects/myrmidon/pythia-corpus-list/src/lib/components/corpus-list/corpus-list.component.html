@@ -20,8 +20,8 @@
       <thead>
         <th></th>
         <th>ID</th>
-        <th *ngIf="showUserId">user</th>
-        <th>title</th>
+        <th *ngIf="showUserId" i18n>user</th>
+        <th i18n>title</th>
       </thead>
       <tbody>
         <tr *ngFor="let c of pagination.data">
@@ -30,6 +30,7 @@
               *ngIf="c | editable"
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="Edit this corpus"
               color="primary"
               (click)="editCorpus(c)"
@@ -40,6 +41,7 @@
               *ngIf="c | editable"
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="Delete this corpus"
               color="warn"
               (click)="deleteCorpus(c)"
@@ -60,6 +62,7 @@
         type="button"
         mat-icon-button
         color="warn"
+        i18n-matTooltip
         matTooltip="Clear items cache"
         (click)="clearCache()"
       >

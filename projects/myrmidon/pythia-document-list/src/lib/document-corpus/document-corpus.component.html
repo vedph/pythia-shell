@@ -1,18 +1,18 @@
 <form [formGroup]="form" (submit)="apply()">
   <div class="form-row">
     <mat-form-field style="width: 14em">
-      <mat-label>action</mat-label>
+      <mat-label i18n>action</mat-label>
       <mat-select [formControl]="action">
-        <mat-option value="add-filtered">add to corpus</mat-option>
-        <mat-option value="del-filtered">delete from corpus</mat-option>
+        <mat-option value="add-filtered" i18n>add to corpus</mat-option>
+        <mat-option value="del-filtered" i18n>delete from corpus</mat-option>
       </mat-select>
-      <mat-error
+      <mat-error i18n
         *ngIf="
           $any(action).errors?.required && (action.dirty || action.touched)
         "
         >action required</mat-error
       >
-      <mat-hint>action for matching docs</mat-hint>
+      <mat-hint i18n>action for matching docs</mat-hint>
     </mat-form-field>
 
     <cadmus-ref-lookup
@@ -27,10 +27,11 @@
       [disabled]="form.invalid || !editable"
       mat-flat-button
       color="primary"
+      i18n-matTooltip
       matTooltip="Apply the selected action to the target corpus"
     >
       <mat-icon>check_circle</mat-icon>
-      apply
+      <ng-container i18n>apply</ng-container>
     </button>
   </div>
 </form>

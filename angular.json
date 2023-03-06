@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "pythia-shell": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,18 +19,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": ["it-IT"],
             "outputPath": "dist/pythia-shell",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/env.js"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/env.js"],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
@@ -79,15 +80,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
@@ -98,6 +93,12 @@
       }
     },
     "@myrmidon/pythia-api": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-api",
       "sourceRoot": "projects/myrmidon/pythia-api/src",
@@ -122,15 +123,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-api/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-core": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-core",
       "sourceRoot": "projects/myrmidon/pythia-core/src",
@@ -155,15 +159,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-core/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-ui": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-ui",
       "sourceRoot": "projects/myrmidon/pythia-ui/src",
@@ -188,15 +195,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-ui/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-document-list": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-document-list",
       "sourceRoot": "projects/myrmidon/pythia-document-list/src",
@@ -221,15 +231,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-document-list/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-stats": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-stats",
       "sourceRoot": "projects/myrmidon/pythia-stats/src",
@@ -254,15 +267,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-stats/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-document-reader": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-document-reader",
       "sourceRoot": "projects/myrmidon/pythia-document-reader/src",
@@ -287,15 +303,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-document-reader/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-term-list": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-term-list",
       "sourceRoot": "projects/myrmidon/pythia-term-list/src",
@@ -320,15 +339,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-term-list/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-search": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-search",
       "sourceRoot": "projects/myrmidon/pythia-search/src",
@@ -353,15 +375,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-search/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-corpus-list": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-corpus-list",
       "sourceRoot": "projects/myrmidon/pythia-corpus-list/src",
@@ -386,15 +411,18 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-corpus-list/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     },
     "@myrmidon/pythia-query-builder": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it-IT": "src/locale/messages.it-IT.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-query-builder",
       "sourceRoot": "projects/myrmidon/pythia-query-builder/src",
@@ -419,10 +447,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-query-builder/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
