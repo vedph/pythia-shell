@@ -8,6 +8,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
   - [Docker](#docker)
   - [Breakpoints](#breakpoints)
   - [History](#history)
+    - [1.0.6](#106)
     - [1.0.5](#105)
     - [1.0.4](#104)
     - [1.0.3](#103)
@@ -20,8 +21,8 @@ This project derives from the original Pythia frontend demo app, migrating it to
 🐳 Quick Docker image build:
 
 1. `npm run build-lib`;
-2. update version in `env.js` and `ng build --configuration production`;
-3. `docker build . -t vedph2020/pythia-shell:1.0.5 -t vedph2020/pythia-shell:latest` (replace with the current version).
+2. update version in `env.js` (and in Docker compose scripts) and `ng build --configuration production`;
+3. `docker build . -t vedph2020/pythia-shell:1.0.6 -t vedph2020/pythia-shell:latest` (replace with the current version).
 
 ## Breakpoints
 
@@ -45,6 +46,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+### 1.0.6
+
+- 2023-03-06: added query builder.
 - 2023-03-03: updated Angular.
 
 ### 1.0.5
