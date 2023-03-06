@@ -3,8 +3,8 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { TermDistribution, TermDistributionSet } from '@myrmidon/pythia-api';
-
 import { AppSettingsService, IndexTerm } from '@myrmidon/pythia-core';
+
 import { TermListRepository } from '../../term-list.repository';
 
 @Component({

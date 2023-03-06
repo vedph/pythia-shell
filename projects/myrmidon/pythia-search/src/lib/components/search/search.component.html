@@ -2,10 +2,10 @@
   <!-- query -->
   <div id="query">
     <mat-tab-group>
-      <mat-tab label="advanced">
+      <mat-tab i18n-label label="advanced">
         <form [formGroup]="form" (submit)="search()">
           <mat-form-field style="width: 100%">
-            <mat-label>query</mat-label>
+            <mat-label i18n>query</mat-label>
             <textarea
               #queryCtl
               rows="3"
@@ -13,14 +13,16 @@
               [formControl]="query"
               (keyup.control.enter)="searchByEnter($any($event))"
             ></textarea>
-            <mat-hint>ctrl+Enter to submit</mat-hint>
+            <mat-hint i18n>ctrl+Enter to submit</mat-hint>
             <mat-error
+              i18n
               *ngIf="
                 $any(query).errors?.required && (query.dirty || query.touched)
               "
               >query required</mat-error
             >
             <mat-error
+              i18n
               *ngIf="
                 $any(query).errors?.maxLength && (query.dirty || query.touched)
               "
@@ -37,7 +39,8 @@
               mat-flat-button
               [disabled]="form.invalid || (loading$ | async)"
             >
-              <mat-icon>search</mat-icon> search
+              <mat-icon>search</mat-icon>
+              <ng-container i18n>search</ng-container>
             </button>
 
             <!-- history -->
@@ -51,7 +54,8 @@
               <button
                 mat-icon-button
                 matSuffix
-                [attr.aria-label]="'Pick the selected query'"
+                i18n-matTooltip
+                matTooltip="Pick the selected query"
                 (click)="pickHistory()"
               >
                 <mat-icon>check_circle</mat-icon>
@@ -64,7 +68,7 @@
           </div>
         </form>
       </mat-tab>
-      <mat-tab label="builder">
+      <mat-tab i18n-label label="builder">
         <pythia-query-builder
           (queryChange)="onQueryChange($event)"
         ></pythia-query-builder>
@@ -79,10 +83,10 @@
         <tr>
           <th></th>
           <th></th>
-          <th>author</th>
-          <th>title</th>
+          <th i18n>author</th>
+          <th i18n>title</th>
           <th *ngFor="let l of leftContextLabels">{{ l }}</th>
-          <th>value</th>
+          <th i18n>value</th>
           <th *ngFor="let l of rightContextLabels">{{ l }}</th>
         </tr>
       </thead>
@@ -93,6 +97,7 @@
             <button
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="Read in context"
               [disabled]="loading$ | async"
               color="primary"
@@ -106,6 +111,7 @@
             <button
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="Read document"
               [disabled]="loading$ | async"
               (click)="readDocument(r.documentId)"

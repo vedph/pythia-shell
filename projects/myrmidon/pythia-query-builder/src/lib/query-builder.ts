@@ -42,7 +42,7 @@ export interface QueryBuilderTermDefArg {
 export enum QueryBuilderTermType {
   Token = 0,
   Structure,
-  Document
+  Document,
 }
 
 /**
@@ -65,39 +65,45 @@ export interface QueryBuilderTermDef {
 export const QUERY_DOC_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'author',
-    label: 'author',
+    label: $localize`author`,
     type: QueryBuilderTermType.Document,
-    group: 'document',
+    group: $localize`document`,
+    tip: $localize`Document's author(s).`,
   },
   {
     value: 'title',
-    label: 'title',
+    label: $localize`title`,
     type: QueryBuilderTermType.Document,
-    group: 'document',
+    group: $localize`document`,
+    tip: $localize`Document's title.`,
   },
   {
     value: 'date_value',
-    label: 'date',
+    label: $localize`date`,
     type: QueryBuilderTermType.Document,
-    group: 'document',
+    group: $localize`document`,
+    tip: $localize`Numeric value calculated from document's date.`,
   },
   {
     value: 'sort_key',
-    label: 'sort key',
+    label: $localize`sort key`,
     type: QueryBuilderTermType.Document,
-    group: 'document',
+    group: $localize`document`,
+    tip: $localize`Document's sort key.`,
   },
   {
     value: 'source',
-    label: 'source',
+    label: $localize`source`,
     type: QueryBuilderTermType.Document,
-    group: 'document',
+    group: $localize`document`,
+    tip: $localize`Document's source.`,
   },
   {
     value: 'profile_id',
-    label: 'profile',
+    label: $localize`profile`,
     type: QueryBuilderTermType.Document,
-    group: 'document',
+    group: $localize`document`,
+    tip: $localize`Configuration profile used for document.`,
   },
 ];
 
@@ -107,27 +113,31 @@ export const QUERY_DOC_ATTR_DEFS: QueryBuilderTermDef[] = [
 export const QUERY_TOK_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'value',
-    label: 'value',
+    label: $localize`value`,
     type: QueryBuilderTermType.Token,
-    group: 'token',
+    group: $localize`token`,
+    tip: $localize`Token's filtered literal value.`,
   },
   {
     value: 'language',
-    label: 'language',
+    label: $localize`language`,
     type: QueryBuilderTermType.Token,
-    group: 'token',
+    group: $localize`token`,
+    tip: $localize`Token's optional language.`,
   },
   {
     value: 'position',
-    label: 'position',
-    group: 'token',
+    label: $localize`position`,
+    group: $localize`token`,
     type: QueryBuilderTermType.Token,
+    tip: $localize`Token's ordinal position in document.`,
   },
   {
     value: 'length',
-    label: 'length',
+    label: $localize`length`,
     type: QueryBuilderTermType.Token,
-    group: 'token',
+    group: $localize`token`,
+    tip: $localize`Token's letters count.`,
   },
 ];
 
@@ -137,21 +147,24 @@ export const QUERY_TOK_ATTR_DEFS: QueryBuilderTermDef[] = [
 export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'name',
-    label: 'name',
+    label: $localize`name`,
     type: QueryBuilderTermType.Structure,
-    group: 'structure',
+    group: $localize`structure`,
+    tip: $localize`Structure's name.`,
   },
   {
     value: 'start_position',
-    label: 'start',
+    label: $localize`start`,
     type: QueryBuilderTermType.Structure,
-    group: 'structure',
+    group: $localize`structure`,
+    tip: $localize`Structure's start ordinal position in document.`,
   },
   {
     value: 'end_position',
-    label: 'end',
+    label: $localize`end`,
     type: QueryBuilderTermType.Structure,
-    group: 'structure',
+    group: $localize`structure`,
+    tip: $localize`Structure's end ordinal position in document.`,
   },
 ];
 
@@ -161,50 +174,50 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
 export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: '=',
-    label: 'equals to',
-    group: 'a) standard',
+    label: $localize`equals to`,
+    group: $localize`a) standard`,
   },
   {
     value: '<>',
-    label: 'not equals to',
-    group: 'a) standard',
+    label: $localize`not equals to`,
+    group: $localize`a) standard`,
   },
   {
     value: '*=',
-    label: 'contains',
-    group: 'a) standard',
+    label: $localize`contains`,
+    group: $localize`a) standard`,
   },
   {
     value: '^=',
-    label: 'starts with',
-    group: 'a) standard',
+    label: $localize`starts with`,
+    group: $localize`a) standard`,
   },
   {
     value: '$=',
-    label: 'ends with',
-    group: 'a) standard',
+    label: $localize`ends with`,
+    group: $localize`a) standard`,
   },
   {
     value: '?=',
-    label: 'matches (wildcards)',
-    group: 'b) expression',
-    tip: 'Wildcards: ?=any single character; *=any number of any characters.',
+    label: $localize`matches (wildcards)`,
+    group: $localize`b) expression`,
+    tip: $localize`Wildcards: ?=any single character; *=any number of any characters.`,
   },
   {
     value: '~=',
-    label: 'matches (regexp)',
-    group: 'b) expression',
-    tip: 'Regular expression.',
+    label: $localize`matches (regexp)`,
+    group: $localize`b) expression`,
+    tip: $localize`Regular expression.`,
   },
   {
     value: '%=',
-    label: 'is similar to',
-    group: 'c) fuzzy',
-    tip: 'Fuzzy matching with similarity treshold 0-1 (default 0.9).',
+    label: $localize`is similar to`,
+    group: $localize`c) fuzzy`,
+    tip: $localize`Fuzzy matching with similarity treshold 0-1 (default 0.9).`,
     args: [
       {
         value: 't',
-        label: 'treshold',
+        label: $localize`treshold`,
         numeric: true,
         min: 0.0,
         max: 1.0,
@@ -213,32 +226,32 @@ export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
   },
   {
     value: '<',
-    label: 'less-than',
-    group: 'd) numeric',
+    label: $localize`less-than`,
+    group: $localize`d) numeric`,
   },
   {
     value: '<=',
-    label: 'd) less-than or equal',
+    label: $localize`d) less-than or equal`,
   },
   {
     value: '==',
-    label: 'equal',
-    group: 'd) numeric',
+    label: $localize`equal`,
+    group: $localize`d) numeric`,
   },
   {
     value: '!=',
-    label: 'not-equal',
-    group: 'd) numeric',
+    label: $localize`not-equal`,
+    group: $localize`d) numeric`,
   },
   {
     value: '>',
-    label: 'greater-than',
-    group: 'd) numeric',
+    label: $localize`greater-than`,
+    group: $localize`d) numeric`,
   },
   {
     value: '>=',
-    label: 'greater-than or equal',
-    group: 'd) numeric',
+    label: $localize`greater-than or equal`,
+    group: $localize`d) numeric`,
   },
 ];
 
@@ -248,29 +261,29 @@ export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
 export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'AND',
-    label: 'AND',
-    group: 'a) logical',
+    label: `AND`,
+    group: $localize`a) logical`,
   },
   {
     value: 'OR',
-    label: 'OR',
-    group: 'a) logical',
+    label: `OR`,
+    group: $localize`a) logical`,
   },
   {
     value: 'AND NOT',
-    label: 'AND NOT',
-    group: 'a) logical',
+    label: `AND NOT`,
+    group: $localize`a) logical`,
     type: QueryBuilderTermType.Document,
   },
   {
     value: '(',
-    label: '(',
-    group: 'b) precedence',
+    label: `(`,
+    group: $localize`b) precedence`,
   },
   {
     value: ')',
-    label: ')',
-    group: 'b) precedence',
+    label: `)`,
+    group: $localize`b) precedence`,
   },
 ];
 
@@ -280,361 +293,361 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
 export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'NEAR',
-    label: 'near to',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must be at the specified distance from the second pair, either before or after it.',
+    label: $localize`near to`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must be at the specified distance from the second pair, either before or after it.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'in structure',
+        label: $localize`in structure`,
       },
     ],
   },
   {
     value: 'NOT NEAR',
-    label: 'not near to',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must not be at the specified distance from the second pair, either before or after it.',
+    label: $localize`not near to`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must not be at the specified distance from the second pair, either before or after it.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'in structure',
+        label: $localize`in structure`,
       },
     ],
   },
   {
     value: 'BEFORE',
-    label: 'before',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must be before the second pair, at the specified distance from it.',
+    label: $localize`before`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must be before the second pair, at the specified distance from it.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'in structure',
+        label: $localize`in structure`,
       },
     ],
   },
   {
     value: 'NOT BEFORE',
-    label: 'not before',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must not be before the second pair, at the specified distance from it.',
+    label: $localize`not before`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must not be before the second pair, at the specified distance from it.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'in structure',
+        label: $localize`in structure`,
       },
     ],
   },
   {
     value: 'AFTER',
-    label: 'after',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must be after the second pair, at the specified distance from it',
+    label: $localize`after`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must be after the second pair, at the specified distance from it.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'NOT AFTER',
-    label: 'not after',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must not be after the second pair, at the specified distance from it',
+    label: $localize`not after`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must not be after the second pair, at the specified distance from it.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'INSIDE',
-    label: 'inside',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.',
+    label: $localize`inside`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.`,
     args: [
       {
         value: 'ns',
-        label: 'min.distance from start',
+        label: $localize`min.distance from start`,
         numeric: true,
         min: 0,
       },
       {
         value: 'ms',
-        label: 'max distance from start',
+        label: $localize`max distance from start`,
         numeric: true,
         min: 0,
       },
       {
         value: 'ne',
-        label: 'min.distance from end',
+        label: $localize`min.distance from end`,
         numeric: true,
         min: 0,
       },
       {
         value: 'me',
-        label: 'max distance from end',
+        label: $localize`max distance from end`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'NOT INSIDE',
-    label: 'not inside',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.',
+    label: $localize`not inside`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.`,
     args: [
       {
         value: 'ns',
-        label: 'min.distance from start',
+        label: $localize`min.distance from start`,
         numeric: true,
         min: 0,
       },
       {
         value: 'ms',
-        label: 'max distance from start',
+        label: $localize`max distance from start`,
         numeric: true,
         min: 0,
       },
       {
         value: 'ne',
-        label: 'min.distance from end',
+        label: $localize`min.distance from end`,
         numeric: true,
         min: 0,
       },
       {
         value: 'me',
-        label: 'max distance from end',
+        label: $localize`max distance from end`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'OVERLAPS',
-    label: 'overlaps',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.',
+    label: $localize`overlaps`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'NOT OVERLAPS',
-    label: 'not overlaps',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.',
+    label: $localize`not overlaps`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'LALIGN',
-    label: 'left-aligned with',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that its span must left-align with the one defined by the second pair: A can start with or after B, but not before B.',
+    label: $localize`left-aligned with`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that its span must left-align with the one defined by the second pair: A can start with or after B, but not before B.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'NOT LALIGN',
-    label: 'not left-aligned with',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that its span must not left-align with the one defined by the second pair: A can start with or after B, but not before B.',
+    label: $localize`not left-aligned with`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that its span must not left-align with the one defined by the second pair: A can start before B, but not with/after B.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'RALIGN',
-    label: 'right-aligned with',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B',
+    label: $localize`right-aligned with`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
   {
     value: 'NOT RALIGN',
-    label: 'not right-aligned with',
-    group: 'e) collocation',
-    tip: 'Filters the first pair so that its span must not right-align with the one defined by the second pair: A can end with or before B, but not after B',
+    label: $localize`not right-aligned with`,
+    group: $localize`e) collocation`,
+    tip: $localize`Filters the first pair so that its span must not right-align with the one defined by the second pair: A can end after B, but not with/before B.`,
     args: [
       {
         value: 'n',
-        label: 'min.distance',
+        label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 'm',
-        label: 'max distance',
+        label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
         value: 's',
-        label: 'structure',
+        label: $localize`structure`,
       },
     ],
   },
@@ -719,14 +732,14 @@ export class QueryBuilder {
       case 0:
         // query cannot be empty (unless for documents)
         if (!this._isDocument) {
-          errors.push('Query is empty');
+          errors.push($localize`Query is empty`);
         }
         break;
       case 1:
         // a single entry must be a pair
         if (entries.length === 1) {
           if (!entries[0].pair) {
-            entries[0].error = 'Expected pair';
+            entries[0].error = $localize`Expected pair`;
           }
         }
         break;
@@ -734,7 +747,7 @@ export class QueryBuilder {
         // first entry can be only pair/(
         let entry = entries[0];
         if (!entry.pair && entry.operator?.value !== '(') {
-          entries[0].error = 'Expected pair or (';
+          entries[0].error = $localize`Expected pair or (`;
           break;
         }
         // other entries:
@@ -755,47 +768,46 @@ export class QueryBuilder {
             case '(':
               depth++;
               if (prevEntry.pair || prevEntry.operator?.value === '(') {
-                entry.error = 'Unexpected entry type';
+                entry.error = $localize`Unexpected entry type`;
                 break;
               }
               // cannot end with (
               if (i + 1 === entries.length) {
-                entry.error = 'Opening bracket at end';
+                entry.error = $localize`Opening bracket at end`;
               }
               break;
             case ')':
               depth--;
               if (!prevEntry.pair && prevEntry.operator?.value !== ')') {
-                entry.error = 'Unexpected entry type';
+                entry.error = $localize`Unexpected entry type`;
               }
               break;
             case 'AND':
             case 'OR':
             case 'AND NOT':
               if (!this._isDocument && entry.operator?.value === 'AND NOT') {
-                entry.error = 'AND NOT is allowed only in document scope';
+                entry.error = $localize`AND NOT is allowed only in document scope`;
                 break;
               }
               if (!prevEntry.pair && prevEntry.operator?.value !== ')') {
-                entry.error = 'Unexpected entry type';
+                entry.error = $localize`Unexpected entry type`;
                 break;
               }
               // cannot end with operator
               if (i + 1 === entries.length) {
-                entry.error = 'Logical operator at end';
+                entry.error = $localize`Logical operator at end`;
               }
               break;
             default: // location or pair
               if (entry.pair) {
                 if (prevEntry.pair) {
-                  entry.error = 'Pairs not connected by operator';
+                  entry.error = $localize`Pairs not connected by operator`;
                   break;
                 }
               } else {
                 // location
                 if (this._isDocument) {
-                  entry.error =
-                    'Location operator not allowed in document scope';
+                  entry.error = $localize`Location operator not allowed in document scope`;
                   break;
                 }
                 // pairs required at both ends
@@ -804,7 +816,7 @@ export class QueryBuilder {
                   i + 1 == entries.length ||
                   !entries[i + 1].pair
                 ) {
-                  entry.error = 'Location operator must connect two pairs';
+                  entry.error = $localize`Location operator must connect two pairs`;
                 }
                 break;
               }
@@ -812,7 +824,7 @@ export class QueryBuilder {
         }
         // balancement
         if (depth) {
-          errors.push('Unbalanced parentheses');
+          errors.push($localize`Unbalanced parentheses`);
         }
         break;
     }
@@ -972,12 +984,12 @@ export class QueryBuilder {
     this.supplyMinMax(entry.opArgs, 'n', 'm');
     // n cannot be > m
     if (this.validateMinMax(entry.opArgs, 'n', 'm')) {
-      entry.error = 'Invalid value in n/m argument(s).';
+      entry.error = $localize`Invalid value in n/m argument(s).`;
     }
 
     // s cannot be used with NOT
     if (entry.opArgs['s'] && entry.operator?.value.startsWith('NOT ')) {
-      entry.error = 'Argument s cannot be used with NOT.';
+      entry.error = $localize`Argument s cannot be used with NOT.`;
     }
     return entry.error ? true : false;
   }
@@ -995,19 +1007,19 @@ export class QueryBuilder {
     this.supplyMinMax(entry.opArgs, 'ns', 'ms');
     // ns cannot be > ms
     if (this.validateMinMax(entry.opArgs, 'ns', 'ms')) {
-      entry.error = 'Invalid value in ns/ms argument(s).';
+      entry.error = $localize`Invalid value in ns/ms argument(s).`;
     }
 
     // ne, me must be supplied with defaults (0-max) if missing
     this.supplyMinMax(entry.opArgs, 'ne', 'me');
     // ne cannot be > me
     if (this.validateMinMax(entry.opArgs, 'ne', 'me')) {
-      entry.error = 'Invalid value in ne/me argument(s).';
+      entry.error = $localize`Invalid value in ne/me argument(s).`;
     }
 
     // s cannot be used with NOT
     if (entry.opArgs['s'] && entry.operator?.value.startsWith('NOT ')) {
-      entry.error = 'Argument s cannot be used with NOT.';
+      entry.error = $localize`Argument s cannot be used with NOT.`;
     }
 
     return entry.error ? true : false;

@@ -20,8 +20,8 @@
     <table>
       <thead>
         <th></th>
-        <th>value</th>
-        <th>count</th>
+        <th i18n>value</th>
+        <th i18n>count</th>
       </thead>
       <tbody>
         <tr *ngFor="let t of pagination.data">
@@ -38,6 +38,7 @@
             <button
               mat-icon-button
               type="button"
+              i18n-matTooltip
               matTooltip="Search term"
               (click)="requestSearch(t.value)"
             >

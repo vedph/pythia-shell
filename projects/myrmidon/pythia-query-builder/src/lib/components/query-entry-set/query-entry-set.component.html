@@ -1,12 +1,13 @@
 <div class="bar-row">
   <button type="button" color="primary" mat-flat-button (click)="addEntry()">
-    <mat-icon>add_circle</mat-icon> entry
+    <mat-icon>add_circle</mat-icon> <ng-container i18n>entry</ng-container>
   </button>
   <button
     type="button"
     color="warn"
     mat-icon-button
     (click)="reset()"
+    i18n-matTooltip
     matTooltip="Delete all the entries"
   >
     <mat-icon>clear</mat-icon>
@@ -28,6 +29,7 @@
           type="button"
           mat-icon-button
           color="primary"
+          i18n-matTooltip
           matTooltip="Edit this entry"
           (click)="editEntry(e, i)"
         >
@@ -37,6 +39,7 @@
           type="button"
           mat-icon-button
           color="primary"
+          i18n-matTooltip
           matTooltip="Add a new entry before this one"
           (click)="addEntry(i)"
         >
@@ -46,6 +49,7 @@
           [disabled]="first"
           mat-icon-button
           type="button"
+          i18n-matTooltip
           matTooltip="Move this entry up"
           (click)="moveEntryUp(i)"
         >
@@ -55,6 +59,7 @@
           [disabled]="last"
           mat-icon-button
           type="button"
+          i18n-matTooltip
           matTooltip="Move this entry down"
           (click)="moveEntryDown(i)"
         >
@@ -64,6 +69,7 @@
           type="button"
           mat-icon-button
           color="warn"
+          i18n-matTooltip
           matTooltip="Delete this entry"
           (click)="deleteEntry(i)"
         >

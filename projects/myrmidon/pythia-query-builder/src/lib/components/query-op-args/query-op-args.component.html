@@ -1,6 +1,6 @@
 <form [formGroup]="form" (submit)="save()">
   <fieldset *ngIf="args">
-    <legend>{{ args.definition.label }} arguments</legend>
+    <legend i18n>{{ args.definition.label }} arguments</legend>
     <div formArrayName="arguments" class="form-row">
       <div
         *ngFor="
@@ -20,6 +20,7 @@
               [type]="$any(g)['controls'].op.value.numeric ? 'number' : 'text'"
             />
             <mat-error
+              i18n
               *ngIf="
                 $any(g)['controls'].value.errors?.required &&
                 ($any(g)['controls'].value.dirty ||
@@ -28,6 +29,7 @@
               >value required</mat-error
             >
             <mat-error
+              i18n
               *ngIf="
                 $any(g)['controls'].value.errors?.maxLength &&
                 ($any(g)['controls'].value.dirty ||
@@ -36,6 +38,7 @@
               >value too long</mat-error
             >
             <mat-error
+              i18n
               *ngIf="
                 $any(g)['controls'].value.errors?.min &&
                 ($any(g)['controls'].value.dirty ||
@@ -44,6 +47,7 @@
               >value too low</mat-error
             >
             <mat-error
+              i18n
               *ngIf="
                 $any(g)['controls'].value.errors?.max &&
                 ($any(g)['controls'].value.dirty ||
@@ -52,6 +56,7 @@
               >value too big</mat-error
             >
             <mat-error
+              i18n
               *ngIf="
                 $any(g)['controls'].value.errors?.pattern &&
                 ($any(g)['controls'].value.dirty ||
