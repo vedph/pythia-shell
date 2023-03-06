@@ -200,14 +200,14 @@ export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
     value: '%=',
     label: 'is similar to',
     group: 'c) fuzzy',
-    tip: 'Fuzzy matching: default treshold=0.9. Use any treshold between 0 and 1.',
+    tip: 'Fuzzy matching with similarity treshold 0-1 (default 0.9).',
     args: [
       {
         value: 't',
         label: 'treshold',
         numeric: true,
-        min: 0,
-        max: 1,
+        min: 0.0,
+        max: 1.0,
       },
     ],
   },

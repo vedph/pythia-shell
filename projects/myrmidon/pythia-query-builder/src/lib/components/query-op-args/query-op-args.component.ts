@@ -72,7 +72,7 @@ export class QueryOpArgsComponent {
         validators.push(Validators.min(+args[i].min!));
       }
       if (args[i].max) {
-        validators.push(Validators.min(+args[i].max!));
+        validators.push(Validators.max(+args[i].max!));
       }
       const g = this._formBuilder.group({
         // op is just to hold the operator's definition

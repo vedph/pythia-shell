@@ -19,7 +19,7 @@
         <pythia-query-builder
           (queryChange)="onQueryChange($event)"
         ></pythia-query-builder>
-        <pre *ngIf="query">{{ query }}</pre>
+        <pre *ngIf="query" class="query">{{ query }}</pre>
       </div>
       <div id="stats">
         <pythia-stats></pythia-stats>

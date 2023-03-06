@@ -191,6 +191,22 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
         }
       })
     );
+
+    // when operator changes, setup type args
+    this._subs.push(
+      this.operator.valueChanges
+        .pipe(distinctUntilChanged())
+        .subscribe((def) => {
+          if (def) {
+            this.pairArgs.setValue({
+              definition: def,
+              values: this.pairArgs.value?.values,
+            });
+          } else {
+            this.pairArgs.setValue(null);
+          }
+        })
+    );
   }
 
   public ngOnDestroy(): void {
