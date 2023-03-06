@@ -2446,7 +2446,7 @@ Daniele Fusi<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a
   </trans-unit>
   <trans-unit id="5538453751747417090" datatype="html">
     <source>Filters the first pair so that it must be after the second pair, at the specified distance from it.</source>
-    <target state="final">Filters the first pair so that it must be after the second pair, at the specified distance from it.</target>
+    <target state="final">Filtra la prima coppia in modo che si trovi dopo la seconda, alla distanza specificata da essa.</target>
     <context-group purpose="location">
       <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
       <context context-type="linenumber">394</context>
@@ -2463,7 +2463,7 @@ Daniele Fusi<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a
   </trans-unit>
   <trans-unit id="1297898493568516996" datatype="html">
     <source>Filters the first pair so that it must not be after the second pair, at the specified distance from it.</source>
-    <target state="final">Filters the first pair so that it must not be after the second pair, at the specified distance from it.</target>
+    <target state="final">Filtra la prima clausola in modo che non si trovi dopo la seconda, alla distanza specificata da essa.</target>
     <context-group purpose="location">
       <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
       <context context-type="linenumber">418</context>
