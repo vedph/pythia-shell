@@ -39,16 +39,23 @@ export interface QueryBuilderTermDefArg {
   max?: number;
 }
 
+export enum QueryBuilderTermType {
+  Token = 0,
+  Structure,
+  Document
+}
+
 /**
  * Definition of a query builder term (like e.g. an operator).
  */
 export interface QueryBuilderTermDef {
   value: string;
   label: string;
+  type?: QueryBuilderTermType;
   group?: string;
   args?: QueryBuilderTermDefArg[];
   tip?: string;
-  document?: boolean;
+  hidden?: boolean;
 }
 
 //#region constants
@@ -59,38 +66,38 @@ export const QUERY_DOC_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'author',
     label: 'author',
+    type: QueryBuilderTermType.Document,
     group: 'document',
-    document: true,
   },
   {
     value: 'title',
     label: 'title',
+    type: QueryBuilderTermType.Document,
     group: 'document',
-    document: true,
   },
   {
     value: 'date_value',
     label: 'date',
+    type: QueryBuilderTermType.Document,
     group: 'document',
-    document: true,
   },
   {
     value: 'sort_key',
     label: 'sort key',
+    type: QueryBuilderTermType.Document,
     group: 'document',
-    document: true,
   },
   {
     value: 'source',
     label: 'source',
+    type: QueryBuilderTermType.Document,
     group: 'document',
-    document: true,
   },
   {
     value: 'profile_id',
     label: 'profile',
+    type: QueryBuilderTermType.Document,
     group: 'document',
-    document: true,
   },
 ];
 
@@ -101,21 +108,25 @@ export const QUERY_TOK_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'value',
     label: 'value',
+    type: QueryBuilderTermType.Token,
     group: 'token',
   },
   {
     value: 'language',
     label: 'language',
+    type: QueryBuilderTermType.Token,
     group: 'token',
   },
   {
     value: 'position',
     label: 'position',
     group: 'token',
+    type: QueryBuilderTermType.Token,
   },
   {
     value: 'length',
     label: 'length',
+    type: QueryBuilderTermType.Token,
     group: 'token',
   },
 ];
@@ -127,16 +138,19 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
     value: 'name',
     label: 'name',
+    type: QueryBuilderTermType.Structure,
     group: 'structure',
   },
   {
     value: 'start_position',
     label: 'start',
+    type: QueryBuilderTermType.Structure,
     group: 'structure',
   },
   {
     value: 'end_position',
     label: 'end',
+    type: QueryBuilderTermType.Structure,
     group: 'structure',
   },
 ];
@@ -246,7 +260,7 @@ export const QUERY_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'AND NOT',
     label: 'AND NOT',
     group: 'a) logical',
-    document: true
+    type: QueryBuilderTermType.Document,
   },
   {
     value: '(',
@@ -1079,8 +1093,12 @@ export class QueryBuilder {
         sb.push(' ');
       }
       if (entries[i].pair) {
+        // (a) pair
         const pair = entries[i].pair!;
         sb.push('[');
+        if (pair.attribute.type === QueryBuilderTermType.Structure) {
+          sb.push('$');
+        }
         sb.push(pair.attribute.value);
         sb.push(pair.operator.value);
         sb.push(`"${pair.value}"`);
@@ -1092,6 +1110,7 @@ export class QueryBuilder {
         }
         sb.push(']');
       } else {
+        // (b) location or logical operator
         if (QueryBuilder.isLocOperator(entries[i].operator?.value)) {
           this.appendLocOp(entries[i], sb);
         } else {

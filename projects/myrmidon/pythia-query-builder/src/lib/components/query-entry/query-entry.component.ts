@@ -17,6 +17,7 @@ import { distinctUntilChanged, Subscription } from 'rxjs';
 import {
   QueryBuilderEntry,
   QueryBuilderTermDef,
+  QueryBuilderTermType,
   QUERY_LOCATION_OP_DEFS,
   QUERY_OP_DEFS,
   QUERY_PAIR_OP_DEFS,
@@ -88,7 +89,10 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
       return;
     }
     this._attrDefinitions = value;
-    this.attrGroups = this.groupByKey(value, 'group');
+    this.attrGroups = this.groupByKey(
+      value.filter((d) => !d.hidden),
+      'group'
+    );
   }
 
   /**
@@ -122,7 +126,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     this._subs = [];
     this._attrDefinitions = [];
     this.opGroups = this.groupByKey(
-      QUERY_PAIR_OP_DEFS,
+      QUERY_PAIR_OP_DEFS.filter((d) => !d.hidden),
       'group'
     ) as GroupedQueryBuilderTermDefs;
     this.attrGroups = {};
@@ -169,7 +173,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
     if (!this.isDocument) {
       // if not a document, add location operators
       this.entryTypes = [...this.entryTypes, ...QUERY_LOCATION_OP_DEFS].filter(
-        (d) => !d.document
+        (d) => !d.hidden && d.type !== QueryBuilderTermType.Document
       );
     }
 

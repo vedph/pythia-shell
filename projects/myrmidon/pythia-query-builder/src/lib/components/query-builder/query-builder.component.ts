@@ -2,7 +2,11 @@ import { Component, EventEmitter, Inject, Output } from '@angular/core';
 
 import { Corpus } from '@myrmidon/pythia-core';
 
-import { QueryBuilder, QueryBuilderTermDef } from '../../query-builder';
+import {
+  QueryBuilder,
+  QueryBuilderTermDef,
+  QueryBuilderTermType,
+} from '../../query-builder';
 import { QueryEntrySet } from '../query-entry-set/query-entry-set.component';
 
 export const QUERY_BUILDER_ATTR_DEFS_KEY = 'pythiaQueryBuilderAttrDefs';
@@ -46,8 +50,12 @@ export class QueryBuilderComponent {
     this.set = { entries: [] };
     this.corpora = [];
     this.docSet = { entries: [] };
-    this.attrDefinitions = attrDefinitions.filter((d) => !d.document);
-    this.docAttrDefinitions = attrDefinitions.filter((d) => d.document);
+    this.attrDefinitions = attrDefinitions.filter(
+      (d) => d.type !== QueryBuilderTermType.Document
+    );
+    this.docAttrDefinitions = attrDefinitions.filter(
+      (d) => d.type === QueryBuilderTermType.Document
+    );
     // events
     this.queryChange = new EventEmitter<string>();
   }
