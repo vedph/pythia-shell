@@ -378,7 +378,7 @@
       <trans-unit id="4510675134078466092" datatype="html">
         <source>Delete user <x id="PH" equiv-text="user.userName"/>
 ?</source>
-        <target state="final">Cancellare l'utente <x id="PH" equiv-text="user.userName"/>
+        <target state="final">Delete user <x id="PH" equiv-text="user.userName"/>
 ?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.ts</context>
@@ -816,7 +816,7 @@
       <trans-unit id="2159408598634884144" datatype="html">
         <source>Delete corpus <x id="PH" equiv-text="corpus.title"/>
 ?</source>
-        <target state="final">Cancellare corpus <x id="PH" equiv-text="corpus.title"/>
+        <target state="final">Delete corpus <x id="PH" equiv-text="corpus.title"/>
 ?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-corpus-list/src/lib/components/corpus-list/corpus-list.component.ts</context>
@@ -861,6 +861,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
           <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16642106996549783" datatype="html">
+        <source>scope</source>
+        <target state="final">contesto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-builder/query-builder.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3890066742956893223" datatype="html">
@@ -1005,7 +1013,7 @@
  arguments</source>
         <target state="final">
           <x id="INTERPOLATION" equiv-text="{{ args.definition.label }}"/>
- arguments</target>
+ argomenti</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-op-args/query-op-args.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1163,7 +1171,7 @@
 Daniele Fusi<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a
       >"/>
       </source>
-      <target state="final"> Pythia development shell by <x id="START_LINK" ctype="x-a" equiv-text="&lt;a rel=&quot;noopener&quot; href=&quot;http://www.fusisoft.it&quot; target=&quot;_blank&quot;
+      <target state="final"> Piattaforma di sviluppo di Pythia di <x id="START_LINK" ctype="x-a" equiv-text="&lt;a rel=&quot;noopener&quot; href=&quot;http://www.fusisoft.it&quot; target=&quot;_blank&quot;
         >"/>
 Daniele Fusi<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a
       >"/>
@@ -3362,6 +3370,10 @@ Daniele Fusi<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a
     <source>documents</source>
     <target state="final">documenti</target>
     <context-group purpose="location">
+      <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-builder/query-builder.component.html</context>
+      <context context-type="linenumber">26</context>
+    </context-group>
+    <context-group purpose="location">
       <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-distribution-set/term-distribution-set.component.html</context>
       <context context-type="linenumber">8</context>
     </context-group>
@@ -3588,6 +3600,66 @@ Daniele Fusi<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a
       <context context-type="linenumber">3</context>
     </context-group>
   </trans-unit>
+  <trans-unit id="8642445555713453888" datatype="html">
+    <source>First page</source>
+    <target state="final">Prima pagina</target>
+    <context-group purpose="location">
+      <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+      <context context-type="linenumber">11</context>
+    </context-group>
+  </trans-unit>
+  <trans-unit id="4743002849260529978" datatype="html">
+    <source>Items per page:</source>
+    <target state="final">Elementi per pagina:</target>
+    <context-group purpose="location">
+      <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+      <context context-type="linenumber">12</context>
+    </context-group>
+  </trans-unit>
+  <trans-unit id="6784758141439994527" datatype="html">
+    <source>Last page</source>
+    <target state="final">Ultima pagina</target>
+    <context-group purpose="location">
+      <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+      <context context-type="linenumber">13</context>
+    </context-group>
+  </trans-unit>
+  <trans-unit id="3337301694210287595" datatype="html">
+    <source>Next page</source>
+    <target state="final">Prossima pagina</target>
+    <context-group purpose="location">
+      <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+      <context context-type="linenumber">14</context>
+    </context-group>
+  </trans-unit>
+  <trans-unit id="3629960544875360046" datatype="html">
+    <source>Previous page</source>
+    <target state="final">Pagina precedente</target>
+    <context-group purpose="location">
+      <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+      <context context-type="linenumber">15</context>
+    </context-group>
+  </trans-unit>
+  <trans-unit id="125401261339317585" datatype="html">
+    <source>Page 1 of 1</source>
+    <target state="final">Pagina 1 di 1</target>
+    <context-group purpose="location">
+      <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+      <context context-type="linenumber">19</context>
+    </context-group>
+  </trans-unit>
+  <trans-unit id="6221116945238325541" datatype="html">
+    <source>Page <x id="PH" equiv-text="page + 1"/>
+ of <x id="PH_1" equiv-text="amountPages"/>
+  </source>
+  <target state="final">Pagina <x id="PH" equiv-text="page + 1"/>
+ di <x id="PH_1" equiv-text="amountPages"/>
+</target>
+<context-group purpose="location">
+  <context context-type="sourcefile">src/services/i18n-paginator-intl.service.ts</context>
+  <context context-type="linenumber">22</context>
+</context-group>
+</trans-unit>
 </body>
 </file>
 </xliff>

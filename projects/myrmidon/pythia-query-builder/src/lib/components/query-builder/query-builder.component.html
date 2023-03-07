@@ -1,6 +1,6 @@
 <div>
   <fieldset>
-    <legend>scope</legend>
+    <legend i18n>scope</legend>
     <!-- corpora -->
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -23,7 +23,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="form-row">
           <mat-icon style="color: orange">file_copy</mat-icon>
-          documents
+          <ng-container i18n>documents</ng-container>
         </mat-panel-title>
         <mat-panel-description>
           {{ docSet.entries.length }}

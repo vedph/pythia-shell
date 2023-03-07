@@ -18,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
@@ -71,6 +71,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ATTR_DEFS } from './attr-defs';
+import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.service';
 
 // https://ngneat.github.io/elf/docs/dev-tools/
 export function initElfDevTools(actions: Actions) {
@@ -166,6 +167,11 @@ export function initElfDevTools(actions: Actions) {
     {
       provide: QUERY_BUILDER_ATTR_DEFS_KEY,
       useValue: ATTR_DEFS,
+    },
+    // paginator i18n
+    {
+      provide: MatPaginatorIntl,
+      useClass: I18nPaginatorIntlService,
     },
   ],
   bootstrap: [AppComponent],
