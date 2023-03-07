@@ -2,6 +2,501 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="it-IT" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="3659547348591267129" datatype="html">
+        <source>registration</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7315714079098881460" datatype="html">
+        <source>email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="193324215946023286" datatype="html">
+        <source>username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8937807138271380445" datatype="html">
+        <source>first name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2099761169117730626" datatype="html">
+        <source>last name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4809196861118879526" datatype="html">
+        <source>password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-login/src/lib/components/auth-jwt-login/auth-jwt-login.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3330329515985411103" datatype="html">
+        <source>confirm password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3773712745383114353" datatype="html">
+        <source> register </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4579430119993221119" datatype="html">
+        <source>Hints</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1515179324767973862" datatype="html">
+        <source> To register a new user, you must provide his email address, choose a password, and choose a username, which must be unique (you will be notified if another user has already taken that name). The username must include only letters/digits, start with a letter, and be no shorter than 3 characters, nor longer than 50. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5484073866949928646" datatype="html">
+        <source> To promote a decent security level, the password must include at least 8 characters, uppercase and lowercase letters, digits, and punctuation (like dashes, stops, parentheses, etc.). </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4817882149280378006" datatype="html">
+        <source> Once registered, if messaging is enabled on the server side the user will receive an email message to the email address you specified; he will have to click on the provided link to complete the registration process. Otherwise, you should edit the newly created user and confirm the email registration. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5560075001155211119" datatype="html">
+        <source>email required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2455250193938059543" datatype="html">
+        <source>invalid email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4818118382714343968" datatype="html">
+        <source>email already registered</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4772398364455054532" datatype="html">
+        <source>username required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6941043024043900876" datatype="html">
+        <source>invalid username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4668049074973679225" datatype="html">
+        <source>username already registered</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5333574910928626220" datatype="html">
+        <source> first name required </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7164347204858328417" datatype="html">
+        <source> last name required </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8148861672226265297" datatype="html">
+        <source>password required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="304169984352729594" datatype="html">
+        <source>at least 8 characters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4254516356197237830" datatype="html">
+        <source>at least 1 uppercase letter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="553316423879095535" datatype="html">
+        <source>at least 1 lowercase letter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="553629437477938540" datatype="html">
+        <source>at least 1 punctuation/symbol</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5769085752141562139" datatype="html">
+        <source> password differs from confirmation password </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5611379009596228650" datatype="html">
+        <source>Registration succeeded</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.ts</context>
+          <context context-type="linenumber">201,202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6535780676661833462" datatype="html">
+        <source>Registration error</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/auth-jwt-registration/auth-jwt-registration.component.ts</context>
+          <context context-type="linenumber">209,210</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9178182467454450952" datatype="html">
+        <source>Confirm</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/confirm-dialog/confirm-dialog.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-corpus-list/src/lib/components/corpus-list/corpus-list.component.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7834536043298661765" datatype="html">
+        <source>Confirm operation?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/confirm-dialog/confirm-dialog.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6286037250766429054" datatype="html">
+        <source>yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/confirm-dialog/confirm-dialog.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/services/dialog.service.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2420525563530770652" datatype="html">
+        <source>no</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/confirm-dialog/confirm-dialog.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/services/dialog.service.ts</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7994569563888557377" datatype="html">
+        <source>email address confirmed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1293122947139303060" datatype="html">
+        <source>lockout enabled</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6809671922722235707" datatype="html">
+        <source>Unlock this user if locked</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5584623107240304279" datatype="html">
+        <source>roles</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5092506386575604009" datatype="html">
+        <source>roles (separated by space)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7819314041543176992" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6546134987802539110" datatype="html">
+        <source>Save user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6365965148557383403" datatype="html">
+        <source> email address required </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6340131743353192784" datatype="html">
+        <source> invalid email address </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5471084383238295379" datatype="html">
+        <source> first name too long </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8653098689173710187" datatype="html">
+        <source> last name too long </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="873415193296676121" datatype="html">
+        <source> too long </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-editor/user-editor.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="112225002644682955" datatype="html">
+        <source>name or ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-filter/user-filter.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6849725902312323996" datatype="html">
+        <source>Reset filters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-filter/user-filter.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-corpus-list/src/lib/components/corpus-filter/corpus-filter.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-filter/document-filter.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
+          <context context-type="linenumber">342</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6704088225438410096" datatype="html">
+        <source>Apply filters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-filter/user-filter.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3325180562659478330" datatype="html">
+        <source>name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-login/src/lib/components/auth-jwt-login/auth-jwt-login.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-filter/document-filter.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
+          <context context-type="linenumber">150</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
+          <context context-type="linenumber">235</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="784766187028158077" datatype="html">
+        <source>first</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4106331621788126718" datatype="html">
+        <source>last</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4908942827621861093" datatype="html">
+        <source>lock end</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3913670488306605252" datatype="html">
+        <source>Edit this user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1940037521360712646" datatype="html">
+        <source>Delete this user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4510675134078466092" datatype="html">
+        <source>Delete user <x id="PH" equiv-text="user.userName"/>?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-admin/src/lib/components/user-list/user-list.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-login/src/lib/components/auth-jwt-login/auth-jwt-login.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login-page/login-page.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1446670643492611810" datatype="html">
+        <source>Hide password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-login/src/lib/components/auth-jwt-login/auth-jwt-login.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2727496946419791472" datatype="html">
+        <source>Forgot password?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/auth-jwt-login/src/lib/components/auth-jwt-login/auth-jwt-login.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2836867788846968902" datatype="html">
         <source>ID required</source>
         <context-group purpose="location">
@@ -101,21 +596,6 @@
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6849725902312323996" datatype="html">
-        <source>Reset filters</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-corpus-list/src/lib/components/corpus-filter/corpus-filter.component.html</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-filter/document-filter.component.html</context>
-          <context context-type="linenumber">216</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
-          <context context-type="linenumber">342</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="123010868147850959" datatype="html">
         <source>user</source>
         <context-group purpose="location">
@@ -146,13 +626,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.html</context>
           <context context-type="linenumber">69</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9178182467454450952" datatype="html">
-        <source>Confirm</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-corpus-list/src/lib/components/corpus-list/corpus-list.component.ts</context>
-          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2159408598634884144" datatype="html">
@@ -333,25 +806,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
           <context context-type="linenumber">225</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3325180562659478330" datatype="html">
-        <source>name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-filter/document-filter.component.html</context>
-          <context context-type="linenumber">149</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">150</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
-          <context context-type="linenumber">154</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
-          <context context-type="linenumber">235</context>
         </context-group>
       </trans-unit>
       <trans-unit id="825273306594980068" datatype="html">
@@ -2064,13 +2518,6 @@
           <context context-type="linenumber">319</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6704088225438410096" datatype="html">
-        <source>Apply filters</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
-          <context context-type="linenumber">353</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3044691220873674924" datatype="html">
         <source>count</source>
         <context-group purpose="location">
@@ -2159,17 +2606,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">73</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2454050363478003966" datatype="html">
-        <source>Login</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">78</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/login-page/login-page.component.html</context>
-          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5293215390120556532" datatype="html">
@@ -2428,13 +2864,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">159</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7315714079098881460" datatype="html">
-        <source>email</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7787651082609486257" datatype="html">
