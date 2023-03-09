@@ -8,6 +8,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
   - [Docker](#docker)
   - [Breakpoints](#breakpoints)
   - [History](#history)
+    - [1.0.7-it](#107-it)
     - [1.0.6](#106)
     - [1.0.5](#105)
     - [1.0.4](#104)
@@ -24,7 +25,8 @@ This project derives from the original Pythia frontend demo app, migrating it to
 2. `npm run build-lib`;
 3. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any;
 4. update version in `env.js` (and in Docker compose scripts) and `ng build --configuration production`;
-5. `docker build . -t vedph2020/pythia-shell:1.0.7 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.7-it`.
+5. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
+6. `docker build . -t vedph2020/pythia-shell:1.0.7 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.7-it`.
 
 ## Breakpoints
 
@@ -47,6 +49,8 @@ These are the media query breakpoints defined for responsive layouts according t
 | gt-lg | 'screen and (min-width: 1920px)'                         |
 
 ## History
+
+### 1.0.7-it
 
 - 2023-03-06: added Italian localization. Note: if you get some TS2034 Cannot find name `$localize` try adding `import '@angular/localize/init'` (see [this post](https://stackoverflow.com/questions/65914525/angular-library-cannot-find-name-localize)).
 
