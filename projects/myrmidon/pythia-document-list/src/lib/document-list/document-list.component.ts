@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import '@angular/localize/init';
 import { Observable, take } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';

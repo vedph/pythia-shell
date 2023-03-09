@@ -1,3 +1,5 @@
+import '@angular/localize/init';
+
 import { Corpus } from '@myrmidon/pythia-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 

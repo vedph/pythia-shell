@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import '@angular/localize/init';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 

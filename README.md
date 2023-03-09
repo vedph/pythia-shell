@@ -22,9 +22,9 @@ This project derives from the original Pythia frontend demo app, migrating it to
 
 1. ensure that you have the target locale set. This is specified in `angular.json` under `projects/pythia-shell/architect/build/options/localize`. Set it to false to use the default (English) language, or to `[it-IT]` for Italian.
 2. `npm run build-lib`;
-3. `npm run xi18n` to extract the messages and merge them with the existing translations if any;
+3. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any;
 4. update version in `env.js` (and in Docker compose scripts) and `ng build --configuration production`;
-5. `docker build . -t vedph2020/pythia-shell:1.0.6 -t vedph2020/pythia-shell:latest` (replace with the current version).
+5. `docker build . -t vedph2020/pythia-shell:1.0.7 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.7-it`.
 
 ## Breakpoints
 
@@ -48,7 +48,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
-- 2023-03-06: added Italian localization.
+- 2023-03-06: added Italian localization. Note: if you get some TS2034 Cannot find name `$localize` try adding `import '@angular/localize/init'` (see [this post](https://stackoverflow.com/questions/65914525/angular-library-cannot-find-name-localize)).
 
 ### 1.0.6
 
