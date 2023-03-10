@@ -1,15 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { QueryBuilderTermDef } from '../../query-builder';
-
-/**
- * Query operator's arguments as edited by QueryOpArgsComponent.
- */
-export interface QueryOpArgs {
-  definition: QueryBuilderTermDef;
-  values?: { [key: string]: string };
-}
+import {
+  QueryBuilderTermDef,
+  QueryBuilderTermDefArg,
+} from '../../query-builder';
 
 /**
  * Query operator arguments editor.
@@ -20,7 +15,7 @@ export interface QueryOpArgs {
   styleUrls: ['./query-op-args.component.css'],
 })
 export class QueryOpArgsComponent {
-  private _args?: QueryOpArgs;
+  private _args?: QueryBuilderTermDefArg[];
 
   public arguments: FormArray;
   public form: FormGroup;
@@ -30,36 +25,35 @@ export class QueryOpArgsComponent {
    * by this component.
    */
   @Input()
-  public get args(): QueryOpArgs | undefined | null {
+  public get args(): QueryBuilderTermDefArg[] | undefined | null {
     return this._args;
   }
-  public set args(value: QueryOpArgs | undefined | null) {
+  public set args(value: QueryBuilderTermDefArg[] | undefined | null) {
     if (this._args === value) {
       return;
     }
     this._args = value || undefined;
-    this.updateForm();
+    this.updateForm(this._args);
   }
 
   @Output()
-  public argsChange: EventEmitter<QueryOpArgs>;
+  public argsChange: EventEmitter<QueryBuilderTermDefArg[]>;
 
   constructor(private _formBuilder: FormBuilder) {
     this.arguments = _formBuilder.array([]);
     this.form = _formBuilder.group({ arguments: this.arguments });
     // events
-    this.argsChange = new EventEmitter<QueryOpArgs>();
+    this.argsChange = new EventEmitter<QueryBuilderTermDefArg[]>();
   }
 
-  private updateForm(): void {
-    this.arguments.reset();
+  private updateForm(args?: QueryBuilderTermDefArg[]): void {
+    this.arguments.clear();
 
-    if (!this._args?.definition?.args?.length) {
+    if (!args?.length) {
       this.arguments.disable();
       return;
     }
 
-    const args = this._args.definition.args;
     for (let i = 0; i < args.length; i++) {
       const validators = [];
       if (args[i].required) {
@@ -75,11 +69,13 @@ export class QueryOpArgsComponent {
         validators.push(Validators.max(+args[i].max!));
       }
       const g = this._formBuilder.group({
-        // op is just to hold the operator's definition
-        op: this._formBuilder.control(args[i]),
-        // value is the operator's value
-        value: this._formBuilder.control(
-          this._args.values ? this._args.values[args[i].value] : null,
+        // def is just to hold the arg's definition
+        def: this._formBuilder.control<QueryBuilderTermDefArg>(args[i], {
+          nonNullable: true,
+        }),
+        // value is the arg's value being effectively edited
+        value: this._formBuilder.control<string | null>(
+          args[i].value ?? null,
           validators
         ),
       });
@@ -90,25 +86,23 @@ export class QueryOpArgsComponent {
     this.form.markAsPristine();
   }
 
-  private getValues(): { [key: string]: string } {
-    const values: { [key: string]: string } = {};
+  private getArgs(): QueryBuilderTermDefArg[] {
+    const args: QueryBuilderTermDefArg[] = [];
+
     for (let i = 0; i < this.arguments.length; i++) {
       const g = this.arguments.at(i) as FormGroup;
       const value = g.controls['value'].value as string;
       if (value) {
-        const op = g.controls['op'].value as QueryBuilderTermDef;
-        values[op.value] = value;
+        const def = g.controls['def'].value as QueryBuilderTermDefArg;
+        args.push({ ...def, value: value });
       }
     }
-    return values;
+
+    return args;
   }
 
   public save(): void {
-    const values = this.getValues();
-    this._args = {
-      definition: this._args!.definition,
-      values: values,
-    };
+    this._args = this.getArgs();
     this.argsChange.emit(this._args);
     this.form.markAsPristine();
   }

@@ -1,6 +1,6 @@
 <form [formGroup]="form" (submit)="save()">
   <fieldset *ngIf="args">
-    <legend i18n>{{ args.definition.label }} arguments</legend>
+    <legend i18n>arguments</legend>
     <div formArrayName="arguments" class="form-row">
       <div
         *ngFor="
@@ -13,11 +13,14 @@
         <!-- child form -->
         <div [formGroupName]="i">
           <mat-form-field class="arg">
-            <mat-label>{{ $any(g)["controls"].op.value.label }}</mat-label>
+            <mat-label>{{
+              $any(g)["controls"].def.value.label ??
+                $any(g)["controls"].def.value.id
+            }}</mat-label>
             <input
               matInput
               formControlName="value"
-              [type]="$any(g)['controls'].op.value.numeric ? 'number' : 'text'"
+              [type]="$any(g)['controls'].def.value.numeric ? 'number' : 'text'"
             />
             <mat-error
               i18n

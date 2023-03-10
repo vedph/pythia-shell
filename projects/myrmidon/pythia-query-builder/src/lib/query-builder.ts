@@ -12,7 +12,7 @@ export interface QueryBuilderPair {
   attribute: QueryBuilderTermDef;
   // operator is from constants QUERY_PAIR_OP_DEFS
   operator: QueryBuilderTermDef;
-  opArgs?: { [key: string]: string };
+  opArgs?: QueryBuilderTermDefArg[];
   value: string;
 }
 
@@ -24,7 +24,7 @@ export interface QueryBuilderEntry {
   // operator is set when not a pair, and is from constants
   // QUERY_OP_DEFS or QUERY_LOCATION_OP_DEFS
   operator?: QueryBuilderTermDef;
-  opArgs?: { [key: string]: string };
+  opArgs?: QueryBuilderTermDefArg[];
   // error is set by query builder
   error?: string;
 }
@@ -33,12 +33,13 @@ export interface QueryBuilderEntry {
  * Definition of the argument of a query builder term.
  */
 export interface QueryBuilderTermDefArg {
-  value: string;
-  label: string;
+  id: string;
+  label?: string;
   numeric?: boolean;
   required?: boolean;
   min?: number;
   max?: number;
+  value?: string;
 }
 
 export enum QueryBuilderTermType {
@@ -218,7 +219,7 @@ export const QUERY_PAIR_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Fuzzy matching with similarity treshold 0-1 (default 0.9).`,
     args: [
       {
-        value: 't',
+        id: 't',
         label: $localize`treshold`,
         numeric: true,
         min: 0.0,
@@ -300,19 +301,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must be at the specified distance from the second pair, either before or after it.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`in structure`,
       },
     ],
@@ -324,19 +325,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must not be at the specified distance from the second pair, either before or after it.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`in structure`,
       },
     ],
@@ -348,19 +349,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must be before the second pair, at the specified distance from it.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`in structure`,
       },
     ],
@@ -372,19 +373,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must not be before the second pair, at the specified distance from it.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`in structure`,
       },
     ],
@@ -396,19 +397,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must be after the second pair, at the specified distance from it.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -420,19 +421,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must not be after the second pair, at the specified distance from it.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -444,31 +445,31 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.`,
     args: [
       {
-        value: 'ns',
+        id: 'ns',
         label: $localize`min.distance from start`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'ms',
+        id: 'ms',
         label: $localize`max distance from start`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'ne',
+        id: 'ne',
         label: $localize`min.distance from end`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'me',
+        id: 'me',
         label: $localize`max distance from end`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -480,31 +481,31 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.`,
     args: [
       {
-        value: 'ns',
+        id: 'ns',
         label: $localize`min.distance from start`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'ms',
+        id: 'ms',
         label: $localize`max distance from start`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'ne',
+        id: 'ne',
         label: $localize`min.distance from end`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'me',
+        id: 'me',
         label: $localize`max distance from end`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -516,19 +517,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -540,19 +541,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -564,19 +565,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that its span must left-align with the one defined by the second pair: A can start with or after B, but not before B.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -588,19 +589,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that its span must not left-align with the one defined by the second pair: A can start before B, but not with/after B.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -612,19 +613,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -636,19 +637,19 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Filters the first pair so that its span must not right-align with the one defined by the second pair: A can end after B, but not with/before B.`,
     args: [
       {
-        value: 'n',
+        id: 'n',
         label: $localize`min.distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 'm',
+        id: 'm',
         label: $localize`max distance`,
         numeric: true,
         min: 0,
       },
       {
-        value: 's',
+        id: 's',
         label: $localize`structure`,
       },
     ],
@@ -955,45 +956,59 @@ export class QueryBuilder {
   }
 
   private supplyMinMax(
-    args: { [key: string]: string },
-    min: string,
-    max: string
+    args: QueryBuilderTermDefArg[],
+    min = 'n',
+    max = 'm'
   ): void {
-    if (args[min] === undefined) {
-      args[min] = '0';
+    let arg = args.find((a) => a.id === min);
+    if (!arg) {
+      args.push({
+        id: min,
+        value: '0',
+      });
     }
-    if (args[max] === undefined) {
-      args[max] = '2147483647'; // int.MaxValue
+    arg = args.find((a) => a.id === max);
+    if (!arg) {
+      args.push({
+        id: max,
+        value: '2147483647', // int.MaxValue
+      });
     }
   }
 
   private validateMinMax(
-    args: { [key: string]: string },
-    min: string,
-    max: string
+    args: QueryBuilderTermDefArg[],
+    min = 'n',
+    max = 'm'
   ): boolean {
-    const n = args[min] === undefined ? 0 : +args[min];
-    const m = args[max] === undefined ? 0 : +args[max];
+    let arg = args.find((a) => a.id === min);
+    const n = !arg?.value ? 0 : +arg.value!;
+
+    arg = args.find((a) => a.id === max);
+    const m = !arg?.value ? 0 : +arg.value!;
     return !isNaN(n) && !isNaN(m) && n <= m;
   }
 
   private validateNearLikeOp(entry: QueryBuilderEntry): boolean {
     if (!entry.opArgs) {
-      entry.opArgs = {};
+      entry.opArgs = [];
     }
+    entry.error = undefined;
 
     // n, m must be supplied with defaults (0-max) if missing
-    this.supplyMinMax(entry.opArgs, 'n', 'm');
+    this.supplyMinMax(entry.opArgs);
     // n cannot be > m
-    if (this.validateMinMax(entry.opArgs, 'n', 'm')) {
+    if (!this.validateMinMax(entry.opArgs, 'n', 'm')) {
       entry.error = $localize`Invalid value in n/m argument(s).`;
     }
 
     // s cannot be used with NOT
-    if (entry.opArgs['s'] && entry.operator?.value.startsWith('NOT ')) {
+    let arg = entry.opArgs.find((a) => a.id === 's');
+    if (arg && entry.operator?.value.startsWith('NOT ')) {
       entry.error = $localize`Argument s cannot be used with NOT.`;
     }
-    return entry.error ? true : false;
+
+    return entry.error ? false : true;
   }
 
   private validateInsideLikeOp(entry: QueryBuilderEntry): boolean {
@@ -1002,29 +1017,31 @@ export class QueryBuilder {
     // ne cannot be > me
     // s cannot be used with NOT
     if (!entry.opArgs) {
-      entry.opArgs = {};
+      entry.opArgs = [];
     }
+    entry.error = undefined;
 
     // ns, ms must be supplied with defaults (0-max) if missing
     this.supplyMinMax(entry.opArgs, 'ns', 'ms');
     // ns cannot be > ms
-    if (this.validateMinMax(entry.opArgs, 'ns', 'ms')) {
+    if (!this.validateMinMax(entry.opArgs, 'ns', 'ms')) {
       entry.error = $localize`Invalid value in ns/ms argument(s).`;
     }
 
     // ne, me must be supplied with defaults (0-max) if missing
     this.supplyMinMax(entry.opArgs, 'ne', 'me');
     // ne cannot be > me
-    if (this.validateMinMax(entry.opArgs, 'ne', 'me')) {
+    if (!this.validateMinMax(entry.opArgs, 'ne', 'me')) {
       entry.error = $localize`Invalid value in ne/me argument(s).`;
     }
 
     // s cannot be used with NOT
-    if (entry.opArgs['s'] && entry.operator?.value.startsWith('NOT ')) {
+    let arg = entry.opArgs.find((a) => a.id === 's');
+    if (arg && entry.operator?.value.startsWith('NOT ')) {
       entry.error = $localize`Argument s cannot be used with NOT.`;
     }
 
-    return entry.error ? true : false;
+    return entry.error ? false : true;
   }
 
   private appendArgs(
@@ -1040,7 +1057,9 @@ export class QueryBuilder {
       if (i) {
         sb.push(',');
       }
-      const v: string | undefined = entry.opArgs![keys[i]];
+      const v: string | undefined = entry.opArgs.find(
+        (a) => a.id === keys[i]
+      )?.value;
       if (v) {
         sb.push(v);
         found.push(keys[i]);
@@ -1118,9 +1137,12 @@ export class QueryBuilder {
         sb.push(`"${pair.value}"`);
         // special case for fuzzy (the only pair op with args):
         // syntax there is like [value%="chommoda:0.75"]
-        if (pair.operator.value === '%=' && pair.opArgs && pair.opArgs['t']) {
-          sb.push(':');
-          sb.push(pair.opArgs['t']);
+        if (pair.operator.value === '%=') {
+          const arg = pair.opArgs?.find((a) => a.id === 't');
+          if (arg) {
+            sb.push(':');
+            sb.push(arg.value!);
+          }
         }
         sb.push(']');
       } else {

@@ -8,6 +8,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
   - [Docker](#docker)
   - [Breakpoints](#breakpoints)
   - [History](#history)
+    - [1.0.8-it](#108-it)
     - [1.0.7-it](#107-it)
     - [1.0.6](#106)
     - [1.0.5](#105)
@@ -24,9 +25,10 @@ This project derives from the original Pythia frontend demo app, migrating it to
 1. ensure that you have the target locale set. This is specified in `angular.json` under `projects/pythia-shell/architect/build/options/localize`. Set it to false to use the default (English) language, or to `[it-IT]` for Italian.
 2. `npm run build-lib`;
 3. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any;
-4. update version in `env.js` (and in Docker compose scripts) and `ng build --configuration production`;
-5. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
-6. `docker build . -t vedph2020/pythia-shell:1.0.7 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.7-it`.
+4. update version in `env.js` (and in Docker compose scripts);
+5. `ng build --configuration production`;
+6. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
+7. `docker build . -t vedph2020/pythia-shell:1.0.8 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.8-it`.
 
 ## Breakpoints
 
@@ -49,6 +51,10 @@ These are the media query breakpoints defined for responsive layouts according t
 | gt-lg | 'screen and (min-width: 1920px)'                         |
 
 ## History
+
+### 1.0.8-it
+
+- 2023-03-10: fixes to query builder and missing localizations.
 
 ### 1.0.7-it
 

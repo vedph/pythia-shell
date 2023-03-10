@@ -17,12 +17,12 @@ import { distinctUntilChanged, Subscription } from 'rxjs';
 import {
   QueryBuilderEntry,
   QueryBuilderTermDef,
+  QueryBuilderTermDefArg,
   QueryBuilderTermType,
   QUERY_LOCATION_OP_DEFS,
   QUERY_OP_DEFS,
   QUERY_PAIR_OP_DEFS,
 } from '../../query-builder';
-import { QueryOpArgs } from '../query-op-args/query-op-args.component';
 
 /**
  * Used only in this component to group definitions.
@@ -48,11 +48,11 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public attribute: FormControl<QueryBuilderTermDef | null>;
   public operator: FormControl<QueryBuilderTermDef | null>;
   public value: FormControl<string>;
-  public pairArgs: FormControl<QueryOpArgs | null>;
+  public pairArgs: FormControl<QueryBuilderTermDefArg[] | null>;
   public pairForm: FormGroup;
   // outer form
   public type: FormControl<QueryBuilderTermDef>;
-  public args: FormControl<QueryOpArgs | null>;
+  public args: FormControl<QueryBuilderTermDefArg[] | null>;
   public form: FormGroup;
 
   /**
@@ -61,7 +61,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public entryTypes = [
     {
       value: '-',
-      label: 'pair',
+      label: $localize`pair`,
       group: '',
     },
     ...QUERY_OP_DEFS,
@@ -184,10 +184,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
           this.pairForm.enable();
         } else {
           this.pairForm.disable();
-          this.args.setValue({
-            definition: def,
-            values: this.args.value?.values,
-          });
+          this.args.setValue(def.args || []);
         }
       })
     );
@@ -198,12 +195,9 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe((def) => {
           if (def) {
-            this.pairArgs.setValue({
-              definition: def,
-              values: this.pairArgs.value?.values,
-            });
+            this.pairArgs.setValue(def.args || []);
           } else {
-            this.pairArgs.setValue(null);
+            this.pairArgs.setValue([]);
           }
         })
     );
@@ -228,39 +222,36 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
 
     // set pair form
     setTimeout(() => {
-      // if not a pair, just reset
+      // if not a pair, reset pair and set op args if any
       if (!entry.pair) {
         this.pairForm.reset();
+        if (entry.opArgs?.length) {
+          this.args.setValue(entry.opArgs);
+        }
       } else {
         // else set values from entry.pair
         const pair = entry.pair!;
         this.attribute.setValue(pair.attribute || null);
         this.operator.setValue(pair.operator || null);
         this.value.setValue(pair.value);
-        if (pair.opArgs) {
-          this.pairArgs.setValue({
-            definition: pair.operator,
-            values: pair.opArgs,
-          });
+        if (pair.opArgs?.length) {
+          this.pairArgs.setValue(pair.opArgs);
         } else {
           this.pairArgs.setValue(null);
         }
-        this.pairArgs.updateValueAndValidity();
-        this.pairArgs.markAsDirty();
-
         this.pairForm.markAsPristine();
       }
       this.form.markAsPristine();
     });
   }
 
-  public onArgsChange(args: QueryOpArgs): void {
+  public onArgsChange(args: QueryBuilderTermDefArg[]): void {
     this.args.setValue(args);
     this.args.updateValueAndValidity();
     this.args.markAsDirty();
   }
 
-  public onPairArgsChange(args: QueryOpArgs): void {
+  public onPairArgsChange(args: QueryBuilderTermDefArg[]): void {
     this.pairArgs.setValue(args);
     this.pairArgs.updateValueAndValidity();
     this.pairArgs.markAsDirty();
@@ -272,14 +263,14 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
         pair: {
           attribute: this.attribute.value!,
           operator: this.operator.value!,
-          opArgs: this.pairArgs.value?.values,
+          opArgs: this.pairArgs.value || [],
           value: this.value.value,
         },
       };
     } else {
       return {
         operator: this.type.value as any,
-        opArgs: this.args.value?.values,
+        opArgs: this.args.value || [],
       };
     }
   }
