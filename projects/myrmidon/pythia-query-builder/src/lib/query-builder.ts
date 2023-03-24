@@ -1063,6 +1063,8 @@ export class QueryBuilder {
         if (i) {
           sb.push(',');
         }
+        sb.push(keys[i]);
+        sb.push('=');
         sb.push(v);
         found.push(keys[i]);
       }
