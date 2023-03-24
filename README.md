@@ -52,7 +52,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
-- 2023-03-11: updated Angular.
+- 2023-03-11:
+  - updated Angular.
+  - added query builder tests.
 
 ### 1.0.8-it
 
