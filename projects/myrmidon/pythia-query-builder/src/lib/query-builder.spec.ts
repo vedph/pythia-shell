@@ -1,0 +1,73 @@
+import { TestBed } from '@angular/core/testing';
+
+import {
+  QueryBuilder,
+  QUERY_OP_DEFS,
+  QUERY_PAIR_OP_DEFS,
+  QUERY_TOK_ATTR_DEFS,
+} from './query-builder';
+
+fdescribe('QueryBuilder', () => {
+  let builder: QueryBuilder;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    builder = new QueryBuilder();
+  });
+
+  it('no entries should build empty', () => {
+    expect(builder.build()).toBe('');
+  });
+
+  // X=Y
+  it('should build "[value="a"]"', () => {
+    builder.addEntry({
+      pair: {
+        attribute: QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!,
+        operator: QUERY_PAIR_OP_DEFS.find((d) => d.value === '=')!,
+        value: 'a',
+      },
+    });
+    expect(builder.build()).toBe('[value="a"]');
+  });
+
+  // X%=Y:T
+  it('should build "[value%="a":0.5]"', () => {
+    const op = QUERY_PAIR_OP_DEFS.find((d) => d.value === '%=')!;
+    builder.addEntry({
+      pair: {
+        attribute: QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!,
+        operator: op,
+        value: 'a',
+        opArgs: [{ ...op.args![0], value: '0.5' }],
+      },
+    });
+    expect(builder.build()).toBe('[value%="a":0.5]');
+  });
+
+  // X=Y OR X=Y
+  it('should build "[value="a"] OR [value="b"]', () => {
+    const attr = QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!;
+    const op = QUERY_PAIR_OP_DEFS.find((d) => d.value === '=')!;
+
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: op,
+        value: 'a',
+      },
+    });
+    builder.addEntry({
+      operator: QUERY_OP_DEFS.find((d) => d.value === 'OR')!,
+    });
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: op,
+        value: 'b',
+      },
+    });
+
+    expect(builder.build()).toBe('[value="a"] OR [value="b"]');
+  });
+});
