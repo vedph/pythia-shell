@@ -136,4 +136,69 @@ fdescribe('QueryBuilder', () => {
     });
 
   // X=Y INSIDE(ns,ms,ne,me,s) X=Y
+  it('should build "[value="a"] INSIDE(0,1,2,3,sent) [value="b"]', () => {
+    const attr = QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!;
+    const eqOp = QUERY_PAIR_OP_DEFS.find((d) => d.value === '=')!;
+    const nearOp = QUERY_LOCATION_OP_DEFS.find((d) => d.value === 'INSIDE')!;
+
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: eqOp,
+        value: 'a',
+      },
+    });
+    builder.addEntry({
+      operator: nearOp,
+      opArgs: [
+        { ...nearOp.args![0], value: '0' },
+        { ...nearOp.args![1], value: '1' },
+        { ...nearOp.args![2], value: '2' },
+        { ...nearOp.args![3], value: '3' },
+        { ...nearOp.args![4], value: 'sent' },
+      ],
+    });
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: eqOp,
+        value: 'b',
+      },
+    });
+
+    expect(builder.build()).toBe('[value="a"] INSIDE(0,1,2,3,sent) [value="b"]');
+  });
+
+  // X=Y INSIDE(ns,ms,ne,me) X=Y
+  it('should build "[value="a"] INSIDE(0,1,2,3) [value="b"]', () => {
+    const attr = QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!;
+    const eqOp = QUERY_PAIR_OP_DEFS.find((d) => d.value === '=')!;
+    const nearOp = QUERY_LOCATION_OP_DEFS.find((d) => d.value === 'INSIDE')!;
+
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: eqOp,
+        value: 'a',
+      },
+    });
+    builder.addEntry({
+      operator: nearOp,
+      opArgs: [
+        { ...nearOp.args![0], value: '0' },
+        { ...nearOp.args![1], value: '1' },
+        { ...nearOp.args![2], value: '2' },
+        { ...nearOp.args![3], value: '3' },
+      ],
+    });
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: eqOp,
+        value: 'b',
+      },
+    });
+
+    expect(builder.build()).toBe('[value="a"] INSIDE(0,1,2,3) [value="b"]');
+  });
 });
