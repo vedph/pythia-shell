@@ -153,7 +153,7 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     label: $localize`name`,
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
-    tip: $localize`Structure's name.`,
+    tip: $localize`Structure's name (e.g. sent, p).`,
   },
   {
     value: 'start_position',
@@ -161,6 +161,7 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
     tip: $localize`Structure's start ordinal position in document.`,
+    hidden: true
   },
   {
     value: 'end_position',
@@ -168,6 +169,7 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
     tip: $localize`Structure's end ordinal position in document.`,
+    hidden: true
   },
 ];
 
