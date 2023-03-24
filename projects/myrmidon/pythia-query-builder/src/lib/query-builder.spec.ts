@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   QueryBuilder,
+  QUERY_LOCATION_OP_DEFS,
   QUERY_OP_DEFS,
   QUERY_PAIR_OP_DEFS,
   QUERY_TOK_ATTR_DEFS,
@@ -70,4 +71,69 @@ fdescribe('QueryBuilder', () => {
 
     expect(builder.build()).toBe('[value="a"] OR [value="b"]');
   });
+
+  // X=Y NEAR(n,m,s) X=Y
+  it('should build "[value="a"] NEAR(0,1,sent) [value="b"]', () => {
+    const attr = QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!;
+    const eqOp = QUERY_PAIR_OP_DEFS.find((d) => d.value === '=')!;
+    const nearOp = QUERY_LOCATION_OP_DEFS.find((d) => d.value === 'NEAR')!;
+
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: eqOp,
+        value: 'a',
+      },
+    });
+    builder.addEntry({
+      operator: nearOp,
+      opArgs: [
+        { ...nearOp.args![0], value: '0' },
+        { ...nearOp.args![1], value: '1' },
+        { ...nearOp.args![2], value: 'sent' },
+      ],
+    });
+    builder.addEntry({
+      pair: {
+        attribute: attr,
+        operator: eqOp,
+        value: 'b',
+      },
+    });
+
+    expect(builder.build()).toBe('[value="a"] NEAR(0,1,sent) [value="b"]');
+  });
+
+    // X=Y NEAR(n,m) X=Y
+    it('should build "[value="a"] NEAR(0,1) [value="b"]', () => {
+      const attr = QUERY_TOK_ATTR_DEFS.find((d) => d.value === 'value')!;
+      const eqOp = QUERY_PAIR_OP_DEFS.find((d) => d.value === '=')!;
+      const nearOp = QUERY_LOCATION_OP_DEFS.find((d) => d.value === 'NEAR')!;
+
+      builder.addEntry({
+        pair: {
+          attribute: attr,
+          operator: eqOp,
+          value: 'a',
+        },
+      });
+      builder.addEntry({
+        operator: nearOp,
+        opArgs: [
+          { ...nearOp.args![0], value: '0' },
+          { ...nearOp.args![1], value: '1' },
+        ],
+      });
+      builder.addEntry({
+        pair: {
+          attribute: attr,
+          operator: eqOp,
+          value: 'b',
+        },
+      });
+
+      expect(builder.build()).toBe('[value="a"] NEAR(0,1) [value="b"]');
+    });
+
+  // X=Y INSIDE(ns,ms,ne,me,s) X=Y
 });

@@ -161,7 +161,7 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
     tip: $localize`Structure's start ordinal position in document.`,
-    hidden: true
+    hidden: true,
   },
   {
     value: 'end_position',
@@ -169,7 +169,7 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
     tip: $localize`Structure's end ordinal position in document.`,
-    hidden: true
+    hidden: true,
   },
 ];
 
@@ -1056,13 +1056,13 @@ export class QueryBuilder {
     }
     const found: string[] = [];
     for (let i = 0; i < keys.length; i++) {
-      if (i) {
-        sb.push(',');
-      }
       const v: string | undefined = entry.opArgs.find(
         (a) => a.id === keys[i]
       )?.value;
       if (v) {
+        if (i) {
+          sb.push(',');
+        }
         sb.push(v);
         found.push(keys[i]);
       }
