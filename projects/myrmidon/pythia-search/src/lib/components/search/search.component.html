@@ -52,6 +52,7 @@
                 }}</mat-option>
               </mat-select>
               <button
+                type="button"
                 mat-icon-button
                 matSuffix
                 i18n-matTooltip
@@ -74,6 +75,8 @@
         ></pythia-query-builder>
       </mat-tab>
     </mat-tab-group>
+
+    <div *ngIf="error$ | async as error" class="error">{{ error }}</div>
   </div>
 
   <!-- results -->

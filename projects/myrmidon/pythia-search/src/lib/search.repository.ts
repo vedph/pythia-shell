@@ -54,6 +54,7 @@ export class SearchRepository {
   public pagination$: Observable<PaginationData & { data: KwicSearchResult[] }>;
   public status$: Observable<StatusState>;
   public loading$: Observable<boolean>;
+  public error$: Observable<string | undefined>;
   public readRequest$: Observable<DocumentReadRequest | undefined>;
 
   constructor(private _searchService: SearchService) {
@@ -70,6 +71,7 @@ export class SearchRepository {
     );
     this._loading$ = new BehaviorSubject<boolean>(false);
     this.loading$ = this._loading$.asObservable();
+    this.error$ = this._store.pipe(select((state) => state.error));
     this.readRequest$ = this._store.pipe(select((state) => state.readRequest));
 
     // the active result, if required
@@ -178,6 +180,7 @@ export class SearchRepository {
 
     // load page from server
     this._loading$.next(true);
+    this._store.update(setProp('error', undefined));
     this._searchService
       .search(query, contextSize, pageNumber, pageSize)
       .pipe(take(1))
@@ -186,6 +189,7 @@ export class SearchRepository {
           this._loading$.next(false);
           if (result.error) {
             console.error(result.error);
+            this._store.update(setProp('error', result.error));
           } else {
             this.addPage({
               ...this.adaptPage(result.value!),
@@ -196,6 +200,7 @@ export class SearchRepository {
         error: (error) => {
           this._loading$.next(false);
           console.error(error ? JSON.stringify(error) : 'Error in search');
+          this._store.update(setProp('error', 'Error in search'));
         },
       });
   }

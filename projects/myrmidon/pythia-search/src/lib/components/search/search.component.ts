@@ -30,6 +30,7 @@ export class SearchComponent implements OnInit {
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
   public loading$: Observable<boolean | undefined>;
+  public error$: Observable<string | undefined>;
   public readRequest$: Observable<DocumentReadRequest | undefined>;
   public query: FormControl<string | null>;
   public history: FormControl<string | null>;
@@ -54,6 +55,7 @@ export class SearchComponent implements OnInit {
     this.query$ = _repository.query$;
     this.lastQueries$ = _repository.lastQueries$;
     this.loading$ = _repository.loading$;
+    this.error$ = _repository.error$;
     this.readRequest$ = _repository.readRequest$;
   }
 
