@@ -8,6 +8,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
   - [Docker](#docker)
   - [Breakpoints](#breakpoints)
   - [History](#history)
+    - [1.0.9-it](#109-it)
     - [1.0.8-it](#108-it)
     - [1.0.7-it](#107-it)
     - [1.0.6](#106)
@@ -28,7 +29,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
 4. update version in `env.js` (and in Docker compose scripts);
 5. `ng build --configuration production`;
 6. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
-7. `docker build . -t vedph2020/pythia-shell:1.0.8 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.8-it`.
+7. `docker build . -t vedph2020/pythia-shell:1.0.8 -t vedph2020/pythia-shell:latest` (replace with the current version). For the Italian version use `docker build . -t vedph2020/pythia-shell:1.0.9-it`.
 
 ## Breakpoints
 
@@ -51,6 +52,8 @@ These are the media query breakpoints defined for responsive layouts according t
 | gt-lg | 'screen and (min-width: 1920px)'                         |
 
 ## History
+
+### 1.0.9-it
 
 - 2023-03-25:
   - updated Angular.

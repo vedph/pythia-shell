@@ -559,7 +559,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">90</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
@@ -871,7 +871,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
@@ -947,7 +947,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8583825692753174768" datatype="html">
@@ -1717,99 +1717,99 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">169</context>
+          <context context-type="linenumber">170</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">169,170</context>
+          <context context-type="linenumber">170,171</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">413</context>
+          <context context-type="linenumber">415</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">413,414</context>
+          <context context-type="linenumber">415,416</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">437</context>
+          <context context-type="linenumber">439</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">437,438</context>
+          <context context-type="linenumber">439,440</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">473</context>
+          <context context-type="linenumber">475</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">473,474</context>
+          <context context-type="linenumber">475,476</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">509</context>
+          <context context-type="linenumber">511</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">509,510</context>
+          <context context-type="linenumber">511,512</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">533</context>
+          <context context-type="linenumber">535</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">533,534</context>
+          <context context-type="linenumber">535,536</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">557</context>
+          <context context-type="linenumber">559</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">557,558</context>
+          <context context-type="linenumber">559,560</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">581</context>
+          <context context-type="linenumber">583</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">581,582</context>
+          <context context-type="linenumber">583,584</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">605</context>
+          <context context-type="linenumber">607</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">605,606</context>
+          <context context-type="linenumber">607,608</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">629</context>
+          <context context-type="linenumber">631</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">629,630</context>
+          <context context-type="linenumber">631,632</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">653</context>
+          <context context-type="linenumber">655</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">653,654</context>
+          <context context-type="linenumber">655,656</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">327</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8983040973120637268" datatype="html">
-        <source>Structure's name.</source>
+      <trans-unit id="5556343653250570084" datatype="html">
+        <source>Structure's name (e.g. sent, p).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">156</context>
@@ -1845,1303 +1845,1303 @@
         <source>end</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">168</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">167,168</context>
+          <context context-type="linenumber">168,169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1301217821289513608" datatype="html">
         <source>Structure's end ordinal position in document.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">170</context>
+          <context context-type="linenumber">171</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">170,176</context>
+          <context context-type="linenumber">171,177</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6058990727665238036" datatype="html">
         <source>equals to</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">180</context>
+          <context context-type="linenumber">182</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">180,181</context>
+          <context context-type="linenumber">182,183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2599482292944843523" datatype="html">
         <source>a) standard</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">181</context>
+          <context context-type="linenumber">183</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">181,183</context>
+          <context context-type="linenumber">183,185</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">186</context>
+          <context context-type="linenumber">188</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">186,188</context>
+          <context context-type="linenumber">188,190</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">193</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">191,193</context>
+          <context context-type="linenumber">193,195</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">198</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">196,198</context>
+          <context context-type="linenumber">198,200</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">203</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">201,203</context>
+          <context context-type="linenumber">203,205</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8257780364811230009" datatype="html">
         <source>not equals to</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">187</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">185,186</context>
+          <context context-type="linenumber">187,188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="326106955650253946" datatype="html">
         <source>contains</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">190</context>
+          <context context-type="linenumber">192</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">190,191</context>
+          <context context-type="linenumber">192,193</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5840053709154100532" datatype="html">
         <source>starts with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">197</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">195,196</context>
+          <context context-type="linenumber">197,198</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6387705929814330940" datatype="html">
         <source>ends with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">202</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">200,201</context>
+          <context context-type="linenumber">202,203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3568002134148206163" datatype="html">
         <source>matches (wildcards)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">205</context>
+          <context context-type="linenumber">207</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">205,206</context>
+          <context context-type="linenumber">207,208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2360261761028584161" datatype="html">
         <source>b) expression</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">206</context>
+          <context context-type="linenumber">208</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">206,207</context>
+          <context context-type="linenumber">208,209</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">212</context>
+          <context context-type="linenumber">214</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">212,213</context>
+          <context context-type="linenumber">214,215</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4156017836702252973" datatype="html">
         <source>Wildcards: ?=any single character; *=any number of any characters.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">207</context>
+          <context context-type="linenumber">209</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">207,211</context>
+          <context context-type="linenumber">209,213</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8332808051403614327" datatype="html">
         <source>matches (regexp)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">211</context>
+          <context context-type="linenumber">213</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">211,212</context>
+          <context context-type="linenumber">213,214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4170535864390440617" datatype="html">
         <source>Regular expression.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">213</context>
+          <context context-type="linenumber">215</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">213,216</context>
+          <context context-type="linenumber">215,218</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5889343240992427848" datatype="html">
         <source>is similar to</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">217</context>
+          <context context-type="linenumber">219</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">217,218</context>
+          <context context-type="linenumber">219,220</context>
         </context-group>
       </trans-unit>
       <trans-unit id="614357801755571686" datatype="html">
         <source>c) fuzzy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">218</context>
+          <context context-type="linenumber">220</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">218,219</context>
+          <context context-type="linenumber">220,221</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7316885299477461111" datatype="html">
         <source>Fuzzy matching with similarity treshold 0-1 (default 0.9).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">219</context>
+          <context context-type="linenumber">221</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">219,223</context>
+          <context context-type="linenumber">221,225</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2564869775834376091" datatype="html">
         <source>treshold</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">223</context>
+          <context context-type="linenumber">225</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">223,224</context>
+          <context context-type="linenumber">225,226</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4236298651293858111" datatype="html">
         <source>less-than</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">232</context>
+          <context context-type="linenumber">234</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">232,233</context>
+          <context context-type="linenumber">234,235</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6508762358390098087" datatype="html">
         <source>d) numeric</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">233</context>
+          <context context-type="linenumber">235</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">233,235</context>
+          <context context-type="linenumber">235,237</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">242</context>
+          <context context-type="linenumber">244</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">242,244</context>
+          <context context-type="linenumber">244,246</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">247</context>
+          <context context-type="linenumber">249</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">247,249</context>
+          <context context-type="linenumber">249,251</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">252</context>
+          <context context-type="linenumber">254</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">252,254</context>
+          <context context-type="linenumber">254,256</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">257</context>
+          <context context-type="linenumber">259</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">257,259</context>
+          <context context-type="linenumber">259,261</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6878239379059811696" datatype="html">
         <source>d) less-than or equal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">237</context>
+          <context context-type="linenumber">239</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">237,240</context>
+          <context context-type="linenumber">239,242</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1674145721915529884" datatype="html">
         <source>equal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">241</context>
+          <context context-type="linenumber">243</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">241,242</context>
+          <context context-type="linenumber">243,244</context>
         </context-group>
       </trans-unit>
       <trans-unit id="422183338679516483" datatype="html">
         <source>not-equal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">246</context>
+          <context context-type="linenumber">248</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">246,247</context>
+          <context context-type="linenumber">248,249</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5245995644788883292" datatype="html">
         <source>greater-than</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">251</context>
+          <context context-type="linenumber">253</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">251,252</context>
+          <context context-type="linenumber">253,254</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1364746731889982909" datatype="html">
         <source>greater-than or equal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">256</context>
+          <context context-type="linenumber">258</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">256,257</context>
+          <context context-type="linenumber">258,259</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5688420932970578904" datatype="html">
         <source>a) logical</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">268</context>
+          <context context-type="linenumber">270</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">268,270</context>
+          <context context-type="linenumber">270,272</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">273</context>
+          <context context-type="linenumber">275</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">273,275</context>
+          <context context-type="linenumber">275,277</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">278</context>
+          <context context-type="linenumber">280</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">278,279</context>
+          <context context-type="linenumber">280,281</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6204654105537081440" datatype="html">
         <source>b) precedence</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">284</context>
+          <context context-type="linenumber">286</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">284,287</context>
+          <context context-type="linenumber">286,289</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">289</context>
+          <context context-type="linenumber">291</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">289,293</context>
+          <context context-type="linenumber">291,295</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7874130465259528087" datatype="html">
         <source>near to</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">299</context>
+          <context context-type="linenumber">301</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">299,300</context>
+          <context context-type="linenumber">301,302</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5556536029395924167" datatype="html">
         <source>e) collocation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">300</context>
+          <context context-type="linenumber">302</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">300,301</context>
+          <context context-type="linenumber">302,303</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">324</context>
+          <context context-type="linenumber">326</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">324,325</context>
+          <context context-type="linenumber">326,327</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">348</context>
+          <context context-type="linenumber">350</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">348,349</context>
+          <context context-type="linenumber">350,351</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">372</context>
+          <context context-type="linenumber">374</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">372,373</context>
+          <context context-type="linenumber">374,375</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">396</context>
+          <context context-type="linenumber">398</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">396,397</context>
+          <context context-type="linenumber">398,399</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">420</context>
+          <context context-type="linenumber">422</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">420,421</context>
+          <context context-type="linenumber">422,423</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">444</context>
+          <context context-type="linenumber">446</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">444,445</context>
+          <context context-type="linenumber">446,447</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">480</context>
+          <context context-type="linenumber">482</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">480,481</context>
+          <context context-type="linenumber">482,483</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">516</context>
+          <context context-type="linenumber">518</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">516,517</context>
+          <context context-type="linenumber">518,519</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">540</context>
+          <context context-type="linenumber">542</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">540,541</context>
+          <context context-type="linenumber">542,543</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">564</context>
+          <context context-type="linenumber">566</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">564,565</context>
+          <context context-type="linenumber">566,567</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">588</context>
+          <context context-type="linenumber">590</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">588,589</context>
+          <context context-type="linenumber">590,591</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">612</context>
+          <context context-type="linenumber">614</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">612,613</context>
+          <context context-type="linenumber">614,615</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">636</context>
+          <context context-type="linenumber">638</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">636,637</context>
+          <context context-type="linenumber">638,639</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2568420585295884236" datatype="html">
         <source>Filters the first pair so that it must be at the specified distance from the second pair, either before or after it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">301</context>
+          <context context-type="linenumber">303</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">301,307</context>
+          <context context-type="linenumber">303,309</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3931803378576707464" datatype="html">
         <source>min.distance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">305</context>
+          <context context-type="linenumber">307</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">305,306</context>
+          <context context-type="linenumber">307,308</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">329</context>
+          <context context-type="linenumber">331</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">329,330</context>
+          <context context-type="linenumber">331,332</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">353</context>
+          <context context-type="linenumber">355</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">353,354</context>
+          <context context-type="linenumber">355,356</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">377</context>
+          <context context-type="linenumber">379</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">377,378</context>
+          <context context-type="linenumber">379,380</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">401</context>
+          <context context-type="linenumber">403</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">401,402</context>
+          <context context-type="linenumber">403,404</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">425</context>
+          <context context-type="linenumber">427</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">425,426</context>
+          <context context-type="linenumber">427,428</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">521</context>
+          <context context-type="linenumber">523</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">521,522</context>
+          <context context-type="linenumber">523,524</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">545</context>
+          <context context-type="linenumber">547</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">545,546</context>
+          <context context-type="linenumber">547,548</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">569</context>
+          <context context-type="linenumber">571</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">569,570</context>
+          <context context-type="linenumber">571,572</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">593</context>
+          <context context-type="linenumber">595</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">593,594</context>
+          <context context-type="linenumber">595,596</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">617</context>
+          <context context-type="linenumber">619</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">617,618</context>
+          <context context-type="linenumber">619,620</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">641</context>
+          <context context-type="linenumber">643</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">641,642</context>
+          <context context-type="linenumber">643,644</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8308598356664705149" datatype="html">
         <source>max distance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">311</context>
+          <context context-type="linenumber">313</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">311,312</context>
+          <context context-type="linenumber">313,314</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">335</context>
+          <context context-type="linenumber">337</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">335,336</context>
+          <context context-type="linenumber">337,338</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">359</context>
+          <context context-type="linenumber">361</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">359,360</context>
+          <context context-type="linenumber">361,362</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">383</context>
+          <context context-type="linenumber">385</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">383,384</context>
+          <context context-type="linenumber">385,386</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">407</context>
+          <context context-type="linenumber">409</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">407,408</context>
+          <context context-type="linenumber">409,410</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">431</context>
+          <context context-type="linenumber">433</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">431,432</context>
+          <context context-type="linenumber">433,434</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">527</context>
+          <context context-type="linenumber">529</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">527,528</context>
+          <context context-type="linenumber">529,530</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">551</context>
+          <context context-type="linenumber">553</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">551,552</context>
+          <context context-type="linenumber">553,554</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">575</context>
+          <context context-type="linenumber">577</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">575,576</context>
+          <context context-type="linenumber">577,578</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">599</context>
+          <context context-type="linenumber">601</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">599,600</context>
+          <context context-type="linenumber">601,602</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">623</context>
+          <context context-type="linenumber">625</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">623,624</context>
+          <context context-type="linenumber">625,626</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">647</context>
+          <context context-type="linenumber">649</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">647,648</context>
+          <context context-type="linenumber">649,650</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8591544942161096270" datatype="html">
         <source>in structure</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">317</context>
+          <context context-type="linenumber">319</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">317,319</context>
+          <context context-type="linenumber">319,321</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">341</context>
+          <context context-type="linenumber">343</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">341,343</context>
+          <context context-type="linenumber">343,345</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">365</context>
+          <context context-type="linenumber">367</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">365,367</context>
+          <context context-type="linenumber">367,369</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">389</context>
+          <context context-type="linenumber">391</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">389,391</context>
+          <context context-type="linenumber">391,393</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5212424823733810539" datatype="html">
         <source>not near to</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">323</context>
+          <context context-type="linenumber">325</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">323,324</context>
+          <context context-type="linenumber">325,326</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2870935672930485180" datatype="html">
         <source>Filters the first pair so that it must not be at the specified distance from the second pair, either before or after it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">325</context>
+          <context context-type="linenumber">327</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">325,331</context>
+          <context context-type="linenumber">327,333</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4255966804020587417" datatype="html">
         <source>before</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">347</context>
+          <context context-type="linenumber">349</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">347,348</context>
+          <context context-type="linenumber">349,350</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5353240011922684455" datatype="html">
         <source>Filters the first pair so that it must be before the second pair, at the specified distance from it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">349</context>
+          <context context-type="linenumber">351</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">349,354</context>
+          <context context-type="linenumber">351,356</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3352137698771288983" datatype="html">
         <source>not before</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">371</context>
+          <context context-type="linenumber">373</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">371,372</context>
+          <context context-type="linenumber">373,374</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2291177028029445351" datatype="html">
         <source>Filters the first pair so that it must not be before the second pair, at the specified distance from it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">373</context>
+          <context context-type="linenumber">375</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">373,378</context>
+          <context context-type="linenumber">375,380</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6334092464207199213" datatype="html">
         <source>after</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">395</context>
+          <context context-type="linenumber">397</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">395,396</context>
+          <context context-type="linenumber">397,398</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5538453751747417090" datatype="html">
         <source>Filters the first pair so that it must be after the second pair, at the specified distance from it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">397</context>
+          <context context-type="linenumber">399</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">397,402</context>
+          <context context-type="linenumber">399,404</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7970032378333990539" datatype="html">
         <source>not after</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">419</context>
+          <context context-type="linenumber">421</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">419,420</context>
+          <context context-type="linenumber">421,422</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1297898493568516996" datatype="html">
         <source>Filters the first pair so that it must not be after the second pair, at the specified distance from it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">421</context>
+          <context context-type="linenumber">423</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">421,426</context>
+          <context context-type="linenumber">423,428</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2230872458356626731" datatype="html">
         <source>inside</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">443</context>
+          <context context-type="linenumber">445</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">443,444</context>
+          <context context-type="linenumber">445,446</context>
         </context-group>
       </trans-unit>
       <trans-unit id="89989402839143048" datatype="html">
         <source>Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">445</context>
+          <context context-type="linenumber">447</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">445,454</context>
+          <context context-type="linenumber">447,456</context>
         </context-group>
       </trans-unit>
       <trans-unit id="852220856306908172" datatype="html">
         <source>min.distance from start</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">449</context>
+          <context context-type="linenumber">451</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">449,450</context>
+          <context context-type="linenumber">451,452</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">485</context>
+          <context context-type="linenumber">487</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">485,486</context>
+          <context context-type="linenumber">487,488</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5118160093740026022" datatype="html">
         <source>max distance from start</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">455</context>
+          <context context-type="linenumber">457</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">455,456</context>
+          <context context-type="linenumber">457,458</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">491</context>
+          <context context-type="linenumber">493</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">491,492</context>
+          <context context-type="linenumber">493,494</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3381815191920403309" datatype="html">
         <source>min.distance from end</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">461</context>
+          <context context-type="linenumber">463</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">461,462</context>
+          <context context-type="linenumber">463,464</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">497</context>
+          <context context-type="linenumber">499</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">497,498</context>
+          <context context-type="linenumber">499,500</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6957749293876763447" datatype="html">
         <source>max distance from end</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">467</context>
+          <context context-type="linenumber">469</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">467,468</context>
+          <context context-type="linenumber">469,470</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">503</context>
+          <context context-type="linenumber">505</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">503,504</context>
+          <context context-type="linenumber">505,506</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1274422077106012430" datatype="html">
         <source>not inside</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">479</context>
+          <context context-type="linenumber">481</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">479,480</context>
+          <context context-type="linenumber">481,482</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8373612448662259948" datatype="html">
         <source>Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">481</context>
+          <context context-type="linenumber">483</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">481,490</context>
+          <context context-type="linenumber">483,492</context>
         </context-group>
       </trans-unit>
       <trans-unit id="728477232198240261" datatype="html">
         <source>overlaps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">515</context>
+          <context context-type="linenumber">517</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">515,516</context>
+          <context context-type="linenumber">517,518</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2528454948766196994" datatype="html">
         <source>Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">517</context>
+          <context context-type="linenumber">519</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">517,525</context>
+          <context context-type="linenumber">519,527</context>
         </context-group>
       </trans-unit>
       <trans-unit id="879307328662265479" datatype="html">
         <source>not overlaps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">539</context>
+          <context context-type="linenumber">541</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">539,540</context>
+          <context context-type="linenumber">541,542</context>
         </context-group>
       </trans-unit>
       <trans-unit id="274691664307407516" datatype="html">
         <source>Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">541</context>
+          <context context-type="linenumber">543</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">541,549</context>
+          <context context-type="linenumber">543,551</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8332942116521046137" datatype="html">
         <source>left-aligned with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">563</context>
+          <context context-type="linenumber">565</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">563,564</context>
+          <context context-type="linenumber">565,566</context>
         </context-group>
       </trans-unit>
       <trans-unit id="878668021187514328" datatype="html">
         <source>Filters the first pair so that its span must left-align with the one defined by the second pair: A can start with or after B, but not before B.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">565</context>
+          <context context-type="linenumber">567</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">565,574</context>
+          <context context-type="linenumber">567,576</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6333091941276702540" datatype="html">
         <source>not left-aligned with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">587</context>
+          <context context-type="linenumber">589</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">587,588</context>
+          <context context-type="linenumber">589,590</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8499729124433191090" datatype="html">
         <source>Filters the first pair so that its span must not left-align with the one defined by the second pair: A can start before B, but not with/after B.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">589</context>
+          <context context-type="linenumber">591</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">589,598</context>
+          <context context-type="linenumber">591,600</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8282711591051368928" datatype="html">
         <source>right-aligned with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">611</context>
+          <context context-type="linenumber">613</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">611,612</context>
+          <context context-type="linenumber">613,614</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7886461190646342997" datatype="html">
         <source>Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">613</context>
+          <context context-type="linenumber">615</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">613,622</context>
+          <context context-type="linenumber">615,624</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1282931177490121877" datatype="html">
         <source>not right-aligned with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">635</context>
+          <context context-type="linenumber">637</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">635,636</context>
+          <context context-type="linenumber">637,638</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4324682071779661408" datatype="html">
         <source>Filters the first pair so that its span must not right-align with the one defined by the second pair: A can end after B, but not with/before B.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">637</context>
+          <context context-type="linenumber">639</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">637,646</context>
+          <context context-type="linenumber">639,648</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9122432782205697384" datatype="html">
         <source>Query is empty</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">738</context>
+          <context context-type="linenumber">740</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">738</context>
+          <context context-type="linenumber">740</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1396079844857452500" datatype="html">
         <source>Expected pair</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">745</context>
+          <context context-type="linenumber">747</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">745</context>
+          <context context-type="linenumber">747</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1745218775332180578" datatype="html">
         <source>Expected pair or (</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">753</context>
+          <context context-type="linenumber">755</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">753</context>
+          <context context-type="linenumber">755</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8531339399335085169" datatype="html">
         <source>Unexpected entry type</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">774</context>
+          <context context-type="linenumber">776</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">774</context>
+          <context context-type="linenumber">776</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">785</context>
+          <context context-type="linenumber">787</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">785</context>
+          <context context-type="linenumber">787</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">796</context>
+          <context context-type="linenumber">798</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">796</context>
+          <context context-type="linenumber">798</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2903114209977086985" datatype="html">
         <source>Opening bracket at end</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">779</context>
+          <context context-type="linenumber">781</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">779</context>
+          <context context-type="linenumber">781</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7969042374406308229" datatype="html">
         <source>AND NOT is allowed only in document scope</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">792</context>
+          <context context-type="linenumber">794</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">792</context>
+          <context context-type="linenumber">794</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7636952929922460934" datatype="html">
         <source>Logical operator at end</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">801</context>
+          <context context-type="linenumber">803</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">801</context>
+          <context context-type="linenumber">803</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6999961356615603148" datatype="html">
         <source>Pairs not connected by operator</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">807</context>
+          <context context-type="linenumber">809</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">807</context>
+          <context context-type="linenumber">809</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4418684598942329483" datatype="html">
         <source>Location operator not allowed in document scope</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">813</context>
+          <context context-type="linenumber">815</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">813</context>
+          <context context-type="linenumber">815</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2993022444469024258" datatype="html">
         <source>Location operator must connect two pairs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">822</context>
+          <context context-type="linenumber">824</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">822</context>
+          <context context-type="linenumber">824</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7825883107276468881" datatype="html">
         <source>Unbalanced parentheses</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">830</context>
+          <context context-type="linenumber">832</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">830</context>
+          <context context-type="linenumber">832</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8264391366668313967" datatype="html">
         <source>Invalid value in n/m argument(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1002</context>
+          <context context-type="linenumber">1004</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1002</context>
+          <context context-type="linenumber">1004</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5915575195769274503" datatype="html">
         <source>Argument s cannot be used with NOT.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1008</context>
+          <context context-type="linenumber">1010</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1008</context>
+          <context context-type="linenumber">1010</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1041</context>
+          <context context-type="linenumber">1043</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1041</context>
+          <context context-type="linenumber">1043</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9061202522239420785" datatype="html">
         <source>Invalid value in ns/ms argument(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1028</context>
+          <context context-type="linenumber">1030</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1028</context>
+          <context context-type="linenumber">1030</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7085758603307274176" datatype="html">
         <source>Invalid value in ne/me argument(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1035</context>
+          <context context-type="linenumber">1037</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
-          <context context-type="linenumber">1035</context>
+          <context context-type="linenumber">1037</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5900014127748669954" datatype="html">
@@ -3190,28 +3190,28 @@
         <source>Pick the selected query</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6811361795221561918" datatype="html">
         <source>builder</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3364545187261230111" datatype="html">
         <source>Read in context</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9065131043794167815" datatype="html">
         <source>Read document</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8654556074435530919" datatype="html">
