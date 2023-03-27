@@ -2,6 +2,7 @@
   <!-- query -->
   <div id="query">
     <mat-tab-group>
+      <!-- query - advanced -->
       <mat-tab i18n-label label="advanced">
         <form [formGroup]="form" (submit)="search()">
           <mat-form-field style="width: 100%">
@@ -63,19 +64,20 @@
               </button>
             </mat-form-field>
           </div>
-
-          <div *ngIf="loading$ | async">
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-          </div>
         </form>
       </mat-tab>
+      <!-- query - builder -->
       <mat-tab i18n-label label="builder">
         <pythia-query-builder
           (queryChange)="onQueryChange($event)"
         ></pythia-query-builder>
       </mat-tab>
     </mat-tab-group>
-
+    <!-- query progress -->
+    <div *ngIf="loading$ | async">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <!-- query error -->
     <div *ngIf="error$ | async as error" class="error">{{ error }}</div>
   </div>
 

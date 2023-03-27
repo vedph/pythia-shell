@@ -46,7 +46,7 @@
     "@ngneat/elf-requests": "^1.6.0",
     "echarts": "^5.4.2",
     "gravatar": "^1.8.2",
-    "ngx-echarts": "^15.0.2",
+    "ngx-echarts": "^15.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

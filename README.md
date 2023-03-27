@@ -53,6 +53,10 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-03-27:
+  - updated packages.
+  - fixed progress bar location in search.
+
 ### 1.0.9-it
 
 - 2023-03-25:
