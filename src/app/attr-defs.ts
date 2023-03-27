@@ -192,13 +192,13 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     group: 'pos',
     tip: $localize`The paradigmatic form of a word.`,
   },
-  {
-    value: 'len',
-    label: $localize`length`,
-    type: QueryBuilderTermType.Token,
-    group: $localize`token`,
-    tip: $localize`Word's length in letters.`,
-  },
+  // {
+  //   value: 'len',
+  //   label: $localize`length`,
+  //   type: QueryBuilderTermType.Token,
+  //   group: $localize`token`,
+  //   tip: $localize`Word's length in letters.`,
+  // },
   {
     value: 'mood',
     label: $localize`mood`,

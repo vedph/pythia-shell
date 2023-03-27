@@ -14,6 +14,10 @@ th {
 td {
   padding: 4px;
 }
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
 .form-row {
   display: flex;
   gap: 8px;
@@ -26,6 +30,19 @@ td {
 td.fit-width {
   width: 1px;
   white-space: nowrap;
+}
+div#filters {
+  grid-area: filters;
+}
+div#list {
+  grid-area: list;
+}
+div#set {
+  grid-area: set;
+}
+div#paginator {
+  grid-area: paginator;
+  justify-content: end;
 }
 div#container {
   display: grid;

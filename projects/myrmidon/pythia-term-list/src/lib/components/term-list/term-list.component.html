@@ -1,6 +1,6 @@
 <div id="container">
   <!-- filters -->
-  <div style="grid-area: filters">
+  <div id="filters">
     <mat-card>
       <mat-card-content>
         <pythia-term-filter
@@ -12,20 +12,20 @@
   </div>
 
   <!-- list -->
-  <div style="grid-area: list" *ngIf="pagination$ | async as pagination">
+  <div id="list" *ngIf="pagination$ | async as pagination">
     <mat-progress-bar
       mode="indeterminate"
       *ngIf="loading$ | async"
     ></mat-progress-bar>
     <table>
       <thead>
-        <th></th>
+        <th class=""></th>
         <th i18n>value</th>
         <th i18n>count</th>
       </thead>
       <tbody>
         <tr *ngFor="let t of pagination.data">
-          <td>
+          <td class="fit-width">
             <button
               mat-icon-button
               type="button"
@@ -52,7 +52,7 @@
     </table>
 
     <!-- pagination -->
-    <div style="grid-area: paginator; justify-content: end">
+    <div id="paginator">
       <button
         type="button"
         mat-icon-button
@@ -78,7 +78,7 @@
   </div>
 
   <!-- set -->
-  <div style="grid-area: set">
+  <div id="set">
     <pythia-term-distribution-set
       [termId]="activeTerm?.id"
     ></pythia-term-distribution-set>
