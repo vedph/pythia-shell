@@ -559,7 +559,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
@@ -871,7 +871,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">94</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-term-list/src/lib/components/term-filter/term-filter.component.html</context>
@@ -947,7 +947,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8583825692753174768" datatype="html">
@@ -1047,40 +1047,47 @@
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6593276902766556560" datatype="html">
+        <source>No filter applied</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8430442313984476208" datatype="html">
         <source>Corpus updated</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6613305240162200393" datatype="html">
         <source>Error adding documents by filter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3643849087249838588" datatype="html">
         <source>Error updating corpus</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">100</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3428652625006273565" datatype="html">
         <source>Error removing documents by filter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.ts</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="16642106996549783" datatype="html">
@@ -1585,19 +1592,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">192</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">199</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">213</context>
+          <context context-type="linenumber">227</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">234</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">241</context>
+          <context context-type="linenumber">248</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
@@ -1605,15 +1612,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">262</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">269</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">304</context>
+          <context context-type="linenumber">276</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">283</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">318</context>
         </context-group>
       </trans-unit>
       <trans-unit id="347944376281346310" datatype="html">
@@ -1680,10 +1691,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">140,141</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit>
       <trans-unit id="341904595895869548" datatype="html">
@@ -1805,7 +1812,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">327</context>
+          <context context-type="linenumber">341</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5556343653250570084" datatype="html">
@@ -3148,70 +3155,70 @@
         <source>advanced</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3879814431730090822" datatype="html">
         <source>query</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7547092634478073292" datatype="html">
         <source>ctrl+Enter to submit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1251059121302440826" datatype="html">
         <source>query required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6224264290591569468" datatype="html">
         <source>query too long</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7158592746571420879" datatype="html">
         <source>search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6147517065261084603" datatype="html">
         <source>Pick the selected query</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6811361795221561918" datatype="html">
         <source>builder</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3364545187261230111" datatype="html">
         <source>Read in context</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9065131043794167815" datatype="html">
         <source>Read document</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8654556074435530919" datatype="html">
@@ -3758,277 +3765,298 @@
           <context context-type="linenumber">186</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3140385308409984321" datatype="html">
+        <source>left punctuation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="139593548598838077" datatype="html">
+        <source>Left punctuation(s).</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">193</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6345887728209096741" datatype="html">
+        <source>right punctuation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7633454106113563729" datatype="html">
+        <source>Right punctuation(s).</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attr-defs.ts</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2511656881244834005" datatype="html">
         <source>lemma</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">190</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1443518662580645057" datatype="html">
         <source>The paradigmatic form of a word.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">193</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1584143991962793208" datatype="html">
-        <source>Word's length in letters.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="905471079547166891" datatype="html">
         <source>mood</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">204</context>
+          <context context-type="linenumber">218</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5375281418631141867" datatype="html">
         <source>Mood: "cnd"=conditional, "imp"erative, "ind"icative, "sub"junctive.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">207</context>
+          <context context-type="linenumber">221</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4718426032565770183" datatype="html">
         <source>digits</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">211</context>
+          <context context-type="linenumber">225</context>
         </context-group>
       </trans-unit>
       <trans-unit id="537656106274349896" datatype="html">
         <source>Digits: "1" if digit(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">214</context>
+          <context context-type="linenumber">228</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8505625387835214066" datatype="html">
         <source>number</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">218</context>
+          <context context-type="linenumber">232</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6116162427985797203" datatype="html">
         <source>Number: "sing"ular or "plur"al.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">221</context>
+          <context context-type="linenumber">235</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8890419453888910099" datatype="html">
         <source>number type</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">225</context>
+          <context context-type="linenumber">239</context>
         </context-group>
       </trans-unit>
       <trans-unit id="875116273184331389" datatype="html">
         <source>Number type: "ord"inal, "card"inal.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">228</context>
+          <context context-type="linenumber">242</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5636879376186953408" datatype="html">
         <source>org.name, f.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">232</context>
+          <context context-type="linenumber">246</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8329552830767071239" datatype="html">
         <source>Female juridic person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">235</context>
+          <context context-type="linenumber">249</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1241392178445167680" datatype="html">
         <source>org.name, m.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">239</context>
+          <context context-type="linenumber">253</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3904921540177529871" datatype="html">
         <source>Male juridic person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">242</context>
+          <context context-type="linenumber">256</context>
         </context-group>
       </trans-unit>
       <trans-unit id="903461527437833734" datatype="html">
         <source>person</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">246</context>
+          <context context-type="linenumber">260</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5498679979811177204" datatype="html">
         <source>Person: "1", "2", "3".</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">249</context>
+          <context context-type="linenumber">263</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9197286910143930448" datatype="html">
         <source>person name, f.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">253</context>
+          <context context-type="linenumber">267</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4574003738927641529" datatype="html">
         <source>Female person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">256</context>
+          <context context-type="linenumber">270</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4042905273054196011" datatype="html">
         <source>person name, m.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">260</context>
+          <context context-type="linenumber">274</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7868150702657804185" datatype="html">
         <source>Male person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">263</context>
+          <context context-type="linenumber">277</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4081004770963854016" datatype="html">
         <source>surname</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">267</context>
+          <context context-type="linenumber">281</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381162070303144749" datatype="html">
         <source>Person's surname.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">270</context>
+          <context context-type="linenumber">284</context>
         </context-group>
       </trans-unit>
       <trans-unit id="379854568044480816" datatype="html">
         <source>polarity</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">274</context>
+          <context context-type="linenumber">288</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3537454749555899681" datatype="html">
         <source>Polarity: "pos"itive or "neg"ative.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">277</context>
+          <context context-type="linenumber">291</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2545864634845062068" datatype="html">
         <source>poss</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">281</context>
+          <context context-type="linenumber">295</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7514283476197699296" datatype="html">
         <source>Possessive: "yes".</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">284</context>
+          <context context-type="linenumber">298</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2720046703182512817" datatype="html">
         <source>prontype</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">288</context>
+          <context context-type="linenumber">302</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7674492771458030565" datatype="html">
         <source>Pronoun type: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">291</context>
+          <context context-type="linenumber">305</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8470703814283690363" datatype="html">
         <source>tense</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">295</context>
+          <context context-type="linenumber">309</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1036621343787792486" datatype="html">
         <source>Tense: "fut"ure, "imp"erfect, "past", "pres"ent.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">298</context>
+          <context context-type="linenumber">312</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1675583894752413676" datatype="html">
         <source>toponym</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">302</context>
+          <context context-type="linenumber">316</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1530540264055346197" datatype="html">
         <source>Place name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">305</context>
+          <context context-type="linenumber">319</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6698184109699552050" datatype="html">
         <source>upos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">309</context>
+          <context context-type="linenumber">323</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4894717523558551857" datatype="html">
         <source>UDP part of speech: "ADJ", "ADP", "ADV", "AUX", "CCONJ", "DET", "INTJ", "NOUN", "NUM", "PRON", "PROPN", "PUNCT", "SCONJ", "SYM", "VERB", "X".</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">312</context>
+          <context context-type="linenumber">326</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4320618315562567804" datatype="html">
         <source>verbform</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">316</context>
+          <context context-type="linenumber">330</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3846775483797086670" datatype="html">
         <source>Verbal form: "fin"ite, "ger"und, "inf"inite, "part"iciple.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">319</context>
+          <context context-type="linenumber">333</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4251743805719243457" datatype="html">
         <source>paragraph</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">325</context>
+          <context context-type="linenumber">339</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7210462033368663375" datatype="html">
         <source>Paragraph: "1" if a paragraph.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
-          <context context-type="linenumber">328</context>
+          <context context-type="linenumber">342</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3484372693478013424" datatype="html">
