@@ -53,6 +53,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-03-29:
+  - added empty filter check in add/remove docs to/from corpus.
+  - added `lp`/`rp` attribute definitions to `attr-defs.ts`.
 - 2023-03-27:
   - updated packages.
   - fixed progress bar location in search.

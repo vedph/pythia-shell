@@ -186,11 +186,18 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Italic: "1" if italic.`,
   },
   {
-    value: 'lemma',
-    label: $localize`lemma`,
+    value: 'lp',
+    label: $localize`left punctuation`,
     type: QueryBuilderTermType.Token,
-    group: 'pos',
-    tip: $localize`The paradigmatic form of a word.`,
+    group: $localize`token`,
+    tip: $localize`Left punctuation(s).`,
+  },
+  {
+    value: 'rp',
+    label: $localize`right punctuation`,
+    type: QueryBuilderTermType.Token,
+    group: $localize`token`,
+    tip: $localize`Right punctuation(s).`,
   },
   // {
   //   value: 'len',
@@ -199,6 +206,13 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
   //   group: $localize`token`,
   //   tip: $localize`Word's length in letters.`,
   // },
+  {
+    value: 'lemma',
+    label: $localize`lemma`,
+    type: QueryBuilderTermType.Token,
+    group: 'pos',
+    tip: $localize`The paradigmatic form of a word.`,
+  },
   {
     value: 'mood',
     label: $localize`mood`,
