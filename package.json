@@ -43,7 +43,7 @@
     "@ngneat/elf-devtools": "^1.2.1",
     "@ngneat/elf-entities": "^4.4.4",
     "@ngneat/elf-pagination": "^1.1.0",
-    "@ngneat/elf-requests": "^1.6.0",
+    "@ngneat/elf-requests": "^1.7.0",
     "echarts": "^5.4.2",
     "gravatar": "^1.8.2",
     "ngx-echarts": "^15.0.3",

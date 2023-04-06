@@ -134,7 +134,7 @@ export class TermService {
       httpParams = httpParams.set('maxCount', filter.maxCount.toString());
     }
     if (filter.sortOrder) {
-      httpParams = httpParams.set('sort', filter.sortOrder.toString());
+      httpParams = httpParams.set('sortOrder', filter.sortOrder.toString());
     }
     if (filter.descending) {
       httpParams = httpParams.set('descending', filter.descending);
