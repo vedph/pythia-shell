@@ -1142,7 +1142,7 @@
         <source>You must verify your email address! Please check your mailbox <x id="INTERPOLATION" equiv-text="{{
             user.email
           }}"/></source>
-        <target state="final">Devi verificare il tuo indirizzo e-mail! Controlla la posta su <x id="INTERPOLATION" equiv-text="{{
+        <target state="final">Devi verificare il tuo indirizzo e-mail! Controlla la posta di <x id="INTERPOLATION" equiv-text="{{
             user.email
           }}"/></target>
         <context-group purpose="location">
@@ -2108,25 +2108,25 @@
       <context context-type="linenumber">186</context>
     </context-group>
   </trans-unit><trans-unit id="3140385308409984321" datatype="html">
-        <source>left punctuation</source><target state="final">left punctuation</target>
+        <source>left punctuation</source><target state="final">interpunzione sx</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit><trans-unit id="139593548598838077" datatype="html">
-        <source>Left punctuation(s).</source><target state="final">Left punctuation(s).</target>
+        <source>Left punctuation(s).</source><target state="final">Interpunzioni a sx.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">193</context>
         </context-group>
       </trans-unit><trans-unit id="6345887728209096741" datatype="html">
-        <source>right punctuation</source><target state="final">right punctuation</target>
+        <source>right punctuation</source><target state="final">interpunzione dx</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit><trans-unit id="7633454106113563729" datatype="html">
-        <source>Right punctuation(s).</source><target state="final">Right punctuation(s).</target>
+        <source>Right punctuation(s).</source><target state="final">Interpunzioni a dx.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">200</context>
