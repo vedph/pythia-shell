@@ -53,6 +53,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-04-11: updated Angular and packages.
 - 2023-04-06: fixed wrong property names in terms filter.
 - 2023-03-29:
   - added empty filter check in add/remove docs to/from corpus.
