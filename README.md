@@ -8,6 +8,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
   - [Docker](#docker)
   - [Breakpoints](#breakpoints)
   - [History](#history)
+    - [1.0.11-it](#1011-it)
     - [1.0.9-it](#109-it)
     - [1.0.8-it](#108-it)
     - [1.0.7-it](#107-it)
@@ -52,6 +53,8 @@ These are the media query breakpoints defined for responsive layouts according t
 | gt-lg | 'screen and (min-width: 1920px)'                         |
 
 ## History
+
+### 1.0.11-it
 
 - 2023-04-11: updated Angular and packages.
 - 2023-04-06: fixed wrong property names in terms filter.
