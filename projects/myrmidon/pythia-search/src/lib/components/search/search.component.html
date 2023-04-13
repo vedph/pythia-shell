@@ -83,7 +83,9 @@
 
   <!-- results -->
   <div id="results" *ngIf="pagination$ | async as pagination">
-    <div id="total" *ngIf="pagination.total">{{pagination.total}}</div>
+    <div id="total" *ngIf="pagination.total && !(loading$ | async)">
+      {{ pagination.total }}
+    </div>
     <table *ngIf="pagination.data?.length">
       <thead>
         <tr>
