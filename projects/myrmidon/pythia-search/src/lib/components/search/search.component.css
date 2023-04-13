@@ -73,6 +73,14 @@ code {
 .form-row * {
   flex: 0 0 auto;
 }
+div#total {
+  background-color: #ffffe0;
+  border: 1px solid #707040;
+  border-radius: 6px;
+  padding: 4px;
+  font-weight: bold;
+  text-align: center;
+}
 div#container {
   display: grid;
   grid-template-rows: auto auto auto;
