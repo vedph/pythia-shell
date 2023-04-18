@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
 import { Corpus } from '@myrmidon/pythia-core';
 
@@ -36,6 +36,18 @@ export class QueryBuilderComponent {
   public readonly docAttrDefinitions: QueryBuilderTermDef[];
 
   /**
+   * True to enable the peek button.
+   */
+  @Input()
+  public canPeek?: boolean;
+
+  /**
+   * Emitted whenever user wants to peek the query's text.
+   */
+  @Output()
+  public queryPeek: EventEmitter<string>;
+
+  /**
    * Emitted whenever a query is built.
    */
   @Output()
@@ -57,6 +69,7 @@ export class QueryBuilderComponent {
       (d) => d.type === QueryBuilderTermType.Document
     );
     // events
+    this.queryPeek = new EventEmitter<string>();
     this.queryChange = new EventEmitter<string>();
   }
 
@@ -79,9 +92,9 @@ export class QueryBuilderComponent {
     this.updateHasErrors();
   }
 
-  public build(): void {
+  private buildQuery(): string | null {
     if (this.set.errors?.length || this.docSet.errors?.length) {
-      return;
+      return null;
     }
     let query = '';
 
@@ -99,6 +112,22 @@ export class QueryBuilderComponent {
     this._queryBuilder.setEntries(this.set.entries);
     query += this._queryBuilder.build();
 
+    return query;
+  }
+
+  public build(): void {
+    const query = this.buildQuery();
+    if (!query) {
+      return;
+    }
     this.queryChange.emit(query);
+  }
+
+  public peek(): void {
+    const query = this.buildQuery();
+    if (!query) {
+      return;
+    }
+    this.queryPeek.emit(query);
   }
 }

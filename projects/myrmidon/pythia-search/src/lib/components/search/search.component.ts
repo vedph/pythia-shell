@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
   public form: FormGroup;
   public leftContextLabels: string[];
   public rightContextLabels: string[];
+  public queryTabIndex: number;
 
   constructor(private _repository: SearchRepository, formBuilder: FormBuilder) {
     this.query = formBuilder.control(null, [
@@ -50,6 +51,7 @@ export class SearchComponent implements OnInit {
     });
     this.leftContextLabels = ['5', '4', '3', '2', '1'];
     this.rightContextLabels = ['1', '2', '3', '4', '5'];
+    this.queryTabIndex = 0;
 
     this.pagination$ = _repository.pagination$;
     this.query$ = _repository.query$;
@@ -96,6 +98,14 @@ export class SearchComponent implements OnInit {
     }
     event.stopPropagation();
     this.search();
+  }
+
+  public onQueryPeek(query: string): void {
+    this.query.setValue(query);
+    setTimeout(() => {
+      this.queryTabIndex = 0;
+      this.queryElementRef?.nativeElement.focus();
+    }, 0);
   }
 
   public onQueryChange(query: string): void {

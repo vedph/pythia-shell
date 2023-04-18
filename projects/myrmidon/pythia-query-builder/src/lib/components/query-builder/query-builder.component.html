@@ -47,6 +47,14 @@
 
   <div style="margin-top: 8px">
     <button
+      type="button"
+      [disabled]="hasErrors"
+      mat-flat-button
+      (click)="peek()"
+    >
+      <mat-icon>edit_note</mat-icon> <ng-container i18n>to text</ng-container>
+    </button>
+    <button
       type="submit"
       [disabled]="hasErrors"
       color="primary"
