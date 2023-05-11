@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-query-builder",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Pythia - query builder.",
   "keywords": [
     "Pythia"
@@ -14,11 +14,11 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.5.0"
   },
   "sideEffects": false
 }

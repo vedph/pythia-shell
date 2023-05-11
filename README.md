@@ -54,6 +54,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-05-11: updated to Angular 16.
 - 2023-04-18: added peek to query builder and to-text to search. This allows building the query visually and send it to the query text editor, rather than directly executing it.
 - 2023-04-13:
   - added total results count in search view.
