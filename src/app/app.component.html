@@ -1,21 +1,21 @@
 <div>
   <header>
     <mat-toolbar color="primary" id="toolbar">
-      <span style="flex: 0 0 60px"
+      <span id="logo"
         ><img src="./assets/img/logo-white-40.png" alt="Fusisoft"
       /></span>
       <a mat-button routerLink="/home">Pythia</a>
 
       <ng-container *ngIf="user$ | async">
         <!-- corpus -->
-        <button mat-button [matMenuTriggerFor]="corpusMenu">Corpus</button>
+        <button type="button" mat-button [matMenuTriggerFor]="corpusMenu">Corpus</button>
         <mat-menu #corpusMenu>
           <a mat-menu-item routerLink="/documents" i18n>Documents</a>
           <a mat-menu-item routerLink="/corpora" i18n>Corpora</a>
         </mat-menu>
 
         <!-- index -->
-        <button mat-button [matMenuTriggerFor]="indexMenu" i18n>Index</button>
+        <button type="button" mat-button [matMenuTriggerFor]="indexMenu" i18n>Index</button>
         <mat-menu #indexMenu>
           <a mat-menu-item routerLink="/terms" i18n>Terms</a>
           <a mat-menu-item routerLink="/search" i18n>Search</a>

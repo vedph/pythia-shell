@@ -2,6 +2,9 @@
   display: flex;
   align-items: center;
 }
+#logo {
+  flex: 0 0 60px;
+}
 header {
   width: 100%;
   height: 64px;
@@ -9,12 +12,10 @@ header {
   top: 0;
   z-index: 1;
 }
-
 main,
 footer {
   z-index: 0;
 }
-
 footer {
   color: #808080;
   padding: 4px;
@@ -27,11 +28,9 @@ footer {
 footer a {
   color: #808080;
 }
-
 .tb-fill-remaining-space {
   flex: 1 1 auto;
 }
-
 .avatar {
   margin: 0 16px;
 }
