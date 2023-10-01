@@ -3,47 +3,43 @@ import {
   DocumentReadRequest,
   TextMapNode,
 } from '@myrmidon/pythia-core';
-import { BehaviorSubject, forkJoin, Observable, take } from 'rxjs';
-
-import { createStore, select, setProp, withProps } from '@ngneat/elf';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 
 import { DocumentService, ReaderService } from '@myrmidon/pythia-api';
 import { Injectable } from '@angular/core';
 
-export interface DocumentReaderProps {
-  document?: Document;
-  map?: TextMapNode;
-  text?: string;
-}
-
 @Injectable({ providedIn: 'root' })
 export class DocumentReaderRepository {
-  private _store;
+  private _document$: BehaviorSubject<Document | undefined>;
+  private _map$: BehaviorSubject<TextMapNode | undefined>;
+  private _text$: BehaviorSubject<string | undefined>;
   private _loading$: BehaviorSubject<boolean>;
 
-  public loading$: Observable<boolean>;
-  public document$: Observable<Document | undefined>;
-  public map$: Observable<TextMapNode | undefined>;
-  public text$: Observable<string | undefined>;
+  public get loading$(): Observable<boolean> {
+    return this._loading$.asObservable();
+  }
+  public get document$(): Observable<Document | undefined> {
+    return this._document$;
+  }
+  public get map$(): Observable<TextMapNode | undefined> {
+    return this._map$;
+  }
+  public get text$(): Observable<string | undefined> {
+    return this._text$;
+  }
 
   constructor(
     private _docService: DocumentService,
     private _readService: ReaderService
   ) {
-    this._store = createStore(
-      { name: 'document-reader' },
-      withProps<DocumentReaderProps>({})
-    );
-    this.document$ = this._store.pipe(select((state) => state.document));
-    this.map$ = this._store.pipe(select((state) => state.map));
-    this.text$ = this._store.pipe(select((state) => state.text));
-
+    this._document$ = new BehaviorSubject<Document | undefined>(undefined);
+    this._map$ = new BehaviorSubject<TextMapNode | undefined>(undefined);
+    this._text$ = new BehaviorSubject<string | undefined>(undefined);
     this._loading$ = new BehaviorSubject<boolean>(false);
-    this.loading$ = this._loading$.asObservable();
   }
 
   public getDocumentId(): number | undefined {
-    return this._store.query((state) => state.document?.id);
+    return this._document$.value?.id;
   }
 
   private setNodeParents(node: TextMapNode, parent?: TextMapNode) {
@@ -56,12 +52,9 @@ export class DocumentReaderRepository {
   }
 
   public reset(): void {
-    this._store.update((state) => ({
-      ...state,
-      document: undefined,
-      map: undefined,
-      text: undefined,
-    }));
+    this._document$.next(undefined);
+    this._map$.next(undefined);
+    this._text$.next(undefined);
   }
 
   /**
@@ -83,38 +76,28 @@ export class DocumentReaderRepository {
           request.start,
           request.end
         ),
-      })
-        .pipe(take(1))
-        .subscribe((result) => {
-          this._loading$.next(false);
-          this.setNodeParents(result.map);
-          this._store.update((state) => ({
-            ...state,
-            document: result.doc,
-            map: result.map,
-            text: result.piece.text,
-          }));
-        });
+      }).subscribe((result) => {
+        this._loading$.next(false);
+        this.setNodeParents(result.map);
+        this._document$.next(result.doc);
+        this._map$.next(result.map);
+        this._text$.next(result.piece.text);
+      });
     } else {
       forkJoin({
         doc: this._docService.getDocument(request.documentId),
         map: this._readService.getDocumentMap(request.documentId),
-      })
-        .pipe(take(1))
-        .subscribe((result) => {
-          this._loading$.next(false);
-          this.setNodeParents(result.map);
-          this._store.update((state) => ({
-            ...state,
-            document: result.doc,
-            map: result.map,
-            text: undefined,
-          }));
-          // initial path if requested
-          if (initialPath) {
-            this.loadTextFromPath(initialPath);
-          }
-        });
+      }).subscribe((result) => {
+        this._loading$.next(false);
+        this.setNodeParents(result.map);
+        this._document$.next(result.doc);
+        this._map$.next(result.map);
+        this._text$.next(undefined);
+        // initial path if requested
+        if (initialPath) {
+          this.loadTextFromPath(initialPath);
+        }
+      });
     }
   }
 
@@ -158,26 +141,21 @@ export class DocumentReaderRepository {
       }
 
       this._loading$.next(true);
-      this._readService
-        .getDocumentPieceFromPath(id, path)
-        .pipe(take(1))
-        .subscribe({
-          next: (piece) => {
-            this._loading$.next(false);
-            this._store.update(
-              setProp('text', this.extractBodyContent(piece.text))
-            );
-            resolve(true);
-          },
-          error: (error) => {
-            this._loading$.next(false);
-            console.error(
-              'Error loading text: ' +
-                (error ? console.error(JSON.stringify(error)) : '')
-            );
-            reject('Error loading text from path ' + JSON.stringify(path));
-          },
-        });
+      this._readService.getDocumentPieceFromPath(id, path).subscribe({
+        next: (piece) => {
+          this._loading$.next(false);
+          this._text$.next(this.extractBodyContent(piece.text));
+          resolve(true);
+        },
+        error: (error) => {
+          this._loading$.next(false);
+          console.error(
+            'Error loading text: ' +
+              (error ? console.error(JSON.stringify(error)) : '')
+          );
+          reject('Error loading text from path ' + JSON.stringify(path));
+        },
+      });
     });
   }
 
@@ -189,28 +167,24 @@ export class DocumentReaderRepository {
    */
   public loadTextFromRange(start: number, end: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const state = this._store.getValue();
-      if (!state.document?.id) {
+      if (!this._document$.value?.id) {
         reject('No document loaded');
         return;
       }
 
       this._loading$.next(true);
       this._readService
-        .getDocumentPieceFromRange(state.document.id, start, end)
-        .pipe(take(1))
+        .getDocumentPieceFromRange(this._document$.value.id, start, end)
         .subscribe({
           next: (piece) => {
             this._loading$.next(false);
-            this._store.update(
-              setProp('text', this.extractBodyContent(piece.text))
-            );
+            this._text$.next(this.extractBodyContent(piece.text));
             resolve(true);
           },
           error: (error) => {
             this._loading$.next(false);
             console.error(
-              `Unable to load text ${state.document?.id} at ${start}-${end}: ` +
+              `Unable to load text ${this._document$.value?.id} at ${start}-${end}: ` +
                 (error ? console.error(JSON.stringify(error)) : '')
             );
             reject(`Error loading text from ${start}-${end}`);

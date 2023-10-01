@@ -173,7 +173,7 @@ export class DocumentRepository
     this._docService.getDocument(id, false).subscribe({
       next: (d) => {
         this._activeDocument$.next(d);
-        this._loading$.next(true);
+        this._loading$.next(false);
       },
       error: (error) => {
         console.error(
