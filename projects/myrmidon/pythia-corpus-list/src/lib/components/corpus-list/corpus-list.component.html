@@ -4,27 +4,26 @@
     <mat-card>
       <mat-card-content>
         <pythia-corpus-filter
-          [disabled]="(loading$ | async) === true"
+          [filter]="filter$ | async"
+          (filterChange)="onFilterChange($event)"
+          [disabled]="loading"
         ></pythia-corpus-filter>
       </mat-card-content>
     </mat-card>
   </div>
 
   <!-- list -->
-  <div id="list" *ngIf="pagination$ | async as pagination">
-    <mat-progress-bar
-      mode="indeterminate"
-      *ngIf="loading$ | async"
-    ></mat-progress-bar>
+  <div id="list" *ngIf="page$ | async as page">
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     <table>
       <thead>
         <th></th>
         <th>ID</th>
-        <th *ngIf="showUserId" i18n>user</th>
+        <th *ngIf="admin" i18n>user</th>
         <th i18n>title</th>
       </thead>
       <tbody>
-        <tr *ngFor="let c of pagination.data">
+        <tr *ngFor="let c of page.items">
           <td class="fit-width">
             <button
               *ngIf="c | editable"
@@ -50,7 +49,7 @@
             </button>
           </td>
           <td>{{ c.id }}</td>
-          <td *ngIf="showUserId">{{ c.userId }}</td>
+          <td *ngIf="admin">{{ c.userId }}</td>
           <td>{{ c.title }}</td>
         </tr>
       </tbody>
@@ -63,23 +62,20 @@
         mat-icon-button
         color="warn"
         i18n-matTooltip
-        matTooltip="Clear items cache"
-        (click)="clearCache()"
+        matTooltip="Refresh list"
+        (click)="reset()"
       >
-        <mat-icon>autorenew</mat-icon>
+        <mat-icon>refresh</mat-icon>
       </button>
 
       <mat-paginator
-        gdArea="pager"
-        gdAlignColumns="center"
-        gdAlignRows="start"
-        [length]="pagination.total"
-        [pageSize]="pagination.perPage"
-        [pageSizeOptions]="[20, 50, 75, 100]"
-        [pageIndex]="pagination.currentPage - 1"
+        [length]="page.total"
+        [pageIndex]="page.pageNumber - 1"
+        [pageSize]="page.pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        (page)="onPageChange($event)"
         [showFirstLastButtons]="true"
-        (page)="pageChange($event)"
-      ></mat-paginator>
+      />
 
       <div>
         <button

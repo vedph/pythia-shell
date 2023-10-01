@@ -4,15 +4,18 @@ import '@angular/localize/init';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { Corpus } from '@myrmidon/pythia-core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { PaginationData } from '@ngneat/elf-pagination';
+import { DataPage } from '@myrmidon/ng-tools';
 import { DialogService } from '@myrmidon/ng-mat-tools';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
-import { CorpusFilter } from '@myrmidon/pythia-api';
+import { PagedListStore } from '@myrmidon/paged-data-browsers';
 
+import { Corpus } from '@myrmidon/pythia-core';
+import { CorpusFilter, CorpusService } from '@myrmidon/pythia-api';
+
+import { CorpusListBrowserService } from './corpus-list-browser.service';
 import { EditedCorpus } from '../corpus-editor/corpus-editor.component';
-import { CorpusListRepository } from '../../corpus-list.repository';
 
 @Component({
   selector: 'pythia-corpus-list',
@@ -20,38 +23,64 @@ import { CorpusListRepository } from '../../corpus-list.repository';
   styleUrls: ['./corpus-list.component.css'],
 })
 export class CorpusListComponent {
-  public pagination$: Observable<PaginationData & { data: Corpus[] }>;
+  private readonly _store: PagedListStore<CorpusFilter, Corpus>;
+  public filter$: Observable<Readonly<CorpusFilter>>;
+  public page$: Observable<Readonly<DataPage<Corpus>>>;
+  public loading?: boolean;
   public editedCorpus?: EditedCorpus;
 
-  public loading$: Observable<boolean>;
-  public saving$: Observable<boolean>;
-  public showUserId: boolean;
+  public admin: boolean;
 
   constructor(
-    private _repository: CorpusListRepository,
+    service: CorpusListBrowserService,
+    private _corpusService: CorpusService,
     private _authService: AuthJwtService,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
+    private _snackbar: MatSnackBar
   ) {
-    this.pagination$ = _repository.pagination$;
-    this.loading$ = _repository.loading$;
-    this.saving$ = _repository.saving$;
-    this.showUserId = _authService.isCurrentUserInRole('admin');
-
-    // show only current user's corpora except when he's admin
-    this._repository.setFilter({
-      userId: _authService.isCurrentUserInRole('admin')
-        ? undefined
-        : _authService.currentUserValue?.userName,
-    } as CorpusFilter);
+    this._store = service.store;
+    this.filter$ = this._store.filter$;
+    this.page$ = this._store.page$;
+    this.admin = _authService.isCurrentUserInRole('admin');
   }
 
-  public pageChange(event: PageEvent): void {
-    this._repository.loadPage(event.pageIndex + 1, event.pageSize);
+  public reset(): void {
+    this.loading = true;
+    this._store
+      .applyFilter(
+        this.admin
+          ? {}
+          : { userId: this._authService.currentUserValue?.userName }
+      )
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
-  public clearCache(): void {
-    this._repository.clearCache();
-    this._repository.loadPage(1);
+  public ngOnInit(): void {
+    if (this._store.isEmpty()) {
+      this.reset();
+    }
+  }
+
+  public onFilterChange(filter: CorpusFilter): void {
+    this.loading = true;
+    if (!this.admin) {
+      filter = {
+        ...filter,
+        userId: this._authService.currentUserValue?.userName,
+      };
+    }
+    this._store.applyFilter(filter).finally(() => {
+      this.loading = false;
+    });
+  }
+
+  public onPageChange(event: PageEvent): void {
+    this.loading = true;
+    this._store.setPage(event.pageIndex + 1, event.pageSize).finally(() => {
+      this.loading = false;
+    });
   }
 
   public addCorpus(): void {
@@ -81,13 +110,29 @@ export class CorpusListComponent {
         if (!yes) {
           return;
         }
-        this._repository.deleteCorpus(corpus.id);
-        this.editedCorpus = undefined;
+
+        this._corpusService.deleteCorpus(corpus.id).subscribe({
+          next: () => {
+            this.reset();
+          },
+          error: (err) => {
+            console.error(err);
+            this._snackbar.open('Error deleting corpus', 'OK');
+          },
+        });
       });
   }
 
   public onCorpusChange(corpus: EditedCorpus): void {
-    this._repository.addCorpus(corpus, corpus.sourceId);
+    this._corpusService.addCorpus(corpus, corpus.sourceId).subscribe({
+      next: () => {
+        this.reset();
+      },
+      error: (err) => {
+        console.error(err);
+        this._snackbar.open('Error saving corpus', 'OK');
+      },
+    });
     this.editedCorpus = undefined;
   }
 

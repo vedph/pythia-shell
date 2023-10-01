@@ -1,32 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 import { CorpusFilter } from '@myrmidon/pythia-api';
-
-import { CorpusListRepository } from '../../corpus-list.repository';
 
 @Component({
   selector: 'pythia-corpus-filter',
   templateUrl: './corpus-filter.component.html',
   styleUrls: ['./corpus-filter.component.css'],
 })
-export class CorpusFilterComponent implements OnInit {
+export class CorpusFilterComponent {
+  private _filter?: CorpusFilter;
+
+  @Input()
+  public get filter(): CorpusFilter | null | undefined {
+    return this._filter;
+  }
+  public set filter(value: CorpusFilter | null | undefined) {
+    if (this._filter === value) {
+      return;
+    }
+    this._filter = value || undefined;
+    this.updateForm(this._filter);
+  }
+
   @Input()
   public disabled: boolean | undefined;
 
-  public filter$: Observable<CorpusFilter>;
+  /**
+   * Event emitted when the filter changes.
+   */
+  @Output()
+  public filterChange: EventEmitter<CorpusFilter>;
 
   public id: FormControl<string | null>;
   public title: FormControl<string | null>;
   public form: FormGroup;
 
-  constructor(
-    formBuilder: FormBuilder,
-    private _repository: CorpusListRepository
-  ) {
-    this.filter$ = _repository.filter$;
-
+  constructor(formBuilder: FormBuilder) {
     // form
     this.id = formBuilder.control(null);
     this.title = formBuilder.control(null);
@@ -34,23 +44,18 @@ export class CorpusFilterComponent implements OnInit {
       id: this.id,
       title: this.title,
     });
+    // event
+    this.filterChange = new EventEmitter<CorpusFilter>();
   }
 
-  ngOnInit(): void {
-    this.filter$.subscribe((f) => {
-      this.updateForm(f);
-    });
-  }
-
-  private updateForm(filter: CorpusFilter): void {
+  private updateForm(filter?: CorpusFilter | null): void {
+    if (!filter) {
+      this.form.reset();
+      return;
+    }
     this.id.setValue(filter.id || null);
     this.title.setValue(filter.title || null);
     this.form.markAsPristine();
-  }
-
-  public reset(): void {
-    this.form.reset();
-    this.apply();
   }
 
   private getFilter(): CorpusFilter {
@@ -60,13 +65,17 @@ export class CorpusFilterComponent implements OnInit {
     };
   }
 
+  public reset(): void {
+    this.form.reset();
+    this._filter = {};
+    this.filterChange.emit(this._filter);
+  }
+
   public apply(): void {
     if (this.form.invalid) {
       return;
     }
-    const filter = this.getFilter();
-
-    // update filter in state
-    this._repository.setFilter(filter);
+    this._filter = this.getFilter();
+    this.filterChange.emit(this._filter);
   }
 }
