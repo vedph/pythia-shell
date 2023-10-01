@@ -1,46 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  combineLatest,
-  debounceTime,
-  forkJoin,
-  map,
-  Observable,
-  take,
-} from 'rxjs';
-
-import { createStore, select, withProps } from '@ngneat/elf';
-import {
-  withEntities,
-  addEntities,
-  updateEntities,
-  deleteEntities,
-  withActiveId,
-  selectActiveEntity,
-  setActiveId,
-  setEntities,
-  upsertEntities,
-  deleteAllEntities,
-  resetActiveId,
-} from '@ngneat/elf-entities';
-import {
-  withRequestsCache,
-  withRequestsStatus,
-  updateRequestStatus,
-  selectRequestStatus,
-  StatusState,
-} from '@ngneat/elf-requests';
-import {
-  deleteAllPages,
-  hasPage,
-  PaginationData,
-  selectCurrentPageEntities,
-  selectPaginationData,
-  setCurrentPage,
-  setPage,
-  updatePaginationData,
-  withPagination,
-} from '@ngneat/elf-pagination';
+import { BehaviorSubject, forkJoin, Observable, take, tap } from 'rxjs';
 
 import { Document } from '@myrmidon/pythia-core';
 import {
@@ -50,190 +9,125 @@ import {
   ProfileService,
 } from '@myrmidon/pythia-api';
 import { DataPage } from '@myrmidon/ng-tools';
-
-const PAGE_SIZE = 20;
-
-export interface DocumentProps {
-  filter: DocumentFilter;
-  attributes: string[];
-}
+import {
+  PagedListStore,
+  PagedListStoreService,
+} from '@myrmidon/paged-data-browsers';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DocumentRepository {
-  private _store;
-  private _lastPageSize: number;
+export class DocumentRepository
+  implements PagedListStoreService<DocumentFilter, Document>
+{
+  private _store: PagedListStore<DocumentFilter, Document>;
+  private _activeDocument$: BehaviorSubject<Document | undefined>;
+  private _attributes$: BehaviorSubject<string[]>;
+  private _profileIds$: BehaviorSubject<string[]>;
   private _loading$: BehaviorSubject<boolean>;
 
-  public activeDocument$: Observable<Document | undefined>;
-  public filter$: Observable<DocumentFilter>;
-  public pagination$: Observable<PaginationData & { data: Document[] }>;
-  public attributes$: Observable<string[]>;
-  public status$: Observable<StatusState>;
-  public loading$: Observable<boolean>;
+  public get page$(): Observable<DataPage<Document>> {
+    return this._store.page$;
+  }
+
+  public get filter$(): Observable<DocumentFilter> {
+    return this._store.filter$;
+  }
+
+  /**
+   * The optional active document.
+   */
+  public get activeDocument$(): Observable<Document | undefined> {
+    return this._activeDocument$.asObservable();
+  }
+
+  /**
+   * The list of unique document attributes.
+   */
+  public get attributes$(): Observable<string[]> {
+    return this._attributes$.asObservable();
+  }
+
+  /**
+   * The list of unique profile ids.
+   */
+  public get profileIds$(): Observable<string[]> {
+    return this._profileIds$.asObservable();
+  }
+
+  /**
+   * True when the repository is loading data.
+   */
+  public get loading$(): Observable<boolean> {
+    return this._loading$.asObservable();
+  }
 
   constructor(
     private _docService: DocumentService,
     private _attrService: AttributeService,
     private _profileService: ProfileService
   ) {
-    this._store = this.createStore();
-    this._lastPageSize = PAGE_SIZE;
-
-    this.pagination$ = combineLatest([
-      this._store.pipe(selectPaginationData()),
-      this._store.pipe(selectCurrentPageEntities()),
-    ]).pipe(
-      map(([pagination, data]) => ({ ...pagination, data })),
-      debounceTime(0)
+    this._store = new PagedListStore<DocumentFilter, Document>(this);
+    this._activeDocument$ = new BehaviorSubject<Document | undefined>(
+      undefined
     );
-
-    this.activeDocument$ = this._store.pipe(selectActiveEntity());
-    this.attributes$ = this._store.pipe(select((state) => state.attributes));
-    this.status$ = this._store.pipe(selectRequestStatus('document'));
+    this._attributes$ = new BehaviorSubject<string[]>([]);
+    this._profileIds$ = new BehaviorSubject<string[]>([]);
     this._loading$ = new BehaviorSubject<boolean>(false);
-    this.loading$ = this._loading$.asObservable();
 
-    this.filter$ = this._store.pipe(select((state) => state.filter));
-    this.filter$.subscribe((filter) => {
-      // when filter changed, reset any existing page and move to page 1
-      const paginationData = this._store.getValue().pagination;
-      console.log('Deleting all pages');
-      this._store.update(deleteAllPages());
-      // load page 1
-      this.loadPage(1, paginationData.perPage);
-    });
-
-    this.loadPage(1, PAGE_SIZE);
-    this.pagination$.subscribe(console.log);
+    this.loadLookup();
+    this._store.reset();
   }
 
-  private createStore(): typeof store {
-    const store = createStore(
-      { name: 'document' },
-      withProps<DocumentProps>({
-        filter: {},
-        attributes: [],
-      }),
-      withEntities<Document>(),
-      withActiveId(),
-      withRequestsCache<'document'>(),
-      withRequestsStatus(),
-      withPagination()
-    );
-
-    return store;
-  }
-
-  public setDocuments(response: PaginationData & { data: Document[] }) {
-    const { data, ...paginationData } = response;
-
-    this._store.update(
-      setEntities(data),
-      // update pagination
-      updatePaginationData(paginationData),
-      // set page IDs
-      setPage(
-        paginationData.currentPage,
-        data.map((d) => d.id)
-      )
+  public loadPage(
+    pageNumber: number,
+    pageSize: number,
+    filter: DocumentFilter
+  ): Observable<DataPage<Document>> {
+    this._loading$.next(true);
+    return this._docService.getDocuments(filter, pageNumber, pageSize).pipe(
+      tap({
+        next: () => this._loading$.next(false),
+        error: () => this._loading$.next(false),
+      })
     );
   }
 
-  public setFilter(filter: DocumentFilter): void {
-    this._store.update((state) => ({ ...state, filter: filter }));
+  public async reset(): Promise<void> {
+    this._loading$.next(true);
+    try {
+      await this._store.reset();
+    } catch (error) {
+      throw error;
+    } finally {
+      this._loading$.next(false);
+    }
+  }
+
+  public async setFilter(filter: DocumentFilter): Promise<void> {
+    this._loading$.next(true);
+    try {
+      await this._store.setFilter(filter);
+    } catch (error) {
+      throw error;
+    } finally {
+      this._loading$.next(false);
+    }
   }
 
   public getFilter(): DocumentFilter {
-    return this._store.query((state) => state.filter);
+    return this._store.getFilter();
   }
 
-  public addDocument(document: Document) {
-    this._store.update(addEntities(document));
-  }
-
-  public updateDocument(id: Document['id'], document: Partial<Document>) {
-    this._store.update(updateEntities(id, document));
-  }
-
-  public deleteDocument(id: Document['id']) {
-    this._store.update(deleteEntities(id));
-  }
-
-  public setActiveDocumentId(id: Document['id']) {
-    this._store.update(setActiveId(id));
-  }
-
-  public resetActiveDocumentId() {
-    this._store.update(resetActiveId());
-  }
-
-  public updatePagination(paginationData: PaginationData): void {
-    this._store.update(updatePaginationData(paginationData));
-  }
-
-  private adaptPage(
-    page: DataPage<Document>
-  ): PaginationData & { data: Document[] } {
-    return {
-      currentPage: page.pageNumber,
-      perPage: page.pageSize,
-      lastPage: page.pageCount,
-      total: page.total,
-      data: page.items,
-    };
-  }
-
-  private addPage(response: PaginationData & { data: Document[] }): void {
-    const { data, ...paginationData } = response;
-    this._store.update(
-      upsertEntities(data),
-      updatePaginationData(paginationData),
-      setPage(
-        paginationData.currentPage,
-        data.map((c) => c.id)
-      )
-    );
-  }
-
-  public loadPage(pageNumber: number, pageSize?: number): void {
-    if (!pageSize) {
-      pageSize = PAGE_SIZE;
-    }
-    if (
-      this._store.query(hasPage(pageNumber)) &&
-      pageSize === this._lastPageSize
-    ) {
-      console.log('Page exists: ' + pageNumber);
-      this._store.update(setCurrentPage(pageNumber));
-      return;
-    }
-
-    if (this._lastPageSize !== pageSize) {
-      this._store.update(deleteAllPages());
-      this._lastPageSize = pageSize;
-    }
-
+  public async setPage(pageNumber: number, pageSize: number): Promise<void> {
     this._loading$.next(true);
-    this._docService
-      .getDocuments(this._store.getValue().filter, pageNumber, pageSize)
-      .pipe(take(1))
-      .subscribe({
-        next: (page) => {
-          this._loading$.next(false);
-          this.addPage({ ...this.adaptPage(page), data: page.items });
-          this._store.update(updateRequestStatus('document', 'success'));
-        },
-        error: (error) => {
-          this._loading$.next(false);
-          console.error(error ? JSON.stringify(error) : 'Error loading page');
-        },
-      });
-  }
-
-  clearCache() {
-    this._store.update(deleteAllEntities(), deleteAllPages());
+    try {
+      await this._store.setPage(pageNumber, pageSize);
+    } catch (error) {
+      throw error;
+    } finally {
+      this._loading$.next(false);
+    }
   }
 
   public loadLookup(profileIdPrefix?: string): void {
@@ -257,11 +151,8 @@ export class DocumentRepository {
       .subscribe({
         next: (result) => {
           this._loading$.next(false);
-          this._store.update((state) => ({
-            ...state,
-            attributes: result.attributes.items,
-            profileIds: result.profiles.items.map((p) => p.id),
-          }));
+          this._attributes$.next(result.attributes.items);
+          this._profileIds$.next(result.profiles.items.map((p) => p.id));
         },
         error: (error) => {
           this._loading$.next(false);
@@ -273,15 +164,23 @@ export class DocumentRepository {
       });
   }
 
-  public loadDocumentAttributes(id: number, activate = true): void {
-    this._docService
-      .getDocument(id, false)
-      .pipe(take(1))
-      .subscribe((d) => {
-        this.updateDocument(id, d);
-        if (activate) {
-          this.setActiveDocumentId(id);
-        }
-      });
+  public setActiveDocument(id: number | null): void {
+    if (!id) {
+      this._activeDocument$.next(undefined);
+      return;
+    }
+    this._loading$.next(true);
+    this._docService.getDocument(id, false).subscribe({
+      next: (d) => {
+        this._activeDocument$.next(d);
+        this._loading$.next(true);
+      },
+      error: (error) => {
+        console.error(
+          'Error loading document: ' + (error ? JSON.stringify(error) : '')
+        );
+        this._loading$.next(false);
+      },
+    });
   }
 }

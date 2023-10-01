@@ -5,8 +5,7 @@ import { Observable, take } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { PaginationData } from '@ngneat/elf-pagination';
-
+import { DataPage } from '@myrmidon/ng-tools';
 import { Document, DocumentReadRequest } from '@myrmidon/pythia-core';
 import { CorpusService, DocumentFilter } from '@myrmidon/pythia-api';
 
@@ -19,10 +18,11 @@ import { CorpusActionRequest } from '../document-corpus/document-corpus.componen
   styleUrls: ['./document-list.component.css'],
   providers: [DocumentRepository],
 })
-export class DocumentListComponent implements OnInit {
-  public pagination$: Observable<PaginationData & { data: Document[] }>;
+export class DocumentListComponent {
   public loading$: Observable<boolean>;
   public activeDocument$: Observable<Document | undefined>;
+  public filter$: Observable<Readonly<DocumentFilter>>;
+  public page$: Observable<Readonly<DataPage<Document>>>;
 
   @Output()
   public readRequest: EventEmitter<DocumentReadRequest>;
@@ -32,26 +32,27 @@ export class DocumentListComponent implements OnInit {
     private _snackbar: MatSnackBar,
     private _corpusService: CorpusService
   ) {
-    this.pagination$ = _repository.pagination$;
     this.loading$ = _repository.loading$;
     this.activeDocument$ = _repository.activeDocument$;
+    this.filter$ = _repository.filter$;
+    this.page$ = _repository.page$;
     this.readRequest = new EventEmitter<DocumentReadRequest>();
   }
 
-  ngOnInit(): void {
-    this._repository.loadLookup();
+  public onFilterChange(filter: DocumentFilter): void {
+    this._repository.setFilter(filter);
   }
 
-  public pageChange(event: PageEvent): void {
-    this._repository.loadPage(event.pageIndex + 1, event.pageSize);
+  public onPageChange(event: PageEvent): void {
+    this._repository.setPage(event.pageIndex + 1, event.pageSize);
   }
 
   public selectDocument(document: Document): void {
-    this._repository.loadDocumentAttributes(document.id);
+    this._repository.setActiveDocument(document.id);
   }
 
   public onDocumentClose(): void {
-    this._repository.resetActiveDocumentId();
+    this._repository.setActiveDocument(null);
   }
 
   public requestRead(document: Document): void {
@@ -123,8 +124,7 @@ export class DocumentListComponent implements OnInit {
     }
   }
 
-  public clearCache(): void {
-    this._repository.clearCache();
-    this._repository.loadPage(1);
+  public refresh(): void {
+    this._repository.reset();
   }
 }

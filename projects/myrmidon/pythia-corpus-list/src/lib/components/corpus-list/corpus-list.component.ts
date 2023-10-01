@@ -47,7 +47,7 @@ export class CorpusListComponent {
   public reset(): void {
     this.loading = true;
     this._store
-      .applyFilter(
+      .setFilter(
         this.admin
           ? {}
           : { userId: this._authService.currentUserValue?.userName }
@@ -71,7 +71,7 @@ export class CorpusListComponent {
         userId: this._authService.currentUserValue?.userName,
       };
     }
-    this._store.applyFilter(filter).finally(() => {
+    this._store.setFilter(filter).finally(() => {
       this.loading = false;
     });
   }

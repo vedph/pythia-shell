@@ -11,3 +11,12 @@ h3 {
 .form-row * {
   flex: 0 0 auto;
 }
+.short-field {
+  width: 8em;
+}
+.time-field {
+  width: 10em;
+}
+#toolbar {
+  margin: 10px 0;
+}

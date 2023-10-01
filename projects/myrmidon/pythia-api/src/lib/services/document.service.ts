@@ -4,12 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { Document } from '@myrmidon/pythia-core';
-import {
-  DataPage,
-  EnvService,
-  ErrorService,
-  PagingOptions,
-} from '@myrmidon/ng-tools';
+import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 
 export enum DocumentSortOrder {
   Default = 0,

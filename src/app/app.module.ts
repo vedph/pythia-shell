@@ -42,6 +42,7 @@ import {
   AuthJwtLoginModule,
 } from '@myrmidon/auth-jwt-login';
 import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
+import { PagedDataBrowsersModule } from '@myrmidon/paged-data-browsers';
 
 // libs
 import { PythiaApiModule } from 'projects/myrmidon/pythia-api/src/public-api';
@@ -134,6 +135,7 @@ export function initElfDevTools(actions: Actions) {
     // myrmex
     NgToolsModule,
     NgMatToolsModule,
+    PagedDataBrowsersModule,
     AuthJwtLoginModule,
     AuthJwtAdminModule,
     // pythia

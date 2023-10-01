@@ -13,7 +13,7 @@
   </div>
 
   <!-- author -->
-  <div style="margin-top: 8px">
+  <div class="short-field">
     <mat-form-field>
       <mat-label i18n>author(s)</mat-label>
       <input matInput [formControl]="author" maxlength="500" />
@@ -58,13 +58,13 @@
   <h3 i18n>date</h3>
   <div class="form-row">
     <!-- minDateValue -->
-    <mat-form-field style="width: 8em">
+    <mat-form-field class="short-field">
       <mat-label>min</mat-label>
       <input matInput type="number" [formControl]="minDateValue" />
     </mat-form-field>
     -
     <!-- maxDateValue -->
-    <mat-form-field style="width: 8em">
+    <mat-form-field class="short-field">
       <mat-label>max</mat-label>
       <input matInput type="number" [formControl]="maxDateValue" />
     </mat-form-field>
@@ -74,7 +74,7 @@
   <h3 i18n>modified</h3>
   <div class="form-row">
     <!-- minTimeModified -->
-    <mat-form-field style="width: 10em">
+    <mat-form-field class="time-field">
       <mat-label>min</mat-label>
       <input
         matInput
@@ -89,7 +89,7 @@
     </mat-form-field>
     -
     <!-- maxTimeModified -->
-    <mat-form-field style="width: 10em">
+    <mat-form-field class="time-field">
       <mat-label>max</mat-label>
       <input
         matInput
@@ -105,7 +105,7 @@
   </div>
 
   <!-- attributes -->
-  <div *ngIf="(attributes$ | async)?.length">
+  <div *ngIf="attributes?.length">
     <h3>
       <ng-container i18n>attributes</ng-container>
       <button
@@ -119,10 +119,10 @@
         <mat-icon>add_circle</mat-icon>
       </button>
     </h3>
-    <div formArrayName="attributes">
+    <div formArrayName="attrs">
       <div
         *ngFor="
-          let item of attributes.controls;
+          let item of attrs.controls;
           let i = index;
           let first = first;
           let last = last
@@ -145,14 +145,15 @@
 
           <!-- child controls -->
           <!-- name -->
-          <mat-form-field style="width: 8em">
+          <mat-form-field class="short-field">
             <mat-label i18n>name</mat-label>
             <mat-select formControlName="name">
-              <mat-option *ngFor="let n of attributes$ | async" [value]="n">{{
+              <mat-option *ngFor="let n of attributes" [value]="n">{{
                 n
               }}</mat-option>
             </mat-select>
-            <mat-error i18n
+            <mat-error
+              i18n
               *ngIf="
                 $any(item)['controls'].name.errors?.required &&
                 ($any(item)['controls'].name.dirty ||
@@ -164,10 +165,11 @@
 
           <!-- value -->
           &nbsp;
-          <mat-form-field style="width: 8em">
+          <mat-form-field class="short-field">
             <mat-label i18n>value</mat-label>
             <input matInput formControlName="value" />
-            <mat-error i18n
+            <mat-error
+              i18n
               *ngIf="
                 $any(item)['controls'].value.errors?.maxLength &&
                 ($any(item)['controls'].value.dirty ||
@@ -200,13 +202,7 @@
     </div>
   </div>
 
-  <br />
-  <div
-    class="btn-group"
-    role="group"
-    aria-label="toolbar"
-    style="margin-bottom: 10px"
-  >
+  <div id="toolbar" class="btn-group" role="group" aria-label="toolbar">
     <button
       mat-icon-button
       type="button"
@@ -214,7 +210,7 @@
       color="warn"
       i18n-matTooltip
       matTooltip="Reset filters"
-      [disabled]="disabled || (loading$ | async)"
+      [disabled]="disabled"
     >
       <mat-icon>clear</mat-icon>
     </button>
@@ -222,7 +218,7 @@
       type="submit"
       mat-icon-button
       color="primary"
-      [disabled]="disabled || (loading$ | async)"
+      [disabled]="disabled"
       i18n-matmatTooltip
       matTooltip="Apply filters"
     >

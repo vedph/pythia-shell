@@ -16,10 +16,9 @@ table {
 div#container {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr auto auto auto;
+  grid-template-rows: 1fr auto auto;
   grid-template-areas:
     "filters list"
-    ". pagination"
     "info info"
     "corpus corpus";
   gap: 8px;
@@ -29,10 +28,6 @@ div#filters {
 }
 div#list {
   grid-area: list;
-}
-div#pagination {
-  grid-area: pagination;
-  justify-content: end;
 }
 div#info {
   grid-area: info;
@@ -44,11 +39,10 @@ div#corpus {
 /* lt-md */
 @media only screen and (max-width: 959px) {
   div#container {
+    grid-template-rows: 1fr auto auto auto;
     grid-template-columns: 1fr;
     grid-template-areas:
-      "spinner"
       "list"
-      "paginator"
       "filters"
       "info"
       "corpus";

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,16 +6,18 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { forkJoin, from } from 'rxjs';
+
 import {
   CorpusService,
   DocumentFilter,
   ProfileService,
 } from '@myrmidon/pythia-api';
 import { Attribute, Corpus, Profile } from '@myrmidon/pythia-core';
-import { CorpusRefLookupService, ProfileRefLookupService } from '@myrmidon/pythia-ui';
-
-import { forkJoin, from, Observable } from 'rxjs';
-import { DocumentRepository } from '../document.repository';
+import {
+  CorpusRefLookupService,
+  ProfileRefLookupService,
+} from '@myrmidon/pythia-ui';
 
 @Component({
   selector: 'pythia-document-filter',
@@ -23,14 +25,33 @@ import { DocumentRepository } from '../document.repository';
   styleUrls: ['./document-filter.component.css'],
 })
 export class DocumentFilterComponent implements OnInit {
+  private _filter?: DocumentFilter;
+
+  @Input()
+  public get filter(): DocumentFilter | null | undefined {
+    return this._filter;
+  }
+  public set filter(value: DocumentFilter | null | undefined) {
+    if (this._filter === value) {
+      return;
+    }
+    this._filter = value || undefined;
+    this.updateForm(this._filter);
+  }
+
+  @Input()
+  public attributes: string[] | undefined;
+
+  /**
+   * Event emitted when the filter changes.
+   */
+  @Output()
+  public filterChange: EventEmitter<DocumentFilter>;
+
   @Input()
   public disabled: boolean | undefined;
   @Input()
   public sortable: boolean | undefined;
-
-  public filter$: Observable<DocumentFilter>;
-  public loading$: Observable<boolean>;
-  public attributes$: Observable<string[]>;
 
   public corpus: FormControl<Corpus | null>;
   public author: FormControl<string | null>;
@@ -41,7 +62,7 @@ export class DocumentFilterComponent implements OnInit {
   public maxDateValue: FormControl<number | null>;
   public minTimeModified: FormControl<Date | null>;
   public maxTimeModified: FormControl<Date | null>;
-  public attributes: FormArray;
+  public attrs: FormArray;
   public sortOrder: FormControl<number>;
   public descending: FormControl<boolean>;
   public form: FormGroup;
@@ -51,12 +72,8 @@ export class DocumentFilterComponent implements OnInit {
     public profileLookupService: ProfileRefLookupService,
     private _corpusService: CorpusService,
     private _profileService: ProfileService,
-    private _repository: DocumentRepository,
     private _formBuilder: FormBuilder
   ) {
-    this.filter$ = _repository.filter$;
-    this.loading$ = _repository.loading$;
-    this.attributes$ = _repository.attributes$;
     this.sortable = true;
 
     // form
@@ -69,7 +86,7 @@ export class DocumentFilterComponent implements OnInit {
     this.maxDateValue = _formBuilder.control(null);
     this.minTimeModified = _formBuilder.control(null);
     this.maxTimeModified = _formBuilder.control(null);
-    this.attributes = _formBuilder.array([]);
+    this.attrs = _formBuilder.array([]);
     this.sortOrder = _formBuilder.control(0, { nonNullable: true });
     this.descending = _formBuilder.control(false, { nonNullable: true });
     this.form = _formBuilder.group({
@@ -82,17 +99,15 @@ export class DocumentFilterComponent implements OnInit {
       maxDateValue: this.maxDateValue,
       minTimeModified: this.minTimeModified,
       maxTimeModified: this.maxTimeModified,
-      attributes: this.attributes,
+      attrs: this.attrs,
       sortOrder: this.sortOrder,
       descending: this.descending,
     });
+    // events
+    this.filterChange = new EventEmitter<DocumentFilter>();
   }
 
-  ngOnInit(): void {
-    this.filter$.subscribe((f) => {
-      this.updateForm(f);
-    });
-  }
+  ngOnInit(): void {}
 
   private parseAttributes(csv?: string): Attribute[] {
     if (!csv) {
@@ -108,7 +123,11 @@ export class DocumentFilterComponent implements OnInit {
       .filter((a) => a) as Attribute[];
   }
 
-  private updateForm(filter: DocumentFilter): void {
+  private updateForm(filter?: DocumentFilter | null): void {
+    if (!filter) {
+      this.form.reset();
+      return;
+    }
     this.author.setValue(filter.author || null);
     this.title.setValue(filter.title || null);
     this.source.setValue(filter.source || null);
@@ -119,10 +138,10 @@ export class DocumentFilterComponent implements OnInit {
     this.sortOrder.setValue(filter.sortOrder || 0);
     this.descending.setValue(filter.descending ? true : false);
 
-    this.attributes.clear({ emitEvent: false });
+    this.attrs.clear({ emitEvent: false });
     const attrs = this.parseAttributes(filter.attributes);
     for (let i = 0; i < attrs.length; i++) {
-      this.attributes.push(this.getAttributeGroup(attrs[i]));
+      this.attrs.push(this.getAttributeGroup(attrs[i]));
     }
 
     forkJoin({
@@ -164,19 +183,19 @@ export class DocumentFilterComponent implements OnInit {
   }
 
   public addAttribute(item?: Attribute): void {
-    this.attributes.push(this.getAttributeGroup(item));
-    this.attributes.markAsDirty();
+    this.attrs.push(this.getAttributeGroup(item));
+    this.attrs.markAsDirty();
   }
 
   public removeAttribute(index: number): void {
-    this.attributes.removeAt(index);
-    this.attributes.markAsDirty();
+    this.attrs.removeAt(index);
+    this.attrs.markAsDirty();
   }
 
   private getAttributes(): Attribute[] | undefined {
     const entries: Attribute[] = [];
-    for (let i = 0; i < this.attributes.length; i++) {
-      const g = this.attributes.at(i) as FormGroup;
+    for (let i = 0; i < this.attrs.length; i++) {
+      const g = this.attrs.at(i) as FormGroup;
       entries.push({
         targetId: 0, // not used
         name: g.controls['name'].value?.trim(),
@@ -207,18 +226,14 @@ export class DocumentFilterComponent implements OnInit {
   }
 
   public reset(): void {
-    this.attributes.clear({ emitEvent: false });
+    this.attrs.clear({ emitEvent: false });
     this.form.reset();
-    this.apply();
+    this._filter = {};
+    this.filterChange.emit(this._filter);
   }
 
   public apply(): void {
-    if (this.form.invalid) {
-      return;
-    }
-    const filter = this.getFilter();
-
-    // update filter in state
-    this._repository.setFilter(filter);
+    this._filter = this.getFilter();
+    this.filterChange.emit(this._filter);
   }
 }
