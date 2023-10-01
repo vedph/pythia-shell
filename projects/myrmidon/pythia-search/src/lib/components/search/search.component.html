@@ -83,11 +83,11 @@
   </div>
 
   <!-- results -->
-  <div id="results" *ngIf="pagination$ | async as pagination">
-    <div id="total" *ngIf="pagination.total && !(loading$ | async)">
-      {{ pagination.total }}
+  <div id="results" *ngIf="page$ | async as page">
+    <div id="total" *ngIf="page.total && !(loading$ | async)">
+      {{ page.total }}
     </div>
-    <table *ngIf="pagination.data?.length">
+    <table *ngIf="page.items?.length">
       <thead>
         <tr>
           <th></th>
@@ -100,7 +100,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of pagination.data">
+        <tr *ngFor="let r of page.items">
           <!-- column: read -->
           <td class="command">
             <button
@@ -159,16 +159,13 @@
 
     <!-- pagination -->
     <mat-paginator
-      *ngIf="pagination.data?.length"
-      gdAlignColumns="center"
-      gdAlignRows="start"
-      [length]="pagination.total"
-      [pageSize]="pagination.perPage"
-      [pageSizeOptions]="[20, 50, 75, 100]"
-      [pageIndex]="pagination.currentPage - 1"
+      [length]="page.total"
+      [pageIndex]="page.pageNumber - 1"
+      [pageSize]="page.pageSize"
+      [pageSizeOptions]="[5, 10, 20, 50, 100]"
+      (page)="onPageChange($event)"
       [showFirstLastButtons]="true"
-      (page)="pageChange($event)"
-    ></mat-paginator>
+    />
   </div>
 
   <!-- reader -->

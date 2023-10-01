@@ -9,12 +9,11 @@ import { Observable } from 'rxjs';
 
 import { PageEvent } from '@angular/material/paginator';
 
-import { PaginationData } from '@ngneat/elf-pagination';
-
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
 import { KwicSearchResult } from '@myrmidon/pythia-api';
 
 import { SearchRepository } from '../../search.repository';
+import { DataPage } from '@myrmidon/ng-tools';
 
 @Component({
   selector: 'pythia-search',
@@ -23,18 +22,21 @@ import { SearchRepository } from '../../search.repository';
 })
 export class SearchComponent implements OnInit {
   @ViewChild('queryCtl') queryElementRef: ElementRef | undefined;
+
   @Input()
   public initialQueryTerm: string | undefined;
 
-  public pagination$: Observable<PaginationData & { data: KwicSearchResult[] }>;
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
   public loading$: Observable<boolean | undefined>;
+  public page$: Observable<DataPage<KwicSearchResult> | undefined>;
   public error$: Observable<string | undefined>;
   public readRequest$: Observable<DocumentReadRequest | undefined>;
+
   public query: FormControl<string | null>;
   public history: FormControl<string | null>;
   public form: FormGroup;
+
   public leftContextLabels: string[];
   public rightContextLabels: string[];
   public queryTabIndex: number;
@@ -53,7 +55,7 @@ export class SearchComponent implements OnInit {
     this.rightContextLabels = ['1', '2', '3', '4', '5'];
     this.queryTabIndex = 0;
 
-    this.pagination$ = _repository.pagination$;
+    this.page$ = _repository.page$;
     this.query$ = _repository.query$;
     this.lastQueries$ = _repository.lastQueries$;
     this.loading$ = _repository.loading$;
@@ -69,7 +71,9 @@ export class SearchComponent implements OnInit {
   }
 
   public pageChange(event: PageEvent): void {
-    this._repository.search(null, 5, event.pageIndex + 1, event.pageSize);
+    this._repository.loadPage(event.pageIndex + 1, event.pageSize, {
+      query: this.query.value!,
+    });
   }
 
   public pickHistory(): void {
@@ -81,7 +85,7 @@ export class SearchComponent implements OnInit {
   }
 
   public search(): void {
-    if (this.form.invalid || this._repository.isLoading()) {
+    if (this.form.invalid) {
       return;
     }
     const query = this.query.value?.trim();
@@ -89,13 +93,10 @@ export class SearchComponent implements OnInit {
       return;
     }
     this._repository.addToHistory(query);
-    this._repository.search(query);
+    this._repository.setFilter({ query });
   }
 
   public searchByEnter(event: KeyboardEvent): void {
-    if (this._repository.isLoading()) {
-      return;
-    }
     event.stopPropagation();
     this.search();
   }
@@ -111,7 +112,11 @@ export class SearchComponent implements OnInit {
   public onQueryChange(query: string): void {
     this.query.setValue(query);
     this._repository.addToHistory(query);
-    this._repository.search(query);
+    this._repository.setFilter({ query });
+  }
+
+  public onPageChange(event: PageEvent): void {
+    this._repository.setPage(event.pageIndex + 1, event.pageSize);
   }
 
   public readDocument(id: number) {
