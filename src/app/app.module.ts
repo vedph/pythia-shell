@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,8 +30,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
 // vendors
-import { devTools } from '@ngneat/elf-devtools';
-import { Actions } from '@ngneat/effects-ng';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
@@ -73,16 +71,6 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ATTR_DEFS } from './attr-defs';
 import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.service';
-
-// https://ngneat.github.io/elf/docs/dev-tools/
-export function initElfDevTools(actions: Actions) {
-  return () => {
-    devTools({
-      name: 'Pthia',
-      actionsDispatcher: actions,
-    });
-  };
-}
 
 @NgModule({
   declarations: [
@@ -151,12 +139,6 @@ export function initElfDevTools(actions: Actions) {
     PythiaUiModule,
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: initElfDevTools,
-      deps: [Actions],
-    },
     EnvServiceProvider,
     // HTTP interceptor
     // https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8

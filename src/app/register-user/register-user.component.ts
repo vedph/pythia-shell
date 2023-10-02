@@ -16,8 +16,7 @@ export class RegisterUserComponent implements OnInit {
   ngOnInit(): void {}
 
   public onRegistered(): void {
-    this._repository.clearCache();
-    this._repository.loadPage(1);
+    this._repository.reset();
     this._router.navigate(['/manage-users']);
   }
 }
