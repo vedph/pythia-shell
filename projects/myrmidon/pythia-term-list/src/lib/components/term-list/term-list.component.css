@@ -40,27 +40,21 @@ div#list {
 div#set {
   grid-area: set;
 }
-div#paginator {
-  grid-area: paginator;
-  justify-content: end;
-}
 div#container {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr;
   grid-template-columns: auto 1fr 1fr;
   grid-template-areas:
-    "filters list set"
-    ". paginator .";
+    "filters list set";
   gap: 8px;
 }
 /* lt-md */
 @media only screen and (max-width: 959px) {
   div#container {
-    grid-template-rows: 1fr auto auto auto;
+    grid-template-rows: 1fr auto auto;
     grid-template-columns: 1fr;
     grid-template-areas:
       "list"
-      "paginator"
       "filters"
       "set";
   }

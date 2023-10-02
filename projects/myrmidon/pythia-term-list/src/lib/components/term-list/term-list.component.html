@@ -12,7 +12,7 @@
   </div>
 
   <!-- list -->
-  <div id="list" *ngIf="pagination$ | async as pagination">
+  <div id="list" *ngIf="page$ | async as page">
     <mat-progress-bar
       mode="indeterminate"
       *ngIf="loading$ | async"
@@ -24,7 +24,7 @@
         <th i18n>count</th>
       </thead>
       <tbody>
-        <tr *ngFor="let t of pagination.data">
+        <tr *ngFor="let t of page.items">
           <td class="fit-width">
             <button
               mat-icon-button
@@ -57,22 +57,19 @@
         type="button"
         mat-icon-button
         color="warn"
-        matTooltip="Clear items cache"
-        (click)="clearCache()"
+        matTooltip="Reset list"
+        (click)="reset()"
       >
         <mat-icon>autorenew</mat-icon>
       </button>
 
       <mat-paginator
-        gdArea="pagination"
-        gdAlignColumns="center"
-        gdAlignRows="start"
-        [length]="pagination.total"
-        [pageSize]="pagination.perPage"
-        [pageSizeOptions]="[20, 50, 75, 100]"
-        [pageIndex]="pagination.currentPage - 1"
+        [length]="page.total"
+        [pageIndex]="page.pageNumber - 1"
+        [pageSize]="page.pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        (page)="onPageChange($event)"
         [showFirstLastButtons]="true"
-        (page)="pageChange($event)"
       ></mat-paginator>
     </div>
   </div>
@@ -80,7 +77,7 @@
   <!-- set -->
   <div id="set">
     <pythia-term-distribution-set
-      [termId]="activeTerm?.id"
+      [term]="activeTerm"
     ></pythia-term-distribution-set>
   </div>
 </div>

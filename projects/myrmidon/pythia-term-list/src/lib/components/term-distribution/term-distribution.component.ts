@@ -4,6 +4,9 @@ import { EChartsOption } from 'echarts';
 
 import { TermDistribution } from '@myrmidon/pythia-api';
 
+/**
+ * A single term's attribute frequencies distribution.
+ */
 @Component({
   selector: 'pythia-term-distribution',
   templateUrl: './term-distribution.component.html',

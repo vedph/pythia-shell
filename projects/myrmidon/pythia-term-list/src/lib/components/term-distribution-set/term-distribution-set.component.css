@@ -23,3 +23,9 @@ h3 {
   border-bottom: 1px solid silver;
   color: silver;
 }
+.field-small {
+  width: 6em;
+}
+mat-tab > div {
+  margin-top: 6px;
+}

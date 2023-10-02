@@ -1,37 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  combineLatest,
-  debounceTime,
-  forkJoin,
-  map,
-  Observable,
-  take,
-} from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, take, tap } from 'rxjs';
 
-import { createStore, select, setProp, withProps } from '@ngneat/elf';
+import { DataPage } from '@myrmidon/ng-tools';
 import {
-  withEntities,
-  withActiveId,
-  selectActiveEntity,
-  deleteAllEntities,
-  upsertEntities,
-  getActiveEntity,
-} from '@ngneat/elf-entities';
-import {
-  deleteAllPages,
-  hasPage,
-  PaginationData,
-  selectCurrentPageEntities,
-  selectPaginationData,
-  setCurrentPage,
-  setPage,
-  updatePaginationData,
-  withPagination,
-} from '@ngneat/elf-pagination';
-import { withRequestsCache, withRequestsStatus } from '@ngneat/elf-requests';
-
-import { IndexTerm } from '@myrmidon/pythia-core';
+  PagedListStore,
+  PagedListStoreService,
+} from '@myrmidon/paged-data-browsers';
+import { AppSettingsService, IndexTerm } from '@myrmidon/pythia-core';
 import {
   AttributeFilterType,
   AttributeService,
@@ -39,22 +14,13 @@ import {
   TermFilter,
   TermService,
 } from '@myrmidon/pythia-api';
-import { DataPage } from '@myrmidon/ng-tools';
 
-const PAGE_SIZE = 20;
-
-/**
- * Properties for the list of terms.
- */
-export interface TermListProps {
-  filter: TermFilter;
+export interface TermListDistributionSet {
+  term: IndexTerm;
+  setLimit: number;
   docAttributes: string[];
   occAttributes: string[];
-  // distributions set
-  setLimit: number;
-  setDocAttributes: string[];
-  setOccAttributes: string[];
-  set?: TermDistributionSet;
+  value: TermDistributionSet;
 }
 
 /**
@@ -63,121 +29,61 @@ export interface TermListProps {
 @Injectable({
   providedIn: 'root',
 })
-export class TermListRepository {
-  private _store;
-  private _lastPageSize: number;
+export class TermListRepository
+  implements PagedListStoreService<TermFilter, IndexTerm>
+{
+  private _store: PagedListStore<TermFilter, IndexTerm>;
+  private _filter$: BehaviorSubject<TermFilter>;
+  private _docAttributes$: BehaviorSubject<string[]>;
+  private _occAttributes$: BehaviorSubject<string[]>;
+  private _termSet$: BehaviorSubject<TermListDistributionSet | undefined>;
   private _loading$: BehaviorSubject<boolean>;
 
-  public activeTerm$: Observable<IndexTerm | undefined>;
-  public filter$: Observable<TermFilter>;
-  public docAttributes$: Observable<string[]>;
-  public occAttributes$: Observable<string[]>;
-  public setDocAttributes$: Observable<string[]>;
-  public setOccAttributes$: Observable<string[]>;
-  public termDistributionSet$: Observable<TermDistributionSet | undefined>;
-  public pagination$: Observable<PaginationData & { data: IndexTerm[] }>;
-  public loading$: Observable<boolean>;
+  public get filter$(): Observable<TermFilter> {
+    return this._filter$.asObservable();
+  }
+  public get docAttributes$(): Observable<string[]> {
+    return this._docAttributes$.asObservable();
+  }
+  public get occAttributes$(): Observable<string[]> {
+    return this._occAttributes$.asObservable();
+  }
+  public get termSet$(): Observable<TermListDistributionSet | undefined> {
+    return this._termSet$.asObservable();
+  }
+  public get page$(): Observable<DataPage<IndexTerm>> {
+    return this._store.page$;
+  }
+  public get loading$(): Observable<boolean> {
+    return this._loading$.asObservable();
+  }
 
   constructor(
     private _termService: TermService,
-    private _attrService: AttributeService
+    private _attrService: AttributeService,
+    settings: AppSettingsService
   ) {
-    // create store
-    this._store = this.createStore();
-    this._lastPageSize = PAGE_SIZE;
+    this._store = new PagedListStore<TermFilter, IndexTerm>(this);
+    this._filter$ = new BehaviorSubject<TermFilter>({});
+    this._docAttributes$ = new BehaviorSubject<string[]>([]);
+    this._occAttributes$ = new BehaviorSubject<string[]>([]);
+    this._termSet$ = new BehaviorSubject<TermListDistributionSet | undefined>(
+      undefined
+    );
     this._loading$ = new BehaviorSubject<boolean>(false);
-    this.loading$ = this._loading$.asObservable();
-    // combine pagination parameters with page data for our consumers
-    this.pagination$ = combineLatest([
-      this._store.pipe(selectPaginationData()),
-      this._store.pipe(selectCurrentPageEntities()),
-    ]).pipe(
-      map(([pagination, data]) => ({ ...pagination, data })),
-      debounceTime(0)
-    );
-    // the active term, if required
-    this.activeTerm$ = this._store.pipe(selectActiveEntity());
-    // the filter, if required
-    this.filter$ = this._store.pipe(select((state) => state.filter));
-    this.docAttributes$ = this._store.pipe(
-      select((state) => state.docAttributes)
-    );
-    this.occAttributes$ = this._store.pipe(
-      select((state) => state.occAttributes)
-    );
-    this.setDocAttributes$ = this._store.pipe(
-      select((state) => state.setDocAttributes)
-    );
-    this.setOccAttributes$ = this._store.pipe(
-      select((state) => state.setOccAttributes)
-    );
-    this.termDistributionSet$ = this._store.pipe(select((state) => state.set));
-
-    this.filter$.subscribe((filter) => {
-      // when filter changed, reset any existing page and move to page 1
-      const paginationData = this._store.getValue().pagination;
-      console.log('Deleting all pages');
-      this._store.update(deleteAllPages());
-      // load page 1
-      this.loadPage(1, paginationData.perPage);
-    });
-
-    // the request status
-    // this.status$ = this._store.pipe(selectRequestStatus('term-list'));
-
-    // load page 1 and subscribe to pagination
-    this.loadPage(1, PAGE_SIZE);
-    this.pagination$.subscribe(console.log);
 
     this.loadLookup();
-  }
+    if (
+      settings.termDistrDocNames.length ||
+      settings.termDistrOccNames.length
+    ) {
+      this.setPresetAttributes(
+        settings.termDistrDocNames,
+        settings.termDistrOccNames
+      );
+    }
 
-  private createStore(): typeof store {
-    const store = createStore(
-      { name: 'term-list' },
-      withProps<TermListProps>({
-        filter: {},
-        docAttributes: [],
-        occAttributes: [],
-        setLimit: 10,
-        setDocAttributes: [],
-        setOccAttributes: [],
-      }),
-      // should you have an id property different from 'id'
-      // use like withEntities<User, 'userName'>({ idKey: 'userName' })
-      withEntities<IndexTerm>(),
-      withActiveId(),
-      withRequestsCache<'term-list'>(),
-      withRequestsStatus(),
-      withPagination()
-    );
-
-    return store;
-  }
-
-  private adaptPage(
-    page: DataPage<IndexTerm>
-  ): PaginationData & { data: IndexTerm[] } {
-    // adapt the server page DataPage<T> to Elf pagination
-    return {
-      currentPage: page.pageNumber,
-      perPage: page.pageSize,
-      lastPage: page.pageCount,
-      total: page.total,
-      data: page.items,
-    };
-  }
-
-  private addPage(response: PaginationData & { data: IndexTerm[] }): void {
-    const { data, ...paginationData } = response;
-    this._store.update(
-      upsertEntities(data),
-      updatePaginationData(paginationData),
-      setPage(
-        paginationData.currentPage,
-        data.map((c) => c.id)
-      )
-    );
+    this._store.reset();
   }
 
   private loadLookup(): void {
@@ -195,98 +101,73 @@ export class TermListRepository {
     })
       .pipe(take(1))
       .subscribe((result) => {
-        this._store.update((state) => ({
-          ...state,
-          docAttributes: result.doc.items,
-          occAttributes: result.tok.items,
-        }));
+        this._docAttributes$.next(result.doc.items);
+        this._occAttributes$.next(result.tok.items);
       });
   }
 
-  public loadPage(pageNumber: number, pageSize?: number): void {
-    if (!pageSize) {
-      pageSize = PAGE_SIZE;
-    }
-    // if the page exists and page size is the same, just move to it
-    if (
-      this._store.query(hasPage(pageNumber)) &&
-      pageSize === this._lastPageSize
-    ) {
-      console.log('Page exists: ' + pageNumber);
-      this._store.update(setCurrentPage(pageNumber));
-      return;
-    }
-
-    // reset cached pages if page size changed
-    if (this._lastPageSize !== pageSize) {
-      this._store.update(deleteAllPages());
-      this._lastPageSize = pageSize;
-    }
-
-    // load page from server
+  public loadPage(
+    pageNumber: number,
+    pageSize: number,
+    filter: TermFilter
+  ): Observable<DataPage<IndexTerm>> {
     this._loading$.next(true);
-    this._termService
-      .getTerms(this._store.getValue().filter, pageNumber, pageSize)
-      .pipe(take(1))
-      .subscribe((page) => {
-        this.addPage({ ...this.adaptPage(page), data: page.items });
-        this._loading$.next(false);
-      });
+    return this._termService.getTerms(filter, pageNumber, pageSize).pipe(
+      tap({
+        next: () => this._loading$.next(false),
+        error: () => this._loading$.next(false),
+      })
+    );
+  }
+
+  public setPage(pageNumber: number, pageSize: number): void {
+    this._store.setPage(pageNumber, pageSize);
+  }
+
+  public reset(): void {
+    this._store.reset();
   }
 
   public setFilter(filter: TermFilter): void {
-    this._store.update((state) => ({ ...state, filter: filter }));
+    this._store.setFilter(filter);
   }
 
   public setPresetAttributes(docNames: string[], occNames: string[]): void {
-    this._store.update((state) => ({
-      ...state,
-      setDocAttributes: docNames,
-      setOccAttributes: occNames,
-    }));
+    this._docAttributes$.next(docNames);
+    this._occAttributes$.next(occNames);
   }
 
-  clearCache() {
-    this._store.update(deleteAllEntities(), deleteAllPages());
+  public clearCache() {
+    this._store.clearCache();
   }
 
-  public loadDistributionSet(
-    termId: number,
+  public loadTermDistributionSet(
+    term: IndexTerm,
     docAttributes: string[] = [],
     occAttributes: string[] = [],
     limit = 10,
     interval = 0
   ): void {
-    // get term
-    this._store.update((state) => ({
-      ...state,
-      activeId: termId,
-      setDocAttributes: docAttributes,
-      setOccAttributes: occAttributes,
-    }));
-    const term = this._store.query(getActiveEntity());
-    if (!term) {
-      this._store.update(setProp('set', undefined));
-      return;
-    }
-
-    // load set
-    this._store.update(setProp('setLimit', limit));
     this._loading$.next(true);
 
     this._termService
       .getTermDistributions({
-        termId: termId,
+        termId: term.id,
         limit: limit,
         interval: interval,
         docAttributes: docAttributes,
         occAttributes: occAttributes,
       })
-      .pipe(take(1))
       .subscribe({
         next: (set) => {
           this._loading$.next(false);
-          this._store.update(setProp('set', set));
+          this._termSet$.next({
+            term: term,
+            setLimit: limit,
+            docAttributes: docAttributes,
+            occAttributes: occAttributes,
+            value: set,
+          });
         },
         error: (error) => {
           this._loading$.next(false);

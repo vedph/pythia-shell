@@ -2,32 +2,41 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { TermDistribution, TermDistributionSet } from '@myrmidon/pythia-api';
+import { TermDistribution } from '@myrmidon/pythia-api';
 import { AppSettingsService, IndexTerm } from '@myrmidon/pythia-core';
 
-import { TermListRepository } from '../../term-list.repository';
+import {
+  TermListDistributionSet,
+  TermListRepository,
+} from '../../term-list.repository';
 
+/**
+ * A set of term's frequencies distributions.
+ */
 @Component({
   selector: 'pythia-term-distribution-set',
   templateUrl: './term-distribution-set.component.html',
   styleUrls: ['./term-distribution-set.component.css'],
 })
 export class TermDistributionSetComponent implements OnInit {
-  private _busy: boolean | undefined;
-  private _termId: number | undefined;
-  // attrs cache for applying settings later
+  private _term?: IndexTerm;
+  // picked attributes
   private _docAttributes: string[];
   private _occAttributes: string[];
 
   public selectedTabIndex: number;
 
+  /**
+   * The index term to show the distribution for. When this is set,
+   * the distributions set is loaded from the repository.
+   */
   @Input()
-  public get termId(): number | undefined {
-    return this._termId;
+  public get term(): IndexTerm | undefined {
+    return this._term;
   }
-  public set termId(value: number | undefined) {
-    if (this._termId !== value) {
-      this._termId = value;
+  public set term(value: IndexTerm | undefined) {
+    if (this._term !== value) {
+      this._term = value;
       this.load();
     }
   }
@@ -37,12 +46,12 @@ export class TermDistributionSetComponent implements OnInit {
   public presetLimits: number[];
   public presetIntervals: number[];
 
-  public term$: Observable<IndexTerm | undefined>;
+  // repository observables
+  public loading$: Observable<boolean>;
   public docAttributes$: Observable<string[]>;
   public occAttributes$: Observable<string[]>;
-  public setDocAttributes$: Observable<string[]>;
-  public setOccAttributes$: Observable<string[]>;
-  public set$: Observable<TermDistributionSet | undefined>;
+  public set$: Observable<TermListDistributionSet | undefined>;
+
   public docDistributions: TermDistribution[];
   public occDistributions: TermDistribution[];
 
@@ -54,12 +63,11 @@ export class TermDistributionSetComponent implements OnInit {
     this.selectedTabIndex = 0;
     this._docAttributes = [];
     this._occAttributes = [];
-    this.term$ = _repository.activeTerm$;
+    this.loading$ = _repository.loading$;
     this.docAttributes$ = _repository.docAttributes$;
     this.occAttributes$ = _repository.occAttributes$;
-    this.setDocAttributes$ = _repository.setDocAttributes$;
-    this.setOccAttributes$ = _repository.setOccAttributes$;
-    this.set$ = _repository.termDistributionSet$;
+    this.set$ = _repository.termSet$;
+
     this.docDistributions = [];
     this.occDistributions = [];
 
@@ -81,7 +89,7 @@ export class TermDistributionSetComponent implements OnInit {
       );
       this._docAttributes = settings.termDistrDocNames;
       this._occAttributes = settings.termDistrOccNames;
-  }
+    }
   }
 
   private getDistributions(f: {
@@ -100,8 +108,8 @@ export class TermDistributionSetComponent implements OnInit {
         this.docDistributions = [];
         this.occDistributions = [];
       } else {
-        this.docDistributions = this.getDistributions(set.docFrequencies);
-        this.occDistributions = this.getDistributions(set.occFrequencies);
+        this.docDistributions = this.getDistributions(set.value.docFrequencies);
+        this.occDistributions = this.getDistributions(set.value.occFrequencies);
       }
     });
   }
@@ -115,11 +123,11 @@ export class TermDistributionSetComponent implements OnInit {
   }
 
   public load(): void {
-    if (this._busy || !this._termId) {
+    if (!this._term) {
       return;
     }
-    this._repository.loadDistributionSet(
-      this._termId,
+    this._repository.loadTermDistributionSet(
+      this._term,
       this._docAttributes,
       this._occAttributes,
       this.limit.value,

@@ -1,9 +1,15 @@
-<div *ngIf="termId">
+<div>
+  <mat-progress-bar
+    mode="indeterminate"
+    *ngIf="loading$ | async"
+  ></mat-progress-bar>
+</div>
+<div *ngIf="set$ | async as set">
   <mat-tab-group [(selectedIndex)]="selectedTabIndex">
     <mat-tab i18n-label label="distributions">
       <!-- distributions -->
-      <div *ngIf="set$ | async as set" style="margin-top: 6px">
-        <h2 *ngIf="term$ | async as term">{{ term.value }}</h2>
+      <div>
+        <h2 *ngIf="term">{{ term.value }}</h2>
         <div *ngIf="docDistributions?.length">
           <h3 i18n>documents</h3>
           <pythia-term-distribution
@@ -23,14 +29,14 @@
     </mat-tab>
 
     <mat-tab i18n-label label="fields">
-      <div style="margin-top: 6px">
+      <div>
         <div class="form-row" style="align-items: flex-start">
           <!-- doc attrs -->
           <pythia-attribute-picker
             i18n-label
             label="document"
             [availableNames]="(docAttributes$ | async) || []"
-            [names]="(setDocAttributes$ | async) || []"
+            [names]="set.docAttributes || []"
             (namesChange)="onDocNamesChange($event)"
           ></pythia-attribute-picker>
           <!-- occ attrs -->
@@ -38,13 +44,13 @@
             i18n-label
             label="occurrence"
             [availableNames]="(occAttributes$ | async) || []"
-            [names]="(setOccAttributes$ | async) || []"
+            [names]="set.occAttributes || []"
             (namesChange)="onOccNamesChange($event)"
           ></pythia-attribute-picker>
         </div>
 
         <div class="form-row">
-          <mat-form-field style="width: 6em">
+          <mat-form-field class="field-small">
             <mat-label i18n>limit</mat-label>
             <mat-select [formControl]="limit">
               <mat-option *ngFor="let n of presetLimits" [value]="n">{{
@@ -53,7 +59,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field style="width: 6em">
+          <mat-form-field class="field-small">
             <mat-label i18n>interval</mat-label>
             <mat-select [formControl]="interval">
               <mat-option *ngFor="let n of presetIntervals" [value]="n">{{

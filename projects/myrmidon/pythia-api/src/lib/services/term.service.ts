@@ -6,6 +6,9 @@ import { catchError, retry } from 'rxjs/operators';
 import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 import { IndexTerm } from '@myrmidon/pythia-core';
 
+/**
+ * Terms filter.
+ */
 export interface TermFilter {
   corpusId?: string;
   author?: string;
@@ -27,6 +30,9 @@ export interface TermFilter {
   descending?: boolean;
 }
 
+/**
+ * Term sort order.
+ */
 export enum TermSortOrder {
   Default = 0,
   ByValue,
@@ -34,6 +40,9 @@ export enum TermSortOrder {
   ByCount,
 }
 
+/**
+ * Term distribution request.
+ */
 export interface TermDistributionRequest {
   termId: number;
   limit: number;
@@ -42,11 +51,18 @@ export interface TermDistributionRequest {
   occAttributes?: string[];
 }
 
+/**
+ * Term distribution, i.e. a set of frequencies for the top values of
+ * of a specific term's document or occurrence attribute.
+ */
 export interface TermDistribution {
   attribute: string;
   frequencies: { [key: string]: number };
 }
 
+/**
+ * Term distribution set, i.e. a set of term distributions for a specific term.
+ */
 export interface TermDistributionSet {
   termId: number;
   termFrequency: number;

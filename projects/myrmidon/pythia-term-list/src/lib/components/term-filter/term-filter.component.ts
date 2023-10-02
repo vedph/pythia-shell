@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { forkJoin, from, Observable } from 'rxjs';
+import { forkJoin, from } from 'rxjs';
 
 import {
   CorpusService,
@@ -14,27 +14,49 @@ import {
   TermFilter,
 } from '@myrmidon/pythia-api';
 import { Attribute, Corpus, Profile } from '@myrmidon/pythia-core';
-import { CorpusRefLookupService, ProfileRefLookupService } from '@myrmidon/pythia-ui';
-
-import { TermListRepository } from '../../term-list.repository';
+import {
+  CorpusRefLookupService,
+  ProfileRefLookupService,
+} from '@myrmidon/pythia-ui';
 
 @Component({
   selector: 'pythia-term-filter',
   templateUrl: './term-filter.component.html',
   styleUrls: ['./term-filter.component.css'],
 })
-export class TermFilterComponent implements OnInit {
+export class TermFilterComponent {
+  private _filter?: TermFilter;
+
+  @Input()
+  public get filter(): TermFilter | null | undefined {
+    return this._filter;
+  }
+  public set filter(value: TermFilter | null | undefined) {
+    if (this._filter === value) {
+      return;
+    }
+    this._filter = value || undefined;
+    this.updateForm(this._filter);
+  }
+
+  /**
+   * Event emitted when the filter changes.
+   */
+  @Output()
+  public filterChange: EventEmitter<TermFilter>;
+
+  @Input()
+  public disabled?: boolean;
   @Input()
   public sortable: boolean | undefined | null;
   @Input()
   public sourceHidden: boolean | undefined | null;
   @Input()
   public timeModifiedHidden: boolean | undefined | null;
-
-  public filter$: Observable<TermFilter>;
-  public loading$: Observable<boolean>;
-  public docAttributes$: Observable<string[]>;
-  public occAttributes$: Observable<string[]>;
+  @Input()
+  public docAttributes: string[];
+  @Input()
+  public occAttributes: string[];
 
   public corpus: FormControl<Corpus | null>;
   public author: FormControl<string | null>;
@@ -45,8 +67,8 @@ export class TermFilterComponent implements OnInit {
   public maxDateValue: FormControl<number | null>;
   public minTimeModified: FormControl<Date | null>;
   public maxTimeModified: FormControl<Date | null>;
-  public docAttributes: FormArray;
-  public occAttributes: FormArray;
+  public docAttrs: FormArray;
+  public occAttrs: FormArray;
   public valuePattern: FormControl<string | null>;
   public minValueLength: FormControl<number | null>;
   public maxValueLength: FormControl<number | null>;
@@ -58,17 +80,14 @@ export class TermFilterComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _repository: TermListRepository,
     private _corpusService: CorpusService,
     private _profileService: ProfileService,
     public profileLookupService: ProfileRefLookupService,
     public corpusLookupService: CorpusRefLookupService
   ) {
-    this.filter$ = _repository.filter$;
-    this.loading$ = _repository.loading$;
-    this.docAttributes$ = _repository.docAttributes$;
-    this.occAttributes$ = _repository.occAttributes$;
     this.sortable = true;
+    this.docAttributes = [];
+    this.occAttributes = [];
 
     // form
     this.corpus = _formBuilder.control(null);
@@ -80,8 +99,8 @@ export class TermFilterComponent implements OnInit {
     this.maxDateValue = _formBuilder.control(null);
     this.minTimeModified = _formBuilder.control(null);
     this.maxTimeModified = _formBuilder.control(null);
-    this.docAttributes = _formBuilder.array([]);
-    this.occAttributes = _formBuilder.array([]);
+    this.docAttrs = _formBuilder.array([]);
+    this.occAttrs = _formBuilder.array([]);
     this.valuePattern = _formBuilder.control(null);
     this.minValueLength = _formBuilder.control(null);
     this.maxValueLength = _formBuilder.control(null);
@@ -99,8 +118,8 @@ export class TermFilterComponent implements OnInit {
       maxDateValue: this.maxDateValue,
       minTimeModified: this.minTimeModified,
       maxTimeModified: this.maxTimeModified,
-      docAttributes: this.docAttributes,
-      occAttributes: this.occAttributes,
+      docAttrs: this.docAttrs,
+      occAttrs: this.occAttrs,
       valuePattern: this.valuePattern,
       minValueLength: this.minValueLength,
       maxValueLength: this.maxValueLength,
@@ -109,12 +128,9 @@ export class TermFilterComponent implements OnInit {
       sortOrder: this.sortOrder,
       descending: this.descending,
     });
-  }
 
-  ngOnInit(): void {
-    this.filter$.subscribe((f) => {
-      this.updateForm(f);
-    });
+    // events
+    this.filterChange = new EventEmitter<TermFilter>();
   }
 
   private parseAttributes(csv?: string): Attribute[] {
@@ -132,9 +148,7 @@ export class TermFilterComponent implements OnInit {
   }
 
   private updateAttributes(csv: string | undefined, token: boolean): void {
-    const attributes: FormArray = token
-      ? this.occAttributes
-      : this.docAttributes;
+    const attributes: FormArray = token ? this.occAttrs : this.docAttrs;
 
     attributes.reset();
     const attrs = this.parseAttributes(csv);
@@ -143,7 +157,11 @@ export class TermFilterComponent implements OnInit {
     }
   }
 
-  private updateForm(filter: TermFilter): void {
+  private updateForm(filter?: TermFilter): void {
+    if (!filter) {
+      this.form.reset();
+      return;
+    }
     this.author.setValue(filter.author || null);
     this.title.setValue(filter.title || null);
     this.source.setValue(filter.source || null);
@@ -201,27 +219,21 @@ export class TermFilterComponent implements OnInit {
   }
 
   public addAttribute(item: Attribute | undefined, token: boolean): void {
-    const attributes: FormArray = token
-      ? this.occAttributes
-      : this.docAttributes;
+    const attributes: FormArray = token ? this.occAttrs : this.docAttrs;
 
     attributes.push(this.getAttributeGroup(item));
     attributes.markAsDirty();
   }
 
   public removeAttribute(index: number, token: boolean): void {
-    const attributes: FormArray = token
-      ? this.occAttributes
-      : this.docAttributes;
+    const attributes: FormArray = token ? this.occAttrs : this.docAttrs;
 
     attributes.removeAt(index);
     attributes.markAsDirty();
   }
 
   private getAttributes(token: boolean): Attribute[] | undefined {
-    const attributes: FormArray = token
-      ? this.occAttributes
-      : this.docAttributes;
+    const attributes: FormArray = token ? this.occAttrs : this.docAttrs;
 
     const entries: Attribute[] = [];
     for (let i = 0; i < attributes.length; i++) {
@@ -265,16 +277,15 @@ export class TermFilterComponent implements OnInit {
 
   public reset(): void {
     this.form.reset();
-    this.apply();
+    this._filter = {};
+    this.filterChange.emit(this._filter);
   }
 
   public apply(): void {
     if (this.form.invalid) {
       return;
     }
-    const filter = this.getFilter();
-
-    // update filter in state
-    this._repository.setFilter(filter);
+    this._filter = this.getFilter();
+    this.filterChange.emit(this._filter);
   }
 }
