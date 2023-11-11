@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pythia-shell:build:production"
+              "buildTarget": "pythia-shell:build:production"
             },
             "development": {
-              "browserTarget": "pythia-shell:build:development"
+              "buildTarget": "pythia-shell:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pythia-shell:build"
+            "buildTarget": "pythia-shell:build"
           }
         },
         "test": {

@@ -54,6 +54,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2023-11-11: ⚠️ upgraded to Angular 17.
 - 2023-10-02: ⚠️ refactored all the ELF-dependent libraries to drop ELF and use `@myrmidon/paged-data-browsers`, thus removing any ELF dependencies. All the affected libraries have been bumped to version 2.0.0.
 - 2023-09-26: updated Angular and packages.
 - 2023-09-07: updated Angular.
