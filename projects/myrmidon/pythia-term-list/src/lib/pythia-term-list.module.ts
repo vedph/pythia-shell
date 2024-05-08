@@ -29,8 +29,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { NgToolsModule } from '@myrmidon/ng-tools';
-import { CadmusRefsLookupModule } from '@myrmidon/cadmus-refs-lookup';
 
+import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
@@ -80,7 +80,7 @@ import { TermDistributionSetComponent } from './components/term-distribution-set
     NgxEchartsModule,
     // myrmidon
     NgToolsModule,
-    CadmusRefsLookupModule,
+    RefLookupComponent,
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,

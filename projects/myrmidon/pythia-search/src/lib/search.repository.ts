@@ -8,7 +8,6 @@ import {
   PagedListStore,
   PagedListStoreService,
 } from '@myrmidon/paged-data-browsers';
-import { PageEvent } from '@angular/material/paginator';
 
 export interface KwicSearchFilter {
   query?: string;

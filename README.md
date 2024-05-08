@@ -4,22 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This project derives from the original Pythia frontend demo app, migrating it to ELF (replacing Akita) and Angular 15.
 
-- [Pythia Shell](#pythia-shell)
-  - [Docker](#docker)
-  - [Breakpoints](#breakpoints)
-  - [History](#history)
-    - [1.0.11-it](#1011-it)
-    - [1.0.9-it](#109-it)
-    - [1.0.8-it](#108-it)
-    - [1.0.7-it](#107-it)
-    - [1.0.6](#106)
-    - [1.0.5](#105)
-    - [1.0.4](#104)
-    - [1.0.3](#103)
-    - [1.0.2](#102)
-    - [1.0.1](#101)
-    - [1.0.0](#100)
-
 ## Docker
 
 🐳 Quick Docker image build:
@@ -54,6 +38,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-05-08: ⚠️ updated packages including [bricks V2](https://github.com/vedph/cadmus-bricks-shell-v2)
 - 2023-11-11: ⚠️ upgraded to Angular 17.
 - 2023-10-02: ⚠️ refactored all the ELF-dependent libraries to drop ELF and use `@myrmidon/paged-data-browsers`, thus removing any ELF dependencies. All the affected libraries have been bumped to version 2.0.0.
 - 2023-09-26: updated Angular and packages.

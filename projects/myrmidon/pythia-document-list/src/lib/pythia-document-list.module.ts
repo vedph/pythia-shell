@@ -27,7 +27,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NgToolsModule } from '@myrmidon/ng-tools';
-import { CadmusRefsLookupModule } from '@myrmidon/cadmus-refs-lookup';
 import { PagedDataBrowsersModule } from '@myrmidon/paged-data-browsers';
 
 import { PythiaApiModule } from '@myrmidon/pythia-api';
@@ -39,6 +38,7 @@ import { DocumentFilterComponent } from './document-filter/document-filter.compo
 import { DocumentRepository } from './document.repository';
 import { DocumentCorpusComponent } from './document-corpus/document-corpus.component';
 import { DocumentInfoComponent } from './document-info/document-info.component';
+import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,7 @@ import { DocumentInfoComponent } from './document-info/document-info.component';
     // Fusi
     NgToolsModule,
     PagedDataBrowsersModule,
-    CadmusRefsLookupModule,
+    RefLookupComponent,
     // Pythia
     PythiaCoreModule,
     PythiaApiModule,

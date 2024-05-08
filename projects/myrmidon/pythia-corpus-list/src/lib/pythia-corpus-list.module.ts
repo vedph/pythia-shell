@@ -29,7 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 // myrmidon
 import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
-import { CadmusRefsLookupModule } from '@myrmidon/cadmus-refs-lookup';
+import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 
 // pythia
 import { PythiaApiModule } from '@myrmidon/pythia-api';
@@ -78,7 +78,7 @@ import { CorpusEditorComponent } from './components/corpus-editor/corpus-editor.
     // myrmidon
     NgToolsModule,
     NgMatToolsModule,
-    CadmusRefsLookupModule,
+    RefLookupComponent,
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,
