@@ -25,6 +25,10 @@ cd .\dist\myrmidon\pythia-document-reader
 call npm publish --access=public
 cd ..\..\..
 
+cd .\dist\myrmidon\pythia-query-builder
+call npm publish --access=public
+cd ..\..\..
+
 cd .\dist\myrmidon\pythia-search
 call npm publish --access=public
 cd ..\..\..
