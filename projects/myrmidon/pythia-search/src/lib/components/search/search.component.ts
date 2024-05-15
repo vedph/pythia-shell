@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 
 import { PageEvent } from '@angular/material/paginator';
 
+import { DataPage } from '@myrmidon/ng-tools';
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
 import { KwicSearchResult } from '@myrmidon/pythia-api';
 
 import { SearchRepository } from '../../search.repository';
-import { DataPage } from '@myrmidon/ng-tools';
 
 @Component({
   selector: 'pythia-search',

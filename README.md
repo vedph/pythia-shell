@@ -38,6 +38,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-05-15: updated packages and Angular.
 - 2024-05-08: ⚠️ updated packages including [bricks V2](https://github.com/vedph/cadmus-bricks-shell-v2)
 - 2023-11-11: ⚠️ upgraded to Angular 17.
 - 2023-10-02: ⚠️ refactored all the ELF-dependent libraries to drop ELF and use `@myrmidon/paged-data-browsers`, thus removing any ELF dependencies. All the affected libraries have been bumped to version 2.0.0.
