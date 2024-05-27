@@ -17,7 +17,6 @@
     <table>
       <thead>
         <th></th>
-        <th></th>
         <th i18n>id</th>
         <th i18n>author</th>
         <th i18n>title</th>
@@ -28,7 +27,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of page.items">
-          <td class="command">
+          <td class="fit-width">
             <button
               mat-icon-button
               type="button"
@@ -39,8 +38,6 @@
             >
               <mat-icon>auto_stories</mat-icon>
             </button>
-          </td>
-          <td class="command">
             <button
               mat-icon-button
               type="button"
