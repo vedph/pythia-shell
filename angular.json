@@ -7,9 +7,9 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": {
+          "it": {
             "baseHref": "",
-            "translation": "src/locale/messages.it-IT.xlf"
+            "translation": "src/locale/messages.it.xlf"
           }
         }
       },
@@ -22,7 +22,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["it-IT"],
+            "localize": ["it"],
             "outputPath": {
               "base": "dist/pythia-shell"
             },
@@ -99,7 +99,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -135,7 +135,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -171,7 +171,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -207,7 +207,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -243,7 +243,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -279,7 +279,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -315,7 +315,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -351,7 +351,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -387,7 +387,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
@@ -423,7 +423,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": "src/locale/messages.it.xlf"
         }
       },
       "projectType": "library",
