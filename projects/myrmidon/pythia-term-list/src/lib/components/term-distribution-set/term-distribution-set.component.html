@@ -11,7 +11,7 @@
       <div>
         @if (term) {
         <h2>{{ term.value }}</h2>
-        } @if (docDistributions?.length) {
+        } @if (docDistributions.length) {
         <div>
           <h3 i18n>documents</h3>
           @for (d of docDistributions; track d) {
@@ -20,7 +20,7 @@
           ></pythia-term-distribution>
           }
         </div>
-        } @if (occDistributions?.length) {
+        } @if (occDistributions.length) {
         <div>
           <h3 i18n>occurrences</h3>
           @for (d of occDistributions; track d) {

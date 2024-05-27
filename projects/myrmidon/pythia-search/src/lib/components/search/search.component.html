@@ -88,11 +88,10 @@
     <div id="total">
       {{ page.total }}
     </div>
-    } @if (page.items?.length) {
+    } @if (page.items.length) {
     <table>
       <thead>
         <tr>
-          <th></th>
           <th></th>
           <th i18n>author</th>
           <th i18n>title</th>
@@ -108,8 +107,8 @@
       <tbody>
         @for (r of page.items; track r) {
         <tr>
-          <!-- column: read -->
-          <td class="command">
+          <td class="fit-width">
+            <!-- read -->
             <button
               mat-icon-button
               type="button"
@@ -121,9 +120,7 @@
             >
               <mat-icon style="color: #ffb764">find_in_page</mat-icon>
             </button>
-          </td>
-          <!-- column: read-doc -->
-          <td class="command">
+            <!-- read-doc -->
             <button
               mat-icon-button
               type="button"

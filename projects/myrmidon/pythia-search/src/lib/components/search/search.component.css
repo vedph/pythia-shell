@@ -13,12 +13,16 @@ th,
 td {
   border: 1px solid #ddd;
 }
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
 th:nth-child(1),
 th:nth-child(2) {
   border: none;
 }
 tr:nth-child(even) {
-  background-color: #f8f8f8;
+  background-color: #e8e8e8;
 }
 tr:hover {
   background-color: #eee;
