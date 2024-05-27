@@ -22,7 +22,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let c of corpora; let i = index">
+      @for (c of corpora; track c; let i = $index) {
+      <tr>
         <td>
           <button
             type="button"
@@ -36,6 +37,7 @@
         <td>{{ c.id }}</td>
         <td>{{ c.title }}</td>
       </tr>
+      }
     </tbody>
   </table>
 </div>

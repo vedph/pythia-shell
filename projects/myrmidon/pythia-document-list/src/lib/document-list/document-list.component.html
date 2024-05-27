@@ -9,11 +9,11 @@
   </div>
 
   <!-- list -->
-  <div id="list" *ngIf="page$ | async as page">
-    <mat-progress-bar
-      *ngIf="loading$ | async"
-      mode="indeterminate"
-    ></mat-progress-bar>
+  @if (page$ | async; as page) {
+  <div id="list">
+    @if (loading$ | async) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
     <table>
       <thead>
         <th></th>
@@ -26,7 +26,8 @@
         <th i18n class="noif-lt-md">last modified</th>
       </thead>
       <tbody>
-        <tr *ngFor="let item of page.items">
+        @for (item of page.items; track item) {
+        <tr>
           <td class="fit-width">
             <button
               mat-icon-button
@@ -56,9 +57,9 @@
           <td class="noif-lt-md">{{ item.source }}</td>
           <td class="noif-lt-md">{{ item.lastModified | date : "short" }}</td>
         </tr>
+        }
       </tbody>
     </table>
-
     <!-- pagination -->
     <div class="form-row" id="pagination">
       <button
@@ -80,7 +81,6 @@
         [showFirstLastButtons]="true"
       ></mat-paginator>
     </div>
-
     <!-- info -->
     <div id="info">
       <pythia-document-info
@@ -89,7 +89,6 @@
         (closeRequest)="onDocumentClose()"
       ></pythia-document-info>
     </div>
-
     <!-- corpus -->
     <div id="corpus">
       <mat-expansion-panel>
@@ -102,4 +101,5 @@
       </mat-expansion-panel>
     </div>
   </div>
+  }
 </div>

@@ -13,20 +13,26 @@
   </div>
 
   <!-- list -->
-  <div id="list" *ngIf="page$ | async as page">
-    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  @if (page$ | async; as page) {
+  <div id="list">
+    @if (loading) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
     <table>
       <thead>
         <th></th>
         <th>ID</th>
-        <th *ngIf="admin" i18n>user</th>
+        @if (admin) {
+        <th i18n>user</th>
+        }
         <th i18n>title</th>
       </thead>
       <tbody>
-        <tr *ngFor="let c of page.items">
+        @for (c of page.items; track c) {
+        <tr>
           <td class="fit-width">
+            @if (c | editable) {
             <button
-              *ngIf="c | editable"
               mat-icon-button
               type="button"
               i18n-matTooltip
@@ -36,8 +42,8 @@
             >
               <mat-icon>edit</mat-icon>
             </button>
+            } @if (c | editable) {
             <button
-              *ngIf="c | editable"
               mat-icon-button
               type="button"
               i18n-matTooltip
@@ -47,14 +53,17 @@
             >
               <mat-icon>delete</mat-icon>
             </button>
+            }
           </td>
           <td>{{ c.id }}</td>
-          <td *ngIf="admin">{{ c.userId }}</td>
+          @if (admin) {
+          <td>{{ c.userId }}</td>
+          }
           <td>{{ c.title }}</td>
         </tr>
+        }
       </tbody>
     </table>
-
     <!-- pagination -->
     <div class="form-row" id="paginator">
       <button
@@ -67,7 +76,6 @@
       >
         <mat-icon>refresh</mat-icon>
       </button>
-
       <mat-paginator
         [length]="page.total"
         [pageIndex]="page.pageNumber - 1"
@@ -76,7 +84,6 @@
         (page)="onPageChange($event)"
         [showFirstLastButtons]="true"
       />
-
       <div>
         <button
           type="button"
@@ -88,7 +95,6 @@
         </button>
       </div>
     </div>
-
     <!-- editor -->
     <div id="editor">
       <mat-expansion-panel [disabled]="!editedCorpus" [expanded]="editedCorpus">
@@ -101,4 +107,5 @@
       </mat-expansion-panel>
     </div>
   </div>
+  }
 </div>

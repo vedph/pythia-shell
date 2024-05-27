@@ -1,14 +1,18 @@
 <div>
-  <div *ngIf="loading">
+  @if (loading) {
+  <div>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
-  <div *ngIf="entries?.length">
+  } @if (entries?.length) {
+  <div>
     <table>
       <tbody>
-        <tr *ngFor="let e of entries">
+        @for (e of entries; track e) {
+        <tr>
           <td>{{ e.name }}</td>
           <td>{{ e.value | number }}</td>
         </tr>
+        }
       </tbody>
     </table>
     <br />
@@ -23,4 +27,5 @@
       <ng-container i18n>refresh</ng-container>
     </button>
   </div>
+  }
 </div>

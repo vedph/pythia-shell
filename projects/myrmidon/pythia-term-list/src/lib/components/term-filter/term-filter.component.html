@@ -7,13 +7,11 @@
       [service]="corpusLookupService"
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
-    <mat-chip
-      *ngIf="corpus.value"
-      removable="true"
-      (removed)="onCorpusRemoved()"
-    >
+    @if (corpus.value) {
+    <mat-chip removable="true" (removed)="onCorpusRemoved()">
       {{ corpus.value.title }} ({{ corpus.value.id }})
     </mat-chip>
+    }
   </div>
 
   <!-- author -->
@@ -33,12 +31,14 @@
   </div>
 
   <!-- source -->
-  <div *ngIf="!sourceHidden">
+  @if (!sourceHidden) {
+  <div>
     <mat-form-field>
       <mat-label i18n>source</mat-label>
       <input matInput [formControl]="source" maxlength="500" />
     </mat-form-field>
   </div>
+  }
 
   <!-- profile -->
   <div>
@@ -48,13 +48,11 @@
       [service]="profileLookupService"
       (itemChange)="onProfileChange($event)"
     ></cadmus-ref-lookup>
-    <mat-chip
-      *ngIf="profile.value"
-      removable="true"
-      (removed)="onProfileRemoved()"
-    >
+    @if (profile.value) {
+    <mat-chip removable="true" (removed)="onProfileRemoved()">
       {{ profile.value.id }}
     </mat-chip>
+    }
   </div>
 
   <!-- date -->
@@ -74,7 +72,8 @@
   </div>
 
   <!-- time -->
-  <div *ngIf="!timeModifiedHidden">
+  @if (!timeModifiedHidden) {
+  <div>
     <h3 i18n>modified</h3>
     <div class="form-row">
       <!-- minTimeModified -->
@@ -108,9 +107,11 @@
       </mat-form-field>
     </div>
   </div>
+  }
 
   <!-- doc attributes -->
-  <div *ngIf="docAttributes?.length">
+  @if (docAttributes?.length) {
+  <div>
     <h3>
       <ng-container i18n>document attributes</ng-container>
       <button
@@ -125,14 +126,9 @@
       </button>
     </h3>
     <div formArrayName="docAttributes">
-      <div
-        *ngFor="
-          let item of docAttrs.controls;
-          let i = index;
-          let first = first;
-          let last = last
-        "
-      >
+      @for ( item of docAttrs.controls; track item; let i = $index; let first =
+      $first; let last = $last) {
+      <div>
         <!-- child form -->
         <div [formGroupName]="i">
           <!-- child actions -->
@@ -147,49 +143,42 @@
           >
             <mat-icon>remove_circle</mat-icon>
           </button>
-
           <!-- child controls -->
           <!-- name -->
           <mat-form-field class="small-field">
             <mat-label i18n>name</mat-label>
             <mat-select formControlName="name">
-              <mat-option *ngFor="let n of docAttributes" [value]="n">{{
-                n
-              }}</mat-option>
+              @for (n of docAttributes; track n) {
+              <mat-option [value]="n">{{ n }}</mat-option>
+              }
             </mat-select>
-            <mat-error
-              i18n
-              *ngIf="
-                $any(item)['controls'].name.errors?.required &&
-                ($any(item)['controls'].name.dirty ||
-                  $any(item)['controls'].name.touched)
-              "
-              >name required</mat-error
-            >
+            @if ( $any(item)['controls'].name.errors?.required &&
+            ($any(item)['controls'].name.dirty ||
+            $any(item)['controls'].name.touched) ) {
+            <mat-error i18n>name required</mat-error>
+            }
           </mat-form-field>
-
           <!-- value -->
           &nbsp;
           <mat-form-field class="small-field">
             <mat-label i18n>value</mat-label>
             <input matInput formControlName="value" />
-            <mat-error
-              i18n
-              *ngIf="
-                $any(item)['controls'].value.errors?.maxLength &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
-              "
-              >too long</mat-error
-            >
+            @if ( $any(item)['controls'].value.errors?.maxLength &&
+            ($any(item)['controls'].value.dirty ||
+            $any(item)['controls'].value.touched) ) {
+            <mat-error i18n>too long</mat-error>
+            }
           </mat-form-field>
         </div>
       </div>
+      }
     </div>
   </div>
+  }
 
   <!-- tok attributes -->
-  <div *ngIf="occAttributes?.length">
+  @if (occAttributes?.length) {
+  <div>
     <h3>
       <ng-container i18n>token attributes</ng-container>
       <button
@@ -204,14 +193,9 @@
       </button>
     </h3>
     <div formArrayName="occAttributes">
-      <div
-        *ngFor="
-          let item of occAttrs.controls;
-          let i = index;
-          let first = first;
-          let last = last
-        "
-      >
+      @for ( item of occAttrs.controls; track item; let i = $index; let first =
+      $first; let last = $last) {
+      <div>
         <!-- child form -->
         <div [formGroupName]="i">
           <!-- child actions -->
@@ -226,46 +210,38 @@
           >
             <mat-icon>remove_circle</mat-icon>
           </button>
-
           <!-- child controls -->
           <!-- name -->
           <mat-form-field class="field-small">
             <mat-label i18n>name</mat-label>
             <mat-select formControlName="name">
-              <mat-option *ngFor="let n of occAttributes" [value]="n">{{
-                n
-              }}</mat-option>
+              @for (n of occAttributes; track n) {
+              <mat-option [value]="n">{{ n }}</mat-option>
+              }
             </mat-select>
-            <mat-error
-              i18n
-              *ngIf="
-                $any(item)['controls'].name.errors?.required &&
-                ($any(item)['controls'].name.dirty ||
-                  $any(item)['controls'].name.touched)
-              "
-              >name required</mat-error
-            >
+            @if ( $any(item)['controls'].name.errors?.required &&
+            ($any(item)['controls'].name.dirty ||
+            $any(item)['controls'].name.touched) ) {
+            <mat-error i18n>name required</mat-error>
+            }
           </mat-form-field>
-
           <!-- value -->
           &nbsp;
           <mat-form-field class="field-small">
             <mat-label i18n>value</mat-label>
             <input matInput formControlName="value" />
-            <mat-error
-              i18n
-              *ngIf="
-                $any(item)['controls'].value.errors?.maxLength &&
-                ($any(item)['controls'].value.dirty ||
-                  $any(item)['controls'].value.touched)
-              "
-              >too long</mat-error
-            >
+            @if ( $any(item)['controls'].value.errors?.maxLength &&
+            ($any(item)['controls'].value.dirty ||
+            $any(item)['controls'].value.touched) ) {
+            <mat-error i18n>too long</mat-error>
+            }
           </mat-form-field>
         </div>
       </div>
+      }
     </div>
   </div>
+  }
 
   <!-- valuePattern -->
   <div>
@@ -303,7 +279,8 @@
   </div>
 
   <!-- sort -->
-  <div *ngIf="sortable">
+  @if (sortable) {
+  <div>
     <h3 i18n>sort order</h3>
     <div>
       <mat-form-field>
@@ -321,6 +298,7 @@
       <mat-checkbox [formControl]="descending" i18n>descending</mat-checkbox>
     </div>
   </div>
+  }
 
   <div id="toolbar" class="btn-group" role="group" aria-label="toolbar">
     <button

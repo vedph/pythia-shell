@@ -4,104 +4,85 @@
     <mat-form-field>
       <mat-label i18n>type</mat-label>
       <mat-select [formControl]="type">
-        <mat-option *ngFor="let t of entryTypes" [value]="t">{{
-          t.label
-        }}</mat-option>
+        @for (t of entryTypes; track t) {
+        <mat-option [value]="t">{{ t.label }}</mat-option>
+        }
       </mat-select>
-      <mat-error
-        i18n
-        *ngIf="$any(type).errors?.required && (type.dirty || type.touched)"
-        >type required</mat-error
-      >
+      @if ($any(type).errors?.required && (type.dirty || type.touched)) {
+      <mat-error i18n>type required</mat-error>
+      }
     </mat-form-field>
     <p class="tip">{{ type.value.tip }}</p>
   </div>
   <!-- args -->
+  @if (type.value.args) {
   <pythia-query-op-args
-    *ngIf="type.value.args"
     [args]="args.value"
     (argsChange)="onArgsChange($event)"
   ></pythia-query-op-args>
+  }
 
   <!-- pair -->
-  <form [formGroup]="pairForm" *ngIf="type.value.value === '-'">
+  @if (type.value.value === '-') {
+  <form [formGroup]="pairForm">
     <div class="form-row">
       <!-- attribute -->
       <mat-form-field>
         <mat-label i18n>attribute</mat-label>
         <mat-select [formControl]="attribute">
-          <mat-optgroup
-            *ngFor="let kv of attrGroups | keyvalue"
-            [label]="kv.key"
-            style="font-weight: bold"
-          >
-            <mat-option *ngFor="let d of kv.value" [value]="d">{{
-              d.label
-            }}</mat-option>
+          @for (kv of attrGroups | keyvalue; track kv) {
+          <mat-optgroup [label]="kv.key" style="font-weight: bold">
+            @for (d of kv.value; track d) {
+            <mat-option [value]="d">{{ d.label }}</mat-option>
+            }
           </mat-optgroup>
+          }
         </mat-select>
         <mat-hint>{{ attribute.value?.tip }}</mat-hint>
-        <mat-error
-          i18n
-          *ngIf="
-            $any(attribute).errors?.required &&
-            (attribute.dirty || attribute.touched)
-          "
-          >attribute required</mat-error
-        >
+        @if ( $any(attribute).errors?.required && (attribute.dirty ||
+        attribute.touched) ) {
+        <mat-error i18n>attribute required</mat-error>
+        }
       </mat-form-field>
-
       <!-- operator -->
       <mat-form-field>
         <mat-label i18n>operator</mat-label>
         <mat-select [formControl]="operator">
-          <mat-optgroup
-            style="font-weight: bold"
-            *ngFor="let kv of opGroups | keyvalue"
-            [label]="kv.key"
-          >
-            <mat-option *ngFor="let d of kv.value" [value]="d">{{
-              d.label
-            }}</mat-option>
+          @for (kv of opGroups | keyvalue; track kv) {
+          <mat-optgroup style="font-weight: bold" [label]="kv.key">
+            @for (d of kv.value; track d) {
+            <mat-option [value]="d">{{ d.label }}</mat-option>
+            }
           </mat-optgroup>
+          }
         </mat-select>
         <mat-hint>{{ operator.value?.tip }}</mat-hint>
-        <mat-error
-          i18n
-          *ngIf="
-            $any(operator).errors?.required &&
-            (operator.dirty || operator.touched)
-          "
-          >operator required</mat-error
-        >
+        @if ( $any(operator).errors?.required && (operator.dirty ||
+        operator.touched) ) {
+        <mat-error i18n>operator required</mat-error>
+        }
       </mat-form-field>
-
       <!-- value -->
       <mat-form-field>
         <mat-label i18n>value</mat-label>
         <input matInput [formControl]="value" (keydown.enter)="save()" />
-        <mat-error
-          i18n
-          *ngIf="$any(value).errors?.required && (value.dirty || value.touched)"
-          >value required</mat-error
-        >
-        <mat-error
-          i18n
-          *ngIf="
-            $any(value).errors?.maxLength && (value.dirty || value.touched)
-          "
-          >value too long</mat-error
-        >
+        @if ($any(value).errors?.required && (value.dirty || value.touched)) {
+        <mat-error i18n>value required</mat-error>
+        } @if ( $any(value).errors?.maxLength && (value.dirty || value.touched)
+        ) {
+        <mat-error i18n>value too long</mat-error>
+        }
       </mat-form-field>
     </div>
-
     <!-- pairArgs -->
+    @if (operator.value?.args) {
     <pythia-query-op-args
-      *ngIf="operator.value?.args"
       [args]="pairArgs.value"
       (argsChange)="onPairArgsChange($event)"
     ></pythia-query-op-args>
+    }
   </form>
+  }
 
   <div>
     <button type="button" color="warn" mat-icon-button (click)="close()">

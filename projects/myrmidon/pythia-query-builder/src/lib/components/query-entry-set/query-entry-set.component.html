@@ -15,14 +15,9 @@
 </div>
 <table>
   <tbody>
-    <tr
-      *ngFor="
-        let e of entries$ | async;
-        let i = index;
-        let first = first;
-        let last = last
-      "
-    >
+    @for ( e of entries$ | async; track e; let i = $index; let first = $first;
+    let last = $last) {
+    <tr>
       <td class="fit-width">
         <span class="nr">{{ i + 1 }}. </span>
         <button
@@ -76,31 +71,37 @@
           <mat-icon>delete</mat-icon>
         </button>
       </td>
-      <ng-container *ngIf="e.pair; else nonClause">
-        <td [class.error]="e.error" class="attr">
-          {{ e.pair.attribute.label }}
-        </td>
-        <td [class.error]="e.error" class="op">
-          {{ e.pair.operator.label }}
-        </td>
-        <td [class.error]="e.error" class="value">{{ e.pair.value }}</td>
-      </ng-container>
-      <ng-template #nonClause>
-        <td class="non-clause" [class.error]="e.error">{{ e.operator?.label }}</td>
-        <td [class.error]="e.error"></td>
-        <td [class.error]="e.error"></td>
-      </ng-template>
+      @if (e.pair) {
+      <td [class.error]="e.error" class="attr">
+        {{ e.pair.attribute.label }}
+      </td>
+      <td [class.error]="e.error" class="op">
+        {{ e.pair.operator.label }}
+      </td>
+      <td [class.error]="e.error" class="value">{{ e.pair.value }}</td>
+      } @else {
+      <td class="non-clause" [class.error]="e.error">
+        {{ e.operator?.label }}
+      </td>
+      <td [class.error]="e.error"></td>
+      <td [class.error]="e.error"></td>
+      }
       <td>
-        <mat-icon *ngIf="e.error" color="warn" [matTooltip]="e.error"
-          >error</mat-icon
-        >
+        @if (e.error) {
+        <mat-icon color="warn" [matTooltip]="e.error">error</mat-icon>
+        }
       </td>
     </tr>
+    }
   </tbody>
 </table>
-<ul *ngIf="errors$ | async as errors">
-  <li *ngFor="let e of errors" class="error">{{ e }}</li>
+@if (errors$ | async; as errors) {
+<ul>
+  @for (e of errors; track e) {
+  <li class="error">{{ e }}</li>
+  }
 </ul>
+}
 <mat-expansion-panel [expanded]="editedEntry" [disabled]="!editedEntry">
   <mat-expansion-panel-header
     >#{{ editedIndex + 1 }}</mat-expansion-panel-header

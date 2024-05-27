@@ -4,12 +4,11 @@
     <mat-form-field>
       <mat-label>ID {{ idPrefix }}</mat-label>
       <input matInput [formControl]="id" />
-      <mat-error i18n *ngIf="$any(id).errors?.required && (id.dirty || id.touched)"
-        >ID required</mat-error
-      >
-      <mat-error i18n *ngIf="$any(id).errors?.maxLength && (id.dirty || id.touched)"
-        >ID too long</mat-error
-      >
+      @if ($any(id).errors?.required && (id.dirty || id.touched)) {
+      <mat-error i18n>ID required</mat-error>
+      } @if ($any(id).errors?.maxLength && (id.dirty || id.touched)) {
+      <mat-error i18n>ID too long</mat-error>
+      }
     </mat-form-field>
   </div>
 
@@ -18,14 +17,11 @@
     <mat-form-field>
       <mat-label i18n>title</mat-label>
       <input matInput [formControl]="title" />
-      <mat-error i18n
-        *ngIf="$any(title).errors?.required && (title.dirty || title.touched)"
-        >title required</mat-error
-      >
-      <mat-error i18n
-        *ngIf="$any(title).errors?.maxLength && (title.dirty || title.touched)"
-        >title too long</mat-error
-      >
+      @if ($any(title).errors?.required && (title.dirty || title.touched)) {
+      <mat-error i18n>title required</mat-error>
+      } @if ($any(title).errors?.maxLength && (title.dirty || title.touched)) {
+      <mat-error i18n>title too long</mat-error>
+      }
     </mat-form-field>
   </div>
 
@@ -34,19 +30,17 @@
     <mat-form-field class="long-text">
       <mat-label i18n>description</mat-label>
       <textarea matInput [formControl]="description"></textarea>
-      <mat-error i18n
-        *ngIf="
-          $any(description).errors?.maxLength &&
-          (description.dirty || description.touched)
-        "
-        >description too long</mat-error
-      >
+      @if ( $any(description).errors?.maxLength && (description.dirty ||
+      description.touched) ) {
+      <mat-error i18n>description too long</mat-error>
+      }
     </mat-form-field>
   </div>
 
   <!-- sourceId -->
   <mat-checkbox [formControl]="clone" i18n>clone</mat-checkbox>
-  <fieldset *ngIf="clone.value">
+  @if (clone.value) {
+  <fieldset>
     <legend i18n>clone from</legend>
     <cadmus-ref-lookup
       [required]="true"
@@ -56,6 +50,7 @@
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
   </fieldset>
+  }
 
   <!-- buttons -->
   <div role="group" aria-label="toolbar" style="margin: 10px 0">

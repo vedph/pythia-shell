@@ -12,11 +12,11 @@
   </div>
 
   <!-- list -->
-  <div id="list" *ngIf="page$ | async as page">
-    <mat-progress-bar
-      mode="indeterminate"
-      *ngIf="loading$ | async"
-    ></mat-progress-bar>
+  @if (page$ | async; as page) {
+  <div id="list">
+    @if (loading$ | async) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
     <table>
       <thead>
         <th></th>
@@ -24,7 +24,8 @@
         <th i18n>count</th>
       </thead>
       <tbody>
-        <tr *ngFor="let t of page.items">
+        @for (t of page.items; track t) {
+        <tr>
           <td class="fit-width">
             <button
               mat-icon-button
@@ -48,9 +49,9 @@
           <td>{{ t.value }}</td>
           <td>{{ t.count }}</td>
         </tr>
+        }
       </tbody>
     </table>
-
     <!-- pagination -->
     <div id="paginator">
       <button
@@ -62,7 +63,6 @@
       >
         <mat-icon>autorenew</mat-icon>
       </button>
-
       <mat-paginator
         [length]="page.total"
         [pageIndex]="page.pageNumber - 1"
@@ -73,6 +73,7 @@
       ></mat-paginator>
     </div>
   </div>
+  }
 
   <!-- set -->
   <div id="set">

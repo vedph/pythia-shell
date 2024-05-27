@@ -6,29 +6,29 @@
       /></span>
       <a mat-button routerLink="/home">Pythia</a>
 
-      <ng-container *ngIf="user$ | async">
-        <!-- corpus -->
-        <button type="button" mat-button [matMenuTriggerFor]="corpusMenu">Corpus</button>
-        <mat-menu #corpusMenu>
-          <a mat-menu-item routerLink="/documents" i18n>Documents</a>
-          <a mat-menu-item routerLink="/corpora" i18n>Corpora</a>
-        </mat-menu>
-
-        <!-- index -->
-        <button type="button" mat-button [matMenuTriggerFor]="indexMenu" i18n>Index</button>
-        <mat-menu #indexMenu>
-          <a mat-menu-item routerLink="/terms" i18n>Terms</a>
-          <a mat-menu-item routerLink="/search" i18n>Search</a>
-        </mat-menu>
-      </ng-container>
+      @if (user$ | async) {
+      <!-- corpus -->
+      <button type="button" mat-button [matMenuTriggerFor]="corpusMenu">
+        Corpus
+      </button>
+      <mat-menu #corpusMenu>
+        <a mat-menu-item routerLink="/documents" i18n>Documents</a>
+        <a mat-menu-item routerLink="/corpora" i18n>Corpora</a>
+      </mat-menu>
+      <!-- index -->
+      <button type="button" mat-button [matMenuTriggerFor]="indexMenu" i18n>
+        Index
+      </button>
+      <mat-menu #indexMenu>
+        <a mat-menu-item routerLink="/terms" i18n>Terms</a>
+        <a mat-menu-item routerLink="/search" i18n>Search</a>
+      </mat-menu>
+      }
 
       <span class="tb-fill-remaining-space"></span>
 
-      <div
-        *ngIf="user$ | async as user"
-        fxLayout="row"
-        fxLayoutAlign="start center"
-      >
+      @if (user$ | async; as user) {
+      <div fxLayout="row" fxLayoutAlign="start center">
         <img
           class="avatar"
           alt="avatar"
@@ -36,47 +36,35 @@
           [alt]="user.userName"
           [matTooltip]="user.userName"
         />
+        @if (user.roles.includes('admin')) {
+        <mat-icon class="small-icon" i18n-title title="admin">build</mat-icon>
+        } @if (!user.emailConfirmed) {
         <mat-icon
           class="small-icon"
-          *ngIf="user.roles.includes('admin')"
-          i18n-title
-          title="admin"
-          >build</mat-icon
-        >
-        <mat-icon
-          class="small-icon"
-          *ngIf="!user.emailConfirmed"
           i18n-title
           title="You must verify your email address! Please check your mailbox {{
             user.email
           }}"
           >feedback</mat-icon
         >
+        }
         <button type="button" mat-icon-button [mat-menu-trigger-for]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu x-position="before" #menu="matMenu">
-          <a
-            i18n
-            mat-menu-item
-            *ngIf="user.roles.includes('admin')"
-            routerLink="/register-user"
-            >Register user</a
-          >
-          <a
-            i18n
-            mat-menu-item
-            *ngIf="user.roles.includes('admin')"
-            routerLink="/manage-users"
-            >Manage users</a
-          >
+          @if (user.roles.includes('admin')) {
+          <a i18n mat-menu-item routerLink="/register-user">Register user</a>
+          } @if (user.roles.includes('admin')) {
+          <a i18n mat-menu-item routerLink="/manage-users">Manage users</a>
+          }
           <a mat-menu-item (click)="logout()" i18n>Logout</a>
         </mat-menu>
       </div>
-
-      <div *ngIf="!(user$ | async)">
+      } @if (!(user$ | async)) {
+      <div>
         <a mat-button routerLink="/login" i18n>Login</a>
       </div>
+      }
     </mat-toolbar>
   </header>
   <main>

@@ -1,4 +1,5 @@
-<fieldset *ngIf="document">
+@if (document) {
+<fieldset>
   <legend>{{ document.title }}</legend>
   <p>
     <span class="author">{{ document.author }}</span
@@ -24,12 +25,14 @@
       </tr>
       <tr>
         <td i18n>last modified</td>
-        <td>{{ document.lastModified | date: "short" }}</td>
+        <td>{{ document.lastModified | date : "short" }}</td>
       </tr>
-      <tr *ngFor="let a of document.attributes">
+      @for (a of document.attributes; track a) {
+      <tr>
         <td>{{ a.name }}</td>
         <td>{{ a.value }}</td>
       </tr>
+      }
     </tbody>
   </table>
   <br />
@@ -57,3 +60,4 @@
     </button>
   </div>
 </fieldset>
+}

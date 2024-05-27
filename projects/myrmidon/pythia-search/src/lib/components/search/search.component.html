@@ -15,20 +15,13 @@
               (keyup.control.enter)="searchByEnter($any($event))"
             ></textarea>
             <mat-hint i18n>ctrl+Enter to submit</mat-hint>
-            <mat-error
-              i18n
-              *ngIf="
-                $any(query).errors?.required && (query.dirty || query.touched)
-              "
-              >query required</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(query).errors?.maxLength && (query.dirty || query.touched)
-              "
-              >query too long</mat-error
-            >
+            @if ( $any(query).errors?.required && (query.dirty || query.touched)
+            ) {
+            <mat-error i18n>query required</mat-error>
+            } @if ( $any(query).errors?.maxLength && (query.dirty ||
+            query.touched) ) {
+            <mat-error i18n>query too long</mat-error>
+            }
           </mat-form-field>
 
           <div class="form-row">
@@ -45,12 +38,13 @@
             </button>
 
             <!-- history -->
-            <mat-form-field *ngIf="lastQueries$ | async as queries">
+            @if (lastQueries$ | async; as queries) {
+            <mat-form-field>
               <mat-label>history</mat-label>
               <mat-select [formControl]="history">
-                <mat-option *ngFor="let q of queries" [value]="q">{{
-                  q
-                }}</mat-option>
+                @for (q of queries; track q) {
+                <mat-option [value]="q">{{ q }}</mat-option>
+                }
               </mat-select>
               <button
                 type="button"
@@ -63,6 +57,7 @@
                 <mat-icon>check_circle</mat-icon>
               </button>
             </mat-form-field>
+            }
           </div>
         </form>
       </mat-tab>
@@ -75,32 +70,44 @@
       </mat-tab>
     </mat-tab-group>
     <!-- query progress -->
-    <div *ngIf="loading$ | async">
+    @if (loading$ | async) {
+    <div>
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
+    }
     <!-- query error -->
-    <div *ngIf="error$ | async as error" class="error">{{ error }}</div>
+    @if (error$ | async; as error) {
+    <div class="error">{{ error }}</div>
+    }
   </div>
 
   <!-- results -->
-  <div id="results" *ngIf="page$ | async as page">
-    <div id="total" *ngIf="page.total && !(loading$ | async)">
+  @if (page$ | async; as page) {
+  <div id="results">
+    @if (page.total && !(loading$ | async)) {
+    <div id="total">
       {{ page.total }}
     </div>
-    <table *ngIf="page.items?.length">
+    } @if (page.items?.length) {
+    <table>
       <thead>
         <tr>
           <th></th>
           <th></th>
           <th i18n>author</th>
           <th i18n>title</th>
-          <th *ngFor="let l of leftContextLabels">{{ l }}</th>
+          @for (l of leftContextLabels; track l) {
+          <th>{{ l }}</th>
+          }
           <th i18n>value</th>
-          <th *ngFor="let l of rightContextLabels">{{ l }}</th>
+          @for (l of rightContextLabels; track l) {
+          <th>{{ l }}</th>
+          }
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of page.items">
+        @for (r of page.items; track r) {
+        <tr>
           <!-- column: read -->
           <td class="command">
             <button
@@ -133,12 +140,11 @@
           <!-- title -->
           <td class="title">{{ r.title }}</td>
           <!-- left -->
-          <td
-            class="context"
-            *ngFor="let l of leftContextLabels; let i = index"
-          >
+          @for (l of leftContextLabels; track l; let i = $index) {
+          <td class="context">
             {{ r.leftContext[i] }}
           </td>
+          }
           <!-- value -->
           <td
             class="value"
@@ -147,16 +153,16 @@
             {{ r.value }}
           </td>
           <!-- right -->
-          <td
-            class="context"
-            *ngFor="let l of rightContextLabels; let i = index"
-          >
+          @for (l of rightContextLabels; track l; let i = $index) {
+          <td class="context">
             {{ r.rightContext[i] }}
           </td>
+          }
         </tr>
+        }
       </tbody>
     </table>
-
+    }
     <!-- pagination -->
     <mat-paginator
       [length]="page.total"
@@ -167,6 +173,7 @@
       [showFirstLastButtons]="true"
     />
   </div>
+  }
 
   <!-- reader -->
   <div id="reader">

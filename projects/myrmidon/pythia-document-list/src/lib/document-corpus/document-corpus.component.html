@@ -6,12 +6,10 @@
         <mat-option value="add-filtered" i18n>add to corpus</mat-option>
         <mat-option value="del-filtered" i18n>delete from corpus</mat-option>
       </mat-select>
-      <mat-error i18n
-        *ngIf="
-          $any(action).errors?.required && (action.dirty || action.touched)
-        "
-        >action required</mat-error
-      >
+      @if ( $any(action).errors?.required && (action.dirty || action.touched) )
+      {
+      <mat-error i18n>action required</mat-error>
+      }
       <mat-hint i18n>action for matching docs</mat-hint>
     </mat-form-field>
 

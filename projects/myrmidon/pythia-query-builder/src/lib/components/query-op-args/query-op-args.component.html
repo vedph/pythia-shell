@@ -1,15 +1,11 @@
 <form [formGroup]="form" (submit)="save()">
-  <fieldset *ngIf="args">
+  @if (args) {
+  <fieldset>
     <legend i18n>arguments</legend>
     <div formArrayName="arguments" class="form-row">
-      <div
-        *ngFor="
-          let g of arguments.controls;
-          let i = index;
-          let first = first;
-          let last = last
-        "
-      >
+      @for ( g of arguments.controls; track g; let i = $index; let first =
+      $first; let last = $last) {
+      <div>
         <!-- child form -->
         <div [formGroupName]="i">
           <mat-form-field class="arg">
@@ -22,54 +18,31 @@
               formControlName="value"
               [type]="$any(g)['controls'].def.value.numeric ? 'number' : 'text'"
             />
-            <mat-error
-              i18n
-              *ngIf="
-                $any(g)['controls'].value.errors?.required &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value required</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(g)['controls'].value.errors?.maxLength &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value too long</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(g)['controls'].value.errors?.min &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value too low</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(g)['controls'].value.errors?.max &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >value too big</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(g)['controls'].value.errors?.pattern &&
-                ($any(g)['controls'].value.dirty ||
-                  $any(g)['controls'].value.touched)
-              "
-              >invalid value</mat-error
-            >
+            @if ( $any(g)['controls'].value.errors?.required &&
+            ($any(g)['controls'].value.dirty ||
+            $any(g)['controls'].value.touched) ) {
+            <mat-error i18n>value required</mat-error>
+            } @if ( $any(g)['controls'].value.errors?.maxLength &&
+            ($any(g)['controls'].value.dirty ||
+            $any(g)['controls'].value.touched) ) {
+            <mat-error i18n>value too long</mat-error>
+            } @if ( $any(g)['controls'].value.errors?.min &&
+            ($any(g)['controls'].value.dirty ||
+            $any(g)['controls'].value.touched) ) {
+            <mat-error i18n>value too low</mat-error>
+            } @if ( $any(g)['controls'].value.errors?.max &&
+            ($any(g)['controls'].value.dirty ||
+            $any(g)['controls'].value.touched) ) {
+            <mat-error i18n>value too big</mat-error>
+            } @if ( $any(g)['controls'].value.errors?.pattern &&
+            ($any(g)['controls'].value.dirty ||
+            $any(g)['controls'].value.touched) ) {
+            <mat-error i18n>invalid value</mat-error>
+            }
           </mat-form-field>
         </div>
       </div>
+      }
     </div>
     <div>
       <button
@@ -82,4 +55,5 @@
       </button>
     </div>
   </fieldset>
+  }
 </form>
