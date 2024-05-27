@@ -38,6 +38,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-05-27:
+  - refactored homepage.
+  - bumped library versions to 3.1.0 updating their peer dependencies for Angular 18.
 - 2024-05-24: updated packages and Angular.
 - 2024-05-15: updated packages and Angular.
 - 2024-05-08: ⚠️ updated packages including [bricks V2](https://github.com/vedph/cadmus-bricks-shell-v2)

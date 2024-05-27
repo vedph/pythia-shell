@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-query-builder",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Pythia - query builder.",
   "keywords": [
     "Pythia"
@@ -14,14 +14,14 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "@myrmidon/ng-tools": "^3.0.0",
-    "@myrmidon/cadmus-refs-lookup": "^5.0.0",
-    "@myrmidon/pythia-api": "^3.0.0",
-    "@myrmidon/pythia-core": "^3.0.0",
-    "@myrmidon/pythia-document-reader": "^3.0.0",
-    "@myrmidon/pythia-ui": "^3.0.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@myrmidon/ng-tools": "^3.1.1",
+    "@myrmidon/cadmus-refs-lookup": "^5.1.1",
+    "@myrmidon/pythia-api": "^3.1.0",
+    "@myrmidon/pythia-core": "^3.1.0",
+    "@myrmidon/pythia-document-reader": "^3.1.0",
+    "@myrmidon/pythia-ui": "^3.1.0"
   },
   "dependencies": {
     "tslib": "^2.5.0"

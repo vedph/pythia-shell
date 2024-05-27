@@ -1,11 +1,12 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <h2 i18n>Pythia Demo Home</h2>
-    </mat-card-title>
-  </mat-card-header>
   <mat-card-content>
-    <div id="container">
+    <article id="container">
+      <div id="title">
+        <h2 i18n>Pythia Demo Home</h2>
+      </div>
+      <div id="banner">
+        <img src="assets/img/pythia-400.png" alt="Pythia" />
+      </div>
       <div id="text">
         <p i18n>
           Welcome to the Pythia demo. This is a minimalist frontend to demo the
@@ -14,16 +15,34 @@
           features; and some summary statistics about the contents of the
           underlying database.
         </p>
-      </div>
-      <div id="builder">
-        <pythia-query-builder
-          (queryChange)="onQueryChange($event)"
-        ></pythia-query-builder>
-        <pre *ngIf="query" class="query">{{ query }}</pre>
+        <p i18n>
+          The Pythia search engine source code can be found in the following
+          repositories, together with some documentation:
+        </p>
+        <ul>
+          <li>
+            <a
+              i18n
+              href="https://github.com/vedph/pythia"
+              target="_blank"
+              rel="noopener"
+              >Pythia search engine</a
+            >
+          </li>
+          <li>
+            <a
+              i18n
+              href="https://github.com/vedph/pythia-shell"
+              target="_blank"
+              rel="noopener"
+              >Pythia frontend shell</a
+            >
+          </li>
+        </ul>
       </div>
       <div id="stats">
         <pythia-stats></pythia-stats>
       </div>
-    </div>
+    </article>
   </mat-card-content>
 </mat-card>

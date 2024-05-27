@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-document-list",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Pythia - document list.",
   "keywords": [
     "Pythia"
@@ -14,13 +14,13 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "@myrmidon/ng-tools": "^3.0.0",
-    "@myrmidon/paged-data-browsers": "^1.0.0",
-    "@myrmidon/pythia-api": "^3.0.0",
-    "@myrmidon/pythia-core": "^3.0.0",
-    "@myrmidon/pythia-ui": "^3.0.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@myrmidon/ng-tools": "^3.1.1",
+    "@myrmidon/paged-data-browsers": "^1.1.0",
+    "@myrmidon/pythia-api": "^3.1.0",
+    "@myrmidon/pythia-core": "^3.1.0",
+    "@myrmidon/pythia-ui": "^3.1.0"
   },
   "dependencies": {
     "tslib": "^2.5.0"
