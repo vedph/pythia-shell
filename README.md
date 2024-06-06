@@ -14,7 +14,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
 4. update version in `env.js` (and in Docker compose scripts);
 5. `ng build --configuration production`;
 6. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
-7. `docker build . -t vedph2020/pythia-shell:3.1.0-it -t vedph2020/pythia-shell:latest` (replace with the current version; remove `-it` for the English version).
+7. `docker build . -t vedph2020/pythia-shell:3.1.1-it -t vedph2020/pythia-shell:latest` (replace with the current version; remove `-it` for the English version).
 
 >To update the localizable messages run `ng extract-i18n`. Then move the generated XLF file into locale and add new entries into the corresponding translated files in the same directory.
 
@@ -40,6 +40,11 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+### 3.1.1
+
+- 2024-06-06:
+  - updated Angular and packages.
+  - added auto confirm to registration page.
 - 2024-05-27:
   - refactored homepage.
   - bumped library versions to 3.1.0 updating their peer dependencies for Angular 18.
