@@ -40,7 +40,7 @@
               color="primary"
               (click)="editCorpus(c)"
             >
-              <mat-icon>edit</mat-icon>
+              <mat-icon class="mat-primary">edit</mat-icon>
             </button>
             } @if (c | editable) {
             <button
@@ -51,7 +51,7 @@
               color="warn"
               (click)="deleteCorpus(c)"
             >
-              <mat-icon>delete</mat-icon>
+              <mat-icon class="mat-warn">delete</mat-icon>
             </button>
             }
           </td>
@@ -74,7 +74,7 @@
         matTooltip="Refresh list"
         (click)="reset()"
       >
-        <mat-icon>refresh</mat-icon>
+        <mat-icon class="mat-warn">refresh</mat-icon>
       </button>
       <mat-paginator
         [length]="page.total"
@@ -91,7 +91,7 @@
           mat-flat-button
           (click)="addCorpus()"
         >
-          <mat-icon>add_circle</mat-icon> corpus
+          <mat-icon class="mat-primary">add_circle</mat-icon> corpus
         </button>
       </div>
     </div>

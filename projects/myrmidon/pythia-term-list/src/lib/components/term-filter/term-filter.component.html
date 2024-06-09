@@ -122,7 +122,7 @@
         matTooltip="Add a document attribute filter"
         (click)="addAttribute(undefined, false)"
       >
-        <mat-icon>add_circle</mat-icon>
+        <mat-icon class="mat-primary">add_circle</mat-icon>
       </button>
     </h3>
     <div formArrayName="docAttributes">
@@ -141,7 +141,7 @@
             color="warn"
             (click)="removeAttribute(i, false)"
           >
-            <mat-icon>remove_circle</mat-icon>
+            <mat-icon class="mat-warn">remove_circle</mat-icon>
           </button>
           <!-- child controls -->
           <!-- name -->
@@ -189,7 +189,7 @@
         matTooltip="Add a token attribute filter"
         (click)="addAttribute(undefined, true)"
       >
-        <mat-icon>add_circle</mat-icon>
+        <mat-icon class="mat-primary">add_circle</mat-icon>
       </button>
     </h3>
     <div formArrayName="occAttributes">
@@ -208,7 +208,7 @@
             color="warn"
             (click)="removeAttribute(i, true)"
           >
-            <mat-icon>remove_circle</mat-icon>
+            <mat-icon class="mat-warn">remove_circle</mat-icon>
           </button>
           <!-- child controls -->
           <!-- name -->
@@ -310,7 +310,7 @@
       matTooltip="Reset filters"
       [disabled]="disabled"
     >
-      <mat-icon>clear</mat-icon>
+      <mat-icon class="mat-warn">clear</mat-icon>
     </button>
     <button
       type="submit"
@@ -320,7 +320,7 @@
       i18n-matTooltip
       matTooltip="Apply filters"
     >
-      <mat-icon>check_circle</mat-icon>
+      <mat-icon class="mat-primary">check_circle</mat-icon>
     </button>
   </div>
 </form>

@@ -8,7 +8,7 @@
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
     <button type="button" mat-icon-button color="warn" (click)="clear()">
-      <mat-icon>clear</mat-icon>
+      <mat-icon class="mat-warn">clear</mat-icon>
     </button>
   </div>
 
@@ -31,7 +31,7 @@
             mat-icon-button
             (click)="deleteCorpus(i)"
           >
-            <mat-icon>delete</mat-icon>
+            <mat-icon class="mat-warn">delete</mat-icon>
           </button>
         </td>
         <td>{{ c.id }}</td>

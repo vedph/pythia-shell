@@ -1,5 +1,11 @@
 <div class="bar-row">
-  <button type="button" color="primary" mat-flat-button (click)="addEntry()">
+  <button
+    type="button"
+    color="primary"
+    class="mat-primary"
+    mat-flat-button
+    (click)="addEntry()"
+  >
     <mat-icon>add_circle</mat-icon> <ng-container i18n>entry</ng-container>
   </button>
   <button
@@ -10,7 +16,7 @@
     i18n-matTooltip
     matTooltip="Delete all the entries"
   >
-    <mat-icon>clear</mat-icon>
+    <mat-icon class="mat-warn">clear</mat-icon>
   </button>
 </div>
 <table>
@@ -28,7 +34,7 @@
           matTooltip="Edit this entry"
           (click)="editEntry(e, i)"
         >
-          <mat-icon>edit</mat-icon>
+          <mat-icon class="mat-primary">edit</mat-icon>
         </button>
         <button
           type="button"
@@ -38,7 +44,7 @@
           matTooltip="Add a new entry before this one"
           (click)="addEntry(i)"
         >
-          <mat-icon>control_point_duplicate</mat-icon>
+          <mat-icon class="mat-primary">control_point_duplicate</mat-icon>
         </button>
         <button
           [disabled]="first"
@@ -68,7 +74,7 @@
           matTooltip="Delete this entry"
           (click)="deleteEntry(i)"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon class="mat-warn">delete</mat-icon>
         </button>
       </td>
       @if (e.pair) {
@@ -88,7 +94,9 @@
       }
       <td>
         @if (e.error) {
-        <mat-icon color="warn" [matTooltip]="e.error">error</mat-icon>
+        <mat-icon color="warn" class="mat-warn" [matTooltip]="e.error"
+          >error</mat-icon
+        >
         }
       </td>
     </tr>

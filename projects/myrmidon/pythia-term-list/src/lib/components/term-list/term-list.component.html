@@ -34,7 +34,7 @@
               color="primary"
               (click)="setActiveTerm(t)"
             >
-              <mat-icon>pie_chart</mat-icon>
+              <mat-icon class="mat-primary">pie_chart</mat-icon>
             </button>
             <button
               mat-icon-button
@@ -61,7 +61,7 @@
         matTooltip="Reset list"
         (click)="reset()"
       >
-        <mat-icon>autorenew</mat-icon>
+        <mat-icon class="mat-warn">autorenew</mat-icon>
       </button>
       <mat-paginator
         [length]="page.total"

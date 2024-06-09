@@ -37,7 +37,7 @@
               color="primary"
               (click)="requestRead(item)"
             >
-              <mat-icon>auto_stories</mat-icon>
+              <mat-icon class="mat-primary">auto_stories</mat-icon>
             </button>
             <button
               mat-icon-button
@@ -70,7 +70,7 @@
         matTooltip="Refresh"
         (click)="refresh()"
       >
-        <mat-icon>refresh</mat-icon>
+        <mat-icon class="mat-warn">refresh</mat-icon>
       </button>
       <mat-paginator
         [length]="page.total"

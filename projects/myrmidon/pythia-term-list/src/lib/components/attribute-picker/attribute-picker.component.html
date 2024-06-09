@@ -9,7 +9,7 @@
       </mat-select>
     </mat-form-field>
     <button type="button" mat-icon-button color="primary" (click)="addName()">
-      <mat-icon>add_circle</mat-icon>
+      <mat-icon class="mat-primary">add_circle</mat-icon>
     </button>
   </div>
   <!-- pickedNames -->
@@ -25,7 +25,7 @@
               color="warn"
               (click)="removeName(n)"
             >
-              <mat-icon>delete</mat-icon>
+              <mat-icon class="mat-warn">delete</mat-icon>
             </button>
           </td>
           <td>{{ n }}</td>

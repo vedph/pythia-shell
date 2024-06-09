@@ -40,6 +40,11 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-06-09:
+  - updated packages.
+  - added `class="mat-X"` for each `color="X"` (e.g. `class="mat-primary"` wherever there is a `color="primary"`) to allow transitioning to Angular Material M3 from M2. This also implies adding it directly to the target element, so in the case of `mat-icon` inside a `button` with `color` the class is added to `mat-icon` directly (unless the button too has the same color). This allows to keep the old M2 clients while using the new M3, because it seems that the compatibility mixin is not effective in some cases like inheritance of `color`, and in the future `color` will be replaced by `class` altogether.
+  - applied [M3 theme](https://material.angular.io/guide/theming).
+
 ### 3.1.2
 
 - 2024-06-06:
