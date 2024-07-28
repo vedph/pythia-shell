@@ -13,11 +13,11 @@ import {
 export interface SearchResult {
   id: string;
   documentId: number;
-  position: number;
+  p1: number;
+  p2: number;
   index: number;
   length: number;
-  entityType: string;
-  entityId: number;
+  type: string;
   value: string;
   author: string;
   title: string;
@@ -25,6 +25,7 @@ export interface SearchResult {
 }
 
 export interface KwicSearchResult extends SearchResult {
+  text: string;
   leftContext: string[];
   rightContext: string[];
 }

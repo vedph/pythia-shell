@@ -22,7 +22,6 @@ export class AppComponent {
   constructor(
     private _router: Router,
     private _authService: AuthJwtService,
-    private _gravatarService: GravatarService,
     settings: AppSettingsService,
     env: EnvService
   ) {
@@ -30,10 +29,6 @@ export class AppComponent {
     this.version = env.get('version') || '';
     // TODO customize settings here like in this sample:
     settings.termDistrDocNames = ['materia', 'giudicante', 'nascita-avv'];
-  }
-
-  public getGravatarUrl(email: string, size = 80): string | null {
-    return this._gravatarService.buildGravatarUrl(email, size);
   }
 
   public logout(): void {

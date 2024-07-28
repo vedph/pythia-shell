@@ -145,9 +145,10 @@
           <!-- value -->
           <td
             class="value"
+            [matTooltip]="r.value"
             (click)="readDocumentPiece(r.documentId, r.index, r.length)"
           >
-            {{ r.value }}
+            {{ r.text }}
           </td>
           <!-- right -->
           @for (l of rightContextLabels; track l; let i = $index) {
