@@ -4,13 +4,17 @@ import { map, Observable, of } from 'rxjs';
 import { DataPage } from '@myrmidon/ng-tools';
 
 // https://github.com/Myrmex/ngx-data-browser?tab=readme-ov-file#tree
-import { PagedTreeStoreService, TreeNode } from '@myrmidon/paged-data-browsers';
+import {
+  PagedTreeNode,
+  PagedTreeStoreService,
+  TreeNode,
+} from '@myrmidon/paged-data-browsers';
 import { Lemma, Word, WordFilter, WordService } from '@myrmidon/pythia-api';
 
 /**
  * A tree node with a word or lemma token, using a LemmaFilter or WordFilter.
  */
-export interface PagedWordTreeNode<WordFilter> {
+export interface PagedWordTreeNode extends PagedTreeNode<WordFilter> {
   token: Lemma | Word;
 }
 
@@ -50,6 +54,7 @@ export class PagedWordTreeStoreService
             label: l.value,
             tag: TREE_TAG,
             hasChildren: true,
+            token: l,
           }))
         )
       );
@@ -64,6 +69,7 @@ export class PagedWordTreeStoreService
             label: w.value,
             tag: TREE_TAG,
             hasChildren: false,
+            token: w,
           }))
         )
       );
@@ -86,6 +92,7 @@ export class PagedWordTreeStoreService
             label: l.value,
             tag: TREE_TAG,
             hasChildren: true,
+            token: l,
           })),
         }))
       );
@@ -100,6 +107,7 @@ export class PagedWordTreeStoreService
             label: w.value,
             tag: TREE_TAG,
             hasChildren: false,
+            token: w,
           })),
         }))
       );

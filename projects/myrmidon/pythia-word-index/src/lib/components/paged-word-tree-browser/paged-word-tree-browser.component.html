@@ -1,0 +1,52 @@
+<div id="container">
+  <!-- filters -->
+  <div id="filters">
+    <pythia-paged-word-tree-filter
+      [filter]="filter$ | async"
+      (filterChange)="onFilterChange($event)"
+    />
+  </div>
+
+  <!-- list -->
+  <div id="list">
+    <!-- progress -->
+    <div>
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div *ngIf="nodes$ | async as nodes">
+      <div
+        *ngFor="let node of nodes; let i = index; trackBy: trackByFn"
+        [style.border-top]="
+          node.expanded
+            ? '1px solid rgb(137 181 203)'
+            : '1 px solid transparent'
+        "
+      >
+        <pdb-browser-tree-node
+          [node]="node"
+          [paging]="
+            node.expanded &&
+            i + 1 < nodes.length &&
+            nodes[i + 1].paging.pageCount > 1
+              ? nodes[i + 1].paging
+              : undefined
+          "
+          (toggleExpandedRequest)="onToggleExpanded($any($event))"
+          (changePageRequest)="onPageChangeRequest($event)"
+          (editNodeFilterRequest)="onEditFilterRequest($any($event))"
+        >
+          <!-- TODO you can provide your own additional content here, e.g.
+          <span *ngIf="node.y" class="node-ext">C={{ node.count }}</span>
+          If you want to replace node's loc and label, set [hideLabel]="true"
+          for pdb-browser-tree-node and provide your content here.
+           -->
+        </pdb-browser-tree-node>
+      </div>
+    </div>
+    <div>
+      <button type="button" mat-flat-button (click)="reset()" color="warn">
+        reset
+      </button>
+    </div>
+  </div>
+</div>

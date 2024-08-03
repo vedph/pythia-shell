@@ -1,0 +1,30 @@
+div#container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "filters list";
+  gap: 24px;
+}
+
+div#filters {
+  grid-area: filters;
+  max-width: 280px;
+  margin: 16px;
+}
+div#list {
+  grid-area: list;
+}
+.node-ext {
+  margin-left: 6px;
+  color: #107650;
+}
+
+/* lt-md */
+@media only screen and (max-width: 959px) {
+  div#container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "list"
+      "filters";
+  }
+}
