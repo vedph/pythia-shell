@@ -10,5 +10,6 @@ export * from './lib/services/reader.service';
 export * from './lib/services/search.service';
 export * from './lib/services/stats.service';
 export * from './lib/services/term.service';
+export * from './lib/services/word.service';
 
 export * from './lib/pythia-api.module';

@@ -32,6 +32,9 @@
       ],
       "@myrmidon/pythia-ui": [
         "dist/myrmidon/pythia-ui"
+      ],
+      "@myrmidon/pythia-word-index": [
+        "./dist/myrmidon/pythia-word-index"
       ]
     },
     "baseUrl": "./",

@@ -454,6 +454,39 @@
           }
         }
       }
+    },
+    "@myrmidon/pythia-word-index": {
+      "projectType": "library",
+      "root": "projects/myrmidon/pythia-word-index",
+      "sourceRoot": "projects/myrmidon/pythia-word-index/src",
+      "prefix": "pythia",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/myrmidon/pythia-word-index/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/myrmidon/pythia-word-index/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/myrmidon/pythia-word-index/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/myrmidon/pythia-word-index/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {
