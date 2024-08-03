@@ -116,7 +116,9 @@ export class TokenCountsComponent {
 
     const csv = this.getCSV();
     this._clipboard.writeText(csv);
-    this._snackbar.open('Copied to clipboard', undefined, { duration: 2000 });
+    this._snackbar.open($localize`Copied to clipboard`, undefined, {
+      duration: 2000,
+    });
   }
 
   public download(): void {
