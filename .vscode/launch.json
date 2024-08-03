@@ -25,6 +25,16 @@
       "sourceMaps": true,
       "trace": true,
       "preLaunchTask": "npm: start"
+    },
+    {
+      "name": "ng debug (Edge)",
+      "type": "pwa-msedge",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "trace": true,
+      "preLaunchTask": "npm: start"
     }
   ]
 }

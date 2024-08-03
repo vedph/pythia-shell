@@ -5,6 +5,7 @@ import {
   PagedWordTreeNode,
   PagedWordTreeStoreService,
 } from './paged-word-tree-store.service';
+import { EnvService } from '@myrmidon/ng-tools';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,9 @@ import {
 export class PagedWordTreeBrowserService {
   public readonly store: PagedTreeStore<PagedWordTreeNode, WordFilter>;
 
-  constructor(wordService: WordService) {
+  constructor(wordService: WordService, env: EnvService) {
     this.store = new PagedTreeStore<PagedWordTreeNode, WordFilter>(
-      new PagedWordTreeStoreService(wordService)
+      new PagedWordTreeStoreService(wordService, env)
     );
   }
 }

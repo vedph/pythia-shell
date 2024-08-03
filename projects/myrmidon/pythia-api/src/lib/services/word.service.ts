@@ -111,7 +111,7 @@ export class WordService {
     pageNumber = 1,
     pageSize = 20,
     httpParams: HttpParams
-  ) {
+  ): HttpParams {
     httpParams = httpParams.set('pageNumber', pageNumber.toString());
     httpParams = httpParams.set('pageSize', pageSize.toString());
 
@@ -154,6 +154,8 @@ export class WordService {
         filter.isSortDescending.toString()
       );
     }
+
+    return httpParams;
   }
 
   /**
@@ -169,8 +171,12 @@ export class WordService {
     pageNumber = 1,
     pageSize = 20
   ): Observable<DataPage<Word>> {
-    let httpParams = new HttpParams();
-    this.applyLemmaFilterParams(filter, pageNumber, pageSize, httpParams);
+    let httpParams = this.applyLemmaFilterParams(
+      filter,
+      pageNumber,
+      pageSize,
+      new HttpParams()
+    );
 
     // add word-specific parameters
     if (filter.lemmaId) {
@@ -237,8 +243,12 @@ export class WordService {
     pageNumber = 1,
     pageSize = 20
   ): Observable<DataPage<Lemma>> {
-    let httpParams = new HttpParams();
-    this.applyLemmaFilterParams(filter, pageNumber, pageSize, httpParams);
+    const httpParams = this.applyLemmaFilterParams(
+      filter,
+      pageNumber,
+      pageSize,
+      new HttpParams()
+    );
 
     return this._http
       .get<DataPage<Lemma>>(`${this._env.get('apiUrl')}lemmata`, {

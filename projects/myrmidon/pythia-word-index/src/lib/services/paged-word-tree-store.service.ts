@@ -83,7 +83,7 @@ export class PagedWordTreeStoreService
     pageNumber: number,
     pageSize: number
   ): Observable<DataPage<TreeNode>> {
-    if (this.hasLemmata) {
+    if (this.hasLemmata && !filter.parentId) {
       return this._wordService.getLemmata(filter, pageNumber, pageSize).pipe(
         map((page) => ({
           ...page,
@@ -103,7 +103,7 @@ export class PagedWordTreeStoreService
         map((page) => ({
           ...page,
           items: page.items.map((w, i) => ({
-            parentId: w.lemmaId,
+            parentId: filter.parentId,
             id: w.id,
             y: 2,
             x: i + 1,
