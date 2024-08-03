@@ -72,7 +72,7 @@ export interface WordFilter extends LemmaFilter {
 /**
  * Word sort order.
  */
-export declare enum WordSortOrder {
+export enum WordSortOrder {
   Default = 0,
   ByValue = 1,
   ByReversedValue = 2,

@@ -4,10 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 
+import { PagedWordTreeBrowserComponent } from 'projects/myrmidon/pythia-word-index/src/public-api';
+
 @Component({
   selector: 'app-words',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCardModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    PagedWordTreeBrowserComponent,
+  ],
   templateUrl: './words.component.html',
   styleUrl: './words.component.scss',
 })
