@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  AuthJwtService,
-  GravatarService,
-  User,
-} from '@myrmidon/auth-jwt-login';
+import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
 import { EnvService } from '@myrmidon/ng-tools';
 import { AppSettingsService } from '@myrmidon/pythia-core';
 import { Observable } from 'rxjs';

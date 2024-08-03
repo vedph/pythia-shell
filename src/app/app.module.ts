@@ -1,4 +1,8 @@
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,7 +22,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+} from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
@@ -63,7 +70,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { DocumentsComponent } from './documents/documents.component';
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { TermsComponent } from './terms/terms.component';
 import { SearchComponent } from './search/search.component';
 import { CorporaComponent } from './corpora/corpora.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
@@ -72,86 +78,91 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ATTR_DEFS } from './attr-defs';
 import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.service';
 
-@NgModule({ declarations: [
-        AppComponent,
-        HomeComponent,
-        LoginPageComponent,
-        ManageUsersComponent,
-        RegisterUserComponent,
-        ResetPasswordComponent,
-        DocumentsComponent,
-        TermsComponent,
-        SearchComponent,
-        CorporaComponent,
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        NgToolsModule,
-        BrowserAnimationsModule,
-        // material
-        MatAutocompleteModule,
-        MatButtonModule,
-        MatCardModule,
-        MatCheckboxModule,
-        MatChipsModule,
-        MatDatepickerModule,
-        MatDialogModule,
-        MatExpansionModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        MatMenuModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatProgressSpinnerModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        MatTableModule,
-        MatTabsModule,
-        MatTooltipModule,
-        MatToolbarModule,
-        MatTreeModule,
-        // vendor
-        NgxEchartsModule.forRoot({
-            echarts: () => import('echarts'),
-        }),
-        // myrmex
-        NgToolsModule,
-        NgMatToolsModule,
-        PagedDataBrowsersModule,
-        AuthJwtLoginModule,
-        AuthJwtAdminModule,
-        // pythia
-        PythiaApiModule,
-        PythiaCoreModule,
-        PythiaCorpusListModule,
-        PythiaDocumentListModule,
-        PythiaDocumentReaderModule,
-        PythiaQueryBuilderModule,
-        PythiaSearchModule,
-        PythiaStatsModule,
-        PythiaTermListModule,
-        PythiaUiModule], providers: [
-        EnvServiceProvider,
-        // HTTP interceptor
-        // https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthJwtInterceptor,
-            multi: true,
-        },
-        // query builder
-        {
-            provide: QUERY_BUILDER_ATTR_DEFS_KEY,
-            useValue: ATTR_DEFS,
-        },
-        // paginator i18n
-        {
-            provide: MatPaginatorIntl,
-            useClass: I18nPaginatorIntlService,
-        },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginPageComponent,
+    ManageUsersComponent,
+    RegisterUserComponent,
+    ResetPasswordComponent,
+    DocumentsComponent,
+    SearchComponent,
+    CorporaComponent,
+  ],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgToolsModule,
+    BrowserAnimationsModule,
+    // material
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatTabsModule,
+    MatTooltipModule,
+    MatToolbarModule,
+    MatTreeModule,
+    // vendor
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+    // myrmex
+    NgToolsModule,
+    NgMatToolsModule,
+    PagedDataBrowsersModule,
+    AuthJwtLoginModule,
+    AuthJwtAdminModule,
+    // pythia
+    PythiaApiModule,
+    PythiaCoreModule,
+    PythiaCorpusListModule,
+    PythiaDocumentListModule,
+    PythiaDocumentReaderModule,
+    PythiaQueryBuilderModule,
+    PythiaSearchModule,
+    PythiaStatsModule,
+    PythiaTermListModule,
+    PythiaUiModule,
+  ],
+  providers: [
+    EnvServiceProvider,
+    // HTTP interceptor
+    // https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthJwtInterceptor,
+      multi: true,
+    },
+    // query builder
+    {
+      provide: QUERY_BUILDER_ATTR_DEFS_KEY,
+      useValue: ATTR_DEFS,
+    },
+    // paginator i18n
+    {
+      provide: MatPaginatorIntl,
+      useClass: I18nPaginatorIntlService,
+    },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}

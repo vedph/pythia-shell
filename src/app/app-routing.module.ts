@@ -13,7 +13,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SearchComponent } from './search/search.component';
-import { TermsComponent } from './terms/terms.component';
+import { WordsComponent } from './words/words.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -44,8 +44,8 @@ const routes: Routes = [
     canActivate: [AuthJwtGuardService],
   },
   {
-    path: 'terms',
-    component: TermsComponent,
+    path: 'words',
+    component: WordsComponent,
     canActivate: [AuthJwtGuardService],
   },
   {
