@@ -27,7 +27,7 @@
               "base": "dist/pythia-shell"
             },
             "index": "src/index.html",
-            "polyfills": ["zone.js"],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets", "src/env.js"],
             "styles": [
@@ -456,6 +456,12 @@
       }
     },
     "@myrmidon/pythia-word-index": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it": "src/locale/messages.it.xlf"
+        }
+      },
       "projectType": "library",
       "root": "projects/myrmidon/pythia-word-index",
       "sourceRoot": "projects/myrmidon/pythia-word-index/src",
@@ -480,10 +486,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/myrmidon/pythia-word-index/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }

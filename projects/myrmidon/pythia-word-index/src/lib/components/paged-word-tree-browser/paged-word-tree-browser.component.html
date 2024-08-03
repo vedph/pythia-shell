@@ -15,7 +15,7 @@
     </div>
     <div *ngIf="nodes$ | async as nodes">
       <div
-        *ngFor="let node of nodes; let i = index; trackBy: trackByFn"
+        *ngFor="let node of nodes; let i = index; track: node.id"
         [style.border-top]="
           node.expanded
             ? '1px solid rgb(137 181 203)'
