@@ -1,9 +1,24 @@
 {
   "name": "@myrmidon/pythia-word-index",
   "version": "0.0.1",
+  "description": "Pythia - word and lemmata index.",
+  "keywords": [
+    "Pythia"
+  ],
+  "homepage": "https://github.com/vedph/pythia-shell",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedph/pythia-shell"
+  },
+  "author": {
+    "name": "Daniele Fusi"
+  },
   "peerDependencies": {
     "@angular/common": "^18.1.0",
-    "@angular/core": "^18.1.0"
+    "@angular/core": "^18.1.0",
+    "@myrmidon/ng-tools": "^3.1.1",
+    "@myrmidon/pythia-core": "^3.1.0",
+    "@myrmidon/paged-data-browsers": "^1.1.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
