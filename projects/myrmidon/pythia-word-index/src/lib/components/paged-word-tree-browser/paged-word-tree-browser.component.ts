@@ -122,8 +122,4 @@ export class PagedWordTreeBrowserComponent implements OnInit {
       }
     });
   }
-
-  public trackByFn(index: number, node: PagedWordTreeNode): string {
-    return node.id.toString();
-  }
 }

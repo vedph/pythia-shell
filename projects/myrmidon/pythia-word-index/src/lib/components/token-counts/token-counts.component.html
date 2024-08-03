@@ -15,8 +15,8 @@
       <table>
         <thead>
           <tr>
-            <th>value</th>
-            <th>nr.</th>
+            <th i18n>value</th>
+            <th i18n>nr.</th>
             <th>%</th>
           </tr>
         </thead>
@@ -40,6 +40,7 @@
       type="button"
       mat-icon-button
       matTooltip="Copy data"
+      i18n-matTooltip
       (click)="copy()"
     >
       <mat-icon>content_copy</mat-icon>
@@ -49,6 +50,7 @@
       type="button"
       mat-icon-button
       matTooltip="Download data"
+      i18n-matTooltip
       (click)="download()"
     >
       <mat-icon class="mat-primary">download</mat-icon>

@@ -15,7 +15,7 @@
 
     <div>
       <mat-form-field>
-        <mat-label>attributes</mat-label>
+        <mat-label i18n>attributes</mat-label>
         <mat-select [formControl]="selectedAttributes" multiple>
           @for (a of attributes; track a.name) {
           <mat-option [value]="a.name"
@@ -30,6 +30,7 @@
       type="button"
       mat-icon-button
       matTooltip="Set selected attributes"
+      i18n-matTooltip
       (click)="loadCounts()"
       [disabled]="busy"
     >

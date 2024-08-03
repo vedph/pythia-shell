@@ -6,7 +6,7 @@
   <!-- language -->
   <div>
     <mat-form-field>
-      <mat-label>language</mat-label>
+      <mat-label i18n>language</mat-label>
       <input matInput [formControl]="language" maxlength="50" />
     </mat-form-field>
   </div>
@@ -14,21 +14,21 @@
   <!-- value pattern -->
   <div>
     <mat-form-field>
-      <mat-label>value pattern</mat-label>
+      <mat-label i18n>value pattern</mat-label>
       <input matInput [formControl]="valuePattern" maxlength="500" />
-      <mat-hint>Wildcards * and ?</mat-hint>
+      <mat-hint i18n>Wildcards * and ?</mat-hint>
     </mat-form-field>
   </div>
 
   <!-- value length -->
   <div class="form-row">
     <mat-form-field class="nr">
-      <mat-label>min</mat-label>
+      <mat-label i18n>min.len.</mat-label>
       <input matInput type="number" [formControl]="minValueLength" min="0" />
     </mat-form-field>
     -
     <mat-form-field class="nr">
-      <mat-label>max</mat-label>
+      <mat-label i18n>max.len.</mat-label>
       <input matInput type="number" [formControl]="maxValueLength" min="0" />
     </mat-form-field>
   </div>
@@ -36,12 +36,12 @@
   <!-- count -->
   <div class="form-row">
     <mat-form-field class="nr">
-      <mat-label>min</mat-label>
+      <mat-label i18n>min.nr.</mat-label>
       <input matInput type="number" [formControl]="minCount" min="0" />
     </mat-form-field>
     -
     <mat-form-field class="nr">
-      <mat-label>max</mat-label>
+      <mat-label i18n>max.nr.</mat-label>
       <input matInput type="number" [formControl]="maxCount" min="0" />
     </mat-form-field>
   </div>
@@ -49,12 +49,12 @@
   <!-- sort order -->
   <div>
     <mat-form-field>
-      <mat-label>sort order</mat-label>
+      <mat-label i18n>sort order</mat-label>
       <mat-select [formControl]="sortOrder">
-        <mat-option [value]="0">default</mat-option>
-        <mat-option [value]="1">by value</mat-option>
-        <mat-option [value]="2">by rev.value</mat-option>
-        <mat-option [value]="3">by count</mat-option>
+        <mat-option [value]="0" i18n>default</mat-option>
+        <mat-option [value]="1" i18n>by value</mat-option>
+        <mat-option [value]="2" i18n>by rev.value</mat-option>
+        <mat-option [value]="3" i18n>by count</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -66,6 +66,7 @@
       color="warn"
       mat-icon-button
       matTooltip="Reset"
+      i18n-matTooltip
       (click)="reset()"
     >
       <mat-icon>clear</mat-icon>
@@ -75,6 +76,7 @@
       color="primary"
       mat-icon-button
       matTooltip="Apply"
+      i18n-matTooltip
       [disabled]="form.invalid"
     >
       <mat-icon>check_circle</mat-icon>
