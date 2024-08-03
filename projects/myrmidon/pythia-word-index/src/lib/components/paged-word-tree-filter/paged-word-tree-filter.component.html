@@ -1,0 +1,28 @@
+<form
+  [formGroup]="form"
+  [style.margin.px]="wrapped ? 16 : 0"
+  (submit)="apply()"
+>
+  TODO: your form
+  <!-- buttons -->
+  <div class="form-row">
+    <button
+      type="button"
+      color="warn"
+      mat-icon-button
+      matTooltip="Reset"
+      (click)="reset()"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button
+      type="submit"
+      color="primary"
+      mat-icon-button
+      matTooltip="Apply"
+      [disabled]="form.invalid"
+    >
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+</form>
