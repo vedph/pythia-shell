@@ -14,8 +14,8 @@
       <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     </div>
     <div *ngIf="nodes$ | async as nodes">
+      @for (node of nodes; track node.id; let i = $index) {
       <div
-        *ngFor="let node of nodes; let i = index; track: node.id"
         [style.border-top]="
           node.expanded
             ? '1px solid rgb(137 181 203)'
@@ -42,6 +42,7 @@
            -->
         </pdb-browser-tree-node>
       </div>
+      }
     </div>
     <div>
       <button type="button" mat-flat-button (click)="reset()" color="warn">

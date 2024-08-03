@@ -1,0 +1,24 @@
+div#container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "browser counts";
+  gap: 8px;
+}
+div#browser {
+  grid-area: browser;
+}
+div#counts {
+  grid-area: counts;
+}
+
+/* lt-md */
+@media only screen and (max-width: 959px) {
+  div#container {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "browser"
+      "counts";
+  }
+}

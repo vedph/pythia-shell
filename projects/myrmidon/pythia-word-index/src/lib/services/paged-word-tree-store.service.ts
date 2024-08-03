@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 
-import { DataPage } from '@myrmidon/ng-tools';
+import { DataPage, EnvService } from '@myrmidon/ng-tools';
 
 // https://github.com/Myrmex/ngx-data-browser?tab=readme-ov-file#tree
 import {
@@ -37,15 +37,17 @@ export class PagedWordTreeStoreService
   /**
    * Whether the tree root nodes are lemmata or just words.
    */
-  public hasLemmata = false;
+  public readonly hasLemmata: boolean;
 
-  constructor(private _wordService: WordService) {}
+  constructor(private _wordService: WordService, env: EnvService) {
+    this.hasLemmata = env.get('hasLemmata', 'false') === 'true';
+  }
 
   public getRootNodes(tags?: string[]): Observable<TreeNode[]> {
     // when lemmata are present, the first page of lemmata
     // is the root nodes page
     if (this.hasLemmata) {
-      return this._wordService.getLemmata({}, 1, 20).pipe(
+      return this._wordService.getLemmata({}).pipe(
         map((page) =>
           page.items.map((l, i) => ({
             id: l.id,
@@ -60,7 +62,7 @@ export class PagedWordTreeStoreService
       );
     } else {
       // else the first page of words is the root nodes page
-      return this._wordService.getWords({}, 1, 20).pipe(
+      return this._wordService.getWords({}).pipe(
         map((page) =>
           page.items.map((w, i) => ({
             id: w.id,
@@ -101,6 +103,7 @@ export class PagedWordTreeStoreService
         map((page) => ({
           ...page,
           items: page.items.map((w, i) => ({
+            parentId: w.lemmaId,
             id: w.id,
             y: 2,
             x: i + 1,
