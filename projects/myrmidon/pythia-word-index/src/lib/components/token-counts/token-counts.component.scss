@@ -1,0 +1,51 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead tr {
+  background-color: lightgray;
+}
+tbody tr:nth-child(even) {
+  background-color: lightgray;
+}
+table tr {
+  border: 1px solid lightgray;
+}
+.button-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.button-row * {
+  flex: 0 0 auto;
+}
+div#container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "chart data"
+    ". toolbar";
+  gap: 8px;
+}
+div#chart {
+  grid-area: chart;
+}
+div#data {
+  grid-area: data;
+}
+div#toolbar {
+  grid-area: toolbar;
+}
+
+/* lt-md */
+@media only screen and (max-width: 959px) {
+  div#container {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "chart"
+      "data"
+      "toolbar";
+  }
+}

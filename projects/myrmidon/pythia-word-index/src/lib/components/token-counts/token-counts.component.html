@@ -1,1 +1,58 @@
-<p>word-counts works!</p>
+<div id="container">
+  <!-- chart -->
+  <div id="chart">
+    <div echarts [options]="chartOptions" class="chart"></div>
+  </div>
+
+  <!-- table -->
+  <div id="data">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ total }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <thead>
+          <tr>
+            <th>value</th>
+            <th>nr.</th>
+            <th>%</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of counts; track c) {
+          <tr>
+            <td>{{ c.attributeValue }}</td>
+            <td>{{ c.value }}</td>
+            <td>{{ c.value | percentage : total }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </mat-expansion-panel>
+  </div>
+
+  <!-- toolbar -->
+  @if (!noToolbar && counts) {
+  <div id="toolbar" class="button-row">
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Copy data"
+      (click)="copy()"
+    >
+      <mat-icon>content_copy</mat-icon>
+    </button>
+
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Download data"
+      (click)="save()"
+    >
+      <mat-icon class="mat-primary">download</mat-icon>
+    </button>
+  </div>
+  }
+</div>

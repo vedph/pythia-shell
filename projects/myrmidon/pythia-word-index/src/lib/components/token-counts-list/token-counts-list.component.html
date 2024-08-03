@@ -45,7 +45,11 @@
   }
 
   <!-- counts -->
-  @for (a of selectedAttributes.value; track a.name) {
-    TODO
-   }
+  @for (a of selectedAttributes.value; track a.name) { @if (counts[a.name]) {
+  <pythia-token-counts
+    [counts]="counts[a.name]"
+    [attribute]="a"
+    [noToolbar]="noToolbar"
+  />
+  } }
 </div>

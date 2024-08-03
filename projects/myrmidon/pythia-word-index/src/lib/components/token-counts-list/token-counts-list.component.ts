@@ -17,6 +17,8 @@ import {
   TokenCount,
 } from '@myrmidon/pythia-api';
 
+import { TokenCountsComponent } from '../token-counts/token-counts.component';
+
 @Component({
   selector: 'pythia-token-counts-list',
   standalone: true,
@@ -28,6 +30,7 @@ import {
     MatProgressBarModule,
     MatSelectModule,
     MatTooltipModule,
+    TokenCountsComponent,
   ],
   templateUrl: './token-counts-list.component.html',
   styleUrl: './token-counts-list.component.scss',
@@ -49,6 +52,9 @@ export class TokenCountsListComponent {
 
   @Input()
   public maxCounts = 5;
+
+  @Input()
+  public noToolbar?: boolean;
 
   public busy?: boolean;
   public attributes?: AttributeInfo[];
