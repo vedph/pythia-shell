@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ErrorService, EnvService, DataPage } from '@myrmidon/ng-tools';
 import { TreeNodeFilter } from '@myrmidon/paged-data-browsers';
 
-import { catchError, Observable, retry } from 'rxjs';
+import { catchError, map, Observable, retry } from 'rxjs';
 
 /**
  * Information about an attribute.
@@ -29,6 +29,7 @@ export interface TokenCount {
  * A lemma, i.e. the base word form.
  */
 export interface Lemma {
+  type: 'lemma' | 'word';
   id: number;
   value: string;
   reversedValue: string;
@@ -183,7 +184,16 @@ export class WordService {
       .get<DataPage<Word>>(`${this._env.get('apiUrl')}words`, {
         params: httpParams,
       })
-      .pipe(retry(3), catchError(this._error.handleError));
+      .pipe(
+        map((page) => {
+          page.items.forEach((word) => {
+            word.type = 'word';
+          });
+          return page;
+        }),
+        retry(3),
+        catchError(this._error.handleError)
+      );
   }
 
   /**
@@ -234,7 +244,16 @@ export class WordService {
       .get<DataPage<Lemma>>(`${this._env.get('apiUrl')}lemmata`, {
         params: httpParams,
       })
-      .pipe(retry(3), catchError(this._error.handleError));
+      .pipe(
+        map((page) => {
+          page.items.forEach((lemma) => {
+            lemma.type = 'lemma';
+          });
+          return page;
+        }),
+        retry(3),
+        catchError(this._error.handleError)
+      );
   }
 
   /**
