@@ -1,0 +1,29 @@
+.form-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-row * {
+  flex: 0 0 auto;
+}
+.token {
+  font-size: 1.1em;
+}
+.token.tl {
+  margin: 0 4px;
+  font-size: 0.9em;
+  font-variant: small-caps;
+}
+.token.tv {
+  margin: 0 4px;
+  font-weight: bold;
+}
+.token.tc {
+  margin: 0 4px;
+  padding: 4px;
+  border: 1px solid #807676;
+  border-radius: 6px;
+  background-color: #807676;
+  color: white;
+}

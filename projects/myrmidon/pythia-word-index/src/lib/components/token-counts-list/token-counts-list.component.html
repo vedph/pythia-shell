@@ -1,0 +1,51 @@
+<div *ngIf="token">
+  <!-- top bar -->
+  <div class="form-row">
+    <div class="token">
+      @if (token.language) {
+      <span class="tl">{{ token.language }}</span>
+      }
+      <span class="tv">
+        {{ token.value }}
+      </span>
+      <span class="tc">
+        {{ token.count }}
+      </span>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>attributes</mat-label>
+        <mat-select [formControl]="selectedAttributes" multiple>
+          @for (a of attributes; track a.name) {
+          <mat-option [value]="a.name"
+            >{{ a.name }}{{ a.type === 1 ? "\u207f" : "" }}</mat-option
+          >
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Set selected attributes"
+      (click)="loadCounts()"
+      [disabled]="busy"
+    >
+      <mat-icon class="mat-primary">check_circle</mat-icon>
+    </button>
+  </div>
+
+  <!-- progress -->
+  @if (busy) {
+  <div>
+    <mat-progress-bar mode="indeterminate" />
+  </div>
+  }
+
+  <!-- counts -->
+  @for (a of selectedAttributes.value; track a.name) {
+    TODO
+   }
+</div>
