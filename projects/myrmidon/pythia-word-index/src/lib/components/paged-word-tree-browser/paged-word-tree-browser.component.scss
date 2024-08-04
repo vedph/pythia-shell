@@ -1,3 +1,20 @@
+.nr {
+  margin: 0 4px;
+  padding: 0 4px;
+  color: white;
+  background-color: rgb(61, 109, 232);
+  border: 1px solid rgb(61, 109, 232);
+  border-radius: 4px;
+}
+.button-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.button-row * {
+  flex: 0 0 auto;
+}
+
 div#container {
   display: grid;
   grid-template-rows: auto;
@@ -5,7 +22,6 @@ div#container {
   grid-template-areas: "filters list";
   gap: 24px;
 }
-
 div#filters {
   grid-area: filters;
   max-width: 280px;

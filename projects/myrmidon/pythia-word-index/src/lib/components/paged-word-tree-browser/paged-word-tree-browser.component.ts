@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ import {
   PagedDataBrowsersModule,
   PagedTreeStore,
 } from '@myrmidon/paged-data-browsers';
-import { WordFilter } from '@myrmidon/pythia-api';
+import { Lemma, Word, WordFilter } from '@myrmidon/pythia-api';
 
 import { PagedWordTreeNode } from '../../services/paged-word-tree-store.service';
 import { PagedWordTreeBrowserService } from '../../services/paged-word-tree-browser.service';
@@ -50,6 +50,11 @@ export class PagedWordTreeBrowserComponent implements OnInit {
   public loading?: boolean;
   public filter$: Observable<Readonly<WordFilter>>;
   public nodes$: Observable<Readonly<PagedWordTreeNode[]>>;
+
+  @Output()
+  public readonly searchRequest = new EventEmitter<Word | Lemma>();
+  @Output()
+  public readonly countsRequest = new EventEmitter<Word | Lemma>();
 
   constructor(
     service: PagedWordTreeBrowserService,
@@ -119,5 +124,13 @@ export class PagedWordTreeBrowserComponent implements OnInit {
         this._store.setNodeFilter(node.id, filter);
       }
     });
+  }
+
+  public requestSearch(token: Word | Lemma): void {
+    this.searchRequest.emit(token);
+  }
+
+  public requestCounts(term: Word | Lemma): void {
+    this.countsRequest.emit(term);
   }
 }

@@ -40,6 +40,31 @@
           If you want to replace node's loc and label, set [hideLabel]="true"
           for pdb-browser-tree-node and provide your content here.
            -->
+          @if (node?.token?.count) {
+          <div class="button-row">
+            <div class="nr">
+              {{ node?.token?.count }}
+            </div>
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="Search this form"
+              i18n-matTooltip
+              (click)="requestSearch(node.token)"
+            >
+              <mat-icon class="mat-warn">search</mat-icon>
+            </button>
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="See this form distribution"
+              i18n-matTooltip
+              (click)="requestCounts(node.token)"
+            >
+              <mat-icon class="mat-primary">pie_chart</mat-icon>
+            </button>
+          </div>
+          }
         </pdb-browser-tree-node>
       </div>
       }
