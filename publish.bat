@@ -37,11 +37,11 @@ cd .\dist\myrmidon\pythia-stats
 call npm publish --access=public
 cd ..\..\..
 
-cd .\dist\myrmidon\pythia-term-list
+cd .\dist\myrmidon\pythia-ui
 call npm publish --access=public
 cd ..\..\..
 
-cd .\dist\myrmidon\pythia-ui
+cd .\dist\myrmidon\pythia-word-index
 call npm publish --access=public
 cd ..\..\..
 

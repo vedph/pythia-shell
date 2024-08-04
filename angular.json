@@ -311,42 +311,6 @@
         }
       }
     },
-    "@myrmidon/pythia-term-list": {
-      "i18n": {
-        "sourceLocale": "en-US",
-        "locales": {
-          "it": "src/locale/messages.it.xlf"
-        }
-      },
-      "projectType": "library",
-      "root": "projects/myrmidon/pythia-term-list",
-      "sourceRoot": "projects/myrmidon/pythia-term-list/src",
-      "prefix": "pythia",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/myrmidon/pythia-term-list/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/myrmidon/pythia-term-list/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/myrmidon/pythia-term-list/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/myrmidon/pythia-term-list/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
-          }
-        }
-      }
-    },
     "@myrmidon/pythia-search": {
       "i18n": {
         "sourceLocale": "en-US",

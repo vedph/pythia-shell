@@ -61,7 +61,6 @@ import {
 } from 'projects/myrmidon/pythia-query-builder/src/public-api';
 import { PythiaSearchModule } from 'projects/myrmidon/pythia-search/src/public-api';
 import { PythiaStatsModule } from 'projects/myrmidon/pythia-stats/src/lib/pythia-stats.module';
-import { PythiaTermListModule } from 'projects/myrmidon/pythia-term-list/src/public-api';
 import { PythiaUiModule } from 'projects/myrmidon/pythia-ui/src/public-api';
 
 // local
@@ -140,7 +139,6 @@ import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.servic
     PythiaQueryBuilderModule,
     PythiaSearchModule,
     PythiaStatsModule,
-    PythiaTermListModule,
     PythiaUiModule,
   ],
   providers: [
