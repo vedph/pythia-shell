@@ -63,7 +63,7 @@ export class PagedWordTreeBrowserComponent implements OnInit {
   public ngOnInit(): void {
     if (!this._store.getNodes().length) {
       this.loading = true;
-      this._store.setFilter({}, $localize`INDEX`).finally(() => {
+      this._store.setFilter({}).finally(() => {
         this.loading = false;
       });
     }
@@ -71,7 +71,7 @@ export class PagedWordTreeBrowserComponent implements OnInit {
 
   public reset(): void {
     this.loading = true;
-    this._store.reset($localize`'INDEX'`).finally(() => {
+    this._store.reset().finally(() => {
       this.loading = false;
     });
   }

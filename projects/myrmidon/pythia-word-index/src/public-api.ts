@@ -1,6 +1,7 @@
 /*
  * Public API Surface of pythia-word-index
  */
+import '@angular/localize/init';
 
 export * from './lib/components/paged-word-tree-filter/paged-word-tree-filter.component';
 export * from './lib/components/paged-word-tree-browser/paged-word-tree-browser.component';
