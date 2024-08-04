@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 import { DataPage, EnvService } from '@myrmidon/ng-tools';
 
@@ -38,22 +38,66 @@ export class PagedWordTreeStoreService
     pageNumber: number,
     pageSize: number
   ): Observable<DataPage<TreeNode>> {
-    // TODO mock root node
-    if (this.hasLemmata && !filter.parentId) {
-      return this._wordService.getLemmata(filter, pageNumber, pageSize).pipe(
-        map((page) => ({
-          ...page,
-          items: page.items.map((l, i) => ({
-            id: l.id,
-            y: 1,
-            x: i + 1,
-            label: l.value,
+    // the root always is a mock node
+    if (filter.parentId === undefined || filter.parentId === null) {
+      const page: DataPage<TreeNode> = {
+        items: [
+          {
+            id: -1,
+            y: 0,
+            x: 1,
+            label: $localize`INDEX`,
             hasChildren: true,
-            token: l,
-          })),
-        }))
-      );
+          } as TreeNode,
+        ],
+        pageNumber: 1,
+        pageSize: 1,
+        pageCount: 1,
+        total: 1,
+      };
+      return of(page);
+    }
+
+    // lemmata:
+    // - mock root node (Y=0, ID=-1)
+    //   - lemma (Y=1, parentId=-1)
+    //     - word (Y=2, lemmaId=parentId)
+    if (this.hasLemmata) {
+      if (filter.parentId === -1) {
+        return this._wordService.getLemmata(filter, pageNumber, pageSize).pipe(
+          map((page) => ({
+            ...page,
+            items: page.items.map((l, i) => ({
+              id: l.id,
+              y: 1,
+              x: i + 1,
+              label: l.value,
+              hasChildren: true,
+              token: l,
+            })),
+          }))
+        );
+      } else {
+        filter.lemmaId = filter.parentId;
+        return this._wordService.getWords(filter, pageNumber, pageSize).pipe(
+          map((page) => ({
+            ...page,
+            items: page.items.map((w, i) => ({
+              parentId: filter.parentId,
+              id: w.id,
+              y: 2,
+              x: i + 1,
+              label: w.value,
+              hasChildren: false,
+              token: w,
+            })),
+          }))
+        );
+      }
     } else {
+      // words:
+      // - mock root node (Y=0, ID=-1)
+      //   - word (Y=1, parentId=-1)
       return this._wordService.getWords(filter, pageNumber, pageSize).pipe(
         map((page) => ({
           ...page,
