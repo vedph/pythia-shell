@@ -42,13 +42,11 @@ export class WordIndexComponent {
   @Output()
   public readonly searchRequest = new EventEmitter<Word | Lemma>();
 
-  // TODO
-
   public onSearchRequest(token: Word | Lemma): void {
     this.searchRequest.emit(token);
   }
 
   public onCountsRequest(token: Word | Lemma): void {
-    // TODO
+    this.token = token;
   }
 }

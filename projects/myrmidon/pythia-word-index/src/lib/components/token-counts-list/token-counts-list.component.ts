@@ -19,6 +19,10 @@ import {
 
 import { TokenCountsComponent } from '../token-counts/token-counts.component';
 
+/**
+ * A component to display a list of counts for a specific token and
+ * a set of document attributes.
+ */
 @Component({
   selector: 'pythia-token-counts-list',
   standalone: true,

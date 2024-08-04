@@ -16,6 +16,9 @@ import { AttributeInfo, TokenCount } from '@myrmidon/pythia-api';
 
 import { PercentagePipe } from '../../pipes/percentage.pipe';
 
+/**
+ * A component to display the counts for a specific token in a pie chart.
+ */
 @Component({
   selector: 'pythia-token-counts',
   standalone: true,
