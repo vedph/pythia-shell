@@ -58,6 +58,8 @@ export class PagedWordTreeStoreService
       return of(page);
     }
 
+    const skip = (pageNumber - 1) * pageSize;
+
     // lemmata:
     // - mock root node (Y=0, ID=-1)
     //   - lemma (Y=1, parentId=-1)
@@ -69,8 +71,9 @@ export class PagedWordTreeStoreService
             ...page,
             items: page.items.map((l, i) => ({
               id: l.id,
+              parentId: -1,
               y: 1,
-              x: i + 1,
+              x: i + 1 + skip,
               label: l.value,
               hasChildren: true,
               token: l,
@@ -86,7 +89,7 @@ export class PagedWordTreeStoreService
               parentId: filter.parentId,
               id: w.id,
               y: 2,
-              x: i + 1,
+              x: i + 1 + skip,
               label: w.value,
               hasChildren: false,
               token: w,
@@ -105,7 +108,7 @@ export class PagedWordTreeStoreService
             parentId: filter.parentId,
             id: w.id,
             y: 2,
-            x: i + 1,
+            x: i + 1 + skip,
             label: w.value,
             hasChildren: false,
             token: w,
