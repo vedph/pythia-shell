@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { Clipboard } from '@angular/cdk/clipboard';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -118,7 +119,7 @@ export class TokenCountsComponent {
     }
 
     const csv = this.getCSV();
-    this._clipboard.writeText(csv);
+    this._clipboard.copy(csv);
     this._snackbar.open($localize`Copied to clipboard`, undefined, {
       duration: 2000,
     });

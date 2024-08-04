@@ -8,22 +8,28 @@
   flex: 0 0 auto;
 }
 .token {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
-.token.tl {
+.token .tl {
   margin: 0 4px;
   font-size: 0.9em;
   font-variant: small-caps;
 }
-.token.tv {
+.token .tv {
   margin: 0 4px;
   font-weight: bold;
 }
-.token.tc {
+.token .tc {
   margin: 0 4px;
   padding: 4px;
   border: 1px solid #807676;
   border-radius: 6px;
   background-color: #807676;
   color: white;
+}
+.counts {
+  margin: 4px 0;
+  padding: 4px;
+  border: 1px solid silver;
+  border-radius: 6px;
 }

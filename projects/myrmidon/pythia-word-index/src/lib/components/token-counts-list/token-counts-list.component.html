@@ -18,7 +18,7 @@
         <mat-label i18n>attributes</mat-label>
         <mat-select [formControl]="selectedAttributes" multiple>
           @for (a of attributes; track a.name) {
-          <mat-option [value]="a.name"
+          <mat-option [value]="a"
             >{{ a.name }}{{ a.type === 1 ? "\u207f" : "" }}</mat-option
           >
           }
@@ -47,10 +47,12 @@
 
   <!-- counts -->
   @for (a of selectedAttributes.value; track a.name) { @if (counts[a.name]) {
-  <pythia-token-counts
-    [counts]="counts[a.name]"
-    [attribute]="a"
-    [noToolbar]="noToolbar"
-  />
+  <div class="counts">
+    <pythia-token-counts
+      [counts]="counts[a.name]"
+      [attribute]="a"
+      [noToolbar]="noToolbar"
+    />
+  </div>
   } }
 </div>

@@ -8,8 +8,15 @@ thead tr {
 tbody tr:nth-child(even) {
   background-color: lightgray;
 }
-table tr {
+table tr,
+td,
+th {
   border: 1px solid lightgray;
+  padding: 0 8px;
+}
+th {
+  text-align: left;
+  font-weight: normal;
 }
 .button-row {
   display: flex;

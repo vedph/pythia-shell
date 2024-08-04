@@ -1,7 +1,7 @@
 div#container {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas: "browser counts";
   gap: 8px;
 }
