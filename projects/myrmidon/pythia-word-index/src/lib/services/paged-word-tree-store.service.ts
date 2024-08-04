@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { DataPage, EnvService } from '@myrmidon/ng-tools';
 
@@ -18,16 +18,6 @@ export interface PagedWordTreeNode extends PagedTreeNode<WordFilter> {
   token: Lemma | Word;
 }
 
-/**
- * The tag used to represent the tree of lemmata or words. This tree has
- * either 1 or 2 levels according to the hasLemmata property.
- * When hasLemmata is true, the first level is the lemmata and the second
- * level is the words. When hasLemmata is false, there is only the first
- * level for words. Words have their parent ID equal to the ID of their
- * lemma.
- */
-export const TREE_TAG = 'tokens';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -43,46 +33,12 @@ export class PagedWordTreeStoreService
     this.hasLemmata = env.get('hasLemmata', 'false') === 'true';
   }
 
-  public getRootNodes(tags?: string[]): Observable<TreeNode[]> {
-    // when lemmata are present, the first page of lemmata
-    // is the root nodes page
-    if (this.hasLemmata) {
-      return this._wordService.getLemmata({}).pipe(
-        map((page) =>
-          page.items.map((l, i) => ({
-            id: l.id,
-            y: 1,
-            x: i + 1,
-            label: l.value,
-            tag: TREE_TAG,
-            hasChildren: true,
-            token: l,
-          }))
-        )
-      );
-    } else {
-      // else the first page of words is the root nodes page
-      return this._wordService.getWords({}).pipe(
-        map((page) =>
-          page.items.map((w, i) => ({
-            id: w.id,
-            y: 1,
-            x: i + 1,
-            label: w.value,
-            tag: TREE_TAG,
-            hasChildren: false,
-            token: w,
-          }))
-        )
-      );
-    }
-  }
-
   public getNodes(
     filter: WordFilter,
     pageNumber: number,
     pageSize: number
   ): Observable<DataPage<TreeNode>> {
+    // TODO mock root node
     if (this.hasLemmata && !filter.parentId) {
       return this._wordService.getLemmata(filter, pageNumber, pageSize).pipe(
         map((page) => ({
@@ -92,7 +48,6 @@ export class PagedWordTreeStoreService
             y: 1,
             x: i + 1,
             label: l.value,
-            tag: TREE_TAG,
             hasChildren: true,
             token: l,
           })),
@@ -108,16 +63,11 @@ export class PagedWordTreeStoreService
             y: 2,
             x: i + 1,
             label: w.value,
-            tag: TREE_TAG,
             hasChildren: false,
             token: w,
           })),
         }))
       );
     }
-  }
-
-  public getTags(): Observable<string[]> {
-    return of([TREE_TAG]);
   }
 }

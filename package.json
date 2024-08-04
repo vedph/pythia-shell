@@ -37,7 +37,7 @@
     "@myrmidon/cadmus-refs-lookup": "^5.1.2",
     "@myrmidon/ng-mat-tools": "^3.1.0",
     "@myrmidon/ng-tools": "^3.1.1",
-    "@myrmidon/paged-data-browsers": "^1.1.1",
+    "@myrmidon/paged-data-browsers": "^2.0.0",
     "@ngneat/effects-ng": "^3.1.4",
     "echarts": "^5.5.1",
     "ngx-echarts": "^18.0.0",
