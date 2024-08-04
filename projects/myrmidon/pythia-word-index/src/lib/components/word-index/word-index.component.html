@@ -1,6 +1,9 @@
 <div id="container">
   <div id="browser">
-    <pythia-paged-word-tree-browser />
+    <pythia-paged-word-tree-browser
+      (searchRequest)="onSearchRequest($event)"
+      (countsRequest)="onCountsRequest($event)"
+    />
   </div>
   <div id="counts">
     <pythia-token-counts-list [token]="token" />

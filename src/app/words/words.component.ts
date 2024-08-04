@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 
+import { Lemma, Word } from '@myrmidon/pythia-api';
+
 import { WordIndexComponent } from 'projects/myrmidon/pythia-word-index/src/public-api';
 
 @Component({
@@ -21,7 +23,7 @@ import { WordIndexComponent } from 'projects/myrmidon/pythia-word-index/src/publ
 export class WordsComponent {
   constructor(private _router: Router) {}
 
-  public requestSearch(term: string): void {
-    this._router.navigate(['search', term]);
+  public requestSearch(token: Word | Lemma): void {
+    this._router.navigate(['search', token.value]);
   }
 }

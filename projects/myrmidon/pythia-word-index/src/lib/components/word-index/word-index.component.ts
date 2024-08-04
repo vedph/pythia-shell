@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -39,5 +39,16 @@ import { TokenCountsListComponent } from '../token-counts-list/token-counts-list
 export class WordIndexComponent {
   public token?: Word | Lemma;
 
+  @Output()
+  public readonly searchRequest = new EventEmitter<Word | Lemma>();
+
   // TODO
+
+  public onSearchRequest(token: Word | Lemma): void {
+    this.searchRequest.emit(token);
+  }
+
+  public onCountsRequest(token: Word | Lemma): void {
+    // TODO
+  }
 }
