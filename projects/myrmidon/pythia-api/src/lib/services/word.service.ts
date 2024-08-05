@@ -52,7 +52,6 @@ export interface Word extends Lemma {
 export interface LemmaFilter extends TreeNodeFilter {
   language?: string;
   valuePattern?: string;
-  isValuePatternReversed?: boolean;
   minValueLength?: number;
   maxValueLength?: number;
   minCount?: number;
@@ -120,12 +119,6 @@ export class WordService {
     }
     if (filter.valuePattern) {
       httpParams = httpParams.set('valuePattern', filter.valuePattern);
-    }
-    if (filter.isValuePatternReversed) {
-      httpParams = httpParams.set(
-        'isValuePatternReversed',
-        filter.isValuePatternReversed.toString()
-      );
     }
     if (filter.minValueLength) {
       httpParams = httpParams.set(
