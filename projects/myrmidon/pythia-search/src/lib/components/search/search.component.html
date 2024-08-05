@@ -94,6 +94,7 @@
       <thead>
         <tr>
           <th></th>
+          <th class="noif-lt-md"></th>
           <th i18n>author</th>
           <th i18n>title</th>
           @for (l of leftContextLabels; track l) {
@@ -106,7 +107,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (r of page.items; track r) {
+        @for (r of page.items; track r; let index=$index) {
         <tr>
           <td class="fit-width">
             <!-- read -->
@@ -131,6 +132,9 @@
             >
               <mat-icon style="color: #50cc86">description</mat-icon>
             </button>
+          </td>
+          <td class="nr noif-lt-md">
+            {{ index + 1 }}.
           </td>
           <!-- author -->
           <td class="author">{{ r.author }}</td>

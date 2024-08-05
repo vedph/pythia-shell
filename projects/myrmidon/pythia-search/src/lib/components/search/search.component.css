@@ -46,6 +46,10 @@ tbody > tr > td > a {
   cursor: pointer;
   text-decoration: underline;
 }
+td.nr {
+  color: silver;
+  text-align: center;
+}
 td.author {
   font-variant: small-caps;
   color: #c04f05;
@@ -109,10 +113,7 @@ div#reader {
   div#container {
     grid-template-columns: 1fr;
   }
-  th.noif-lt-md {
-    display: none;
-  }
-  td.noif-lt-md {
+  .noif-lt-md {
     display: none;
   }
 }
