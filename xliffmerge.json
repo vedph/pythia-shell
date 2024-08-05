@@ -1,6 +1,17 @@
 {
   "xliffmergeOptions": {
     "srcDir": "src/locale",
-    "genDir": "src/locale"
+    "genDir": "src/locale",
+    "i18nFile": "messages.xlf",
+    "i18nFormat": "xlf",
+    "encoding": "UTF-8",
+    "defaultLanguage": "en-US",
+    "languages": ["it"],
+    "removeUnusedIds": true,
+    "supportNgxTranslate": false,
+    "useSourceAsTarget": false,
+    "targetPraefix": "",
+    "targetSuffix": "",
+    "beautifyOutput": true
   }
 }

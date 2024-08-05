@@ -16,7 +16,11 @@ This project derives from the original Pythia frontend demo app, migrating it to
 6. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
 7. `docker build . -t vedph2020/pythia-shell:3.1.2-it -t vedph2020/pythia-shell:latest` (replace with the current version; remove `-it` for the English version).
 
->To update the localizable messages run `ng extract-i18n`. Then move the generated XLF file into locale and add new entries into the corresponding translated files in the same directory.
+🌐 To update localizable messages:
+
+1. run `ng extract-i18n` and move the generated XLF file into `locale`.
+2. use `npx xliffmerge --profile xliffmerge.json` to merge new entries into the corresponding translated file(s) (the profile is in `xliffmerge.json`).
+3. use [Poedit](https://poedit.net/download) or similar to edit the localized messages file and add the corresponding translations.
 
 ## Breakpoints
 
@@ -40,6 +44,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-08-05: updated localized messages.
 - 2024-08-04:
   - ⚠️ breaking change in progress: refactoring for new backend store (4.x.x; last release with old model is 3.1.2). All versions were bumped to 4.0.0.
   - removed terms list, replaced by new word index.
