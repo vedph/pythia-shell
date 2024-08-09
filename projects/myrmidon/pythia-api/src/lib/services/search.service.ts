@@ -100,7 +100,7 @@ export class SearchService {
     pageNumber: number = 1,
     lastPage?: number,
     contextSize: number = 5
-  ): Observable<{ progress: number; data: Blob | null }> {
+  ): Observable<string> {
     let params = new HttpParams()
       .set('query', query)
       .set('pageSize', pageSize.toString())
@@ -111,27 +111,33 @@ export class SearchService {
       params = params.set('lastPage', lastPage.toString());
     }
 
-    return this._http
-      .get(this._env.get('apiUrl') + 'search/csv', {
-        params: params,
-        responseType: 'blob',
-        observe: 'events',
-        reportProgress: true,
-      })
-      .pipe(
-        map((event) => {
-          switch (event.type) {
-            case HttpEventType.DownloadProgress:
-              const progress = Math.round(
-                (100 * event.loaded) / (event.total || 1)
-              );
-              return { progress, data: null };
-            case HttpEventType.Response:
-              return { progress: 100, data: event.body as Blob };
-            default:
-              return { progress: 0, data: null };
-          }
-        })
-      );
+    return this._http.get(this._env.get('apiUrl') + 'search/csv', {
+      params: params,
+      responseType: 'text',
+      observe: 'body',
+    });
+
+    // return this._http
+    //   .get(this._env.get('apiUrl') + 'search/csv', {
+    //     params: params,
+    //     responseType: 'blob',
+    //     observe: 'events',
+    //     reportProgress: true,
+    //   })
+    //   .pipe(
+    //     map((event) => {
+    //       switch (event.type) {
+    //         case HttpEventType.DownloadProgress:
+    //           const progress = Math.round(
+    //             (100 * event.loaded) / (event.total || 1)
+    //           );
+    //           return { progress, data: null };
+    //         case HttpEventType.Response:
+    //           return { progress: 100, data: event.body as Blob };
+    //         default:
+    //           return { progress: 0, data: null };
+    //       }
+    //     })
+    //   );
   }
 }

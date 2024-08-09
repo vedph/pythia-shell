@@ -15,7 +15,6 @@ export class SearchExportComponent implements OnDestroy {
   public query: string | null | undefined;
 
   public isExporting = false;
-  public progress = 0;
 
   constructor(
     private _searchService: SearchService,
@@ -26,20 +25,27 @@ export class SearchExportComponent implements OnDestroy {
     this.cancelExport();
   }
 
+  private downloadCsv(csvData: string) {
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'search_results.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   public exportCsv() {
     if (!this.query) {
       return;
     }
     this.isExporting = true;
-    this.progress = 0;
 
     this._sub = this._searchService.exportSearchResults(this.query).subscribe({
-      next: (result) => {
-        this.progress = result.progress;
-        if (result.data) {
-          this.downloadFile(result.data);
-          this.isExporting = false;
-        }
+      next: (csvData: string) => {
+        this.downloadCsv(csvData);
+        this.isExporting = false;
       },
       error: (error) => {
         console.error('Error exporting CSV:', error);
@@ -57,16 +63,6 @@ export class SearchExportComponent implements OnDestroy {
       this._sub.unsubscribe();
       this._sub = undefined;
       this.isExporting = false;
-      this.progress = 0;
     }
-  }
-
-  private downloadFile(blob: Blob) {
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'search_results.csv';
-    link.click();
-    window.URL.revokeObjectURL(url);
   }
 }
