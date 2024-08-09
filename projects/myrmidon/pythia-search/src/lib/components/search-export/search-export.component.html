@@ -1,0 +1,11 @@
+<div>
+  <button type="button" (click)="exportCsv()" [disabled]="isExporting">
+    Export CSV
+  </button>
+  <button type="button" (click)="cancelExport()" *ngIf="isExporting">
+    Cancel
+  </button>
+  @if (isExporting) {
+  <mat-progress-bar [value]="progress" />
+  }
+</div>

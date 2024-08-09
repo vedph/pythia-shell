@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 
 import {
   ErrorService,
@@ -74,9 +74,61 @@ export class SearchService {
           query,
           contextSize,
           pageNumber,
-          pageSize
+          pageSize,
         }
       )
       .pipe(retry(3), catchError(this._error.handleError));
+  }
+
+  /**
+   * Export search results to CSV.
+   *
+   * @param query The search query.
+   * @param pageSize The page size.
+   * @param pageNumber The first page number.
+   * @param lastPage The last page number, or nothing to export all pages
+   * starting from the first one.
+   * @param contextSize The context size.
+   * @returns Observable.
+   */
+  public exportSearchResults(
+    query: string,
+    pageSize: number = 100,
+    pageNumber: number = 1,
+    lastPage?: number,
+    contextSize: number = 5
+  ): Observable<{ progress: number; data: Blob | null }> {
+    let params = new HttpParams()
+      .set('query', query)
+      .set('pageSize', pageSize.toString())
+      .set('pageNumber', pageNumber.toString())
+      .set('contextSize', contextSize.toString());
+
+    if (lastPage) {
+      params = params.set('lastPage', lastPage.toString());
+    }
+
+    return this._http
+      .get(this._env.get('apiUrl') + 'search/csv', {
+        params: params,
+        responseType: 'blob',
+        observe: 'events',
+        reportProgress: true,
+      })
+      .pipe(
+        map((event) => {
+          switch (event.type) {
+            case HttpEventType.DownloadProgress:
+              const progress = Math.round(
+                (100 * event.loaded) / (event.total || 1)
+              );
+              return { progress, data: null };
+            case HttpEventType.Response:
+              return { progress: 100, data: event.body as Blob };
+            default:
+              return { progress: 0, data: null };
+          }
+        })
+      );
   }
 }
