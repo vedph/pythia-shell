@@ -14,7 +14,7 @@ services:
   pythia-api:
     image: vedph2020/pythia-api:3.0.5
     ports:
-        - 60588:8080
+        - 5000:8080
     depends_on:
         - pythia-pgsql
     environment:
