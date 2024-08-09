@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from '@myrmidon/pythia-api';
 import { Subscription } from 'rxjs';
 
@@ -11,12 +12,15 @@ export class SearchExportComponent implements OnDestroy {
   private _sub?: Subscription;
 
   @Input()
-  public query: string = '';
+  public query: string | null | undefined;
 
   public isExporting = false;
   public progress = 0;
 
-  constructor(private _searchService: SearchService) {}
+  constructor(
+    private _searchService: SearchService,
+    private _snackbar: MatSnackBar
+  ) {}
 
   public ngOnDestroy() {
     this.cancelExport();
@@ -40,7 +44,7 @@ export class SearchExportComponent implements OnDestroy {
       error: (error) => {
         console.error('Error exporting CSV:', error);
         this.isExporting = false;
-        // Handle error (e.g., show an error message to the user)
+        this._snackbar.open('Error exporting results', 'Error');
       },
       complete: () => {
         this.isExporting = false;
@@ -54,7 +58,6 @@ export class SearchExportComponent implements OnDestroy {
       this._sub = undefined;
       this.isExporting = false;
       this.progress = 0;
-      // Optionally, notify the user that the export was cancelled
     }
   }
 

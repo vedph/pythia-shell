@@ -133,9 +133,7 @@
               <mat-icon style="color: #50cc86">description</mat-icon>
             </button>
           </td>
-          <td class="nr noif-lt-md">
-            {{ index + 1 }}.
-          </td>
+          <td class="nr noif-lt-md">{{ index + 1 }}.</td>
           <!-- author -->
           <td class="author">{{ r.author }}</td>
           <!-- title -->
@@ -175,7 +173,13 @@
       [showFirstLastButtons]="true"
     />
   </div>
-  }
+
+  <!-- export -->
+  @if (query$ | async) {
+  <div>
+    <pythia-search-export [query]="query$ | async" />
+  </div>
+  } }
 
   <!-- reader -->
   <div id="reader">

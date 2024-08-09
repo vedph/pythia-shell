@@ -22,11 +22,10 @@ import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
 import { SearchComponent } from './components/search/search.component';
+import { SearchExportComponent } from './components/search-export/search-export.component';
 
 @NgModule({
-  declarations: [
-    SearchComponent
-  ],
+  declarations: [SearchComponent, SearchExportComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -49,10 +48,8 @@ import { SearchComponent } from './components/search/search.component';
     PythiaDocumentReaderModule,
     PythiaQueryBuilderModule,
     PythiaUiModule,
-    NgToolsModule
+    NgToolsModule,
   ],
-  exports: [
-    SearchComponent
-  ],
+  exports: [SearchComponent, SearchExportComponent],
 })
 export class PythiaSearchModule {}

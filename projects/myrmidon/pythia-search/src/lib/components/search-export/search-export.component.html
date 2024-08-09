@@ -1,11 +1,25 @@
 <div>
-  <button type="button" (click)="exportCsv()" [disabled]="isExporting">
-    Export CSV
-  </button>
-  <button type="button" (click)="cancelExport()" *ngIf="isExporting">
-    Cancel
+  <button
+    type="button"
+    (click)="exportCsv()"
+    class="mat-primary"
+    mat-flat-button
+    [disabled]="isExporting"
+  >
+    <mat-icon>file_download</mat-icon>
+    export
   </button>
   @if (isExporting) {
-  <mat-progress-bar [value]="progress" />
+  <button
+    type="button"
+    (click)="cancelExport()"
+    class="mat-watn"
+    mat-flat-button
+    *ngIf="isExporting"
+  >
+    <mat-icon>cancel</mat-icon>
+    cancel
+  </button>
+  <mat-progress-bar [value]="progress"></mat-progress-bar>
   }
 </div>

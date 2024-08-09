@@ -67,14 +67,17 @@ export class SearchService {
       return of(w);
     }
 
+    let params = new HttpParams()
+      .set('query', query)
+      .set('contextSize', contextSize.toString())
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
+
     return this._http
-      .post<ErrorWrapper<DataPage<KwicSearchResult>>>(
+      .get<ErrorWrapper<DataPage<KwicSearchResult>>>(
         this._env.get('apiUrl') + 'search',
         {
-          query,
-          contextSize,
-          pageNumber,
-          pageSize,
+          params: params,
         }
       )
       .pipe(retry(3), catchError(this._error.handleError));
