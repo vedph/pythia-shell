@@ -48,6 +48,7 @@
   <!-- counts -->
   @for (a of selectedAttributes.value; track a.name) { @if (counts[a.name]) {
   <div class="counts">
+    <h3>{{ a.name }}</h3>
     <pythia-token-counts
       [counts]="counts[a.name]"
       [attribute]="a"
