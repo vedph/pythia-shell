@@ -44,6 +44,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-08-30: updated Angular and packages.
 - 2024-08-05: updated localized messages.
 - 2024-08-04:
   - ⚠️ breaking change in progress: refactoring for new backend store (4.x.x; last release with old model is 3.1.2). All versions were bumped to 4.0.0.
