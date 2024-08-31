@@ -1,6 +1,6 @@
 services:
   pythia-pgsql:
-    image: postgis/postgis
+    image: postgres
     container_name: pythia-pgsql
     environment:
       - POSTGRES_USER=postgres
@@ -12,7 +12,7 @@ services:
       - pythia-network
 
   pythia-api:
-    image: vedph2020/pythia-api:3.0.5
+    image: vedph2020/pythia-api:4.0.3
     ports:
         - 5000:8080
     depends_on:
@@ -31,7 +31,7 @@ services:
         - pythia-network
 
   pythia-app:
-    image: vedph2020/pythia-shell:3.1.2-it
+    image: vedph2020/pythia-shell:4.0.0-it
     ports:
       - 4200:80
     depends_on:
