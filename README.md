@@ -44,6 +44,10 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-09-13:
+  - updated Angular and packages.
+  - fixed missing handler for search in word index.
+
 ### 4.0.0
 
 - 2024-08-30: updated Angular and packages.

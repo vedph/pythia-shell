@@ -23,7 +23,7 @@ import { WordIndexComponent } from 'projects/myrmidon/pythia-word-index/src/publ
 export class WordsComponent {
   constructor(private _router: Router) {}
 
-  public requestSearch(token: Word | Lemma): void {
+  public onSearchRequest(token: Word | Lemma): void {
     this._router.navigate(['search', token.value]);
   }
 }
