@@ -12,7 +12,7 @@ services:
       - pythia-network
 
   pythia-api:
-    image: vedph2020/pythia-api:4.0.3
+    image: vedph2020/pythia-api:4.1.0
     ports:
         - 5000:8080
     depends_on:
