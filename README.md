@@ -44,6 +44,8 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-01: added missing "descending" checkbox in word filters.
+
 ### 4.0.1
 
 - 2024-09-25: updated Angular and packages.

@@ -70,6 +70,7 @@ export class PagedWordTreeFilterComponent {
   public minCount: FormControl<number>;
   public maxCount: FormControl<number>;
   public sortOrder: FormControl<WordSortOrder>;
+  public descending: FormControl<boolean>;
   public form: FormGroup;
 
   public wrapped?: boolean;
@@ -93,6 +94,9 @@ export class PagedWordTreeFilterComponent {
     this.sortOrder = formBuilder.control<WordSortOrder>(WordSortOrder.Default, {
       nonNullable: true,
     });
+    this.descending = formBuilder.control<boolean>(false, {
+      nonNullable: true,
+    });
     this.form = formBuilder.group({
       language: this.language,
       valuePattern: this.valuePattern,
@@ -101,6 +105,7 @@ export class PagedWordTreeFilterComponent {
       minCount: this.minCount,
       maxCount: this.maxCount,
       sortOrder: this.sortOrder,
+      descending: this.descending,
     });
     // events
     this.filterChange = new EventEmitter<WordFilter>();
@@ -125,6 +130,7 @@ export class PagedWordTreeFilterComponent {
     this.minCount.setValue(filter.minCount ?? 0);
     this.maxCount.setValue(filter.maxCount ?? 0);
     this.sortOrder.setValue(filter.sortOrder ?? WordSortOrder.Default);
+    this.descending.setValue(filter.isSortDescending ?? false);
     this.form.markAsPristine();
   }
 
@@ -137,6 +143,7 @@ export class PagedWordTreeFilterComponent {
       minCount: this.minCount.value || undefined,
       maxCount: this.maxCount.value || undefined,
       sortOrder: this.sortOrder.value,
+      isSortDescending: this.descending.value,
     };
   }
 
