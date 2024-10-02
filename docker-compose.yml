@@ -31,7 +31,7 @@ services:
         - pythia-network
 
   pythia-app:
-    image: vedph2020/pythia-shell:4.0.1-it
+    image: vedph2020/pythia-shell:4.0.2-it
     ports:
       - 4200:80
     depends_on:

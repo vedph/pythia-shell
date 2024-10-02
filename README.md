@@ -14,7 +14,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
 4. update version in `env.js` (and in Docker compose scripts);
 5. `ng build --configuration production`;
 6. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
-7. `docker build . -t vedph2020/pythia-shell:4.0.1-it -t vedph2020/pythia-shell:latest` (replace with the current version; remove `-it` for the English version).
+7. `docker build . -t vedph2020/pythia-shell:4.0.2-it -t vedph2020/pythia-shell:latest` (replace with the current version; remove `-it` for the English version).
 
 🌐 To update localizable messages:
 
@@ -44,7 +44,11 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
-- 2024-10-02: updated Angular and packages (with fixes in tree browser).
+### 4.0.2
+
+- 2024-10-02:
+  - updated Angular and packages (with fixes in tree browser).
+  - auto expand words index root node on filter reset.
 - 2024-10-01: added missing "descending" checkbox in word filters.
 
 ### 4.0.1

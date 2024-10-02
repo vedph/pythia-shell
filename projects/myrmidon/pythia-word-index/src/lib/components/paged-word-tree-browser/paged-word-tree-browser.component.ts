@@ -78,6 +78,7 @@ export class PagedWordTreeBrowserComponent implements OnInit {
     this.loading = true;
     this._store.reset().finally(() => {
       this.loading = false;
+      this._store.expand(this._store.getRootNode()!.id);
     });
   }
 
@@ -107,6 +108,10 @@ export class PagedWordTreeBrowserComponent implements OnInit {
     this.loading = true;
     this._store.setFilter(filter).finally(() => {
       this.loading = false;
+      const root = this._store.getRootNode();
+      if (root && !root.expanded) {
+        this._store.expand(root.id);
+      }
     });
   }
 
