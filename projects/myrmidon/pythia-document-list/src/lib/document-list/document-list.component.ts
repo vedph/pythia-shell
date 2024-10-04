@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import '@angular/localize/init';
 import { Observable, take } from 'rxjs';
@@ -11,6 +11,7 @@ import { CorpusService, DocumentFilter } from '@myrmidon/pythia-api';
 
 import { DocumentRepository } from '../document.repository';
 import { CorpusActionRequest } from '../document-corpus/document-corpus.component';
+import { DocumentFilters } from '../document-filter/document-filter.component';
 
 @Component({
   selector: 'pythia-document-list',
@@ -23,6 +24,12 @@ export class DocumentListComponent {
   public activeDocument$: Observable<Document | undefined>;
   public filter$: Observable<Readonly<DocumentFilter>>;
   public page$: Observable<Readonly<DataPage<Document>>>;
+
+  /**
+   * The list of document filters to be hidden.
+   */
+  @Input()
+  public hiddenFilters?: DocumentFilters;
 
   @Output()
   public readRequest: EventEmitter<DocumentReadRequest>;

@@ -19,14 +19,31 @@ import {
   ProfileRefLookupService,
 } from '@myrmidon/pythia-ui';
 
+/**
+ * A list of available document filters in DocumentFilterComponent.
+ */
+export interface DocumentFilters {
+  corpus?: boolean;
+  author?: boolean;
+  title?: boolean;
+  source?: boolean;
+  profile?: boolean;
+  date?: boolean;
+  modified?: boolean;
+  attributes?: boolean;
+}
+
 @Component({
   selector: 'pythia-document-filter',
   templateUrl: './document-filter.component.html',
   styleUrls: ['./document-filter.component.css'],
 })
-export class DocumentFilterComponent implements OnInit {
+export class DocumentFilterComponent {
   private _filter?: DocumentFilter;
 
+  /**
+   * The filter.
+   */
   @Input()
   public get filter(): DocumentFilter | null | undefined {
     return this._filter;
@@ -39,6 +56,9 @@ export class DocumentFilterComponent implements OnInit {
     this.updateForm(this._filter);
   }
 
+  /**
+   * The list of available document attributes.
+   */
   @Input()
   public attributes: string[] | undefined;
 
@@ -48,10 +68,23 @@ export class DocumentFilterComponent implements OnInit {
   @Output()
   public filterChange: EventEmitter<DocumentFilter>;
 
+  /**
+   * The list of document filters to be hidden.
+   */
   @Input()
-  public disabled: boolean | undefined;
+  public hiddenFilters?: DocumentFilters;
+
+  /**
+   * Whether the filter is disabled.
+   */
   @Input()
-  public sortable: boolean | undefined;
+  public disabled?: boolean;
+
+  /**
+   * Whether the filter is sortable.
+   */
+  @Input()
+  public sortable?: boolean;
 
   public corpus: FormControl<Corpus | null>;
   public author: FormControl<string | null>;
@@ -106,8 +139,6 @@ export class DocumentFilterComponent implements OnInit {
     // events
     this.filterChange = new EventEmitter<DocumentFilter>();
   }
-
-  ngOnInit(): void {}
 
   private parseAttributes(csv?: string): Attribute[] {
     if (!csv) {

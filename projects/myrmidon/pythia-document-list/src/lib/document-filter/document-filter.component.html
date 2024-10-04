@@ -1,6 +1,7 @@
 <form [formGroup]="form" (submit)="apply()">
   <!-- corpus -->
-  <div class="form-row">
+  @if (!hiddenFilters?.corpus) {
+  <div class="form-row" style="margin-bottom: 8px">
     <cadmus-ref-lookup
       [service]="corpusLookupService"
       [item]="corpus.value"
@@ -11,32 +12,40 @@
       <mat-icon class="mat-warn">clear</mat-icon>
     </button>
   </div>
+  }
 
   <!-- author -->
+  @if (!hiddenFilters?.author) {
   <div class="short-field">
     <mat-form-field>
       <mat-label i18n>author(s)</mat-label>
       <input matInput [formControl]="author" maxlength="500" />
     </mat-form-field>
   </div>
+  }
 
   <!-- title -->
+  @if (!hiddenFilters?.title) {
   <div>
     <mat-form-field>
       <mat-label i18n>title</mat-label>
       <input matInput [formControl]="title" maxlength="500" />
     </mat-form-field>
   </div>
+  }
 
   <!-- source -->
+  @if (!hiddenFilters?.source) {
   <div>
     <mat-form-field>
       <mat-label i18n>source</mat-label>
       <input matInput [formControl]="source" maxlength="500" />
     </mat-form-field>
   </div>
+  }
 
   <!-- profile -->
+  @if (!hiddenFilters?.profile) {
   <div>
     <cadmus-ref-lookup
       [service]="profileLookupService"
@@ -51,8 +60,10 @@
     </mat-chip>
     }
   </div>
+  }
 
   <!-- date -->
+  @if (!hiddenFilters?.date) {
   <h3 i18n>date</h3>
   <div class="form-row">
     <!-- minDateValue -->
@@ -67,8 +78,10 @@
       <input matInput type="number" [formControl]="maxDateValue" />
     </mat-form-field>
   </div>
+  }
 
   <!-- time -->
+  @if (!hiddenFilters?.modified) {
   <h3 i18n>modified</h3>
   <div class="form-row">
     <!-- minTimeModified -->
@@ -101,9 +114,10 @@
       <mat-datepicker #pickerMax></mat-datepicker>
     </mat-form-field>
   </div>
+  }
 
   <!-- attributes -->
-  @if (attributes?.length) {
+  @if (attributes?.length && !hiddenFilters?.attributes) {
   <div>
     <h3>
       <ng-container i18n>attributes</ng-container>
