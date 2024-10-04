@@ -4,12 +4,14 @@
   (submit)="apply()"
 >
   <!-- language -->
+  @if (!hideLanguage) {
   <div>
     <mat-form-field>
       <mat-label i18n>language</mat-label>
       <input matInput [formControl]="language" maxlength="50" />
     </mat-form-field>
   </div>
+  }
 
   <!-- value pattern -->
   <div>

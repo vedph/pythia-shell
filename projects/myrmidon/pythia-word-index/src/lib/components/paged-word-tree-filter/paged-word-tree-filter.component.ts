@@ -45,6 +45,15 @@ import { WordFilter, WordSortOrder } from '@myrmidon/pythia-api';
 export class PagedWordTreeFilterComponent {
   private _filter?: WordFilter;
 
+  /**
+   * Whether to hide the language filter.
+   */
+  @Input()
+  public hideLanguage?: boolean;
+
+  /**
+   * The filter.
+   */
   @Input()
   public get filter(): WordFilter | null | undefined {
     return this._filter;

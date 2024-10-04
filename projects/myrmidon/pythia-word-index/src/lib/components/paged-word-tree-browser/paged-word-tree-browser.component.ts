@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -51,6 +51,12 @@ export class PagedWordTreeBrowserComponent implements OnInit {
   public filter$: Observable<Readonly<WordFilter>>;
   public nodes$: Observable<Readonly<PagedWordTreeNode[]>>;
 
+  /**
+   * Whether to hide the language filter.
+   */
+  @Input()
+  public hideLanguage?: boolean;
+
   @Output()
   public readonly searchRequest = new EventEmitter<Word | Lemma>();
   @Output()
@@ -70,6 +76,7 @@ export class PagedWordTreeBrowserComponent implements OnInit {
       this.loading = true;
       this._store.setFilter({}).finally(() => {
         this.loading = false;
+        this._store.expand(this._store.getRootNode()!.id);
       });
     }
   }

@@ -2,6 +2,7 @@
   <!-- filters -->
   <div id="filters">
     <pythia-paged-word-tree-filter
+      [hideLanguage]="hideLanguage"
       [filter]="filter$ | async"
       (filterChange)="onFilterChange($event)"
     />

@@ -44,6 +44,11 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-04:
+  - updated Angular.
+  - added `hideLanguage` option to word index.
+  - auto expand root node when opening word index.
+
 ### 4.0.2
 
 - 2024-10-02:
