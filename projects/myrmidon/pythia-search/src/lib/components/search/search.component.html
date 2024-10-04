@@ -95,9 +95,11 @@
         <tr>
           <th></th>
           <th class="noif-lt-md"></th>
+          @if (!hideAuthor) {
           <th i18n>author</th>
+          } @if (!hideTitle) {
           <th i18n>title</th>
-          @for (l of leftContextLabels; track l) {
+          } @for (l of leftContextLabels; track l) {
           <th>{{ l }}</th>
           }
           <th i18n>value</th>
@@ -135,9 +137,13 @@
           </td>
           <td class="nr noif-lt-md">{{ index + 1 }}.</td>
           <!-- author -->
+          @if (!hideAuthor) {
           <td class="author">{{ r.author }}</td>
+          }
           <!-- title -->
+          @if (!hideTitle) {
           <td class="title">{{ r.title }}</td>
+          }
           <!-- left -->
           @for (l of leftContextLabels; track l; let i = $index) {
           <td class="context">
@@ -162,7 +168,6 @@
         }
       </tbody>
     </table>
-    }
     <!-- pagination -->
     <mat-paginator
       [length]="page.total"
@@ -172,6 +177,9 @@
       (page)="onPageChange($event)"
       [showFirstLastButtons]="true"
     />
+    } @else {
+    <div id="no-results" i18n>(no results)</div>
+    }
   </div>
 
   <!-- export -->

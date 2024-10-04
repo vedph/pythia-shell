@@ -81,6 +81,11 @@ code {
 .form-row * {
   flex: 0 0 auto;
 }
+div#no-results {
+  margin: 8px;
+  text-align: center;
+  color: silver;
+}
 div#total {
   background-color: #ffffe0;
   border: 1px solid #707040;
@@ -108,6 +113,7 @@ div#results {
 div#reader {
   grid-area: reader;
 }
+
 /* lt-md */
 @media only screen and (max-width: 959px) {
   div#container {

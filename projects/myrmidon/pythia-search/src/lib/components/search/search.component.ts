@@ -26,6 +26,11 @@ export class SearchComponent implements OnInit {
   @Input()
   public initialQueryTerm: string | undefined;
 
+  @Input()
+  public hideAuthor?: boolean;
+  @Input()
+  public hideTitle?: boolean;
+
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
   public loading$: Observable<boolean | undefined>;

@@ -46,6 +46,7 @@ export class CorpusListComponent {
 
   public reset(): void {
     this.loading = true;
+    this._store.reset();
     this._store
       .setFilter(
         this.admin

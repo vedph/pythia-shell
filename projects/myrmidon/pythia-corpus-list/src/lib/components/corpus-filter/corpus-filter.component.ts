@@ -72,9 +72,6 @@ export class CorpusFilterComponent {
   }
 
   public apply(): void {
-    if (this.form.invalid) {
-      return;
-    }
     this._filter = this.getFilter();
     this.filterChange.emit(this._filter);
   }

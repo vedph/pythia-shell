@@ -3,7 +3,10 @@
   <div id="filters">
     <mat-card>
       <mat-card-content>
-        <pythia-document-filter [hiddenFilters]="hiddenFilters" />
+        <pythia-document-filter
+          [hiddenFilters]="hiddenFilters"
+          (filterChange)="onFilterChange($event)"
+        />
       </mat-card-content>
     </mat-card>
   </div>
