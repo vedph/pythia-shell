@@ -22,7 +22,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["it"],
             "outputPath": {
               "base": "dist/pythia-shell"
             },
@@ -39,6 +38,7 @@
           },
           "configurations": {
             "production": {
+              "localize": ["en-US", "it"],
               "budgets": [
                 {
                   "type": "initial",
@@ -54,6 +54,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "localize": ["it"],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,

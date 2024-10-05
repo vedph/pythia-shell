@@ -6,7 +6,7 @@ This project derives from the original Pythia frontend demo app, migrating it to
 
 ## Docker
 
-🐳 Quick Docker image build:
+🐳 Quick **Docker image build**:
 
 1. ensure that you have the target locale set. This is specified in `angular.json` under `projects/pythia-shell/architect/build/options/localize`. Set it to false to use the default (English) language, or to `[it]` for Italian.
 2. `npm run build-lib`;
@@ -16,11 +16,13 @@ This project derives from the original Pythia frontend demo app, migrating it to
 6. if you want to create the image for the non-localized version, update [Dockerfile](Dockerfile) accordingly;
 7. `docker build . -t vedph2020/pythia-shell:4.0.2-it -t vedph2020/pythia-shell:latest` (replace with the current version; remove `-it` for the English version).
 
-🌐 To update localizable messages:
+🌐 To **update localizable messages**:
 
-1. run `ng extract-i18n` and move the generated XLF file into `locale`.
+1. run `ng extract-i18n --output-path src/locale` to generate the XLF file under `src/locale`.
 2. use `npx xliffmerge --profile xliffmerge.json` to merge new entries into the corresponding translated file(s) (the profile is in `xliffmerge.json`).
 3. use [Poedit](https://poedit.net/download) or similar to edit the localized messages file and add the corresponding translations.
+
+>Note that the language(s) built are defined in [angular.json](angular.json) under `configurations`. Currently, in production we build both English and Italian; in development we just build Italian. You can change the development language at will, but be sure to include the desired language(s) for production build before creating Docker images.
 
 ## Breakpoints
 
@@ -44,6 +46,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-05: locale configuration.
 - 2024-10-04:
   - updated Angular.
   - added `hideLanguage` option to word index.
