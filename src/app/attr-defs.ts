@@ -7,20 +7,14 @@ import {
 } from 'projects/myrmidon/pythia-query-builder/src/public-api';
 
 /**
- * List of attributes come from:
- *
- * select distinct(name)
- * from document_attribute
- * order by name;
- * select distinct(name)
- * from occurrence_attribute
- * order by name;
- * select distinct(name)
- * from structure_attribute
- * order by name;
+ * List of non-privileged attributes come from:
+ * select distinct(name) from document_attribute order by name;
+ * select distinct(name) from span_attribute order by name;
  */
 export const ATTR_DEFS: QueryBuilderTermDef[] = [
+  // ------------------------------------------------------
   // document
+  // ------------------------------------------------------
   ...QUERY_DOC_ATTR_DEFS,
   {
     value: 'atto',
@@ -107,7 +101,9 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     group: $localize`document`,
     tip: $localize`Author\'s sex: "M", "F", "X".`,
   },
+  // ------------------------------------------------------
   // token
+  // ------------------------------------------------------
   ...QUERY_TOK_ATTR_DEFS,
   {
     value: 'abbr',
@@ -186,6 +182,13 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Italic: "1" if italic.`,
   },
   {
+    value: 'len',
+    label: $localize`length`,
+    type: QueryBuilderTermType.Token,
+    group: $localize`token`,
+    tip: $localize`Word's length in letters.`,
+  },
+  {
     value: 'lp',
     label: $localize`left punctuation`,
     type: QueryBuilderTermType.Token,
@@ -199,13 +202,6 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     group: $localize`token`,
     tip: $localize`Right punctuation(s).`,
   },
-  // {
-  //   value: 'len',
-  //   label: $localize`length`,
-  //   type: QueryBuilderTermType.Token,
-  //   group: $localize`token`,
-  //   tip: $localize`Word's length in letters.`,
-  // },
   {
     value: 'lemma',
     label: $localize`lemma`,
@@ -284,13 +280,6 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Person's surname.`,
   },
   {
-    value: 'polarity',
-    label: $localize`polarity`,
-    type: QueryBuilderTermType.Token,
-    group: 'pos',
-    tip: $localize`Polarity: "pos"itive or "neg"ative.`,
-  },
-  {
     value: 'poss',
     label: $localize`poss`,
     type: QueryBuilderTermType.Token,
@@ -319,26 +308,35 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Place name.`,
   },
   {
-    value: 'upos',
-    label: $localize`upos`,
-    type: QueryBuilderTermType.Token,
-    group: 'pos',
-    tip: $localize`UDP part of speech: "ADJ", "ADP", "ADV", "AUX", "CCONJ", "DET", "INTJ", "NOUN", "NUM", "PRON", "PROPN", "PUNCT", "SCONJ", "SYM", "VERB", "X".`,
-  },
-  {
     value: 'verbform',
     label: $localize`verbform`,
     type: QueryBuilderTermType.Token,
     group: 'pos',
     tip: $localize`Verbal form: "fin"ite, "ger"und, "inf"inite, "part"iciple.`,
   },
+  // ------------------------------------------------------
   // structure
+  // ------------------------------------------------------
   ...QUERY_STRUCT_ATTR_DEFS,
   {
     value: 'p',
     label: $localize`paragraph`,
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
-    tip: $localize`Paragraph: "1" if a paragraph.`,
+    tip: $localize`Paragraph: characters count.`,
+  },
+  {
+    value: 'snt',
+    label: $localize`sentence`,
+    type: QueryBuilderTermType.Structure,
+    group: $localize`structure`,
+    tip: $localize`Sentence: characters count.`,
+  },
+  {
+    value: 'fp-lat',
+    label: $localize`Latin phrase`,
+    type: QueryBuilderTermType.Structure,
+    group: $localize`structure`,
+    tip: $localize`Latin phrase with its value.`,
   },
 ];

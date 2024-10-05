@@ -115,6 +115,13 @@ export const QUERY_DOC_ATTR_DEFS: QueryBuilderTermDef[] = [
  */
 export const QUERY_TOK_ATTR_DEFS: QueryBuilderTermDef[] = [
   {
+    value: 'type',
+    label: $localize`type`,
+    type: QueryBuilderTermType.Token,
+    group: $localize`span`,
+    tip: $localize`Span's type.`,
+  },
+  {
     value: 'value',
     label: $localize`value`,
     type: QueryBuilderTermType.Token,
@@ -129,18 +136,25 @@ export const QUERY_TOK_ATTR_DEFS: QueryBuilderTermDef[] = [
     tip: $localize`Token's optional language.`,
   },
   {
-    value: 'position',
-    label: $localize`position`,
-    group: $localize`token`,
+    value: 'pos',
+    label: $localize`POS`,
     type: QueryBuilderTermType.Token,
-    tip: $localize`Token's ordinal position in document.`,
+    group: $localize`token`,
+    tip: $localize`UDP part of speech: "ADJ", "ADP", "ADV", "AUX", "CCONJ", "DET", "INTJ", "NOUN", "NUM", "PRON", "PROPN", "PUNCT", "SCONJ", "SYM", "VERB", "X".`,
+  },
+  {
+    value: 'lemma',
+    label: $localize`lemma`,
+    type: QueryBuilderTermType.Token,
+    group: $localize`token`,
+    tip: $localize`Token's lemma.`,
   },
   {
     value: 'length',
     label: $localize`length`,
     type: QueryBuilderTermType.Token,
     group: $localize`token`,
-    tip: $localize`Token's letters count.`,
+    tip: $localize`Token's characters count.`,
   },
 ];
 
@@ -153,24 +167,8 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     label: $localize`name`,
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
-    tip: $localize`Structure's name (e.g. sent, p).`,
-  },
-  {
-    value: 'start_position',
-    label: $localize`start`,
-    type: QueryBuilderTermType.Structure,
-    group: $localize`structure`,
-    tip: $localize`Structure's start ordinal position in document.`,
-    hidden: true,
-  },
-  {
-    value: 'end_position',
-    label: $localize`end`,
-    type: QueryBuilderTermType.Structure,
-    group: $localize`structure`,
-    tip: $localize`Structure's end ordinal position in document.`,
-    hidden: true,
-  },
+    tip: $localize`Structure's name (e.g. snt, p).`,
+  }
 ];
 
 /**
