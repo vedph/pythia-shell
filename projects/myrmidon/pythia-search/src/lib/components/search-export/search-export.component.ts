@@ -37,7 +37,7 @@ export class SearchExportComponent implements OnDestroy {
   }
 
   public exportCsv() {
-    if (!this.query) {
+    if (!this.query || this.isExporting) {
       return;
     }
     this.isExporting = true;

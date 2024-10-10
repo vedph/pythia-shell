@@ -46,15 +46,13 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-10: localizable search export and export search repository.
 - 2024-10-05: locale configuration.
 - 2024-10-04:
   - updated Angular.
   - added `hideLanguage` option to word index.
   - auto expand root node when opening word index.
   - fixes to document filter in list.
-
-### 4.0.2
-
 - 2024-10-02:
   - updated Angular and packages (with fixes in tree browser).
   - auto expand words index root node on filter reset.
