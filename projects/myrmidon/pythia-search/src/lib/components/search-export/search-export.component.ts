@@ -14,6 +14,9 @@ export class SearchExportComponent implements OnDestroy {
   @Input()
   public query: string | null | undefined;
 
+  @Input()
+  public disabled?: boolean;
+
   public isExporting = false;
 
   constructor(

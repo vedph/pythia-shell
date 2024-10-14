@@ -4,7 +4,7 @@
     (click)="exportCsv()"
     class="mat-primary"
     mat-flat-button
-    [disabled]="isExporting"
+    [disabled]="isExporting || disabled"
   >
     <mat-icon>file_download</mat-icon>
     <span i18n>export</span>
@@ -13,7 +13,7 @@
   <button
     type="button"
     (click)="cancelExport()"
-    class="mat-watn"
+    class="mat-warn"
     mat-flat-button
     *ngIf="isExporting"
   >
