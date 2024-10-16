@@ -51,6 +51,7 @@ These are the media query breakpoints defined for responsive layouts according t
 - 2024-10-16:
   - updated Angular and packages.
   - added `clear` to search repository.
+  - added `attributes` input property to word index component.
 - 2024-10-24: added `disabled` input property to query exporter component.
 - 2024-10-10: localizable search export and export search repository.
 - 2024-10-05: locale configuration.

@@ -60,8 +60,10 @@ export class TokenCountsListComponent {
   @Input()
   public noToolbar?: boolean;
 
-  public busy?: boolean;
+  @Input()
   public attributes?: AttributeInfo[];
+
+  public busy?: boolean;
   public readonly selectedAttributes: FormControl<AttributeInfo[]>;
   public counts: { [key: string]: TokenCount[] } = {};
 
@@ -72,7 +74,7 @@ export class TokenCountsListComponent {
   }
 
   public ngOnInit(): void {
-    // on first load, get the list of available attributes
+    // on first load, get the list of available attributes if not provided
     if (!this.attributes) {
       this._wordService
         .getDocAttributeInfo()
