@@ -113,8 +113,12 @@ export class SearchRepository
       );
   }
 
-  public reset() {
+  public reset(): void {
     this._store.reset();
+  }
+
+  public clear(): void {
+    this._store.clear();
   }
 
   public setFilter(filter: KwicSearchFilter): void {

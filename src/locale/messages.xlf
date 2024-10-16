@@ -3120,6 +3120,20 @@
           <context context-type="linenumber">1035</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5501510435141891966" datatype="html">
+        <source>export</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search-export/search-export.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="503445309622982213" datatype="html">
+        <source>cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search-export/search-export.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5900014127748669954" datatype="html">
         <source>advanced</source>
         <context-group purpose="location">
