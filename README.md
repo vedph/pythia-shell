@@ -46,6 +46,8 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-19: added `hideLanguage` to word index component.
+
 ### 4.0.3
 
 - 2024-10-16:

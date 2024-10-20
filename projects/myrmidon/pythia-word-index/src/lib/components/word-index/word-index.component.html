@@ -1,6 +1,7 @@
 <div id="container">
   <div id="browser">
     <pythia-paged-word-tree-browser
+      [hideLanguage]="hideLanguage"
       (searchRequest)="onSearchRequest($event)"
       (countsRequest)="onCountsRequest($event)"
     />

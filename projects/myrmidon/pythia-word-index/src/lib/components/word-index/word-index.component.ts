@@ -42,6 +42,12 @@ export class WordIndexComponent {
   @Input()
   public attributes?: AttributeInfo[];
 
+  /**
+   * Whether to hide the language filter.
+   */
+  @Input()
+  public hideLanguage?: boolean;
+
   @Output()
   public readonly searchRequest = new EventEmitter<Word | Lemma>();
 
