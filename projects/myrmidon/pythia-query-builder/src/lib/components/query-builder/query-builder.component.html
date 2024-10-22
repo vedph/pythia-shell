@@ -1,6 +1,8 @@
 <div>
+  @if (!hideCorpora || !hideDocuments) {
   <fieldset>
     <legend i18n>scope</legend>
+    @if (!hideCorpora) {
     <!-- corpora -->
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -17,7 +19,7 @@
         (corporaChange)="onCorporaChange($event)"
       ></pythia-corpus-set>
     </mat-expansion-panel>
-
+    } @if (!hideDocuments) {
     <!-- documents -->
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -36,7 +38,9 @@
         (entrySetChange)="onDocEntrySetChange($event)"
       ></pythia-query-entry-set>
     </mat-expansion-panel>
+    }
   </fieldset>
+  }
 
   <!-- query clauses -->
   <pythia-query-entry-set

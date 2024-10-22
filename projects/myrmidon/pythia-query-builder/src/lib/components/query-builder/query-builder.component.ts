@@ -42,6 +42,18 @@ export class QueryBuilderComponent {
   public canPeek?: boolean;
 
   /**
+   * True to hide the corpora section.
+   */
+  @Input()
+  public hideCorpora?: boolean;
+
+  /**
+   * True to hide the documents section.
+   */
+  @Input()
+  public hideDocuments?: boolean;
+
+  /**
    * Emitted whenever user wants to peek the query's text.
    */
   @Output()
