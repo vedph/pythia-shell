@@ -54,13 +54,13 @@
 
   <!-- buttons -->
   <div role="group" aria-label="toolbar" style="margin: 10px 0">
-    <button mat-icon-button type="button" (click)="close()" color="warn">
-      <mat-icon class="mat-warn">clear</mat-icon>
+    <button mat-icon-button type="button" (click)="close()" class="mat-warn">
+      <mat-icon>clear</mat-icon>
     </button>
     <button
       type="submit"
       mat-icon-button
-      color="primary"
+      mat-class="primary"
       [disabled]="form.invalid"
     >
       <mat-icon>check_circle</mat-icon>

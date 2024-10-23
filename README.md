@@ -46,6 +46,10 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-23:
+  - updated Angular and packages.
+  - updated peer dependencies.
+  - more translations.
 - 2024-10-22: added `hideCorpora` and `hideDocuments` to query builder.
 - 2024-10-19: added `hideLanguage` to word index component.
 

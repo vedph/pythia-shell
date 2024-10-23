@@ -8,7 +8,12 @@
       label="corpus"
       (itemChange)="onCorpusChange($event)"
     ></cadmus-ref-lookup>
-    <button type="button" mat-icon-button color="warn" (click)="removeCorpus()">
+    <button
+      type="button"
+      mat-icon-button
+      class="mat-warn"
+      (click)="removeCorpus()"
+    >
       <mat-icon class="mat-warn">clear</mat-icon>
     </button>
   </div>
@@ -124,7 +129,7 @@
       <button
         type="button"
         mat-icon-button
-        color="primary"
+        class="mat-primary"
         i18n-matTooltip
         matTooltip="Add an attribute filter"
         (click)="addAttribute()"
@@ -145,7 +150,7 @@
             type="button"
             i18n-matTooltip
             matTooltip="Remove this attribute"
-            color="warn"
+            class="mat-warn"
             (click)="removeAttribute(i)"
           >
             <mat-icon class="mat-warn">remove_circle</mat-icon>
@@ -209,7 +214,7 @@
       mat-icon-button
       type="button"
       (click)="reset()"
-      color="warn"
+      class="mat-warn"
       i18n-matTooltip
       matTooltip="Reset filters"
       [disabled]="disabled"
@@ -219,7 +224,7 @@
     <button
       type="submit"
       mat-icon-button
-      color="primary"
+      class="mat-primary"
       [disabled]="disabled"
       i18n-matmatTooltip
       matTooltip="Apply filters"

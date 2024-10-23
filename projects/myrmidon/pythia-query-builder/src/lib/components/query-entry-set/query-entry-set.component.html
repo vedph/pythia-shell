@@ -1,7 +1,6 @@
 <div class="bar-row">
   <button
     type="button"
-    color="primary"
     class="mat-primary"
     mat-flat-button
     (click)="addEntry()"
@@ -10,13 +9,13 @@
   </button>
   <button
     type="button"
-    color="warn"
+    class="mat-warn"
     mat-icon-button
     (click)="reset()"
     i18n-matTooltip
     matTooltip="Delete all the entries"
   >
-    <mat-icon class="mat-warn">clear</mat-icon>
+    <mat-icon>clear</mat-icon>
   </button>
 </div>
 <table>
@@ -29,7 +28,7 @@
         <button
           type="button"
           mat-icon-button
-          color="primary"
+          class="mat-primary"
           i18n-matTooltip
           matTooltip="Edit this entry"
           (click)="editEntry(e, i)"
@@ -39,7 +38,7 @@
         <button
           type="button"
           mat-icon-button
-          color="primary"
+          class="mat-primary"
           i18n-matTooltip
           matTooltip="Add a new entry before this one"
           (click)="addEntry(i)"
@@ -69,12 +68,12 @@
         <button
           type="button"
           mat-icon-button
-          color="warn"
+          class="mat-warn"
           i18n-matTooltip
           matTooltip="Delete this entry"
           (click)="deleteEntry(i)"
         >
-          <mat-icon class="mat-warn">delete</mat-icon>
+          <mat-icon>delete</mat-icon>
         </button>
       </td>
       @if (e.pair) {
@@ -94,9 +93,7 @@
       }
       <td>
         @if (e.error) {
-        <mat-icon color="warn" class="mat-warn" [matTooltip]="e.error"
-          >error</mat-icon
-        >
+        <mat-icon class="mat-warn" [matTooltip]="e.error">error</mat-icon>
         }
       </td>
     </tr>

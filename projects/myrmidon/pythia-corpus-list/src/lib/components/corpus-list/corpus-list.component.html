@@ -37,7 +37,7 @@
               type="button"
               i18n-matTooltip
               matTooltip="Edit this corpus"
-              color="primary"
+              class="mat-primary"
               (click)="editCorpus(c)"
             >
               <mat-icon class="mat-primary">edit</mat-icon>
@@ -48,7 +48,7 @@
               type="button"
               i18n-matTooltip
               matTooltip="Delete this corpus"
-              color="warn"
+              class="mat-warn"
               (click)="deleteCorpus(c)"
             >
               <mat-icon class="mat-warn">delete</mat-icon>
@@ -69,7 +69,7 @@
       <button
         type="button"
         mat-icon-button
-        color="warn"
+        class="mat-warn"
         i18n-matTooltip
         matTooltip="Refresh list"
         (click)="reset()"
@@ -87,11 +87,11 @@
       <div>
         <button
           type="button"
-          color="primary"
+          class="mat-primary"
           mat-flat-button
           (click)="addCorpus()"
         >
-          <mat-icon class="mat-primary">add_circle</mat-icon> corpus
+          <mat-icon>add_circle</mat-icon> corpus
         </button>
       </div>
     </div>
