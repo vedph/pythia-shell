@@ -1,3 +1,6 @@
+#doc-panel {
+  margin-top: 8px;
+}
 fieldset {
   border: 1px solid silver;
   border-radius: 6px;

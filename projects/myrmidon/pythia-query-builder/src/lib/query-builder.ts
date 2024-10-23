@@ -168,6 +168,13 @@ export const QUERY_STRUCT_ATTR_DEFS: QueryBuilderTermDef[] = [
     type: QueryBuilderTermType.Structure,
     group: $localize`structure`,
     tip: $localize`Structure's name (e.g. snt, p).`,
+  },
+  {
+    value: '_value',
+    label: $localize`value`,
+    type: QueryBuilderTermType.Structure,
+    group: $localize`value`,
+    tip: $localize`Structure's text value.`,
   }
 ];
 

@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-stats",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Pythia - stats.",
   "keywords": [
     "Pythia"
@@ -14,12 +14,12 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.2.8",
+    "@angular/core": "^18.2.8",
     "@myrmidon/ng-tools": "^3.1.1",
-    "@myrmidon/pythia-api": "^4.0.0"
+    "@myrmidon/pythia-api": "^4.0.1"
   },
   "dependencies": {
-    "tslib": "^2.5.0"
+    "tslib": "^2.8.0"
   }
 }

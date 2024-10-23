@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
+import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
 
 export interface AttributeFilter {
   pageNumber: number;

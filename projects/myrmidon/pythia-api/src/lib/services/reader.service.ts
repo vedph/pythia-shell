@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TextMapNode } from '@myrmidon/pythia-core';
-import { EnvService, ErrorService } from '@myrmidon/ng-tools';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
+import { EnvService, ErrorService } from '@myrmidon/ng-tools';
+import { TextMapNode } from '@myrmidon/pythia-core';
 
 @Injectable({
   providedIn: 'root',
