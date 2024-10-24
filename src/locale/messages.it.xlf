@@ -564,7 +564,7 @@
       </trans-unit>
       <trans-unit id="910026778839409110" datatype="html">
         <source>Add filter</source>
-        <target state="new"/>
+        <target state="translated">Aggiungi filtro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/paged-data-browsers/src/lib/components/browser-tree-node/browser-tree-node.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -978,8 +978,8 @@
           <context context-type="linenumber">199</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8462620394492898437" datatype="html">
@@ -1012,10 +1012,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-filter/document-filter.component.html</context>
           <context context-type="linenumber">207</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6813561867975715392" datatype="html">
@@ -3515,7 +3511,7 @@
         <target state="translated">Trova questa forma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-browser/paged-word-tree-browser.component.html</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6624901070284420104" datatype="html">
@@ -3523,7 +3519,7 @@
         <target state="needs-translation"/>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-browser/paged-word-tree-browser.component.html</context>
-          <context context-type="linenumber">60,61</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3970926993273657249" datatype="html">
@@ -3558,44 +3554,20 @@
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2064206656217416827" datatype="html">
-        <source>min.nr.</source>
-        <target state="translated">nr.min.</target>
+      <trans-unit id="2453183852015572085" datatype="html">
+        <source>min.freq.</source>
+        <target state="new"/>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4128506891616077459" datatype="html">
-        <source>max.nr.</source>
-        <target state="translated">nr.max.</target>
+      <trans-unit id="6215833873411036400" datatype="html">
+        <source>max.freq.</source>
+        <target state="new"/>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">46</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5000533697841982597" datatype="html">
-        <source>by value</source>
-        <target state="translated">per valore</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">57</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="422603044340396704" datatype="html">
-        <source>by rev.value</source>
-        <target state="translated">per valore inverso</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2878882797670733908" datatype="html">
-        <source>by count</source>
-        <target state="translated">per frequenza</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7808756054397155068" datatype="html">
@@ -3603,7 +3575,7 @@
         <target state="translated">Azzera</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4391289919356861627" datatype="html">
@@ -3611,7 +3583,71 @@
         <target state="translated">Applica</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6536248004600320842" datatype="html">
+        <source>▲ default</source>
+        <target state="translated">▲ predefinito</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3911297356907273395" datatype="html">
+        <source>▲ value</source>
+        <target state="translated">▲ valore</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3564206492933865904" datatype="html">
+        <source>▲ reversed value</source>
+        <target state="translated">▲ valore inverso</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3205662883788332602" datatype="html">
+        <source>▲ frequency</source>
+        <target state="translated">▲ frequenza</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7855634635898519245" datatype="html">
+        <source>▼ default </source>
+        <target state="translated">▼ predefinito</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1750716017077027724" datatype="html">
+        <source>▼ value</source>
+        <target state="translated">▼ valore</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2662918060471058417" datatype="html">
+        <source>▼ reversed value</source>
+        <target state="translated">▼ valore inverso</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8135140238553282885" datatype="html">
+        <source>▼ frequency</source>
+        <target state="translated">▼ frequenza</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3890771237132928825" datatype="html">

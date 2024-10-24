@@ -46,6 +46,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-10-24:
+  - changed paged word tree filter sort order (`@myrmidon/pythia-word-index` 4.1.0).
+  - added `hideLoc` and `hideFilter` to `PagedWordTreeBrowserComponent`.
 - 2024-10-23:
   - updated Angular and packages.
   - updated peer dependencies.

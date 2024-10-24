@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-word-index",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "Pythia - word and lemmata index.",
   "keywords": [
     "Pythia"
@@ -14,7 +14,7 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^18.2.8",
+    "@angular/common": "^18.2.9",
     "@angular/core": "^18.2.8",
     "@myrmidon/ng-tools": "^3.1.1",
     "@myrmidon/pythia-api": "^4.0.1",

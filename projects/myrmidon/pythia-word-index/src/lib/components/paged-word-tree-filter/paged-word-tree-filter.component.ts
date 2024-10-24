@@ -60,7 +60,7 @@ export class PagedWordTreeFilterComponent {
     { key: $localize`▲ default`, value: WordSortOrder.Default },
     { key: $localize`▲ value`, value: WordSortOrder.ByValue },
     { key: $localize`▲ reversed value`, value: WordSortOrder.ByReversedValue },
-    { key: $localize`▲ count`, value: WordSortOrder.ByCount },
+    { key: $localize`▲ frequency`, value: WordSortOrder.ByCount },
     // descending
     {
       key: $localize`▼ default `,
@@ -73,7 +73,11 @@ export class PagedWordTreeFilterComponent {
       value: WordSortOrder.ByReversedValue,
       descending: true,
     },
-    { key: $localize`▼ count`, value: WordSortOrder.ByCount, descending: true },
+    {
+      key: $localize`▼ frequency`,
+      value: WordSortOrder.ByCount,
+      descending: true,
+    },
   ];
 
   /**
@@ -90,6 +94,17 @@ export class PagedWordTreeFilterComponent {
       return;
     }
     this._sortOrderEntries = value || [DEFAULT_SORT_ORDER_ENTRY];
+
+    // update sort order value if it is not in the new entries
+    if (
+      !this._sortOrderEntries.some(
+        (e) =>
+          e.value === this.sortOrder.value.value &&
+          e.descending === this.sortOrder.value.descending
+      )
+    ) {
+      this.sortOrder.setValue(this._sortOrderEntries[0]);
+    }
   }
 
   /**
