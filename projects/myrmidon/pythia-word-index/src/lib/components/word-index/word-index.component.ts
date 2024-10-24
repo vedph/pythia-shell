@@ -15,6 +15,7 @@ import { AttributeInfo, Lemma, Word } from '@myrmidon/pythia-api';
 
 import { PagedWordTreeBrowserComponent } from '../paged-word-tree-browser/paged-word-tree-browser.component';
 import { TokenCountsListComponent } from '../token-counts-list/token-counts-list.component';
+import { WordTreeFilterSortOrderEntry } from '../paged-word-tree-filter/paged-word-tree-filter.component';
 
 @Component({
   selector: 'pythia-word-index',
@@ -47,6 +48,25 @@ export class WordIndexComponent {
    */
   @Input()
   public hideLanguage?: boolean;
+
+  /**
+   * Whether to hide the node filter.
+   */
+  @Input()
+  public hideFilter?: boolean;
+
+  /**
+   * Whether to hide the node y,x location.
+   */
+  @Input()
+  public hideLoc?: boolean;
+
+  /**
+   * The sort order entries to display in the sort order dropdown.
+   * If not set, the sort order dropdown will use the default entries.
+   */
+  @Input()
+  public sortOrderEntries?: WordTreeFilterSortOrderEntry[];
 
   @Output()
   public readonly searchRequest = new EventEmitter<Word | Lemma>();

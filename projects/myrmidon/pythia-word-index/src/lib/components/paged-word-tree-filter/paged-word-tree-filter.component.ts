@@ -31,10 +31,30 @@ export interface WordTreeFilterSortOrderEntry {
   descending?: boolean;
 }
 
-const DEFAULT_SORT_ORDER_ENTRY: WordTreeFilterSortOrderEntry = {
-  key: $localize`default`,
-  value: WordSortOrder.Default,
-};
+const DEFAULT_SORT_ORDER_ENTRIES: WordTreeFilterSortOrderEntry[] = [
+  // ascending
+  { key: $localize`▲ default`, value: WordSortOrder.Default },
+  { key: $localize`▲ value`, value: WordSortOrder.ByValue },
+  { key: $localize`▲ reversed value`, value: WordSortOrder.ByReversedValue },
+  { key: $localize`▲ frequency`, value: WordSortOrder.ByCount },
+  // descending
+  {
+    key: $localize`▼ default `,
+    value: WordSortOrder.Default,
+    descending: true,
+  },
+  { key: $localize`▼ value`, value: WordSortOrder.ByValue, descending: true },
+  {
+    key: $localize`▼ reversed value`,
+    value: WordSortOrder.ByReversedValue,
+    descending: true,
+  },
+  {
+    key: $localize`▼ frequency`,
+    value: WordSortOrder.ByCount,
+    descending: true,
+  },
+];
 
 @Component({
   selector: 'pythia-paged-word-tree-filter',
@@ -55,30 +75,8 @@ const DEFAULT_SORT_ORDER_ENTRY: WordTreeFilterSortOrderEntry = {
 })
 export class PagedWordTreeFilterComponent {
   private _filter?: WordFilter;
-  private _sortOrderEntries: WordTreeFilterSortOrderEntry[] = [
-    // ascending
-    { key: $localize`▲ default`, value: WordSortOrder.Default },
-    { key: $localize`▲ value`, value: WordSortOrder.ByValue },
-    { key: $localize`▲ reversed value`, value: WordSortOrder.ByReversedValue },
-    { key: $localize`▲ frequency`, value: WordSortOrder.ByCount },
-    // descending
-    {
-      key: $localize`▼ default `,
-      value: WordSortOrder.Default,
-      descending: true,
-    },
-    { key: $localize`▼ value`, value: WordSortOrder.ByValue, descending: true },
-    {
-      key: $localize`▼ reversed value`,
-      value: WordSortOrder.ByReversedValue,
-      descending: true,
-    },
-    {
-      key: $localize`▼ frequency`,
-      value: WordSortOrder.ByCount,
-      descending: true,
-    },
-  ];
+  private _sortOrderEntries: WordTreeFilterSortOrderEntry[] =
+    DEFAULT_SORT_ORDER_ENTRIES;
 
   /**
    * The sort order entries to display in the sort order dropdown.
@@ -93,7 +91,7 @@ export class PagedWordTreeFilterComponent {
     if (this._sortOrderEntries === value) {
       return;
     }
-    this._sortOrderEntries = value || [DEFAULT_SORT_ORDER_ENTRY];
+    this._sortOrderEntries = value || DEFAULT_SORT_ORDER_ENTRIES;
 
     // update sort order value if it is not in the new entries
     if (
@@ -162,7 +160,7 @@ export class PagedWordTreeFilterComponent {
     this.minCount = formBuilder.control<number>(0, { nonNullable: true });
     this.maxCount = formBuilder.control<number>(0, { nonNullable: true });
     this.sortOrder = formBuilder.control<WordTreeFilterSortOrderEntry>(
-      this.sortOrderEntries[0] || DEFAULT_SORT_ORDER_ENTRY,
+      this.sortOrderEntries[0] || DEFAULT_SORT_ORDER_ENTRIES[0],
       {
         nonNullable: true,
       }
@@ -205,7 +203,7 @@ export class PagedWordTreeFilterComponent {
           e.descending === filter.isSortDescending
       ) ??
         this.sortOrderEntries[0] ??
-        DEFAULT_SORT_ORDER_ENTRY
+        DEFAULT_SORT_ORDER_ENTRIES[0]
     );
     this.form.markAsPristine();
   }

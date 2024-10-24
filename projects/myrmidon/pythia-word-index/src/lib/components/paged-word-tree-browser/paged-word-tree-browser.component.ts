@@ -22,7 +22,10 @@ import { Lemma, Word, WordFilter } from '@myrmidon/pythia-api';
 
 import { PagedWordTreeNode } from '../../services/paged-word-tree-store.service';
 import { PagedWordTreeBrowserService } from '../../services/paged-word-tree-browser.service';
-import { PagedWordTreeFilterComponent } from '../paged-word-tree-filter/paged-word-tree-filter.component';
+import {
+  PagedWordTreeFilterComponent,
+  WordTreeFilterSortOrderEntry,
+} from '../paged-word-tree-filter/paged-word-tree-filter.component';
 
 @Component({
   selector: 'pythia-paged-word-tree-browser',
@@ -68,6 +71,13 @@ export class PagedWordTreeBrowserComponent implements OnInit {
    */
   @Input()
   public hideFilter?: boolean;
+
+  /**
+   * The sort order entries to display in the sort order dropdown.
+   * If not set, the sort order dropdown will use the default entries.
+   */
+  @Input()
+  public sortOrderEntries?: WordTreeFilterSortOrderEntry[];
 
   @Output()
   public readonly searchRequest = new EventEmitter<Word | Lemma>();

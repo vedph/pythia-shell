@@ -2,6 +2,9 @@
   <div id="browser">
     <pythia-paged-word-tree-browser
       [hideLanguage]="hideLanguage"
+      [hideFilter]="hideFilter"
+      [hideLoc]="hideLoc"
+      [sortOrderEntries]="sortOrderEntries"
       (searchRequest)="onSearchRequest($event)"
       (countsRequest)="onCountsRequest($event)"
     />

@@ -3,6 +3,7 @@
   <div id="filters">
     <pythia-paged-word-tree-filter
       [hideLanguage]="hideLanguage"
+      [sortOrderEntries]="sortOrderEntries"
       [filter]="filter$ | async"
       (filterChange)="onFilterChange($event)"
     />
