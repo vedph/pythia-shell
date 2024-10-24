@@ -57,6 +57,18 @@ export class PagedWordTreeBrowserComponent implements OnInit {
   @Input()
   public hideLanguage?: boolean;
 
+  /**
+   * Whether to hide the node y,x location.
+   */
+  @Input()
+  public hideLoc?: boolean;
+
+  /**
+   * Whether to hide the node filter.
+   */
+  @Input()
+  public hideFilter?: boolean;
+
   @Output()
   public readonly searchRequest = new EventEmitter<Word | Lemma>();
   @Output()

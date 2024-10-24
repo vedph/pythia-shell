@@ -38,12 +38,12 @@
   <!-- count -->
   <div class="form-row">
     <mat-form-field class="nr">
-      <mat-label i18n>min.nr.</mat-label>
+      <mat-label i18n>min.freq.</mat-label>
       <input matInput type="number" [formControl]="minCount" min="0" />
     </mat-form-field>
     -
     <mat-form-field class="nr">
-      <mat-label i18n>max.nr.</mat-label>
+      <mat-label i18n>max.freq.</mat-label>
       <input matInput type="number" [formControl]="maxCount" min="0" />
     </mat-form-field>
   </div>
@@ -53,17 +53,11 @@
     <mat-form-field>
       <mat-label i18n>sort order</mat-label>
       <mat-select [formControl]="sortOrder">
-        <mat-option [value]="0" i18n>default</mat-option>
-        <mat-option [value]="1" i18n>by value</mat-option>
-        <mat-option [value]="2" i18n>by rev.value</mat-option>
-        <mat-option [value]="3" i18n>by count</mat-option>
+        @for (e of sortOrderEntries; track e.key) {
+        <mat-option [value]="e">{{ e.key }}</mat-option>
+        }
       </mat-select>
     </mat-form-field>
-  </div>
-
-  <!-- descending -->
-  <div>
-    <mat-checkbox [formControl]="descending" i18n>descending</mat-checkbox>
   </div>
 
   <!-- buttons -->

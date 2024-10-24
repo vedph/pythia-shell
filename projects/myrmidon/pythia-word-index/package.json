@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-word-index",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "Pythia - word and lemmata index.",
   "keywords": [
     "Pythia"

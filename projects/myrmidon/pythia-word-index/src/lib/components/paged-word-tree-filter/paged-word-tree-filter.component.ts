@@ -25,6 +25,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { WordFilter, WordSortOrder } from '@myrmidon/pythia-api';
 
+export interface WordTreeFilterSortOrderEntry {
+  key: string;
+  value: WordSortOrder;
+  descending?: boolean;
+}
+
+const DEFAULT_SORT_ORDER_ENTRY: WordTreeFilterSortOrderEntry = {
+  key: $localize`default`,
+  value: WordSortOrder.Default,
+};
+
 @Component({
   selector: 'pythia-paged-word-tree-filter',
   standalone: true,
@@ -44,6 +55,42 @@ import { WordFilter, WordSortOrder } from '@myrmidon/pythia-api';
 })
 export class PagedWordTreeFilterComponent {
   private _filter?: WordFilter;
+  private _sortOrderEntries: WordTreeFilterSortOrderEntry[] = [
+    // ascending
+    { key: $localize`▲ default`, value: WordSortOrder.Default },
+    { key: $localize`▲ value`, value: WordSortOrder.ByValue },
+    { key: $localize`▲ reversed value`, value: WordSortOrder.ByReversedValue },
+    { key: $localize`▲ count`, value: WordSortOrder.ByCount },
+    // descending
+    {
+      key: $localize`▼ default `,
+      value: WordSortOrder.Default,
+      descending: true,
+    },
+    { key: $localize`▼ value`, value: WordSortOrder.ByValue, descending: true },
+    {
+      key: $localize`▼ reversed value`,
+      value: WordSortOrder.ByReversedValue,
+      descending: true,
+    },
+    { key: $localize`▼ count`, value: WordSortOrder.ByCount, descending: true },
+  ];
+
+  /**
+   * The sort order entries to display in the sort order dropdown.
+   */
+  @Input()
+  public get sortOrderEntries(): WordTreeFilterSortOrderEntry[] {
+    return this._sortOrderEntries;
+  }
+  public set sortOrderEntries(
+    value: WordTreeFilterSortOrderEntry[] | undefined | null
+  ) {
+    if (this._sortOrderEntries === value) {
+      return;
+    }
+    this._sortOrderEntries = value || [DEFAULT_SORT_ORDER_ENTRY];
+  }
 
   /**
    * Whether to hide the language filter.
@@ -78,8 +125,7 @@ export class PagedWordTreeFilterComponent {
   public maxValueLength: FormControl<number>;
   public minCount: FormControl<number>;
   public maxCount: FormControl<number>;
-  public sortOrder: FormControl<WordSortOrder>;
-  public descending: FormControl<boolean>;
+  public sortOrder: FormControl<WordTreeFilterSortOrderEntry>;
   public form: FormGroup;
 
   public wrapped?: boolean;
@@ -100,12 +146,12 @@ export class PagedWordTreeFilterComponent {
     this.maxValueLength = formBuilder.control<number>(0, { nonNullable: true });
     this.minCount = formBuilder.control<number>(0, { nonNullable: true });
     this.maxCount = formBuilder.control<number>(0, { nonNullable: true });
-    this.sortOrder = formBuilder.control<WordSortOrder>(WordSortOrder.Default, {
-      nonNullable: true,
-    });
-    this.descending = formBuilder.control<boolean>(false, {
-      nonNullable: true,
-    });
+    this.sortOrder = formBuilder.control<WordTreeFilterSortOrderEntry>(
+      this.sortOrderEntries[0] || DEFAULT_SORT_ORDER_ENTRY,
+      {
+        nonNullable: true,
+      }
+    );
     this.form = formBuilder.group({
       language: this.language,
       valuePattern: this.valuePattern,
@@ -114,7 +160,6 @@ export class PagedWordTreeFilterComponent {
       minCount: this.minCount,
       maxCount: this.maxCount,
       sortOrder: this.sortOrder,
-      descending: this.descending,
     });
     // events
     this.filterChange = new EventEmitter<WordFilter>();
@@ -138,12 +183,23 @@ export class PagedWordTreeFilterComponent {
     this.maxValueLength.setValue(filter.maxValueLength ?? 0);
     this.minCount.setValue(filter.minCount ?? 0);
     this.maxCount.setValue(filter.maxCount ?? 0);
-    this.sortOrder.setValue(filter.sortOrder ?? WordSortOrder.Default);
-    this.descending.setValue(filter.isSortDescending ?? false);
+    this.sortOrder.setValue(
+      this.sortOrderEntries.find(
+        (e) =>
+          e.value === filter.sortOrder &&
+          e.descending === filter.isSortDescending
+      ) ??
+        this.sortOrderEntries[0] ??
+        DEFAULT_SORT_ORDER_ENTRY
+    );
     this.form.markAsPristine();
   }
 
   private getFilter(): WordFilter {
+    const sortOrderEntry =
+      this.sortOrderEntries.find((e) => e.key === this.sortOrder.value.key) ||
+      this.sortOrderEntries[0];
+
     return {
       language: this.language.value ?? undefined,
       valuePattern: this.valuePattern.value ?? undefined,
@@ -151,8 +207,8 @@ export class PagedWordTreeFilterComponent {
       maxValueLength: this.maxValueLength.value || undefined,
       minCount: this.minCount.value || undefined,
       maxCount: this.maxCount.value || undefined,
-      sortOrder: this.sortOrder.value,
-      isSortDescending: this.descending.value,
+      sortOrder: sortOrderEntry.value,
+      isSortDescending: sortOrderEntry.descending,
     };
   }
 

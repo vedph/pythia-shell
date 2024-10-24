@@ -32,6 +32,8 @@
               ? nodes[i + 1].paging
               : undefined
           "
+          [hideLoc]="hideLoc"
+          [hideFilter]="hideFilter"
           (toggleExpandedRequest)="onToggleExpanded($any($event))"
           (changePageRequest)="onPageChangeRequest($event)"
           (editNodeFilterRequest)="onEditFilterRequest($any($event))"
