@@ -119,6 +119,10 @@ export class SearchRepository
 
   public clear(): void {
     this._store.clear();
+    this._prevQuery$.next(this._query$.value);
+    this._query$.next(undefined);
+    this._readRequest$.next(undefined);
+    this._error$.next(undefined);
   }
 
   public setFilter(filter: KwicSearchFilter): void {
