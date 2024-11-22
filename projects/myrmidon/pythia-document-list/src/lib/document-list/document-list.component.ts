@@ -14,10 +14,11 @@ import { CorpusActionRequest } from '../document-corpus/document-corpus.componen
 import { DocumentFilters } from '../document-filter/document-filter.component';
 
 @Component({
-  selector: 'pythia-document-list',
-  templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.css'],
-  providers: [DocumentRepository],
+    selector: 'pythia-document-list',
+    templateUrl: './document-list.component.html',
+    styleUrls: ['./document-list.component.css'],
+    providers: [DocumentRepository],
+    standalone: false
 })
 export class DocumentListComponent {
   public loading$: Observable<boolean>;

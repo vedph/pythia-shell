@@ -20,9 +20,10 @@ export interface CorpusActionRequest {
 }
 
 @Component({
-  selector: 'pythia-document-corpus',
-  templateUrl: './document-corpus.component.html',
-  styleUrls: ['./document-corpus.component.css'],
+    selector: 'pythia-document-corpus',
+    templateUrl: './document-corpus.component.html',
+    styleUrls: ['./document-corpus.component.css'],
+    standalone: false
 })
 export class DocumentCorpusComponent implements OnInit {
   public corpusId: FormControl<string | null>;

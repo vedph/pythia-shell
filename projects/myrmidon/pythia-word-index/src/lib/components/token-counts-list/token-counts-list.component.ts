@@ -24,20 +24,19 @@ import { TokenCountsComponent } from '../token-counts/token-counts.component';
  * a set of document attributes.
  */
 @Component({
-  selector: 'pythia-token-counts-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatTooltipModule,
-    TokenCountsComponent,
-  ],
-  templateUrl: './token-counts-list.component.html',
-  styleUrl: './token-counts-list.component.scss',
+    selector: 'pythia-token-counts-list',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatTooltipModule,
+        TokenCountsComponent,
+    ],
+    templateUrl: './token-counts-list.component.html',
+    styleUrl: './token-counts-list.component.scss'
 })
 export class TokenCountsListComponent {
   private _token?: Word | Lemma;

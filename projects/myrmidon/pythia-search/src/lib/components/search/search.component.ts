@@ -16,9 +16,10 @@ import { KwicSearchResult } from '@myrmidon/pythia-api';
 import { SearchRepository } from '../../search.repository';
 
 @Component({
-  selector: 'pythia-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+    selector: 'pythia-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css'],
+    standalone: false
 })
 export class SearchComponent implements OnInit {
   @ViewChild('queryCtl') queryElementRef: ElementRef | undefined;

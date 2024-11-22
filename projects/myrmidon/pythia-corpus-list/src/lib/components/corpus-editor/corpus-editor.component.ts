@@ -26,9 +26,10 @@ export interface EditedCorpus extends Corpus {
  * belonging to them as source, unless they are admin's.
  */
 @Component({
-  selector: 'pythia-corpus-editor',
-  templateUrl: './corpus-editor.component.html',
-  styleUrls: ['./corpus-editor.component.css'],
+    selector: 'pythia-corpus-editor',
+    templateUrl: './corpus-editor.component.html',
+    styleUrls: ['./corpus-editor.component.css'],
+    standalone: false
 })
 export class CorpusEditorComponent {
   private _corpus: EditedCorpus | undefined;

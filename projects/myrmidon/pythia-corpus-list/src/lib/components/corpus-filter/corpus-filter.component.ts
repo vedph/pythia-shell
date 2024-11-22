@@ -4,9 +4,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CorpusFilter } from '@myrmidon/pythia-api';
 
 @Component({
-  selector: 'pythia-corpus-filter',
-  templateUrl: './corpus-filter.component.html',
-  styleUrls: ['./corpus-filter.component.css'],
+    selector: 'pythia-corpus-filter',
+    templateUrl: './corpus-filter.component.html',
+    styleUrls: ['./corpus-filter.component.css'],
+    standalone: false
 })
 export class CorpusFilterComponent {
   private _filter?: CorpusFilter;

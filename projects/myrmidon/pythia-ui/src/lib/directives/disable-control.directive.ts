@@ -8,7 +8,8 @@ import { NgControl } from '@angular/forms';
  * Use like: <input [formControl]="myInput" [pythiaDisableControl]="myDisabled">
  */
 @Directive({
-  selector: '[pythiaDisableControl]',
+    selector: '[pythiaDisableControl]',
+    standalone: false
 })
 export class DisableControlDirective {
   @Input() set disableControl(condition: boolean) {

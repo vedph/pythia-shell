@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { UserListRepository } from '@myrmidon/auth-jwt-admin';
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css'],
+    selector: 'app-register-user',
+    templateUrl: './register-user.component.html',
+    styleUrls: ['./register-user.component.css'],
+    standalone: false
 })
 export class RegisterUserComponent implements OnInit {
   constructor(

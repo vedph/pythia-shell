@@ -9,9 +9,10 @@ import { CorpusRefLookupService } from '@myrmidon/pythia-ui';
  * the array of selected corpora.
  */
 @Component({
-  selector: 'pythia-corpus-set',
-  templateUrl: './corpus-set.component.html',
-  styleUrls: ['./corpus-set.component.css'],
+    selector: 'pythia-corpus-set',
+    templateUrl: './corpus-set.component.html',
+    styleUrls: ['./corpus-set.component.css'],
+    standalone: false
 })
 export class CorpusSetComponent {
   private _corpora: Corpus[];

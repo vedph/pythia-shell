@@ -4,16 +4,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Document } from '@myrmidon/pythia-core';
 
 @Component({
-  selector: 'pythia-document-info',
-  templateUrl: './document-info.component.html',
-  styleUrls: ['./document-info.component.css'],
-  // https://stackoverflow.com/questions/47248898/angular-4-5-6-7-simple-example-of-slide-in-out-animation-on-ngif
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [animate('200ms ease-in', style({ height: '*' }))]),
-      transition(':leave', [animate('200ms ease-in', style({ height: 0 }))]),
-    ]),
-  ],
+    selector: 'pythia-document-info',
+    templateUrl: './document-info.component.html',
+    styleUrls: ['./document-info.component.css'],
+    // https://stackoverflow.com/questions/47248898/angular-4-5-6-7-simple-example-of-slide-in-out-animation-on-ngif
+    animations: [
+        trigger('slideInOut', [
+            transition(':enter', [animate('200ms ease-in', style({ height: '*' }))]),
+            transition(':leave', [animate('200ms ease-in', style({ height: 0 }))]),
+        ]),
+    ],
+    standalone: false
 })
 export class DocumentInfoComponent implements OnInit {
   @Input()

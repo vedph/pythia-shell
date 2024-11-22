@@ -36,9 +36,10 @@ interface GroupedQueryBuilderTermDefs {
  * like logical operators or brackets.
  */
 @Component({
-  selector: 'pythia-query-entry',
-  templateUrl: './query-entry.component.html',
-  styleUrls: ['./query-entry.component.css'],
+    selector: 'pythia-query-entry',
+    templateUrl: './query-entry.component.html',
+    styleUrls: ['./query-entry.component.css'],
+    standalone: false
 })
 export class QueryEntryComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[];

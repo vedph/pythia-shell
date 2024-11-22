@@ -21,21 +21,20 @@ import { PercentagePipe } from '../../pipes/percentage.pipe';
  * A component to display the counts for a specific token in a pie chart.
  */
 @Component({
-  selector: 'pythia-token-counts',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    NgxEchartsModule,
-    PercentagePipe,
-  ],
-  templateUrl: './token-counts.component.html',
-  styleUrl: './token-counts.component.scss',
+    selector: 'pythia-token-counts',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatSelectModule,
+        MatTooltipModule,
+        NgxEchartsModule,
+        PercentagePipe,
+    ],
+    templateUrl: './token-counts.component.html',
+    styleUrl: './token-counts.component.scss'
 })
 export class TokenCountsComponent {
   private _counts: TokenCount[] = [];

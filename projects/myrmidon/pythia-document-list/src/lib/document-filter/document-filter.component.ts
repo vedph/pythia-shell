@@ -34,9 +34,10 @@ export interface DocumentFilters {
 }
 
 @Component({
-  selector: 'pythia-document-filter',
-  templateUrl: './document-filter.component.html',
-  styleUrls: ['./document-filter.component.css'],
+    selector: 'pythia-document-filter',
+    templateUrl: './document-filter.component.html',
+    styleUrls: ['./document-filter.component.css'],
+    standalone: false
 })
 export class DocumentFilterComponent {
   private _filter?: DocumentFilter;

@@ -18,24 +18,23 @@ import { TokenCountsListComponent } from '../token-counts-list/token-counts-list
 import { WordTreeFilterSortOrderEntry } from '../paged-word-tree-filter/paged-word-tree-filter.component';
 
 @Component({
-  selector: 'pythia-word-index',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatTooltipModule,
-    PagedWordTreeBrowserComponent,
-    TokenCountsListComponent,
-  ],
-  templateUrl: './word-index.component.html',
-  styleUrl: './word-index.component.scss',
+    selector: 'pythia-word-index',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatTooltipModule,
+        PagedWordTreeBrowserComponent,
+        TokenCountsListComponent,
+    ],
+    templateUrl: './word-index.component.html',
+    styleUrl: './word-index.component.scss'
 })
 export class WordIndexComponent {
   public token?: Word | Lemma;

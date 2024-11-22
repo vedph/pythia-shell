@@ -12,9 +12,10 @@ interface StatEntry {
 }
 
 @Component({
-  selector: 'pythia-stats',
-  templateUrl: './pythia-stats.component.html',
-  styleUrls: ['./pythia-stats.component.css'],
+    selector: 'pythia-stats',
+    templateUrl: './pythia-stats.component.html',
+    styleUrls: ['./pythia-stats.component.css'],
+    standalone: false
 })
 export class PythiaStatsComponent implements OnInit {
   public loading: boolean | undefined;

@@ -5,7 +5,8 @@ import { HasUserId } from '@myrmidon/pythia-core';
 import { EditableCheckService } from '../services/editable-check.service';
 
 @Pipe({
-  name: 'editable',
+    name: 'editable',
+    standalone: false
 })
 export class EditablePipe implements PipeTransform {
   constructor(private _editableService: EditableCheckService) {}

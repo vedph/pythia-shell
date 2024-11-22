@@ -18,9 +18,10 @@ export const QUERY_BUILDER_ATTR_DEFS_KEY = 'pythiaQueryBuilderAttrDefs';
  * - a corpus scope.
  */
 @Component({
-  selector: 'pythia-query-builder',
-  templateUrl: './query-builder.component.html',
-  styleUrls: ['./query-builder.component.css'],
+    selector: 'pythia-query-builder',
+    templateUrl: './query-builder.component.html',
+    styleUrls: ['./query-builder.component.css'],
+    standalone: false
 })
 export class QueryBuilderComponent {
   private readonly _queryBuilder: QueryBuilder;

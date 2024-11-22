@@ -46,6 +46,7 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-11-22: ⚠️ Upgraded to Angular 19.
 - 2024-11-19: updated packages.
 - 2024-11-05: fixes to `search.repository.clear()`.
 - 2024-10-24:

@@ -57,21 +57,20 @@ const DEFAULT_SORT_ORDER_ENTRIES: WordTreeFilterSortOrderEntry[] = [
 ];
 
 @Component({
-  selector: 'pythia-paged-word-tree-filter',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
-  ],
-  templateUrl: './paged-word-tree-filter.component.html',
-  styleUrl: './paged-word-tree-filter.component.scss',
+    selector: 'pythia-paged-word-tree-filter',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule,
+    ],
+    templateUrl: './paged-word-tree-filter.component.html',
+    styleUrl: './paged-word-tree-filter.component.scss'
 })
 export class PagedWordTreeFilterComponent {
   private _filter?: WordFilter;

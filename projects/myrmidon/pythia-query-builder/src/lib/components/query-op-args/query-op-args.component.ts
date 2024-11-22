@@ -10,9 +10,10 @@ import {
  * Query operator arguments editor.
  */
 @Component({
-  selector: 'pythia-query-op-args',
-  templateUrl: './query-op-args.component.html',
-  styleUrls: ['./query-op-args.component.css'],
+    selector: 'pythia-query-op-args',
+    templateUrl: './query-op-args.component.html',
+    styleUrls: ['./query-op-args.component.css'],
+    standalone: false
 })
 export class QueryOpArgsComponent {
   private _args?: QueryBuilderTermDefArg[];

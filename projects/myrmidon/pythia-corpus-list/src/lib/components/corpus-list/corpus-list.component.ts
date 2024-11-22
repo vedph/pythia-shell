@@ -18,9 +18,10 @@ import { CorpusListBrowserService } from './corpus-list-browser.service';
 import { EditedCorpus } from '../corpus-editor/corpus-editor.component';
 
 @Component({
-  selector: 'pythia-corpus-list',
-  templateUrl: './corpus-list.component.html',
-  styleUrls: ['./corpus-list.component.css'],
+    selector: 'pythia-corpus-list',
+    templateUrl: './corpus-list.component.html',
+    styleUrls: ['./corpus-list.component.css'],
+    standalone: false
 })
 export class CorpusListComponent {
   private readonly _store: PagedListStore<CorpusFilter, Corpus>;

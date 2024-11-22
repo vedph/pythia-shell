@@ -28,24 +28,23 @@ import {
 } from '../paged-word-tree-filter/paged-word-tree-filter.component';
 
 @Component({
-  selector: 'pythia-paged-word-tree-browser',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatTooltipModule,
-    PagedDataBrowsersModule,
-    PagedWordTreeFilterComponent,
-  ],
-  templateUrl: './paged-word-tree-browser.component.html',
-  styleUrl: './paged-word-tree-browser.component.scss',
+    selector: 'pythia-paged-word-tree-browser',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatTooltipModule,
+        PagedDataBrowsersModule,
+        PagedWordTreeFilterComponent,
+    ],
+    templateUrl: './paged-word-tree-browser.component.html',
+    styleUrl: './paged-word-tree-browser.component.scss'
 })
 export class PagedWordTreeBrowserComponent implements OnInit {
   private readonly _store: PagedTreeStore<PagedWordTreeNode, WordFilter>;

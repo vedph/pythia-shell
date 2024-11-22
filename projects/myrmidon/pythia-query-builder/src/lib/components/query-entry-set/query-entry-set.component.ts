@@ -23,9 +23,10 @@ export interface QueryEntrySet {
  * Entries set editor component.
  */
 @Component({
-  selector: 'pythia-query-entry-set',
-  templateUrl: './query-entry-set.component.html',
-  styleUrls: ['./query-entry-set.component.css'],
+    selector: 'pythia-query-entry-set',
+    templateUrl: './query-entry-set.component.html',
+    styleUrls: ['./query-entry-set.component.css'],
+    standalone: false
 })
 export class QueryEntrySetComponent implements OnInit, OnDestroy {
   private readonly _builder: QueryBuilder;
