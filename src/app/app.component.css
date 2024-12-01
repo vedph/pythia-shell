@@ -34,7 +34,9 @@ footer a {
 .avatar {
   margin: 0 16px;
 }
-
+mat-toolbar {
+  background-color: #F3973C;
+}
 mat-toolbar mat-icon {
   color: white;
 }

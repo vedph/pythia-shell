@@ -46,6 +46,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-12-01:
+  - M3 theme.
+  - updated Angular and packages except for `echarts` which must be kept at `5.4.3` with TS at `~5.5.2` until [this issue](https://github.com/xieziyu/ngx-echarts/issues/437) is fixed.
 - 2024-11-22: ⚠️ Upgraded to Angular 19.
 - 2024-11-19: updated packages.
 - 2024-11-05: fixes to `search.repository.clear()`.
