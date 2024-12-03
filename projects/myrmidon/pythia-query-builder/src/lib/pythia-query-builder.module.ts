@@ -14,7 +14,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { NgToolsModule } from '@myrmidon/ng-tools';
 import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
@@ -58,14 +57,13 @@ import { QueryOpArgsComponent } from './components/query-op-args/query-op-args.c
     PythiaCoreModule,
     PythiaDocumentReaderModule,
     PythiaUiModule,
-    NgToolsModule,
   ],
   exports: [
     CorpusSetComponent,
     QueryBuilderComponent,
     QueryEntryComponent,
     QueryEntrySetComponent,
-    QueryOpArgsComponent
+    QueryOpArgsComponent,
   ],
 })
 export class PythiaQueryBuilderModule {}

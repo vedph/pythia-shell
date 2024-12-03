@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { LocalStorageService } from '@myrmidon/ng-tools';
+import { LocalStorageService } from '@myrmidon/ngx-tools';
 import { StatsService } from '@myrmidon/pythia-api';
 
 import { take } from 'rxjs/operators';

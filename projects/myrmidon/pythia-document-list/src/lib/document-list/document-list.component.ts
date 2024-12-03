@@ -5,7 +5,7 @@ import { Observable, take } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { DataPage } from '@myrmidon/ng-tools';
+import { DataPage } from '@myrmidon/ngx-tools';
 import { Document, DocumentReadRequest } from '@myrmidon/pythia-core';
 import { CorpusService, DocumentFilter } from '@myrmidon/pythia-api';
 

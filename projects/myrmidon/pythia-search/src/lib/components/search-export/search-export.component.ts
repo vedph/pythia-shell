@@ -4,10 +4,10 @@ import { SearchService } from '@myrmidon/pythia-api';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'pythia-search-export',
-    templateUrl: './search-export.component.html',
-    styleUrl: './search-export.component.scss',
-    standalone: false
+  selector: 'pythia-search-export',
+  templateUrl: './search-export.component.html',
+  styleUrl: './search-export.component.scss',
+  standalone: false,
 })
 export class SearchExportComponent implements OnDestroy {
   private _sub?: Subscription;

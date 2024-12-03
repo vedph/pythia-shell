@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-manage-users',
-    templateUrl: './manage-users.component.html',
-    styleUrls: ['./manage-users.component.css'],
-    standalone: false
+  selector: 'app-manage-users',
+  templateUrl: './manage-users.component.html',
+  styleUrls: ['./manage-users.component.css'],
+  standalone: false,
 })
-export class ManageUsersComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ManageUsersComponent {}

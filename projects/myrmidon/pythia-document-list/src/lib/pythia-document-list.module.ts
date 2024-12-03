@@ -26,9 +26,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { NgToolsModule } from '@myrmidon/ng-tools';
-import { PagedDataBrowsersModule } from '@myrmidon/paged-data-browsers';
-
 import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
@@ -75,9 +72,7 @@ import { DocumentInfoComponent } from './document-info/document-info.component';
     MatTabsModule,
     MatTooltipModule,
     MatToolbarModule,
-    // Fusi
-    NgToolsModule,
-    PagedDataBrowsersModule,
+    // myrmidon
     RefLookupComponent,
     // Pythia
     PythiaCoreModule,

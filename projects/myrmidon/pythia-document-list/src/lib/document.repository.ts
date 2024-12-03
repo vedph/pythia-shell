@@ -8,7 +8,7 @@ import {
   DocumentService,
   ProfileService,
 } from '@myrmidon/pythia-api';
-import { DataPage } from '@myrmidon/ng-tools';
+import { DataPage } from '@myrmidon/ngx-tools';
 import {
   PagedListStore,
   PagedListStoreService,

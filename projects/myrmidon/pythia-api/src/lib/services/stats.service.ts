@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { ErrorService, EnvService } from '@myrmidon/ng-tools';
+import { ErrorService, EnvService } from '@myrmidon/ngx-tools';
 
 @Injectable({
   providedIn: 'root',

@@ -6,8 +6,8 @@ import { take } from 'rxjs/operators';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { DataPage } from '@myrmidon/ng-tools';
-import { DialogService } from '@myrmidon/ng-mat-tools';
+import { DataPage } from '@myrmidon/ngx-tools';
+import { DialogService } from '@myrmidon/ngx-mat-tools';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { PagedListStore } from '@myrmidon/paged-data-browsers';
 

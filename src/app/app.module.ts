@@ -40,14 +40,22 @@ import { MatTreeModule } from '@angular/material/tree';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
-import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
-import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
+import {
+  EllipsisPipe,
+  EnvServiceProvider,
+  FlatLookupPipe,
+  SafeHtmlPipe,
+} from '@myrmidon/ngx-tools';
 import {
   AuthJwtInterceptor,
-  AuthJwtLoginModule,
+  AuthJwtLoginComponent,
+  GravatarPipe,
 } from '@myrmidon/auth-jwt-login';
-import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
-import { PagedDataBrowsersModule } from '@myrmidon/paged-data-browsers';
+import {
+  AuthJwtRegistrationComponent,
+  UserListComponent,
+} from '@myrmidon/auth-jwt-admin';
+import { PagedWordTreeBrowserComponent } from '@myrmidon/pythia-word-index';
 
 // libs
 import { PythiaApiModule } from 'projects/myrmidon/pythia-api/src/public-api';
@@ -94,7 +102,6 @@ import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.servic
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgToolsModule,
     BrowserAnimationsModule,
     // material
     MatAutocompleteModule,
@@ -125,11 +132,14 @@ import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.servic
       echarts: () => import('echarts'),
     }),
     // myrmex
-    NgToolsModule,
-    NgMatToolsModule,
-    PagedDataBrowsersModule,
-    AuthJwtLoginModule,
-    AuthJwtAdminModule,
+    EllipsisPipe,
+    FlatLookupPipe,
+    SafeHtmlPipe,
+    AuthJwtLoginComponent,
+    AuthJwtRegistrationComponent,
+    UserListComponent,
+    GravatarPipe,
+    PagedWordTreeBrowserComponent,
     // pythia
     PythiaApiModule,
     PythiaCoreModule,

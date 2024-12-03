@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, retry } from 'rxjs';
 
-import { ErrorService, EnvService, DataPage } from '@myrmidon/ng-tools';
+import { ErrorService, EnvService, DataPage } from '@myrmidon/ngx-tools';
 import { TreeNodeFilter } from '@myrmidon/paged-data-browsers';
 
 /**

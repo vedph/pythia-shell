@@ -1,17 +1,19 @@
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-title>
     <mat-card-header>
       <div mat-card-avatar>
         <mat-icon>lock_open</mat-icon>
       </div>
-      <ng-container i18n>Login</ng-container>
+      Login
     </mat-card-header>
   </mat-card-title>
   <mat-card-content>
     <auth-jwt-login
       [forgot]="true"
+      [validating]="busy"
+      [error]="error"
       (loginRequest)="onLoginRequest($event)"
       (resetRequest)="onResetRequest()"
-    ></auth-jwt-login>
+    />
   </mat-card-content>
 </mat-card>

@@ -5,7 +5,7 @@ import {
   PagedWordTreeNode,
   PagedWordTreeStoreService,
 } from './paged-word-tree-store.service';
-import { EnvService } from '@myrmidon/ng-tools';
+import { EnvService } from '@myrmidon/ngx-tools';
 
 @Injectable({
   providedIn: 'root',

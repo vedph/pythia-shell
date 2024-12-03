@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 
-import { DataPage, EnvService } from '@myrmidon/ng-tools';
+import { DataPage, EnvService } from '@myrmidon/ngx-tools';
 
 // https://github.com/Myrmex/ngx-data-browser?tab=readme-ov-file#tree
 import {
@@ -43,7 +43,7 @@ export class PagedWordTreeStoreService
       const page: DataPage<TreeNode> = {
         items: [
           {
-            id: -1,
+            id: 0,
             y: 0,
             x: 1,
             label: $localize`INDEX`,
@@ -61,17 +61,18 @@ export class PagedWordTreeStoreService
     const skip = (pageNumber - 1) * pageSize;
 
     // lemmata:
-    // - mock root node (Y=0, ID=-1)
-    //   - lemma (Y=1, parentId=-1)
+    // - mock root node (Y=0, ID=0)
+    //   - lemma (Y=1, parentId=0; ID=-lemmaId to avoid clash with word IDs)
     //     - word (Y=2, lemmaId=parentId)
     if (this.hasLemmata) {
-      if (filter.parentId === -1) {
+      // if parent is root, we're targeting lemmata
+      if (filter.parentId === 0) {
         return this._wordService.getLemmata(filter, pageNumber, pageSize).pipe(
           map((page) => ({
             ...page,
             items: page.items.map((l, i) => ({
-              id: l.id,
-              parentId: -1,
+              id: -l.id,
+              parentId: 0,
               y: 1,
               x: i + 1 + skip,
               label: l.value,
@@ -81,12 +82,14 @@ export class PagedWordTreeStoreService
           }))
         );
       } else {
-        filter.lemmaId = filter.parentId;
+        // else we're targeting words
+        filter.lemmaId = Math.abs(filter.parentId);
+        filter.parentId = Math.abs(filter.parentId);
         return this._wordService.getWords(filter, pageNumber, pageSize).pipe(
           map((page) => ({
             ...page,
             items: page.items.map((w, i) => ({
-              parentId: filter.parentId,
+              parentId: -filter.parentId!,
               id: w.id,
               y: 2,
               x: i + 1 + skip,
@@ -99,8 +102,8 @@ export class PagedWordTreeStoreService
       }
     } else {
       // words:
-      // - mock root node (Y=0, ID=-1)
-      //   - word (Y=1, parentId=-1)
+      // - mock root node (Y=0, ID=0)
+      //   - word (Y=1, parentId=0)
       return this._wordService.getWords(filter, pageNumber, pageSize).pipe(
         map((page) => ({
           ...page,

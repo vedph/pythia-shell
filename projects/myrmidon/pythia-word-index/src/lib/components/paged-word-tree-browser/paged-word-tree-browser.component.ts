@@ -14,8 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import {
+  BrowserTreeNodeComponent,
   PageChangeRequest,
-  PagedDataBrowsersModule,
   PagedTreeStore,
 } from '@myrmidon/paged-data-browsers';
 import { Lemma, Word, WordFilter } from '@myrmidon/pythia-api';
@@ -28,23 +28,23 @@ import {
 } from '../paged-word-tree-filter/paged-word-tree-filter.component';
 
 @Component({
-    selector: 'pythia-paged-word-tree-browser',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatProgressBarModule,
-        MatSelectModule,
-        MatTooltipModule,
-        PagedDataBrowsersModule,
-        PagedWordTreeFilterComponent,
-    ],
-    templateUrl: './paged-word-tree-browser.component.html',
-    styleUrl: './paged-word-tree-browser.component.scss'
+  selector: 'pythia-paged-word-tree-browser',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatTooltipModule,
+    BrowserTreeNodeComponent,
+    PagedWordTreeFilterComponent,
+  ],
+  templateUrl: './paged-word-tree-browser.component.html',
+  styleUrl: './paged-word-tree-browser.component.scss',
 })
 export class PagedWordTreeBrowserComponent implements OnInit {
   private readonly _store: PagedTreeStore<PagedWordTreeNode, WordFilter>;
@@ -72,6 +72,12 @@ export class PagedWordTreeBrowserComponent implements OnInit {
   public hideFilter?: boolean;
 
   /**
+   * Whether to enable debug node view.
+   */
+  @Input()
+  public debug?: boolean;
+
+  /**
    * The sort order entries to display in the sort order dropdown.
    * If not set, the sort order dropdown will use the default entries.
    */
@@ -90,6 +96,11 @@ export class PagedWordTreeBrowserComponent implements OnInit {
     this._store = service.store;
     this.nodes$ = this._store.nodes$;
     this.filter$ = this._store.filter$;
+  }
+
+  public trackNode(index: number, node: PagedWordTreeNode): string {
+    const key = `${node.y}_${node.id}`;
+    return key;
   }
 
   public ngOnInit(): void {
@@ -159,11 +170,17 @@ export class PagedWordTreeBrowserComponent implements OnInit {
     });
   }
 
-  public requestSearch(token: Word | Lemma): void {
-    this.searchRequest.emit(token);
+  public requestSearch(term: Word | Lemma): void {
+    if (term.id < 0) {
+      term.id = Math.abs(term.id);
+    }
+    this.searchRequest.emit(term);
   }
 
   public requestCounts(term: Word | Lemma): void {
+    if (term.id < 0) {
+      term.id = Math.abs(term.id);
+    }
     this.countsRequest.emit(term);
   }
 }

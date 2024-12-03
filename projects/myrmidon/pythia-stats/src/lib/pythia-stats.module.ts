@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
+import { EnvServiceProvider } from '@myrmidon/ngx-tools';
 
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 
@@ -22,8 +22,6 @@ import { PythiaStatsComponent } from './components/pythia-stats/pythia-stats.com
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
-    // myrmidon
-    NgToolsModule,
     // pythia
     PythiaApiModule,
   ],

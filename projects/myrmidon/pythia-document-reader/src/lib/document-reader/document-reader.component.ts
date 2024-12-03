@@ -14,11 +14,11 @@ import {
 import { DocumentReaderRepository } from '../document-reader.repository';
 
 @Component({
-    selector: 'pythia-document-reader',
-    templateUrl: './document-reader.component.html',
-    styleUrls: ['./document-reader.component.css'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'pythia-document-reader',
+  templateUrl: './document-reader.component.html',
+  styleUrls: ['./document-reader.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class DocumentReaderComponent implements OnInit {
   private _busy: boolean | undefined;

@@ -8,7 +8,7 @@ import {
   EnvService,
   DataPage,
   ErrorWrapper,
-} from '@myrmidon/ng-tools';
+} from '@myrmidon/ngx-tools';
 
 export interface SearchResult {
   id: string;

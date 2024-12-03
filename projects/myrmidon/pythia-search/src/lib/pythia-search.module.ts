@@ -14,7 +14,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { NgToolsModule } from '@myrmidon/ng-tools';
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
 import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
@@ -48,7 +47,6 @@ import { SearchExportComponent } from './components/search-export/search-export.
     PythiaDocumentReaderModule,
     PythiaQueryBuilderModule,
     PythiaUiModule,
-    NgToolsModule,
   ],
   exports: [SearchComponent, SearchExportComponent],
 })

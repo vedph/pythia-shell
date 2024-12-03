@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { EnvService, ErrorService } from '@myrmidon/ng-tools';
+import { EnvService, ErrorService } from '@myrmidon/ngx-tools';
 import { TextMapNode } from '@myrmidon/pythia-core';
 
 @Injectable({

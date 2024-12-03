@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
+import { DataPage, EnvService, ErrorService } from '@myrmidon/ngx-tools';
 import { IndexTerm } from '@myrmidon/pythia-core';
 
 /**

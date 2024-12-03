@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/pythia-corpus-list",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "Pythia - corpus list.",
   "keywords": [
     "Pythia"
@@ -14,18 +14,18 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^18.2.8",
-    "@angular/core": "^18.2.8",
-    "@myrmidon/cadmus-refs-lookup": "^5.1.2",
-    "@myrmidon/auth-jwt-login": "^5.1.0",
-    "@myrmidon/ng-tools": "^3.1.1",
-    "@myrmidon/ng-mat-tools": "^3.1.0",
-    "@myrmidon/paged-data-browsers": "^2.0.3",
-    "@myrmidon/pythia-core": "^4.0.1",
-    "@myrmidon/pythia-api": "^4.0.1",
-    "@myrmidon/pythia-ui": "^4.0.1"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@myrmidon/cadmus-refs-lookup": "^6.0.0",
+    "@myrmidon/auth-jwt-login": "^7.0.1",
+    "@myrmidon/ngx-tools": "^0.0.1",
+    "@myrmidon/ngx-mat-tools": "^0.0.1",
+    "@myrmidon/paged-data-browsers": "^4.0.0",
+    "@myrmidon/pythia-core": "^5.0.0",
+    "@myrmidon/pythia-api": "^5.0.0",
+    "@myrmidon/pythia-ui": "^5.0.0"
   },
   "dependencies": {
-    "tslib": "^2.8.0"
+    "tslib": "^2.3.0"
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
-import { EnvService } from '@myrmidon/ng-tools';
+import { EnvService } from '@myrmidon/ngx-tools';
 import { AppSettingsService } from '@myrmidon/pythia-core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';

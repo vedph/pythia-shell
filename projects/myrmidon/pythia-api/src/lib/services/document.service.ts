@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { DataPage, EnvService, ErrorService } from '@myrmidon/ng-tools';
+import { DataPage, EnvService, ErrorService } from '@myrmidon/ngx-tools';
 import { Document } from '@myrmidon/pythia-core';
 
 export enum DocumentSortOrder {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject, tap, map } from 'rxjs';
 
-import { DataPage } from '@myrmidon/ng-tools';
+import { DataPage } from '@myrmidon/ngx-tools';
 import { KwicSearchResult, SearchService } from '@myrmidon/pythia-api';
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
 import {

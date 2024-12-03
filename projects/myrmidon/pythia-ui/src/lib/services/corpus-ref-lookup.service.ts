@@ -5,7 +5,7 @@ import {
   RefLookupFilter,
   RefLookupService,
 } from '@myrmidon/cadmus-refs-lookup';
-import { DataPage } from '@myrmidon/ng-tools';
+import { DataPage } from '@myrmidon/ngx-tools';
 
 import { CorpusService } from '@myrmidon/pythia-api';
 import { Corpus } from '@myrmidon/pythia-core';

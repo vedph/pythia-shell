@@ -27,8 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // myrmidon
-import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
-import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
+import { EnvServiceProvider } from '@myrmidon/ngx-tools';
 import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 
 // pythia
@@ -76,14 +75,11 @@ import { CorpusEditorComponent } from './components/corpus-editor/corpus-editor.
     MatTooltipModule,
     MatToolbarModule,
     // myrmidon
-    NgToolsModule,
-    NgMatToolsModule,
     RefLookupComponent,
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,
     PythiaUiModule,
-    NgToolsModule,
   ],
   exports: [CorpusFilterComponent, CorpusListComponent, CorpusEditorComponent],
   providers: [EnvServiceProvider],
