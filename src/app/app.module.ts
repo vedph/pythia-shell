@@ -62,7 +62,7 @@ import { PythiaApiModule } from 'projects/myrmidon/pythia-api/src/public-api';
 import { PythiaCoreModule } from 'projects/myrmidon/pythia-core/src/public-api';
 import { PythiaCorpusListModule } from 'projects/myrmidon/pythia-corpus-list/src/public-api';
 import { PythiaDocumentListModule } from 'projects/myrmidon/pythia-document-list/src/public-api';
-import { PythiaDocumentReaderModule } from 'projects/myrmidon/pythia-document-reader/src/public-api';
+import { DocumentReaderComponent } from 'projects/myrmidon/pythia-document-reader/src/public-api';
 import {
   PythiaQueryBuilderModule,
   QUERY_BUILDER_ATTR_DEFS_KEY,
@@ -145,7 +145,7 @@ import { I18nPaginatorIntlService } from '../services/i18n-paginator-intl.servic
     PythiaCoreModule,
     PythiaCorpusListModule,
     PythiaDocumentListModule,
-    PythiaDocumentReaderModule,
+    DocumentReaderComponent,
     PythiaQueryBuilderModule,
     PythiaSearchModule,
     PythiaStatsModule,

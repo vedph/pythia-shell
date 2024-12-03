@@ -17,7 +17,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RefLookupComponent } from '@myrmidon/cadmus-refs-lookup';
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
-import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
 import { CorpusSetComponent } from './components/corpus-set/corpus-set.component';
@@ -25,6 +24,7 @@ import { QueryEntryComponent } from './components/query-entry/query-entry.compon
 import { QueryBuilderComponent } from './components/query-builder/query-builder.component';
 import { QueryEntrySetComponent } from './components/query-entry-set/query-entry-set.component';
 import { QueryOpArgsComponent } from './components/query-op-args/query-op-args.component';
+import { DocumentReaderComponent } from '@myrmidon/pythia-document-reader';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { QueryOpArgsComponent } from './components/query-op-args/query-op-args.c
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,
-    PythiaDocumentReaderModule,
+    DocumentReaderComponent,
     PythiaUiModule,
   ],
   exports: [

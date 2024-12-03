@@ -3,5 +3,5 @@
  */
 
 export * from './lib/document-reader/document-reader.component';
-
-export * from './lib/pythia-document-reader.module';
+export * from './lib/map-paged-tree-browser/map-paged-tree-browser.component';
+export * from './lib/map-paged-tree-store.service';

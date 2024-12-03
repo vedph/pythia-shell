@@ -7,54 +7,15 @@
   </div>
   }
   <!-- map -->
-  @if (map$ | async) {
+  @if (!hideMap) { @if (map$ | async; as map) {
   <div id="map">
-    <mat-tree
-      id="document-reader-tree"
-      [dataSource]="treeDataSource"
-      [treeControl]="treeControl"
-    >
-      <mat-tree-node
-        *matTreeNodeDef="let node"
-        matTreeNodeToggle
-        style="list-style-type: none"
-      >
-        <li class="mat-tree-node">
-          <button type="button" mat-icon-button disabled></button>
-          <a mat-button (click)="onMapNodeClick(node)">
-            {{ node.label }}
-          </a>
-        </li>
-      </mat-tree-node>
-      <mat-nested-tree-node
-        *matTreeNodeDef="let node; when: hasNestedChild"
-        style="list-style-type: none"
-      >
-        <li>
-          <div class="mat-tree-node">
-            <button
-              mat-icon-button
-              matTreeNodeToggle
-              [attr.aria-label]="'Toggle ' + node.label"
-            >
-              <mat-icon class="mat-icon-rtl-mirror">
-                {{
-                  treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
-                }}
-              </mat-icon>
-            </button>
-            <a mat-button (click)="onMapNodeClick(node)">
-              {{ node.label }}
-            </a>
-          </div>
-          <ul [style.display]="!treeControl.isExpanded(node) ? 'none' : null">
-            <ng-container matTreeNodeOutlet></ng-container>
-          </ul>
-        </li>
-      </mat-nested-tree-node>
-    </mat-tree>
+    <pythia-map-paged-tree-browser
+      [map]="map"
+      [debug]="debug"
+      (mapNodeClick)="onMapNodeClick($event)"
+    />
   </div>
-  }
+  } }
   <!-- text -->
   <div id="text">
     <h3 class="doc-head">

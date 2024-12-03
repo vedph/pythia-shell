@@ -1,0 +1,39 @@
+<div id="container">
+  <!-- filters -->
+  <div id="filters">
+    <!-- <app-paged-tree-filter
+      [filter]="filter$ | async"
+      (filterChange)="onFilterChange($event)"
+    /> -->
+  </div>
+
+  <!-- list -->
+  <div id="list">
+    @if (nodes$ && nodes$ | async; as nodes) {
+    <div>
+      @for (node of nodes; track node.id; let i = $index) {
+      <div>
+        <pdb-browser-tree-node
+          class="node"
+          [node]="node"
+          [debug]="debug()"
+          [paging]="
+            node.expanded &&
+            i + 1 < nodes.length &&
+            nodes[i + 1].paging.pageCount > 1
+              ? nodes[i + 1].paging
+              : undefined
+          "
+          [hideFilter]="true"
+          [hideLoc]="true"
+          (toggleExpandedRequest)="onToggleExpanded($any($event))"
+          (changePageRequest)="onPageChangeRequest($event)"
+          (click)="onMapNodeClick(node)"
+        >
+        </pdb-browser-tree-node>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>

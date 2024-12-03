@@ -1,26 +1,43 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Observable, of } from 'rxjs';
-
-import { ReaderService } from '@myrmidon/pythia-api';
+import { PythiaApiModule, ReaderService } from '@myrmidon/pythia-api';
 import {
   Document,
   DocumentReadRequest,
+  PythiaCoreModule,
   TextMapNode,
 } from '@myrmidon/pythia-core';
 
 import { DocumentReaderRepository } from '../document-reader.repository';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+import { MapPagedTreeBrowserComponent } from '../map-paged-tree-browser/map-paged-tree-browser.component';
 
 @Component({
   selector: 'pythia-document-reader',
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    // material
+    MatButtonModule,
+    MatIconModule,
+    MatProgressBarModule,
+    // Pythia
+    PythiaApiModule,
+    PythiaCoreModule,
+    MapPagedTreeBrowserComponent,
+  ],
   templateUrl: './document-reader.component.html',
   styleUrls: ['./document-reader.component.css'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false,
 })
-export class DocumentReaderComponent implements OnInit {
+export class DocumentReaderComponent {
   private _busy: boolean | undefined;
   private _request: DocumentReadRequest | undefined;
 
@@ -46,13 +63,22 @@ export class DocumentReaderComponent implements OnInit {
     }
   }
 
+  /**
+   * Whether to show debug information.
+   */
+  @Input()
+  public debug?: boolean;
+
+  /**
+   * Whether to hide the map.
+   */
+  @Input()
+  public hideMap?: boolean;
+
   public loading$: Observable<boolean>;
   public document$: Observable<Document | undefined>;
   public map$: Observable<TextMapNode | undefined>;
   public text$: Observable<string | undefined>;
-
-  public treeControl: NestedTreeControl<TextMapNode>;
-  public treeDataSource: MatTreeNestedDataSource<TextMapNode>;
 
   constructor(
     private _repository: DocumentReaderRepository,
@@ -62,21 +88,7 @@ export class DocumentReaderComponent implements OnInit {
     this.document$ = _repository.document$;
     this.map$ = _repository.map$;
     this.text$ = _repository.text$;
-    // map
-    this.treeControl = new NestedTreeControl((n: TextMapNode) => {
-      return of(n.children || []);
-    });
-    this.treeDataSource = new MatTreeNestedDataSource();
-    this.map$.subscribe((root) => {
-      this.treeDataSource.data = root ? [root] : [];
-    });
   }
-
-  public hasNestedChild = (index: number, node: TextMapNode) => {
-    return node.children && node.children?.length > 0;
-  };
-
-  ngOnInit(): void {}
 
   public onMapNodeClick(node: TextMapNode): void {
     if (this._busy) {

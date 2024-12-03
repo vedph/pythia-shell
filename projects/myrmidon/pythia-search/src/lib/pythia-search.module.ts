@@ -16,7 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PythiaApiModule } from '@myrmidon/pythia-api';
 import { PythiaCoreModule } from '@myrmidon/pythia-core';
-import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
+import { DocumentReaderComponent } from '@myrmidon/pythia-document-reader';
 import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
 import { PythiaUiModule } from '@myrmidon/pythia-ui';
 
@@ -44,7 +44,7 @@ import { SearchExportComponent } from './components/search-export/search-export.
     // Pythia
     PythiaApiModule,
     PythiaCoreModule,
-    PythiaDocumentReaderModule,
+    DocumentReaderComponent,
     PythiaQueryBuilderModule,
     PythiaUiModule,
   ],
