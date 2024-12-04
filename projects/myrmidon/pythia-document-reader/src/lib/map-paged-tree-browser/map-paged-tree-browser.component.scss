@@ -16,3 +16,7 @@
 .form-row * {
   flex: 0 0 auto;
 }
+pdb-browser-tree-node {
+  --browser-tree-node-border: none;
+  --browser-tree-node-padding: 0;
+}
