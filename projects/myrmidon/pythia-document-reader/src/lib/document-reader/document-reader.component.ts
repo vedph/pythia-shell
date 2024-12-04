@@ -75,6 +75,12 @@ export class DocumentReaderComponent {
   @Input()
   public hideMap?: boolean;
 
+  /**
+   * The minimum map nodes count treshold for showing the filter.
+   */
+  @Input()
+  public filterTreshold = 0;
+
   public loading$: Observable<boolean>;
   public document$: Observable<Document | undefined>;
   public map$: Observable<TextMapNode | undefined>;

@@ -7,3 +7,12 @@
 .node:hover {
   background-color: #f0f0f0;
 }
+.form-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-row * {
+  flex: 0 0 auto;
+}

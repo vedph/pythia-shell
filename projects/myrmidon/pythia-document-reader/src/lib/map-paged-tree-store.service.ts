@@ -13,18 +13,25 @@ import { Observable, of } from 'rxjs';
  * A flat map node. This derives from flattening a TextMapNode for use
  * in a paged tree browser.
  */
-export interface FlatMapNode extends PagedTreeNode<TreeNodeFilter> {
+export interface FlatMapNode extends PagedTreeNode<FlatMapNodeFilter> {
   payload: TextMapNode;
+}
+
+/**
+ * A filter for flat map nodes.
+ */
+export interface FlatMapNodeFilter extends TreeNodeFilter {
+  label?: string;
 }
 
 /**
  * A service that provides a paged tree of flat map nodes.
  */
 export class MapPagedTreeStoreService
-  implements PagedTreeStoreService<TreeNodeFilter>
+  implements PagedTreeStoreService<FlatMapNodeFilter>
 {
   private readonly _map: TextMapNode;
-  private _nodes: PagedTreeNode<TreeNodeFilter>[] = [];
+  private _nodes: PagedTreeNode<FlatMapNodeFilter>[] = [];
 
   constructor(map: TextMapNode) {
     this._map = map;
@@ -37,15 +44,17 @@ export class MapPagedTreeStoreService
     this.flattenMap(this._map, null);
   }
 
-  private flattenMap(map: TextMapNode, parent: FlatMapNode | null): void {
-    const node: FlatMapNode = {
-      id: map.start,
-      parentId: parent ? parent.id : undefined,
-      y: map.location.split('.').length,
-      x: map.start,
-      label: map.label,
-      payload: map,
-      hasChildren: !!map.children,
+  private flattenMap(node: TextMapNode, parent: FlatMapNode | null): void {
+    const flatNode: FlatMapNode = {
+      id: node.start,
+      parentId: parent && parent.parentId !== undefined ? parent.id : undefined,
+      y: node.location.split('.').length,
+      x: node.parent
+        ? node.parent.children!.indexOf(node) + 1
+        : this._nodes.filter((n) => n.parentId === undefined).length,
+      label: node.label,
+      payload: node,
+      hasChildren: !!node.children,
       expanded: false,
       paging: {
         pageNumber: 0,
@@ -54,11 +63,14 @@ export class MapPagedTreeStoreService
       },
     };
 
-    this._nodes.push(node);
+    // we add only non-root nodes to the list
+    if (node.parent) {
+      this._nodes.push(flatNode);
+    }
 
-    if (map.children) {
-      for (const child of map.children) {
-        this.flattenMap(child, node);
+    if (node.children) {
+      for (const child of node.children) {
+        this.flattenMap(child, flatNode);
       }
     }
   }
@@ -73,7 +85,7 @@ export class MapPagedTreeStoreService
    * @returns Nodes.
    */
   public getNodes(
-    filter: TreeNodeFilter,
+    filter: FlatMapNodeFilter,
     pageNumber: number,
     pageSize: number,
     hasMockRoot?: boolean
@@ -88,9 +100,9 @@ export class MapPagedTreeStoreService
           return false;
         }
       }
-      // if (filter.label && !n.label.includes(filter.label)) {
-      //   return false;
-      // }
+      if (filter.label && !n.label.includes(filter.label)) {
+        return false;
+      }
       return true;
     });
 
@@ -109,8 +121,8 @@ export class MapPagedTreeStoreService
   }
 
   public fetchChildren(
-    node: PagedTreeNode<TreeNodeFilter>
-  ): Promise<PagedTreeNode<TreeNodeFilter>[]> {
+    node: PagedTreeNode<FlatMapNodeFilter>
+  ): Promise<PagedTreeNode<FlatMapNodeFilter>[]> {
     const children = this._nodes.filter((n) => n.parentId === node.id);
     return Promise.resolve(children);
   }

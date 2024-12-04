@@ -1,15 +1,43 @@
-<div id="container">
-  <!-- filters -->
-  <div id="filters">
-    <!-- <app-paged-tree-filter
-      [filter]="filter$ | async"
-      (filterChange)="onFilterChange($event)"
-    /> -->
+<div>
+  @if (nodes$ && nodes$ | async; as nodes) {
+  <div class="form-row">
+    <!-- filters -->
+    @if (nodes.length > filterTreshold()) {
+    <div id="filters">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="filter"
+          i18n-placeholder
+          [formControl]="labelFilter"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          [disabled]="!labelFilter.value"
+          (click)="resetLabelFilter()"
+        >
+          <mat-icon class="mat-warn">cancel</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <!-- full document -->
+    @if (!hideFullDocument()) {
+    <button
+      type="button"
+      mat-icon-button
+      matTooltip="Whole document"
+      i18n-matTooltip
+      (click)="showFullDocument()"
+    >
+      <mat-icon color="primary">article</mat-icon>
+    </button>
+    } }
   </div>
 
   <!-- list -->
   <div id="list">
-    @if (nodes$ && nodes$ | async; as nodes) {
     <div>
       @for (node of nodes; track node.id; let i = $index) {
       <div>
@@ -34,6 +62,6 @@
       </div>
       }
     </div>
-    }
   </div>
+  }
 </div>
