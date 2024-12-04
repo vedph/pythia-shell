@@ -17,7 +17,7 @@
     "build-qbl": "ng build @myrmidon/pythia-query-builder",
     "build-src": "ng build @myrmidon/pythia-search",
     "build-crp": "ng build @myrmidon/pythia-corpus-list",
-    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-wrd && npm run build-sta && npm run build-src && npm run build-crp && npm run build-qbl",
+    "build-lib": "npm run build-cor && npm run build-api && npm run build-ui && npm run build-dcr && npm run build-doc && npm run build-wrd && npm run build-sta && npm run build-qbl && npm run build-src && npm run build-crp",
     "xi18n": "ng extract-i18n --output-path src/locale && xliffmerge --profile xliffmerge.json it"
   },
   "private": true,
@@ -32,7 +32,7 @@
     "@angular/platform-browser": "^19.0.1",
     "@angular/platform-browser-dynamic": "^19.0.1",
     "@angular/router": "^19.0.1",
-    "@myrmidon/auth-jwt-admin": "^7.0.1",
+    "@myrmidon/auth-jwt-admin": "^7.0.2",
     "@myrmidon/auth-jwt-login": "^7.0.1",
     "@myrmidon/cadmus-refs-lookup": "^6.0.0",
     "@myrmidon/ngx-mat-tools": "^0.0.1",
