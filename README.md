@@ -52,6 +52,8 @@ These are the media query breakpoints defined for responsive layouts according t
   - ⚠️ updated core dependencies.
   - fix to duplicate node IDs in tree view (words index): lemmata and words come from different tables, so they may often have the same ID. Now for lemmata we simply negate the ID, so that all lemmata nodes have negative IDs, and all word nodes their original positive ID.
   - refactored document reader replacing Material tree obsolete components with a paged tree. This has also the advantage of avoiding a too tall list in the map, and provide filtering for it.
+  - search lemma/word from index.
+  - result styles.
 - 2024-12-01:
   - M3 theme.
   - updated Angular and packages except for `echarts` which must be kept at `5.4.3` with TS at `~5.5.2` until [this issue](https://github.com/xieziyu/ngx-echarts/issues/437) is fixed.

@@ -44,11 +44,21 @@ export class MapPagedTreeStoreService
     this.flattenMap(this._map, null);
   }
 
+  private getNodeDepth(node: TextMapNode): number {
+    let depth = 0;
+    let current: TextMapNode | undefined = node;
+    while (current) {
+      depth++;
+      current = current.parent;
+    }
+    return depth;
+  }
+
   private flattenMap(node: TextMapNode, parent: FlatMapNode | null): void {
     const flatNode: FlatMapNode = {
       id: node.start,
-      parentId: parent && parent.parentId !== undefined ? parent.id : undefined,
-      y: node.location.split('.').length,
+      parentId: parent?.id,
+      y: this.getNodeDepth(node),
       x: node.parent
         ? node.parent.children!.indexOf(node) + 1
         : this._nodes.filter((n) => n.parentId === undefined).length,
@@ -63,10 +73,7 @@ export class MapPagedTreeStoreService
       },
     };
 
-    // we add only non-root nodes to the list
-    if (node.parent) {
-      this._nodes.push(flatNode);
-    }
+    this._nodes.push(flatNode);
 
     if (node.children) {
       for (const child of node.children) {
@@ -100,7 +107,7 @@ export class MapPagedTreeStoreService
           return false;
         }
       }
-      if (filter.label && !n.label.includes(filter.label)) {
+      if (filter.label && n.parentId && !n.label.includes(filter.label)) {
         return false;
       }
       return true;
@@ -118,12 +125,5 @@ export class MapPagedTreeStoreService
       pageCount: Math.ceil(nodes.length / pageSize),
       total: nodes.length,
     });
-  }
-
-  public fetchChildren(
-    node: PagedTreeNode<FlatMapNodeFilter>
-  ): Promise<PagedTreeNode<FlatMapNodeFilter>[]> {
-    const children = this._nodes.filter((n) => n.parentId === node.id);
-    return Promise.resolve(children);
   }
 }

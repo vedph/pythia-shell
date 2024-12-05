@@ -127,9 +127,9 @@ export class MapPagedTreeBrowserComponent implements OnDestroy {
       return;
     }
     if (node.expanded) {
-      this._store.collapse(node.id).finally(() => {});
+      this._store.collapse(node.id);
     } else {
-      this._store.expand(node.id).finally(() => {});
+      this._store.expand(node.id);
     }
   }
 

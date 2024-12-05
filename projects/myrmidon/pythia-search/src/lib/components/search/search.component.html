@@ -120,7 +120,7 @@
               [disabled]="loading$ | async"
               (click)="readDocumentPiece(r.documentId, r.index, r.length)"
             >
-              <mat-icon style="color: #ffb764">find_in_page</mat-icon>
+              <mat-icon class="mat-primary">find_in_page</mat-icon>
             </button>
             <!-- read-doc -->
             <button
@@ -131,7 +131,7 @@
               [disabled]="loading$ | async"
               (click)="readDocument(r.documentId)"
             >
-              <mat-icon style="color: #50cc86">description</mat-icon>
+              <mat-icon>description</mat-icon>
             </button>
           </td>
           <td class="nr noif-lt-md">{{ index + 1 }}.</td>

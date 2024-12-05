@@ -8,6 +8,8 @@ table {
 }
 th {
   font-weight: normal;
+  color: #a0a0a0;
+  background-color: #dedede;
 }
 th,
 td {
@@ -26,10 +28,6 @@ tr:nth-child(even) {
 }
 tr:hover {
   background-color: #eee;
-}
-thead td {
-  text-align: center;
-  color: silver;
 }
 tbody td {
   padding-left: 4px;
@@ -52,24 +50,19 @@ td.nr {
 }
 td.author {
   font-variant: small-caps;
-  color: #c04f05;
-  font-size: 110%;
 }
 td.title {
-  font-style: italic;
-  color: #038841;
+  font-size: 0.9em;
 }
 td.context {
   color: #404040;
   text-align: center;
 }
 td.value {
-  font-weight: bold;
   cursor: pointer;
   text-align: center;
-  color: #2137aa;
-}
-code {
+  background-color: #dedede;
+}code {
   color: #c04f05;
 }
 .form-row {

@@ -69,9 +69,13 @@ export class SearchComponent implements OnInit {
     this.readRequest$ = _repository.readRequest$;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.initialQueryTerm) {
-      this.query.setValue('[value="' + this.initialQueryTerm + '"]');
+      if (this.initialQueryTerm.startsWith('^')) {
+        this.query.setValue(`[lemma="${this.initialQueryTerm.substring(1)}"]`);
+      } else {
+        this.query.setValue(`[value="${this.initialQueryTerm}"]`);
+      }
       setTimeout(() => this.search(), 0);
     }
   }
