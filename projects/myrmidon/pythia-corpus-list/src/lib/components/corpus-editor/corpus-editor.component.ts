@@ -21,7 +21,7 @@ export interface EditedCorpus extends Corpus {
 
 /**
  * Corpus editor. This allows users to edit the corpus ID, title,
- * and description, plus eventually add to its contents the contents
+ * and description, plus optionally add to its contents the contents
  * of another corpus. In this case, users can lookup only corpora
  * belonging to them as source, unless they are admin's.
  */

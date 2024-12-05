@@ -58,7 +58,7 @@ export class DocumentReaderRepository {
   }
 
   /**
-   * Load the requested document with its map and eventually text.
+   * Load the requested document with its map and optionally text.
    *
    * @param request The request.
    * @param initialPath The optional initial path to open once text has been loaded

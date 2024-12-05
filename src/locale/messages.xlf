@@ -735,7 +735,7 @@
         <source>profile</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-filter/document-filter.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">59,60</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.html</context>
@@ -1020,7 +1020,7 @@
         <source>Refresh</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-list/src/lib/document-list/document-list.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">73,74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6593276902766556560" datatype="html">
@@ -1081,6 +1081,10 @@
         <source>Whole document</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-document-reader/src/lib/map-paged-tree-browser/map-paged-tree-browser.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-document-reader/src/lib/map-paged-tree-browser/map-paged-tree-browser.component.html</context>
           <context context-type="linenumber">30,31</context>
         </context-group>
       </trans-unit>
@@ -1132,7 +1136,7 @@
         <source>Delete all the entries</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
-          <context context-type="linenumber">1,3</context>
+          <context context-type="linenumber">1,2</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
@@ -2757,12 +2761,15 @@
           <context context-type="linenumber">450</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="89989402839143048" datatype="html">
-        <source>Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
+      <trans-unit id="9020672469855396523" datatype="html">
+        <source>Filters the first pair so that it must be inside the span defined by the second pair, optionally at the specified distance from the container start or end.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">452</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="89989402839143048" datatype="html">
+        <source>Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">452</context>
@@ -2855,12 +2862,15 @@
           <context context-type="linenumber">486</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8373612448662259948" datatype="html">
-        <source>Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
+      <trans-unit id="5809375080148310334" datatype="html">
+        <source>Filters the first pair so that it must not be inside the span defined by the second pair, optionally at the specified distance from the container start or end.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">488</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="8373612448662259948" datatype="html">
+        <source>Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">488</context>
@@ -2877,12 +2887,15 @@
           <context context-type="linenumber">522</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2528454948766196994" datatype="html">
-        <source>Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
+      <trans-unit id="6435274428451061777" datatype="html">
+        <source>Filters the first pair so that its span must overlap the one defined by the second pair, optionally by the specified amount of positions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">524</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="2528454948766196994" datatype="html">
+        <source>Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">524</context>
@@ -2899,12 +2912,15 @@
           <context context-type="linenumber">546</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="274691664307407516" datatype="html">
-        <source>Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
+      <trans-unit id="3071388728710815281" datatype="html">
+        <source>Filters the first pair so that its span must not overlap the one defined by the second pair, optionally by the specified amount of positions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">548</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="274691664307407516" datatype="html">
+        <source>Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">548</context>

@@ -57,7 +57,7 @@ export class QueryEntryComponent implements OnInit, OnDestroy {
   public form: FormGroup;
 
   /**
-   * Types of entry. Text-specific types are eventually added during init.
+   * Types of entry. Text-specific types are optionally added during init.
    */
   public entryTypes = [
     {

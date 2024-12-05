@@ -449,7 +449,7 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'INSIDE',
     label: $localize`inside`,
     group: $localize`e) collocation`,
-    tip: $localize`Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.`,
+    tip: $localize`Filters the first pair so that it must be inside the span defined by the second pair, optionally at the specified distance from the container start or end.`,
     args: [
       {
         id: 'ns',
@@ -485,7 +485,7 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'NOT INSIDE',
     label: $localize`not inside`,
     group: $localize`e) collocation`,
-    tip: $localize`Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.`,
+    tip: $localize`Filters the first pair so that it must not be inside the span defined by the second pair, optionally at the specified distance from the container start or end.`,
     args: [
       {
         id: 'ns',
@@ -521,7 +521,7 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'OVERLAPS',
     label: $localize`overlaps`,
     group: $localize`e) collocation`,
-    tip: $localize`Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.`,
+    tip: $localize`Filters the first pair so that its span must overlap the one defined by the second pair, optionally by the specified amount of positions.`,
     args: [
       {
         id: 'n',
@@ -545,7 +545,7 @@ export const QUERY_LOCATION_OP_DEFS: QueryBuilderTermDef[] = [
     value: 'NOT OVERLAPS',
     label: $localize`not overlaps`,
     group: $localize`e) collocation`,
-    tip: $localize`Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.`,
+    tip: $localize`Filters the first pair so that its span must not overlap the one defined by the second pair, optionally by the specified amount of positions.`,
     args: [
       {
         id: 'n',
