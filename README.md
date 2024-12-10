@@ -46,10 +46,9 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
-- 2024-12-10: updated packages.
-
 ### 5.0.0
 
+- 2024-12-10: updated Angular and packages.
 - 2024-12-03:
   - ⚠️ updated core dependencies.
   - fix to duplicate node IDs in tree view (words index): lemmata and words come from different tables, so they may often have the same ID. Now for lemmata we simply negate the ID, so that all lemmata nodes have negative IDs, and all word nodes their original positive ID.
