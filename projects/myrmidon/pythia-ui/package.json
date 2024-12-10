@@ -16,7 +16,7 @@
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0",
-    "@myrmidon/ngx-tools": "^4.0.0",
+    "@myrmidon/ngx-tools": "^0.0.1",
     "@myrmidon/pythia-api": "^5.0.0"
   },
   "dependencies": {

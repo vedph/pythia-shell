@@ -46,6 +46,8 @@ These are the media query breakpoints defined for responsive layouts according t
 
 ## History
 
+- 2024-12-10: updated packages.
+
 ### 5.0.0
 
 - 2024-12-03:
