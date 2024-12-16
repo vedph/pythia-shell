@@ -20,7 +20,7 @@
     "@myrmidon/auth-jwt-login": "^7.0.1",
     "@myrmidon/ngx-tools": "^0.0.1",
     "@myrmidon/ngx-mat-tools": "^0.0.1",
-    "@myrmidon/paged-data-browsers": "^4.0.0",
+    "@myrmidon/paged-data-browsers": "^4.0.1",
     "@myrmidon/pythia-core": "^5.0.0",
     "@myrmidon/pythia-api": "^5.0.0",
     "@myrmidon/pythia-ui": "^5.0.0"

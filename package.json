@@ -36,7 +36,7 @@
     "@myrmidon/auth-jwt-login": "^7.0.1",
     "@myrmidon/cadmus-refs-lookup": "^6.0.0",
     "@myrmidon/ngx-mat-tools": "^0.0.1",
-    "@myrmidon/ngx-tools": "^0.0.1",
+    "@myrmidon/ngx-tools": "^0.0.3",
     "@myrmidon/paged-data-browsers": "^4.0.1",
     "echarts": "^5.5.1",
     "ngx-echarts": "^19.0.0",
